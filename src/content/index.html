@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jakub Chojna | Architectural Visualizations</title>
+
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+  </head>
+  <body>
+    <!-- PAGE OVERLAY -->
+    <div class="page-overlay page-overlay--onload"></div>
+    <!-- PAGE HEADER -->
+    <header class="header">
+      <h1 class="header__heading visuallyhidden">Architectural Visualizations</h1>
+      <!-- MAIN NAVIGATION -->
+      <nav class="navigation navigation--align-top">
+        <h2 class="navigation__heading visuallyhidden">Main Navigation</h2>
+        <!-- PAGE LOGO -->
+        <a href="index.html" class="logo fade-link--js">
+          <svg class="logo__svg">
+            <use xlink:href="assets/svg/logos-icons.svg#page-logo" />
+          </svg>
+        </a> <!-- END OF PAGE LOGO -->
+        <!-- MAIN MENU -->
+        <section class="main-menu">
+          <h3 class="main-menu__heading visuallyhidden">Main Menu</h3>
+          <ul class="main-menu__list">
+            <li class="main-menu__item main-menu__item--large">
+              <a href="index.html" class="main-menu__link main-menu__link--large main-menu__link--active-large fade-link--js">WORKS</a>
+            </li>
+            <li class="main-menu__item main-menu__item--large">
+              <a href="about.html" class="main-menu__link main-menu__link--large fade-link--js">ABOUT</a>
+            </li>
+            <li class="main-menu__item main-menu__item--large">
+              <a href="contact.html" class="main-menu__link main-menu__link--large fade-link--js">CONTACT</a>
+            </li>
+          </ul>
+        </section> <!-- END OF MAIN MENU -->
+        <!-- MOBILE NAVIGATION -->
+        <section class="mobile-menu mobile-menu--hidden">
+          <h3 class="mobile-menu__heading visuallyhidden">Mobile Menu</h3>
+        </section> <!-- END OF MOBILE NAVIGATION -->
+        <!-- BURGER BUTTON -->
+        <button class="burger burger--js" aria-label="open mobile menu">
+          <svg class="burger__svg" viewBox="0 0 1000 1000">
+            <use href="assets/svg/logos-icons.svg#burger-button" />
+          </svg>
+        </button> <!-- END OF BURGER BUTTON -->
+        <!-- GO TO TOP BUTTON -->
+        <div class="go-top go-top--js">
+          <a href="#page-container" class="go-top__link">
+            <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
+          </a>
+        </div> <!-- END OF GO TO TOP BUTTON -->
+      </nav> <!-- END OF MAIN NAVIGATION -->
+    </header> <!-- END OF PAGE HEADER -->
+
+    <!-- PAGE CONTAINER -->
+    <div id="page-container" class="page-container page-container--main-page page-container--visible">
+      <!-- PORTFOLIO -->
+      <main class="portfolio">
+        <h2 class="portfolio__heading visuallyhidden">Portfolio</h2>
+        <!-- GRID -->
+        <article class="grid">
+          <h3 class="grid__heading visuallyhidden">Grid of Visualizations</h3>
+
+          <!-- HOLIDAY LET -->
+          <section class="grid__item grid__item--js">
+            <h4 class="grid__title grid__title--js">Holiday Let</h4>
+            <a href="#" class="grid__link">
+              <svg class="grid__placeholder grid__placeholder--js" viewBox="0 0 1000 544">
+                <use href="assets/svg/placeholders.svg#holiday-let" class="grid__svg grid__svg--js"/>
+              </svg>
+              <img
+                data-src="assets/img/960px/holiday-let.jpg"
+                data-src2="assets/img/1920px/holiday-let.jpg"
+                class="grid__image grid__image--js"
+                alt="Two holiday lets in the Sussex countryside, UK | client: SG Architecture">
+            </a>
+          </section>
+
+        </article> <!-- END OF GRID -->
+        <!-- GALLERY -->
+        <article class="gallery">
+          <h3 class="gallery__heading visuallyhidden">Gallery of Visualizations</h3>
+          <section class="gallery__container gallery__container--js"></section>
+          <!-- GALLERY NAVIGATION -->
+          <nav class="navigation">
+            <h4 class="navigation__heading visuallyhidden">Gallery navigation</h4>
+            <ul class="navigation__list">
+              <li class="navigation__item">
+                <p class="navigation__counter navigation__counter--js"></p>
+              </li>
+              <li class="navigation__item">
+                <svg class="navigation__svg navigation__svg--up-arrow navigation__svg--down-arrow" viewBox="0 0 1000 1000">
+                  <use href="assets/svg/logos-icons.svg#arrow" />
+                </svg>
+              </li>
+              <li class="navigation__item">
+                <svg class="navigation__svg navigation__svg--left-arrow" viewBox="0 0 1000 1000">
+                  <use href="assets/svg/logos-icons.svg#arrow" />
+                </svg>
+              </li>
+              <li class="navigation__item">
+                <svg class="navigation__svg navigation__svg--right-arrow" viewBox="0 0 1000 1000">
+                  <use href="assets/svg/logos-icons.svg#arrow" />
+                </svg>
+              </li>
+              <li class="navigation__item">
+                <svg class="navigation__svg navigation__svg--close-button" viewBox="0 0 1000 1000">
+                  <use href="assets/svg/logos-icons.svg#close-button" />
+                </svg>
+              </li>
+            </ul>
+          </nav> <!-- END OF GALLERY NAVIGATION -->
+          <p class="gallery__description gallery__description--js"></p>
+        </article> <!-- END OF GALLERY -->
+      </main> <!-- END OF PORTFOLIO -->
+
+      <!-- PAGE FOOTER -->
+      <footer class="footer">
+        <h2 class="footer__heading visuallyhidden">Page Footer</h2>
+        <!-- SOCIAL MEDIA -->
+        <section class="social social--horizontal">
+          <h3 class="social__heading">Social Media</h3>
+          <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank">
+            <i class="social__icon fab fa-behance-square"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank">
+            <i class="social__icon fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/jchojna/" class="social__link" target="_blank">
+            <i class="social__icon fab fa-github-square"></i>
+          </a>
+          <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank">
+            <i class="social__icon fab fa-facebook-square"></i>
+          </a>
+        </section> <!-- END OF SOCIAL MEDIA -->
+        <!-- COPYRIGHT -->
+        <section class="copyright">
+          <h3 class="copyright__heading">Copyright</h3>
+          <p class="copyright__text">Copyright &copy; 2019 Jakub Chojna. All rights reserved. Website designed and developed by Jakub Chojna</p>
+        </section> <!-- END OF COPYRIGHT -->
+      </footer> <!-- END OF FOOTER -->
+    </div> <!-- END OF PAGE CONTAINER -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script>
+  </body>
+</html>
