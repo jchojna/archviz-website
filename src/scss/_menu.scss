@@ -1,0 +1,169 @@
+/********** HEADER **********/
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: $layout-sm-offset;
+
+  @media only screen and (min-width: $media-tablet) {
+
+    & {
+      padding: $layout-md-offset;
+    }
+  }
+
+  @media only screen and (min-width: $media-desktop) {
+
+    & {
+      padding: $layout-lg-offset;
+    }
+  }
+}
+
+/********** NAVIGATION **********/
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &--align-top {
+    align-items: flex-start;
+  }
+
+  &--top {
+    position: absolute;
+  }
+
+  @media only screen and (min-width: $media-tablet) {
+
+    & {
+
+    }
+  }
+
+  @media only screen and (min-width: $media-desktop) {
+
+    & {
+      
+      &--align-top {
+        align-items: center;
+      }
+    }
+  }
+}
+
+/********** LOGO **********/
+
+.logo {
+  display: flex;
+  height: $layout-sm-logo;
+  width: $layout-sm-logo;
+
+  &:hover .logo__svg {
+    fill: $color-main;
+  }
+
+  &__svg {
+    height: 100%;
+    width: 100%;
+    fill: #fff;
+    pointer-events: none;
+    transition: fill $time-hover-menu;
+  }
+
+  @media only screen and (min-width: $media-tablet) {
+
+    & {
+      height: $layout-md-logo;
+      width: $layout-md-logo;
+    }
+  }
+
+  @media only screen and (min-width: $media-desktop) {
+
+    & {
+      height: $layout-lg-logo;
+      width: $layout-lg-logo;
+    }
+  }
+}
+
+/********** MAIN MENU **********/
+
+.main-menu {
+
+  &__list {
+    display: none;
+    list-style: none;
+  }
+
+  &__item {
+    transform: translateY(0);
+    transition: transform $time-menu-translation $timing-ease-in-strong;
+
+    &--hidden {
+      transform: translateY(-220px);
+      transition: transform $time-menu-translation $timing-ease-out-strong $time-menu-delay;
+    }
+
+    &--large {
+
+    }
+  }
+
+  &__link {
+    color: white;
+    letter-spacing: 0.2rem;
+    line-height: 1;
+    font-size: 3rem;
+    font-weight: bold;
+
+    &--large {
+      
+    }
+
+    &--active-large {
+      
+    }
+  }
+
+  @media only screen and (min-width: $media-tablet) {
+
+    & {
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+      }
+
+      &__item {
+
+        &--large:not(:last-child) {
+          margin: 0 0 1rem 0;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-desktop) {
+
+    & {
+
+      &__list {
+        flex-direction: row;
+      }
+      
+      &__item {
+
+        &--large:not(:last-child) {
+          margin: 0 5rem 0 0;
+        }
+      }
+    }
+  }
+}

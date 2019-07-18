@@ -22,10 +22,11 @@ html {
 }
 
 body {
+  background-color: #000;
   color: #fff;
   font-size: 16px;
   line-height: 1.4;
-  font-family: "Quicksand", Arial, sans-serif;
+  font-family: 'Quicksand', Arial, sans-serif;
 }
 
 img {
@@ -73,7 +74,6 @@ object {
 /********** PAGE CONTAINER **********/
 
 .page-container {
-  position: relative;
   display: none;
   flex-direction: column;
   justify-content: flex-end;

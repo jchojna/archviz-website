@@ -1,15 +1,32 @@
-/*
- #######  ##     ## ######## ########     ###    ##       ##
-##     ## ##     ## ##       ##     ##   ## ##   ##       ##
-##     ## ##     ## ##       ##     ##  ##   ##  ##       ##
-##     ## ##     ## ######   ########  ##     ## ##       ##
-##     ##  ##   ##  ##       ##   ##   ######### ##       ##
-##     ##   ## ##   ##       ##    ##  ##     ## ##       ##
- #######     ###    ######## ##     ## ##     ## ######## ########
-*/
+/********** TIME **********/
 
 $time-page-overlay: 1s;
 $time-mobile-menu: 0.5s;
+$time-hover-menu: 0.3s;
+$time-menu-translation: 0.5s;
+$time-menu-delay: 0.5s;
+
+/********** TIMING **********/
+
+$timing-ease-in-strong: cubic-bezier(0,0.6,0.4,1);
+$timing-ease-out-strong: cubic-bezier(0.6,0,1,0.4);
+
+/********** COLOR **********/
 
 $color-background: #555;
 $color-main: rgb(200, 202, 83);
+
+/********** LAYOUT **********/
+
+$layout-sm-logo: 40px;
+$layout-md-logo: 80px;
+$layout-lg-logo: 100px;
+
+$layout-sm-offset: 20px;
+$layout-md-offset: 40px;
+$layout-lg-offset: 60px;
+
+/********** MEDIA **********/
+
+$media-tablet: 768px;
+$media-desktop: 1200px;
