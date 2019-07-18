@@ -1,24 +1,9 @@
-@import 'normalize';
 @import url('https://use.fontawesome.com/releases/v5.8.2/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap&subset=latin-ext');
 
+@import 'normalize';
+@import 'helpers';
+@import 'variables';
+@import 'svg';
 
-::-moz-selection {
-    background: grey;
-    text-shadow: none;
-}
-
-::selection {
-    background: grey;
-    text-shadow: none;
-}
-
-html {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
+@import 'page-overall.scss';
