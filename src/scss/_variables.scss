@@ -11,10 +11,20 @@ $time-menu-delay: 0.5s;
 $timing-ease-in-strong: cubic-bezier(0,0.6,0.4,1);
 $timing-ease-out-strong: cubic-bezier(0.6,0,1,0.4);
 
-/********** COLOR **********/
+/********** COLORS **********/
 
 $color-background: #555;
+$color-background-lighter: lighten($color-background, 30%);
+$color-background-darker: darken($color-background, 5%);
+//$color-site-background: #000;
+
 $color-main: rgb(200, 202, 83);
+$color-main-lighter: lighten($color-main, 10%);
+$color-main-darker: darken($color-main, 15%);
+$color-main-dark: darken($color-main, 30%);
+
+//$color-secondary: rgb(29, 211, 235);
+//$navbar-background-color: rgba(0,0,0,0.4);
 
 /********** LAYOUT **********/
 
@@ -30,3 +40,31 @@ $layout-lg-offset: 60px;
 
 $media-tablet: 768px;
 $media-desktop: 1200px;
+
+
+
+
+
+/* $transition-lightbox-container: 1s;
+$transition-thumb: 0.4s;
+$transition-desaturation: 1s;
+$transition-menu-item: 0.2s;
+$transition-fade: 0.5s;
+$transition-about-box: 0.3s;
+$transition-modal: 0.5s;
+$transition-mob-menu: 0.5s; */
+
+
+/* $arrows-offset: 30px;
+$lightbox-icon-half-width: 2px;
+$lightbox-icon-length: 40px; */
+
+/* $form-input-height: 40px;
+$form-corner-radius: 10px; */
+
+
+
+/* $layout-container-width: 1200px;
+$layout-lightbox-desc-offset: 15px;
+$layout-about-gap: 20px;
+$layout-footer-offset: 20px; */
