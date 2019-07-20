@@ -180,6 +180,31 @@
   }
 }
 
+/********** BURGER BUTTON **********/
+
+.burger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  fill: #fff;
+  height: $layout-sm-logo;
+  width: $layout-sm-logo;
+  padding: 5px;
+
+  &__svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  &:hover {
+    fill: $color-main;
+  }
+
+  @media only screen and (min-width: $media-tablet) {
+    display: none;
+  }
+}
+
 /********** GO TO TOP BUTTON **********/
 
 .go-top {
@@ -208,6 +233,3 @@
     align-items: center;
   }
 }
-
-
-
