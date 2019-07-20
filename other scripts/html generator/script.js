@@ -425,6 +425,7 @@ const generateHTML = (obj) => {
           <use href="assets/svg/placeholders.svg${src}" class="grid__svg grid__svg--js"/>
         </svg>
         <img 
+          src="assets/img/1920px/${file}"
           data-src="assets/img/960px/${file}"
           data-src2="assets/img/1920px/${file}"
           class="grid__image grid__image--js"

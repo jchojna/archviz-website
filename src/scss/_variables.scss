@@ -5,6 +5,8 @@ $time-mobile-menu: 0.5s;
 $time-hover-menu: 0.3s;
 $time-menu-translation: 0.5s;
 $time-menu-delay: 0.5s;
+$time-grid-item: 0.4s;
+$time-go-top-button: 1s;
 
 /********** TIMING **********/
 
@@ -36,6 +38,12 @@ $layout-sm-offset: 20px;
 $layout-md-offset: 40px;
 $layout-lg-offset: 60px;
 
+$layout-sm-grid-item-height: 30vw;
+
+/********** SIZE **********/
+
+$size-go-top-button: 50px;
+
 /********** MEDIA **********/
 
 $media-tablet: 768px;
@@ -46,7 +54,6 @@ $media-desktop: 1200px;
 
 
 /* $transition-lightbox-container: 1s;
-$transition-thumb: 0.4s;
 $transition-desaturation: 1s;
 $transition-menu-item: 0.2s;
 $transition-fade: 0.5s;

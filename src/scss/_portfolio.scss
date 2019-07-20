@@ -1,0 +1,61 @@
+/********** HEADER **********/
+
+.portfolio {
+  width: 100%;
+  height: 100%;
+}
+
+.grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: $layout-sm-grid-item-height;
+
+  &__item {
+    position: relative;
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__title {
+    position: absolute;
+    word-wrap: break-word;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    transform-origin: center;
+    transition: 
+      opacity $time-grid-item cubic-bezier(0.1,0.9,0.1,0.9),
+      transform $time-grid-item ease-out;
+    z-index: 1;
+  }
+
+  &__link {
+    border: 2px solid red;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image {
+    min-height: $layout-sm-grid-item-height;
+    width: auto;
+    max-width: none;
+  }
+
+  &__placeholder {
+    display: none;
+    position: absolute;
+    border: 2px solid blue;
+  }
+  
+  &__svg {
+  }
+}
