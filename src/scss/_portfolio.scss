@@ -1,4 +1,4 @@
-/********** HEADER **********/
+/********** GRID **********/
 
 .portfolio {
   width: 100%;
@@ -11,10 +11,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: $layout-sm-grid-item-height;
+  grid-gap: $layout-sm-grid-gap;
 
   &__item {
     position: relative;
-    border: 2px solid green;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +37,7 @@
   }
 
   &__link {
-    border: 2px solid red;
+    display: inline;
     position: relative;
     display: flex;
     justify-content: center;
@@ -45,17 +45,26 @@
   }
 
   &__image {
-    min-height: $layout-sm-grid-item-height;
-    width: auto;
-    max-width: none;
-  }
-
-  &__placeholder {
     display: none;
     position: absolute;
-    border: 2px solid blue;
+    height: 100%;
+    width: 100%;
+    max-width: none;
   }
-  
-  &__svg {
+}
+
+/********** PLACEHOLDER **********/
+
+.placeholder {
+
+  &__solid {
+    fill: $color-main;
+    position: absolute;
+  }
+
+  &__line {
+    position: relative;
+    height: $layout-sm-grid-item-height;
+    z-index: 1;
   }
 }
