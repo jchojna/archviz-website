@@ -95,3 +95,25 @@ object {
     background-color: #000;
   }
 }
+
+/********** BUTTONS **********/
+
+.button {
+  background: none;
+  border: none;
+
+  &--primary {
+    display: inline-block;
+    background-color: $color-main;
+    color: #fff;
+    font-weight: 500;
+    padding: 0.6rem 2rem;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+  }
+  
+  &--primary:hover {
+    background-color: $color-main-darker;
+  }
+}

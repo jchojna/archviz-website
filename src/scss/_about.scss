@@ -1,0 +1,158 @@
+/********** ABOUT **********/
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  min-height: 100vh;
+}
+
+.info {
+  width: 100%;
+  max-width: $layout-container-width;
+  margin: auto;
+  padding: ($layout-sm-offset * 2) $layout-sm-offset;
+  padding-top: $layout-sm-logo + ($layout-sm-offset * 2);
+  display: grid;
+  grid-gap: 1rem 2rem;
+  flex-grow: 1;
+
+  @media only screen and (min-width: $media-tablet) {
+    padding: $layout-md-offset*2 $layout-md-offset;
+    padding-top: $layout-md-logo + ($layout-md-offset * 2);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media only screen and (min-width: $media-desktop) {
+    padding: $layout-lg-offset*2 $layout-lg-offset;
+    padding-top: $layout-lg-logo + ($layout-lg-offset * 2);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.field {
+  font-weight: 300;
+  font-size: 1.1rem;
+  text-align: justify;
+  width: 100%;
+
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    padding: 1rem 0;
+    border-bottom: 2px solid #fff;
+    cursor: pointer;
+  }
+
+  &__heading {
+    grid-column-start: 2;
+    text-align: center;
+    color: #fff;
+    pointer-events: none;
+  }
+
+  &__dropdown {
+    font-size: 1.6em;
+    pointer-events: none;
+    transition: all $time-dropdown;
+  }
+
+  &__description {
+    overflow: hidden;
+    transition: all $time-dropdown;
+
+    &--minimized {
+
+    }
+  }
+
+  &__text {
+    padding: 1.5rem 0;
+    border-bottom: 2px solid #fff;
+
+    &--list {
+      list-style-position: inside;
+    }
+  }
+}
+
+/********** COONTACT **********/
+
+.clients {
+  background-color: $color-main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    grid-gap: 4rem 5rem;
+    justify-items: center;
+    align-items: center;
+    padding: $layout-sm-offset*2 $layout-sm-offset;
+    max-width: $layout-container-width;
+    width: 100%;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    fill: #fff;
+    width: 100%;
+    height: 100%;
+    max-width: 150px;
+    max-height: 50px;
+    transition: fill 0.3s;
+  }
+
+  &__client {
+
+  }
+
+  &__link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__svg {
+    width: 100%;
+
+  }
+
+  @media only screen and (min-width: $media-tablet) {
+    &__container {
+      grid-template-columns: repeat(4, 1fr);
+      padding: $layout-md-offset;
+    }
+  }
+  
+  @media only screen and (min-width: $media-desktop) {
+    &__container {
+      padding: $layout-lg-offset 0;
+    }
+  }
+}
+
+
+
+
+
+/* 
+
+.about__logo-link:hover .about__logo-item {
+  fill: $color-background;
+  transition: fill 0.3s;
+}
+
+*/

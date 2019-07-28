@@ -7,6 +7,7 @@ $time-menu-translation: 0.5s;
 $time-menu-delay: 0.5s;
 $time-grid-item: 0.4s;
 $time-go-top-button: 1s;
+$time-dropdown: 0.3s;
 
 /********** TIMING **********/
 
@@ -18,7 +19,6 @@ $timing-ease-out-strong: cubic-bezier(0.6,0,1,0.4);
 $color-background: #555;
 $color-background-lighter: lighten($color-background, 30%);
 $color-background-darker: darken($color-background, 5%);
-//$color-site-background: #000;
 
 $color-main: rgb(200, 202, 83);
 $color-main-lighter: lighten($color-main, 10%);
@@ -29,6 +29,8 @@ $color-main-dark: darken($color-main, 30%);
 //$navbar-background-color: rgba(0,0,0,0.4);
 
 /********** LAYOUT **********/
+
+$layout-container-width: 1200px;
 
 $layout-sm-logo: 40px;
 $layout-md-logo: 80px;
@@ -61,7 +63,6 @@ $media-desktop: 1200px;
 $transition-desaturation: 1s;
 $transition-menu-item: 0.2s;
 $transition-fade: 0.5s;
-$transition-about-box: 0.3s;
 $transition-modal: 0.5s;
 $transition-mob-menu: 0.5s; */
 
@@ -75,7 +76,8 @@ $form-corner-radius: 10px; */
 
 
 
-/* $layout-container-width: 1200px;
+/*
 $layout-lightbox-desc-offset: 15px;
 $layout-about-gap: 20px;
-$layout-footer-offset: 20px; */
+$layout-footer-offset: 20px;
+*/
