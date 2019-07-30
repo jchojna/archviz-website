@@ -258,10 +258,18 @@
 
 
 /* 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .nav__menu:hover .nav__menu-item {    // showing each menu item when hover over navbar
   transform: translateY(0);
   transition: transform $transition-navbar $ease-in-strong;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .nav__mob-menu {
   position: fixed;
   top: 0;
@@ -278,16 +286,32 @@
   transition: visibility 0s, opacity $transition-mob-menu;
   z-index: 1;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .nav__mob-menu--hidden {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s $transition-mob-menu, opacity $transition-mob-menu;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .nav__mob-menu-list {
   list-style: none;
   font-size: 2rem;
 }
+<<<<<<< HEAD
 .nav__mob-menu-link {
   -webkit-text-stroke: 1px white;
 }
+=======
+
+.nav__mob-menu-link {
+  -webkit-text-stroke: 1px white;
+}
+
+>>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 */
