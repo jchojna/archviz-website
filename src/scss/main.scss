@@ -6,7 +6,10 @@
 @import 'print';
 
 @import 'variables';
+@import 'mixins';
+@import 'animations';
 
 @import 'page-overall.scss';
 @import 'menu';
 @import 'portfolio';
+@import 'about';

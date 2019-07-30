@@ -254,3 +254,40 @@
     align-items: center;
   }
 }
+
+
+
+/* 
+.nav__menu:hover .nav__menu-item {    // showing each menu item when hover over navbar
+  transform: translateY(0);
+  transition: transform $transition-navbar $ease-in-strong;
+}
+.nav__mob-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $color-background;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity $transition-mob-menu;
+  z-index: 1;
+}
+.nav__mob-menu--hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s $transition-mob-menu, opacity $transition-mob-menu;
+}
+.nav__mob-menu-list {
+  list-style: none;
+  font-size: 2rem;
+}
+.nav__mob-menu-link {
+  -webkit-text-stroke: 1px white;
+}
+*/
