@@ -1,0 +1,97 @@
+.form {
+  padding: $layout-sm-offset;
+  padding-top: $layout-sm-logo + ($layout-sm-offset * 2);
+  width: 100%;
+  min-width: 320px;
+  flex-grow: 1;
+  display: grid;
+
+  &__heading {
+    color: $color-main;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  &__checkboxes {
+    border: none;
+    padding: 0;
+  }
+
+  &__submit {
+    @include button;
+
+    &:hover {
+      @include button-hover;
+    }
+  }
+}
+
+.input {
+
+  &__label {
+  }
+
+  &__data {
+    padding: 0.5rem 0;
+    margin: 0.5rem 0;
+    width: 100%;
+    font-size: 1.2rem;
+    border: none;
+    border-bottom: 2px solid #fff;
+    background: none;
+    color: $color-main;
+    transition: background-color $time-hover-icon;
+
+    &--message {
+      min-height: 200px;
+    }
+
+    &:focus {
+      background-color: $color-background-darker;
+    }
+
+    &::placeholder {
+      color: rgba($color: #fff, $alpha: 0.3);
+    }
+  }
+}
+
+.checkbox {
+  display: flex;
+  fill: #fff;
+  height: auto;
+  padding: 0.5rem 0;
+  align-items: center;
+  cursor: pointer;
+
+  &__input {
+    display: none;
+  }
+
+  &__field {
+    background-color: $color-background-darker;
+    height: $size-checkbox;
+    width: $size-checkbox;
+    margin-right: 1rem;
+  }
+
+  &__mark {
+    width: $size-checkbox;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(1);
+    transition:
+      visibility 0s $time-checkbox,
+      opacity $time-checkbox,
+      transform $time-checkbox ease-out;
+
+    &--visible {
+      visibility: visible;
+      opacity: 1;
+      transform: scale(1.3);
+    }
+  }
+}
