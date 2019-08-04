@@ -29,23 +29,3 @@ const fadeInPage = () => {
 window.onload = () => {
   fadeInPage();
 } */
-
-fetch("https://api.github.com/users/jchojna/repos?sort=updated&direction=desc")
-  .then(resp => resp.json())
-  .then(resp => {
-    const repos = resp;
-    for (const repo of repos) {
-      const {html_url, name} = repo;
-      reposList.innerHTML += `
-        <li class="repos__item">
-          <a
-            class="repos__link"
-            href="${html_url}"
-            target="_blank"
-          >
-            ${name}
-          </a>
-        </li>
-      `;
-    }
-  });
