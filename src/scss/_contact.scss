@@ -106,3 +106,44 @@
     }
   }
 }
+
+.modal {
+  @include position-absolute;
+  @include flex-center;
+  background-color: $color-background;
+  z-index: 4;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s $time-modal, opacity $time-modal, transform $time-modal ease-in;
+
+  &--visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity $time-modal, transform $time-modal ease-out;
+  }
+
+  &__box {
+    position: relative;
+    text-align: center;
+    background-color: $color-main;
+    max-width: 80%;
+    padding: 3rem 2rem;
+    font-size: 1.6rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    user-select: none;
+    transform: scale(1);
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    cursor: pointer;
+  }
+
+  &__close:hover {
+    color: #555;
+  }
+}

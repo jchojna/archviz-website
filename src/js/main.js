@@ -41,6 +41,12 @@ const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
 const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
 let responseState = "empty";
 
+/********** MODAL BOX **********/
+
+const modalContainer = document.querySelector('.modal--js');
+const modalText = document.querySelector('.modal__text--js');
+const modalClose = document.querySelector('.modal__close--js');
+
 /*
  ######   #######  ##    ## ########    ###     ######  ########
 ##    ## ##     ## ###   ##    ##      ## ##   ##    ##    ##
@@ -53,6 +59,12 @@ let responseState = "empty";
 
 if (submitButton) {
 
+  const resetCheckboxes = () => {
+    for ( const checkbox of checkboxes ) {
+      checkbox.disabled = false;
+      checkbox.checked = false;
+    }
+  }
 
   const hideOtherOptions = (element) => {
     element.disabled ? element.disabled = false : element.disabled = true;
@@ -84,25 +96,40 @@ if (submitButton) {
     switch ( responseState ) {
       case "reject":
         e.preventDefault();
-        alert("reject");
+        toggleModal("reject");
         break;
       case "accept":
         e.preventDefault(); // remove later
-        alert("accept");
         return;
       case "empty":
         e.preventDefault();
-        alert("empty");
+        toggleModal("empty");
         break;
+    }
+  }
+
+  const toggleModal = (opt) => {
+    modalContainer.classList.toggle("modal--visible");
+    if ( opt === "reject" ) {
+      modalText.textContent = "Sorry ... There's no room for robots here ...";
+    } else if ( opt === "empty" ) {
+      modalText.textContent = "You have to declare you're not a robot!";
+    }
+    resetCheckboxes();
+  }
+  
+  const windowQuit = (e) => {
+    if ( e.target === modalContainer ) {
+      toggleModal();
     }
   }
 
 
 
-
-
   checkboxContainer.addEventListener('click', handleCheckboxes );
   submitButton.addEventListener('click', validateCheckboxes);
+  modalClose.addEventListener('click', toggleModal);
+  modalContainer.addEventListener('click', windowQuit);
 }
 
 
