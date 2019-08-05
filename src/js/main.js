@@ -63,6 +63,7 @@ if (submitButton) {
     for ( const checkbox of checkboxes ) {
       checkbox.disabled = false;
       checkbox.checked = false;
+      checkbox.parentNode.classList.remove('checkbox--hidden');
     }
   }
 
