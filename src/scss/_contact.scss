@@ -1,3 +1,5 @@
+/********** FORM **********/
+
 .form {
   padding: $layout-sm-offset;
   padding-top: $layout-sm-logo + ($layout-sm-offset * 2);
@@ -14,7 +16,7 @@
     text-align: center;
   }
 
-  &__checkboxes {
+  &__verification {
     border: none;
     padding: 0;
   }
@@ -27,6 +29,8 @@
     }
   }
 }
+
+/********** INPUTS **********/
 
 .input {
 
@@ -58,6 +62,8 @@
   }
 }
 
+/********** CHECKBOXES **********/
+
 .checkbox {
   display: flex;
   fill: #fff;
@@ -66,8 +72,13 @@
   align-items: center;
   cursor: pointer;
 
+  &--hidden {
+    //visibility: hidden;
+    opacity: 0.3;
+  }
+
   &__input {
-    display: none;
+    //display: none;
   }
 
   &__field {

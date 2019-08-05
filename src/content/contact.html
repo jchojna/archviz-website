@@ -11,6 +11,7 @@
   <body>
     <!-- PAGE OVERLAY -->
     <!-- <div class="page-overlay page-overlay--onload"></div> -->
+
     <!-- PAGE HEADER -->
     <header class="header">
       <h1 class="header__heading visuallyhidden">
@@ -142,8 +143,8 @@
             cols="10"
             placeholder="write your message"></textarea>
         </p> <!-- END OF MESSAGE -->
-        <!-- CHECKBOXES -->
-        <fieldset class="form__checkboxes form__checkboxes--js">
+        <!-- VERIFICATION -->
+        <fieldset class="form__verification form__verification--js">
           <legend class="form__question visuallyhidden">
             Are you a robot?
           </legend>
@@ -151,7 +152,7 @@
             <input
               type="checkbox"
               id="checkbox1"
-              class="checkbox__input checkbox__input--js checkbox__input--js-1"
+              class="checkbox__input checkbox__input--js checkbox__input--js-reject"
               name="checkbox1">
             <span class="checkbox__field"></span>
             <svg class="checkbox__mark" viewBox="0 0 24 24">
@@ -163,7 +164,7 @@
             <input
               type="checkbox"
               id="checkbox2"
-              class="checkbox__input checkbox__input--js checkbox__input--js-2"
+              class="checkbox__input checkbox__input--js checkbox__input--js-accept"
               name="checkbox2">
             <span class="checkbox__field"></span>
             <svg class="checkbox__mark" viewBox="0 0 24 24">
@@ -175,7 +176,7 @@
             <input
               type="checkbox"
               id="checkbox3"
-              class="checkbox__input checkbox__input--js checkbox__input--js-3"
+              class="checkbox__input checkbox__input--js checkbox__input--js-optional"
               name="checkbox3">
             <span class="checkbox__field"></span>
             <svg class="checkbox__mark" viewBox="0 0 24 24">
