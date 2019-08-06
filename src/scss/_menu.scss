@@ -201,6 +201,83 @@
   }
 }
 
+/********** MOBILE MENU **********/
+
+.mobile-menu {
+  @include position-fixed;
+  @include flex-center;
+  background-color: #000;
+
+
+  &--hidden {
+    display: none;
+  }
+
+  &__heading {
+    
+  }
+
+  &__list {
+    @include flex-center;
+    flex-direction: column;
+    list-style: none;
+  }
+
+  &__item {
+
+  }
+
+  &__link {
+    @extend .main-menu__link;
+  }
+}
+
+
+
+
+
+
+/* 
+.nav__menu:hover .nav__menu-item {    // showing each menu item when hover over navbar
+  transform: translateY(0);
+  transition: transform $transition-navbar $ease-in-strong;
+}
+.nav__mob-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $color-background;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity $transition-mob-menu;
+  z-index: 1;
+}
+.nav__mob-menu--hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s $transition-mob-menu, opacity $transition-mob-menu;
+}
+.nav__mob-menu-list {
+  list-style: none;
+  font-size: 2rem;
+}
+
+.nav__mob-menu-link {
+  -webkit-text-stroke: 1px white;
+}
+
+*/
+
+
+
+
+
 /********** BURGER BUTTON **********/
 
 .burger {
@@ -211,6 +288,7 @@
   height: $layout-sm-logo;
   width: $layout-sm-logo;
   padding: 5px;
+  z-index: 1;
 
   &__svg {
     height: 100%;
@@ -254,64 +332,3 @@
     align-items: center;
   }
 }
-
-
-
-/* 
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
-.nav__menu:hover .nav__menu-item {    // showing each menu item when hover over navbar
-  transform: translateY(0);
-  transition: transform $transition-navbar $ease-in-strong;
-}
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
-.nav__mob-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: $color-background;
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity $transition-mob-menu;
-  z-index: 1;
-}
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
-.nav__mob-menu--hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s $transition-mob-menu, opacity $transition-mob-menu;
-}
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
-.nav__mob-menu-list {
-  list-style: none;
-  font-size: 2rem;
-}
-<<<<<<< HEAD
-.nav__mob-menu-link {
-  -webkit-text-stroke: 1px white;
-}
-=======
-
-.nav__mob-menu-link {
-  -webkit-text-stroke: 1px white;
-}
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
-*/

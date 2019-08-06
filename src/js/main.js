@@ -28,6 +28,16 @@ if ("serviceWorker" in navigator) {
    ###    ##     ## ##     ## #### ##     ## ########  ######## ########  ######
 */
 
+/********** OVERALL **********/
+
+const pageContainer = document.querySelector('.page-container--js');
+
+/********** MENU **********/
+
+const mainMenuList = document.querySelector('.main-menu__list--js');
+const mobileMenu = document.querySelector('.mobile-menu--js');
+const burgerButton = document.querySelector('.burger--js');
+
 /********** FORM **********/
 
 const submitButton = document.querySelector('.form__submit--js');
@@ -46,6 +56,51 @@ let responseState = "empty";
 const modalContainer = document.querySelector('.modal--js');
 const modalText = document.querySelector('.modal__text--js');
 const modalClose = document.querySelector('.modal__close--js');
+
+let timeoutHandler = null;
+
+/*
+##     ## ######## ##    ## ##     ##
+###   ### ##       ###   ## ##     ##
+#### #### ##       ####  ## ##     ##
+## ### ## ######   ## ## ## ##     ##
+##     ## ##       ##  #### ##     ##
+##     ## ##       ##   ### ##     ##
+##     ## ######## ##    ##  #######
+*/
+
+const generateMobileMenu = () => {
+  const mobileMenuList = mainMenuList.cloneNode(true);
+  const mobileMenuItems = mobileMenuList.children;
+  const regex = /active/;
+  
+  mobileMenu.appendChild(mobileMenuList);
+  mobileMenuList.className = "mobile-menu__list";
+
+  for (const mobileMenuItem of mobileMenuItems) {
+    const mobileMenuLink = mobileMenuItem.firstElementChild;
+    mobileMenuItem.className = "mobile-menu__item";
+    if ( regex.test(mobileMenuLink.className) ) {
+      mobileMenuLink.className = "mobile-menu__link mobile-menu__link--active";
+    } else {
+      mobileMenuLink.className = "mobile-menu__link";
+    }
+  }
+}
+
+const toggleMobileMenu = () => {
+  mobileMenu.classList.toggle('mobile-menu--hidden');
+}
+
+const handleMobileMenu = (e) => {
+  e.preventDefault();
+  if ( mobileMenu.children.length === 1 ) {
+    generateMobileMenu();
+  }
+  toggleMobileMenu();
+}
+
+burgerButton.addEventListener('click', handleMobileMenu );
 
 /*
  ######   #######  ##    ## ########    ###     ######  ########
@@ -109,13 +164,13 @@ if (submitButton) {
     }
   }
 
-  const toggleModal = (opt) => {
-    modalContainer.classList.toggle("modal--visible");
-    if ( opt === "reject" ) {
+  const toggleModal = (response) => {
+    if ( response === "reject" ) {
       modalText.textContent = "Sorry ... There's no room for robots here ...";
-    } else if ( opt === "empty" ) {
+    } else if ( response === "empty" ) {
       modalText.textContent = "You have to declare you're not a robot!";
     }
+    modalContainer.classList.toggle('modal--visible');
     resetCheckboxes();
   }
   
@@ -132,28 +187,6 @@ if (submitButton) {
   modalClose.addEventListener('click', toggleModal);
   modalContainer.addEventListener('click', windowQuit);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
