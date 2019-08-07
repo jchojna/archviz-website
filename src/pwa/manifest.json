@@ -1,8 +1,8 @@
 {
   "name": "Archviz Website",
   "short_name": "Archviz Website",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "rgb(200, 202, 83)",
+  "background_color": "#555",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/archviz-website/",

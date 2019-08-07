@@ -97,7 +97,6 @@ const handleMobileMenu = (e) => {
   if ( mobileMenu.children.length === 1 ) {
     generateMobileMenu();
   }
-  //handleDisplayNone(pageContainer, FADE_INT);
   toggleMobileMenu();
 }
 
