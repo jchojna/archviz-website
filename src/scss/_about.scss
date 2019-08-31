@@ -30,11 +30,12 @@
   }
 }
 
-.field {
+.card {
   font-weight: 300;
   font-size: 1.1rem;
   text-align: justify;
   width: 100%;
+  overflow: hidden;
 
   &__header {
     position: relative;
@@ -45,6 +46,7 @@
     padding: 1rem 0;
     border-bottom: 2px solid #fff;
     cursor: pointer;
+    background-color: $color-background;
   }
 
   &__heading {
@@ -87,7 +89,7 @@
   }
 }
 
-/********** CONTACT **********/
+/********** CLIENTS **********/
 
 .clients {
   background-color: $color-main;
