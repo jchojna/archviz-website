@@ -38,12 +38,6 @@ const mainMenuList = document.querySelector('.main-menu__list--js');
 const mobileMenu = document.querySelector('.mobile-menu--js');
 const burgerButton = document.querySelector('.burger--js');
 
-/********** ABOUT **********/
-
-const cardHeader = document.querySelectorAll('.card__header--js');
-const cardDescription = document.querySelectorAll('.card__description--js');
-const dropdownTransition = 500 + "ms";
-
 /********** FORM **********/
 
 const submitButton = document.querySelector('.form__submit--js');
@@ -118,11 +112,17 @@ burgerButton.addEventListener('click', handleMobileMenu );
 ##     ## ########   #######   #######     ##
 */
 
-if (cardHeader) {
+const cards = document.querySelector('.info--js');
+const cardHeader = document.querySelectorAll('.card__header--js');
+const cardDescription = document.querySelectorAll('.card__description--js');
+const dropdownTransition = 500 + "ms";
+
+if (cards) {
 
   const translateCard = (card) => {
     const cardHeight = card.clientHeight;
     const cardTranslation = card.style.marginTop;
+    console.log(cardHeight);
     
     if ( cardTranslation === "0px" || cardTranslation === "" ) {
       card.style.marginTop = `${(-1) * cardHeight - 2}px`;
@@ -138,32 +138,32 @@ if (cardHeader) {
   }
     
   const handleCards = (e) => {
-    const clickedCard = e.target;
-
-
+    const cardText = e.target.nextElementSibling;
+    translateCard(cardText);
   }
   
+  const adjustCards = () => {
+    
+    for (const card of cardDescription) {
+      const cardHeight = card.clientHeight;
 
-  /* const adjustDropdowns = () => {
-    const descriptionText = document.querySelectorAll('.description__text--js');
-    for (let i = 0; i < descriptionText.length; i++) {
-      const textHeight = descriptionText[i].clientHeight;
-      let textTranslation = descriptionText[i].style.marginTop;
-
-      if ( textTranslation !== "0px" && textTranslation !== "" ) {
-        descriptionText[i].style.marginTop = `${(-1) * textHeight}px`;
-      }
+      card.style.marginTop = `${(-1) * cardHeight - 3}px`;
     }
-  } */
+  }
 
 
 
 
 
+  window.onload = () => {
+    minimizeCards();
+  }
 
-  minimizeCards();
-  window.addEventListener('click', handleCards);
-  //window.addEventListener('resize', adjustCards);
+  for (const card of cardHeader) {
+    card.addEventListener('click', handleCards);
+  }
+
+  window.addEventListener('resize', adjustCards);
 }
 
 /*

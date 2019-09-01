@@ -14,19 +14,18 @@
   padding: ($layout-sm-offset * 2) $layout-sm-offset;
   padding-top: $layout-sm-logo + ($layout-sm-offset * 2);
   display: grid;
-  grid-gap: 1rem 2rem;
   flex-grow: 1;
 
   @media only screen and (min-width: $media-tablet) {
     padding: $layout-md-offset*2 $layout-md-offset;
     padding-top: $layout-md-logo + ($layout-md-offset * 2);
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem 2rem;
   }
   
   @media only screen and (min-width: $media-desktop) {
     padding: $layout-lg-offset*2 $layout-lg-offset;
     padding-top: $layout-lg-logo + ($layout-lg-offset * 2);
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -36,6 +35,7 @@
   text-align: justify;
   width: 100%;
   overflow: hidden;
+  padding-bottom: 2px;
 
   &__header {
     position: relative;
