@@ -112,23 +112,26 @@ burgerButton.addEventListener('click', handleMobileMenu );
 ##     ## ########   #######   #######     ##
 */
 
-const cards = document.querySelector('.info--js');
 const cardHeader = document.querySelectorAll('.card__header--js');
 const cardDescription = document.querySelectorAll('.card__description--js');
+const cardDropdown = document.querySelectorAll('.card__dropdown--js');
 const dropdownTransition = 500 + "ms";
 
-if (cards) {
+if (cardHeader) {
 
   const translateCard = (card) => {
     const cardHeight = card.clientHeight;
     const cardTranslation = card.style.marginTop;
-    console.log(cardHeight);
     
     if ( cardTranslation === "0px" || cardTranslation === "" ) {
       card.style.marginTop = `${(-1) * cardHeight - 2}px`;
     } else {
       card.style.marginTop = "0px";
     }
+  }
+
+  const rotateDropdown = (dropdown) => {
+    dropdown.classList.toggle('card__dropdown--reversed');
   }
   
   const minimizeCards = () => {    
@@ -138,15 +141,18 @@ if (cards) {
   }
     
   const handleCards = (e) => {
-    const cardText = e.target.nextElementSibling;
+    const idx = e.target.index;
+
+    const cardArrow = cardDropdown[idx];
+    const cardText = cardDescription[idx];
     translateCard(cardText);
+    rotateDropdown(cardArrow);
   }
   
   const adjustCards = () => {
     
     for (const card of cardDescription) {
       const cardHeight = card.clientHeight;
-
       card.style.marginTop = `${(-1) * cardHeight - 3}px`;
     }
   }
@@ -159,7 +165,9 @@ if (cards) {
     minimizeCards();
   }
 
-  for (const card of cardHeader) {
+  for (let i = 0; i < cardHeader.length; i++ ) {
+    const card = cardHeader[i];
+    card.index = i;
     card.addEventListener('click', handleCards);
   }
 

@@ -38,6 +38,7 @@
   padding-bottom: 2px;
 
   &__header {
+    cursor: pointer;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -45,7 +46,6 @@
     user-select: none;
     padding: 1rem 0;
     border-bottom: 2px solid #fff;
-    cursor: pointer;
     background-color: $color-background;
   }
 
@@ -59,7 +59,11 @@
   &__dropdown {
     font-size: 1.6em;
     pointer-events: none;
-    transition: all $time-dropdown;
+    transition: transform $time-dropdown;
+
+    &--reversed {
+      transform: rotate(180deg);
+    }
   }
 
   &__description {
