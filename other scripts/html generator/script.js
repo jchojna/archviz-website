@@ -421,24 +421,22 @@ const generateHTML = (obj) => {
     <section class="grid__item grid__item--js">
       <h4 class="grid__title grid__title--js">${name}</h4>
       <a href="#" class="grid__link">
-        <div class="placeholder placeholder--js">
-          <svg
-            class="placeholder__solid"
-            viewBox="${viewbox}"
-          >
-            <use
-              href="assets/svg/placeholders.svg${src}-solid"
-            />
-          </svg>
-          <svg
-            class="placeholder__line"
-            viewBox="${viewbox}"
-          >
-            <use
-              href="assets/svg/placeholders.svg${src}-line"
-            />
-          </svg>
-        </div>
+        <svg
+          class="grid__svg-solid"
+          viewBox="${viewbox}"
+        >
+          <use
+            href="assets/svg/placeholders.svg${src}-solid"
+          />
+        </svg>
+        <svg
+          class="grid__svg-line"
+          viewBox="${viewbox}"
+        >
+          <use
+            href="assets/svg/placeholders.svg${src}-line"
+          />
+        </svg>
         <img 
           src="assets/img/1920px/${file}"
           data-src="assets/img/960px/${file}"

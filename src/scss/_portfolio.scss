@@ -7,21 +7,19 @@
 
 .grid {
   width: 100%;
-  height: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: $layout-sm-grid-item-height;
+  grid-template-columns: repeat($layout-mobile-grid-columns, 1fr);
+  grid-auto-rows: $layout-mobile-grid-height;
   grid-gap: $layout-sm-grid-gap;
 
   &__item {
+    @include flex-center;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
   }
 
   &__title {
+    display: none;
     position: absolute;
     word-wrap: break-word;
     color: white;
@@ -37,35 +35,42 @@
   }
 
   &__link {
-    display: inline;
+    @include flex-center;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  }
+
+  &__svg-solid {
+    display: block;
+    fill: $color-main;
+    height: 100%;
+    min-height: $layout-mobile-grid-height;
+    min-width: 100vw / $layout-mobile-grid-columns;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  &__svg-line {
+    position: absolute;
+    width: 100%;
   }
 
   &__image {
-    display: none;
+    //display: none;
     position: absolute;
     height: 100%;
     width: 100%;
-    max-width: none;
-  }
-}
-
-/********** PLACEHOLDER **********/
-
-.placeholder {
-
-  &__solid {
-    fill: $color-main;
-    position: absolute;
-  }
-
-  &__line {
-    position: relative;
-    height: $layout-sm-grid-item-height;
-    z-index: 1;
+    opacity: 0.3;
   }
 }
 
@@ -74,19 +79,11 @@
 
 
 /* 
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .portfolio__container {
   display: flex;
   flex-wrap: wrap;
   //background-color: #000;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .portfolio__thumbnail:hover .portfolio__title {
   opacity: 1;
   transform: scale(0.05);
@@ -95,17 +92,9 @@
     transform $transition-thumb ease-out;
   z-index: 1;
 }
-<<<<<<< HEAD
 .portfolio__placeholder {
   width: 100%;
 }
-=======
-
-.portfolio__placeholder {
-  width: 100%;
-}
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .portfolio__image {
   position: absolute;
   top: 0;
@@ -117,18 +106,10 @@
     filter $transition-desaturation ease-out,
     transform $transition-thumb ease-out;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .portfolio__image--loaded {
   display: block;
   animation: fadeIn 2s;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .portfolio__thumbnail:hover .portfolio__image {
   filter: saturate(0%);
   transform: scale(1.2);
@@ -136,10 +117,6 @@
     filter 1s ease-out,
     transform $transition-thumb ease-out,
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .portfolio__link::after {
   box-shadow: inset 0 0 8vw rgba(0,0,0,1);
   @include content-absolute;
@@ -147,16 +124,8 @@
   opacity: 0;
   transition: opacity $transition-thumb ease-out,
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 .portfolio__thumbnail:hover .portfolio__link::after {
   opacity: 1;
   transition: opacity $transition-thumb ease-out,
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 25d066239a668f2e4371922d1fbf1ee48c9b6f3a
 */
