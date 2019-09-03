@@ -47,13 +47,17 @@ $layout-sm-offset: 20px;
 $layout-md-offset: 40px;
 $layout-lg-offset: 60px;
 
-$layout-sm-grid-gap: 1rem;
-$layout-md-grid-gap: 2rem;
-$layout-lg-grid-gap: 3rem;
+$layout-mobile-grid-gap: 1rem;
+$layout-tablet-grid-gap: 1rem;
+$layout-desktop-grid-gap: 1rem;
 
-$layout-mobile-grid-height: 30vw;
+$layout-mobile-grid-height: 300px;
+$layout-tablet-grid-height: 30vw;
+$layout-desktop-grid-height: 30vw;
 
-$layout-mobile-grid-columns: 3;
+$layout-mobile-grid-columns: 1;
+$layout-tablet-grid-columns: 2;
+$layout-desktop-grid-columns: 3;
 
 $layout-footer-offset: 20px;
 

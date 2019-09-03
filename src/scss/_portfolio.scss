@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: repeat($layout-mobile-grid-columns, 1fr);
   grid-auto-rows: $layout-mobile-grid-height;
-  grid-gap: $layout-sm-grid-gap;
+  grid-gap: $layout-mobile-grid-gap;
 
   &__item {
     @include flex-center;
@@ -47,19 +47,6 @@
     min-width: 100vw / $layout-mobile-grid-columns;
   }
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
   &__svg-line {
     position: absolute;
     width: 100%;
@@ -71,6 +58,36 @@
     height: 100%;
     width: 100%;
     opacity: 0.3;
+  }
+
+  @media only screen and (min-width: $media-tablet) {
+
+    & {
+
+      grid-template-columns: repeat($layout-tablet-grid-columns, 1fr);
+      grid-auto-rows: $layout-tablet-grid-height;
+      grid-gap: $layout-tablet-grid-gap;
+
+      &__svg-solid {
+        min-height: $layout-tablet-grid-height;
+        min-width: 100vw / $layout-tablet-grid-columns;
+      }
+    }
+  }
+  
+  @media only screen and (min-width: $media-desktop) {
+
+    & {
+
+      grid-template-columns: repeat($layout-desktop-grid-columns, 1fr);
+      grid-auto-rows: $layout-desktop-grid-height;
+      grid-gap: $layout-desktop-grid-gap;
+
+      &__svg-solid {
+        min-height: $layout-desktop-grid-height;
+        min-width: 100vw / $layout-desktop-grid-columns;
+      }
+    }
   }
 }
 
