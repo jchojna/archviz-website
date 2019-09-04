@@ -1,17 +1,18 @@
 @import url('https://use.fontawesome.com/releases/v5.8.2/css/all.css');
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap&subset=latin-ext');
 
-@import 'normalize';
-@import 'helpers';
-@import 'print';
+@import '00_normalize';
+@import '01_helpers';
+@import '02_print';
 
-@import 'variables';
-@import 'mixins';
-@import 'animations';
+@import '03_variables';
+@import '04_mixins';
+@import '05_animations';
 
-@import 'page-overall.scss';
-@import 'menu';
-@import 'portfolio';
-@import 'about';
-@import 'contact';
-@import 'footer';
+@import '06_page-overall';
+@import '07_menu';
+@import '08_portfolio';
+@import '09_gallery';
+@import '10_about';
+@import '11_contact';
+@import '12_footer';
