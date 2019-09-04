@@ -22,6 +22,7 @@
     @include flex-center;
     position: relative;
     overflow: hidden;
+    border: 1px solid red;
     
     &::after {
       @include content-absolute;

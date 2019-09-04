@@ -223,34 +223,47 @@ if (portfolio) {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
   /********** LAZY LOADING **********/
 
-
-
-
-
-
-
-
-
-
-
-
-
-  // Checks index of first thumbnails visible in the current viewport
-  // which src is empty
-  function checkFirstThumb(arr) {
-    for (let i=0; i<arr.length; i++) {
-      let imageOffset = arr[i].offsetTop;
-      if (
-        imageOffset >= window.pageYOffset - lazyLoadOffset &&
-        arr[i].firstElementChild.lastElementChild.src === "" ) {
+  // Checks index of first image visible in the current viewport
+  const checkFirstImageIndex = (items) => {
+    for (let i=0; i<items.length; i++) {
+      const imageOffset = items[i].offsetTop;
+      const viewportOffset = window.pageYOffset - lazyLoadOffset;
+      const itemSrc = items[i].lastElementChild.lastElementChild.getAttribute('src');
+      if ( imageOffset >= viewportOffset && itemSrc === "assets/img/blank-image.png" ) {
         return i;
       }
     }
   }
 
-  function lazyLoad(item) { // ZOPTYMALIZOWAC
+
+  const lazyLoad = () => {
+
+    const firstImageIndex = checkFirstImageIndex(portfolioGridItems);
+    console.log(firstImageIndex);
+
+
+
+
+
+
+  }
+
+
+
+
+  function lazyLoadOld(item) { // ZOPTYMALIZOWAC
     // quit if number exceed total no. of items
     if (item === portfolioThumbnails.length) {
       return;
@@ -260,7 +273,7 @@ if (portfolio) {
     // checks if image is above the viewport
     if ( imageOffset < window.pageYOffset - lazyLoadOffset) {
       item++;
-      lazyLoad(item);
+      lazyLoadOld(item);
     // checks if image is inside the viewport
     } else if ( imageOffset < window.innerHeight + window.pageYOffset + lazyLoadOffset ) {
       // checks if there's unloaded image in the viewport before the currently loading
@@ -270,12 +283,12 @@ if (portfolio) {
         portfolioImages[item].onload = () => {
           portfolioImages[item].classList.add("portfolio__image--loaded");
           item++;
-          lazyLoad(item);
+          lazyLoadOld(item);
         }
         portfolioImages[item].src = portfolioImages[item].getAttribute("data-src");
       } else {
         item++;
-        lazyLoad(item);
+        lazyLoadOld(item);
       }
     };
   }
@@ -309,6 +322,7 @@ if (portfolio) {
   /********** FUNCTION CALLS **********/
   
   setFlexBasis();
+  lazyLoad();
   window.addEventListener('resize', setFlexBasis);
 }
 
