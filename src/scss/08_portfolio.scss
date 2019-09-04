@@ -50,7 +50,7 @@
     position: absolute;
     word-wrap: break-word;
     color: white;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: normal;
     text-align: center;
     user-select: none;
@@ -164,23 +164,9 @@
 }
 
 
-
-
-
 /* 
 .portfolio__image--loaded {
   display: block;
   animation: fadeIn 2s;
-}
-.portfolio__link::after {
-  box-shadow: inset 0 0 8vw rgba(0,0,0,1);
-  @include content-absolute;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity $transition-thumb ease-out,
-}
-.portfolio__thumbnail:hover .portfolio__link::after {
-  opacity: 1;
-  transition: opacity $transition-thumb ease-out,
 }
 */

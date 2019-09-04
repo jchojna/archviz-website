@@ -31,6 +31,7 @@ if ("serviceWorker" in navigator) {
 /********** OVERALL **********/
 
 const pageContainer = document.querySelector('.page-container--js');
+const pageOverlay = document.querySelector('.page-overlay--js');
 const portfolio = document.querySelector('.portfolio--js');
 
 /********** MENU **********/
@@ -63,6 +64,23 @@ let timeoutHandler = null;
 /********** MEDIA **********/
 const tabletBreakpoint = 768;
 const desktopBreakpoint = 1200;
+
+/*
+ #######  ##     ## ######## ########     ###    ##       ##
+##     ## ##     ## ##       ##     ##   ## ##   ##       ##
+##     ## ##     ## ##       ##     ##  ##   ##  ##       ##
+##     ## ##     ## ######   ########  ##     ## ##       ##
+##     ##  ##   ##  ##       ##   ##   ######### ##       ##
+##     ##   ## ##   ##       ##    ##  ##     ## ##       ##
+ #######     ###    ######## ##     ## ##     ## ######## ########
+*/
+
+const fadeIn = () => {
+  if (!pageOverlay.classList.contains('page-overlay--onload')) {
+    pageOverlay.classList.add('page-overlay--onload');
+  }
+  pageOverlay.classList.remove('page-overlay--onload');
+}
 
 /*
 ##     ## ######## ##    ## ##     ##
@@ -118,14 +136,6 @@ burgerButton.addEventListener('click', handleMobileMenu );
 
 
 
-
-
-
-
-
-
-
-
 /*
 ########   #######  ########  ######## ########  #######  ##       ####  #######
 ##     ## ##     ## ##     ##    ##    ##       ##     ## ##        ##  ##     ##
@@ -161,12 +171,10 @@ if (portfolio) {
   const addFlexClasses = () => {
     portfolioGrid.classList.add('grid--flex');
 
-    for (let i = 0; i < portfolioSvgs.length; i++) {
-      portfolioSvgs[i].classList.add('grid__svg-solid--flex');
-
+    for (const svg of portfolioSvgs) {
+      svg.classList.add('grid__svg-solid--flex');
     }
   }
-
 
   // Set width of each image wrapper
   const setFlexBasis = () => {
@@ -206,51 +214,25 @@ if (portfolio) {
         };
         portfolioGridItems[i].style.flex = imageRatio * 100 + "%";
       }
-      //portfolioImageTitle[i].style.width = imageRatio * 1800 + "vw"; // setting width of image title
     }
   }
 
 
-  
+
+
+
+
+
+
+
+
+
 
   
   setFlexBasis();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  window.addEventListener('resize', setFlexBasis);
 }
+
 
 /*
    ###    ########   #######  ##     ## ########
@@ -410,7 +392,19 @@ if (submitButton) {
   modalContainer.addEventListener('click', windowQuit);
 }
 
+/*
+ #######  ##    ## ##        #######     ###    ########
+##     ## ###   ## ##       ##     ##   ## ##   ##     ##
+##     ## ####  ## ##       ##     ##  ##   ##  ##     ##
+##     ## ## ## ## ##       ##     ## ##     ## ##     ##
+##     ## ##  #### ##       ##     ## ######### ##     ##
+##     ## ##   ### ##       ##     ## ##     ## ##     ##
+ #######  ##    ## ########  #######  ##     ## ########
+*/
 
+window.onload = () => {
+  fadeIn();
+}
 
 /* const pageOverlay = document.querySelector('.page-overlay--js');
 
@@ -421,3 +415,4 @@ const fadeInPage = () => {
 window.onload = () => {
   fadeInPage();
 } */
+

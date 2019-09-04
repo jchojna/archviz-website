@@ -58,6 +58,7 @@ object {
   bottom: 0;
   transition: visibility 0s $time-page-overlay, opacity $time-page-overlay;
   visibility: hidden;
+  z-index: 999;
 
   &--onload {
     visibility: visible;
