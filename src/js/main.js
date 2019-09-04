@@ -139,7 +139,10 @@ if (portfolio) {
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
 
-
+  // get viewport width value
+  const getViewportWidth = () => {
+    return window.innerWidth || document.documentElement.clientWidth;
+  }
 
   // Set aspect ratios ( width / height ) of each image
   const setAspectRatios = () => {
@@ -154,8 +157,10 @@ if (portfolio) {
 
 
   portfolioGrid.classList.add('grid--flex');
-  
+
   const imageRatios = setAspectRatios();
+  const viewportWidth = getViewportWidth();
+  console.log(viewportWidth);
 
 
 
