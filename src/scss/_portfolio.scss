@@ -22,12 +22,26 @@
     position: relative;
     overflow: hidden;
     
-    &:hover .grid__title {
-      opacity: 1;
-      transform: scale(1);
-      transition: 
-        opacity $time-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
-        transform $time-grid-item ease-out;
+    &::after {
+      @include content-absolute;
+      box-shadow: inset 0 0 10rem rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity $time-grid-item ease-out,
+    }
+    
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+
+      & .grid__title {
+        opacity: 1;
+        transform: scale(1);
+        transition: 
+          opacity $time-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
+          transform $time-grid-item ease-out;
+      }
     }
   }
 
@@ -52,6 +66,7 @@
   &__link {
     @include flex-center;
     position: relative;
+    transform: scale(1);
     transition:
       transform $time-grid-item ease-out;
 
@@ -78,7 +93,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    opacity: 0.3;
+    opacity: 1;
     filter: saturate(100%);
     transition: 
       filter $time-grid-item ease-out;
