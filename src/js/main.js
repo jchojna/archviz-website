@@ -149,10 +149,17 @@ burgerButton.addEventListener('click', handleMobileMenu );
 if (portfolio) {
 
   /********** VARIABLES **********/
+
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
   const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
+
+  //const lazyPlaceholders = [...portfolioPlaceholders];
+  let lazyLoadOffset = 500;
+  let lazyLoadPause = false;
+
+  /********** LAYOUT **********/
 
   // get viewport width value
   const getViewportWidth = () => {
@@ -170,7 +177,6 @@ if (portfolio) {
 
   const addFlexClasses = () => {
     portfolioGrid.classList.add('grid--flex');
-
     for (const svg of portfolioSvgs) {
       svg.classList.add('grid__svg-solid--flex');
     }
@@ -217,6 +223,7 @@ if (portfolio) {
     }
   }
 
+  /********** LAZY LOADING **********/
 
 
 
@@ -228,6 +235,78 @@ if (portfolio) {
 
 
 
+
+
+  // Checks index of first thumbnails visible in the current viewport
+  // which src is empty
+  function checkFirstThumb(arr) {
+    for (let i=0; i<arr.length; i++) {
+      let imageOffset = arr[i].offsetTop;
+      if (
+        imageOffset >= window.pageYOffset - lazyLoadOffset &&
+        arr[i].firstElementChild.lastElementChild.src === "" ) {
+        return i;
+      }
+    }
+  }
+
+  function lazyLoad(item) { // ZOPTYMALIZOWAC
+    // quit if number exceed total no. of items
+    if (item === portfolioThumbnails.length) {
+      return;
+    }
+    let imageOffset = portfolioThumbnails[item].offsetTop;
+    let firstThumbIndex = checkFirstThumb(portfolioThumbnails);
+    // checks if image is above the viewport
+    if ( imageOffset < window.pageYOffset - lazyLoadOffset) {
+      item++;
+      lazyLoad(item);
+    // checks if image is inside the viewport
+    } else if ( imageOffset < window.innerHeight + window.pageYOffset + lazyLoadOffset ) {
+      // checks if there's unloaded image in the viewport before the currently loading
+      if ( item > firstThumbIndex || lazyLoadPause ) {
+        return;
+      } else if ( !portfolioThumbnails[item].firstElementChild.lastElementChild.classList.contains("portfolio__image--loaded") ) {
+        portfolioImages[item].onload = () => {
+          portfolioImages[item].classList.add("portfolio__image--loaded");
+          item++;
+          lazyLoad(item);
+        }
+        portfolioImages[item].src = portfolioImages[item].getAttribute("data-src");
+      } else {
+        item++;
+        lazyLoad(item);
+      }
+    };
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /********** FUNCTION CALLS **********/
   
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
