@@ -102,6 +102,25 @@ const handleMobileMenu = (e) => {
 
 burgerButton.addEventListener('click', handleMobileMenu );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 ########   #######  ########  ######## ########  #######  ##       ####  #######
 ##     ## ##     ## ##     ##    ##    ##       ##     ## ##        ##  ##     ##
@@ -112,7 +131,61 @@ burgerButton.addEventListener('click', handleMobileMenu );
 ##         #######  ##     ##    ##    ##        #######  ######## ####  #######
 */
 
+const portfolio = document.querySelector('.portfolio--js');
 
+if (portfolio) {
+
+  /********** VARIABLES **********/
+  const portfolioGrid = document.querySelector('.grid--js');
+  const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
+
+
+  portfolioGrid.classList.add('grid--flex');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 /*
    ###    ########   #######  ##     ## ########
