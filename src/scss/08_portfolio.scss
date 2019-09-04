@@ -22,7 +22,6 @@
     @include flex-center;
     position: relative;
     overflow: hidden;
-    border: 1px solid red;
     
     &::after {
       @include content-absolute;
@@ -105,7 +104,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    opacity: 0.5;
+    opacity: 1;
     filter: saturate(100%);
     transition: 
       filter $time-grid-item ease-out;

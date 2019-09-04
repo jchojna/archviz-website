@@ -154,6 +154,7 @@ if (portfolio) {
   const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
   const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
+  const portfolioGridImages = document.querySelectorAll('.grid__image--js');
 
   //const lazyPlaceholders = [...portfolioPlaceholders];
   let lazyLoadOffset = 500;
@@ -235,7 +236,7 @@ if (portfolio) {
 
   /********** LAZY LOADING **********/
 
-  // Checks index of first image visible in the current viewport
+  // Checks index of first unloaded image visible in the current viewport
   const checkFirstImageIndex = (items) => {
     for (let i=0; i<items.length; i++) {
       const imageOffset = items[i].offsetTop;
@@ -248,29 +249,37 @@ if (portfolio) {
   }
 
 
-  const lazyLoad = () => {
+  const lazyLoad = (imageIndex) => {
 
-    const firstImageIndex = checkFirstImageIndex(portfolioGridItems);
-    console.log(firstImageIndex);
+    // when there's no argument passed
+    if (!imageIndex) {
+      imageIndex = checkFirstImageIndex(portfolioGridItems);
+    }
 
+    // quit if number exceed total no. of items
+    if (imageIndex === portfolioGridItems.length) {
+      return;
+    }
 
-
-
-
-
+    const image = portfolioGridImages[imageIndex];
+    image.setAttribute('src', '');
+    const imageSrc = image.getAttribute('data-src');
+    image.setAttribute('src', imageSrc);
+    
+    image.onload = () => {
+      image.classList.add('loaded');
+      imageIndex++;
+      lazyLoad(imageIndex);
+    }
+    
+    
   }
 
 
 
 
-  function lazyLoadOld(item) { // ZOPTYMALIZOWAC
-    // quit if number exceed total no. of items
-    if (item === portfolioThumbnails.length) {
-      return;
-    }
-    let imageOffset = portfolioThumbnails[item].offsetTop;
-    let firstThumbIndex = checkFirstThumb(portfolioThumbnails);
-    // checks if image is above the viewport
+  function lazyLoadOld(item) {
+    
     if ( imageOffset < window.pageYOffset - lazyLoadOffset) {
       item++;
       lazyLoadOld(item);
@@ -386,9 +395,9 @@ if (cardHeader) {
 
 
 
-  window.onload = () => {
+/*   window.onload = () => {
     minimizeCards();
-  }
+  } */
 
   for (let i = 0; i < cardHeader.length; i++ ) {
     const card = cardHeader[i];
@@ -495,9 +504,9 @@ if (submitButton) {
  #######  ##    ## ########  #######  ##     ## ########
 */
 
-window.onload = () => {
+/* window.onload = () => {
   fadeIn();
-}
+} */
 
 /* const pageOverlay = document.querySelector('.page-overlay--js');
 
