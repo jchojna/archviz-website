@@ -31,6 +31,7 @@ if ("serviceWorker" in navigator) {
 /********** OVERALL **********/
 
 const pageContainer = document.querySelector('.page-container--js');
+const portfolio = document.querySelector('.portfolio--js');
 
 /********** MENU **********/
 
@@ -58,6 +59,10 @@ const modalText = document.querySelector('.modal__text--js');
 const modalClose = document.querySelector('.modal__close--js');
 
 let timeoutHandler = null;
+
+/********** MEDIA **********/
+const tabletBreakpoint = 768;
+const desktopBreakpoint = 1200;
 
 /*
 ##     ## ######## ##    ## ##     ##
@@ -131,13 +136,13 @@ burgerButton.addEventListener('click', handleMobileMenu );
 ##         #######  ##     ##    ##    ##        #######  ######## ####  #######
 */
 
-const portfolio = document.querySelector('.portfolio--js');
-
 if (portfolio) {
 
   /********** VARIABLES **********/
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
+  const portfolioGridItems = document.querySelectorAll('.grid__item--js');
+  const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
 
   // get viewport width value
   const getViewportWidth = () => {
@@ -153,14 +158,59 @@ if (portfolio) {
     return ratios;
   }
 
+  const addFlexClasses = () => {
+    portfolioGrid.classList.add('grid--flex');
+
+  }
 
 
+  // Set width of each image wrapper
+  const setFlexBasis = () => {
+    const viewportWidth = getViewportWidth();
+    const imageRatios = setAspectRatios();
+    let imageRatio;
 
-  portfolioGrid.classList.add('grid--flex');
+    addFlexClasses();
 
-  const imageRatios = setAspectRatios();
-  const viewportWidth = getViewportWidth();
-  console.log(viewportWidth);
+    for ( let i = 0; i < portfolioGridItems.length; i++ ) {
+
+      if ( viewportWidth < tabletBreakpoint ) { // on mobiles
+        portfolioGridItems[i].style.flex = "1 1 100%";
+
+      } else if ( viewportWidth > desktopBreakpoint ) { // on desktops
+        switch ( i % 3) {
+          case 0:
+            imageRatio = imageRatios[i] / (imageRatios[i] + imageRatios[i+1] + imageRatios[i+2]);
+            break;
+          case 1:
+            imageRatio = imageRatios[i] / (imageRatios[i-1] + imageRatios[i] + imageRatios[i+1]);
+            break;
+          case 2:
+            imageRatio = imageRatios[i] / (imageRatios[i-2] + imageRatios[i-1] + imageRatios[i]);
+            break;
+        };
+        portfolioGridItems[i].style.flex = imageRatio * 100 + "%";
+
+      } else { // on tablets
+        switch ( i % 2) {
+          case 0:
+            imageRatio = imageRatios[i] / (imageRatios[i] + imageRatios[i+1]);
+            break;
+          case 1:
+            imageRatio = imageRatios[i] / (imageRatios[i-1] + imageRatios[i]);
+            break;
+        };
+        portfolioGridItems[i].style.flex = imageRatio * 100 + "%";
+      }
+      //portfolioImageTitle[i].style.width = imageRatio * 1800 + "vw"; // setting width of image title
+    }
+  }
+
+
+  
+
+  
+  setFlexBasis();
 
 
 

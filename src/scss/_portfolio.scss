@@ -21,6 +21,7 @@
     @include flex-center;
     position: relative;
     overflow: hidden;
+    border: 2px solid red;
     
     &::after {
       @include content-absolute;
@@ -70,6 +71,9 @@
     transition:
       transform $time-grid-item ease-out;
 
+    width: 100%;
+    height: 100%;
+
     &:hover {
       transform: scale($scale-grid-item);
     }
@@ -78,9 +82,15 @@
   &__svg-solid {
     display: block;
     fill: $color-main;
-    height: 100%;
+
+    // for grid
+    /* height: 100%;
     min-height: $layout-mobile-grid-height;
-    min-width: 100vw / $layout-mobile-grid-columns;
+    min-width: 100vw / $layout-mobile-grid-columns; */
+
+
+    width: 100%;
+    height: 100%;
   }
   
   &__svg-line {
@@ -91,9 +101,13 @@
   &__image {
     //display: none;
     position: absolute;
-    height: 100%;
-    width: 100%;
-    opacity: 1;
+
+    // for grid
+    /* height: 100%;
+    width: 100%; */
+
+
+    opacity: 0.5;
     filter: saturate(100%);
     transition: 
       filter $time-grid-item ease-out;
@@ -112,8 +126,8 @@
       grid-gap: $layout-tablet-grid-gap;
 
       &__svg-solid {
-        min-height: $layout-tablet-grid-height;
-        min-width: 100vw / $layout-tablet-grid-columns;
+        /* min-height: $layout-tablet-grid-height;
+        min-width: 100vw / $layout-tablet-grid-columns; */
       }
     }
   }
@@ -127,8 +141,8 @@
       grid-gap: $layout-desktop-grid-gap;
 
       &__svg-solid {
-        min-height: $layout-desktop-grid-height;
-        min-width: 100vw / $layout-desktop-grid-columns;
+        /* min-height: $layout-desktop-grid-height;
+        min-width: 100vw / $layout-desktop-grid-columns; */
       }
     }
   }
