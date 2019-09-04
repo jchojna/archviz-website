@@ -12,31 +12,52 @@
   grid-auto-rows: $layout-mobile-grid-height;
   grid-gap: $layout-mobile-grid-gap;
 
+  &--flex { // JS modification
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &__item {
     @include flex-center;
     position: relative;
     overflow: hidden;
+    
+    &:hover .grid__title {
+      opacity: 1;
+      transform: scale(1);
+      transition: 
+        opacity $time-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
+        transform $time-grid-item ease-out;
+    }
   }
 
   &__title {
-    display: none;
     position: absolute;
     word-wrap: break-word;
     color: white;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 3rem;
+    font-weight: normal;
     text-align: center;
     user-select: none;
+    opacity: 0;
+    transform: scale(6);
     transform-origin: center;
     transition: 
       opacity $time-grid-item cubic-bezier(0.1,0.9,0.1,0.9),
       transform $time-grid-item ease-out;
     z-index: 1;
+    pointer-events: none;
   }
 
   &__link {
     @include flex-center;
     position: relative;
+    transition:
+      transform $time-grid-item ease-out;
+
+    &:hover {
+      transform: scale($scale-grid-item);
+    }
   }
 
   &__svg-solid {
@@ -58,6 +79,13 @@
     height: 100%;
     width: 100%;
     opacity: 0.3;
+    filter: saturate(100%);
+    transition: 
+      filter $time-grid-item ease-out;
+
+    &:hover {
+      filter: saturate(0%);
+    }
   }
 
   @media only screen and (min-width: $media-tablet) {
@@ -96,43 +124,9 @@
 
 
 /* 
-.portfolio__container {
-  display: flex;
-  flex-wrap: wrap;
-  //background-color: #000;
-}
-.portfolio__thumbnail:hover .portfolio__title {
-  opacity: 1;
-  transform: scale(0.05);
-  transition: 
-    opacity $transition-thumb cubic-bezier(0.9,0.1,0.9,0.1),
-    transform $transition-thumb ease-out;
-  z-index: 1;
-}
-.portfolio__placeholder {
-  width: 100%;
-}
-.portfolio__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;  // initially hidden
-  filter: saturate(100%);
-  transition: 
-    filter $transition-desaturation ease-out,
-    transform $transition-thumb ease-out;
-}
 .portfolio__image--loaded {
   display: block;
   animation: fadeIn 2s;
-}
-.portfolio__thumbnail:hover .portfolio__image {
-  filter: saturate(0%);
-  transform: scale(1.2);
-  transition: 
-    filter 1s ease-out,
-    transform $transition-thumb ease-out,
 }
 .portfolio__link::after {
   box-shadow: inset 0 0 8vw rgba(0,0,0,1);
