@@ -140,16 +140,22 @@ if (portfolio) {
   const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
 
 
+
+  // Set aspect ratios ( width / height ) of each image
+  const setAspectRatios = () => {
+    const ratios = [];
+    for ( const svg of portfolioSvgs ) {
+      ratios.push( 1000 / svg.viewBox.baseVal.height );
+    };
+    return ratios;
+  }
+
+
+
+
   portfolioGrid.classList.add('grid--flex');
-
-
-
-
-
-
-
-
-
+  
+  const imageRatios = setAspectRatios();
 
 
 
