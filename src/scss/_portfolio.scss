@@ -12,16 +12,16 @@
   grid-auto-rows: $layout-mobile-grid-height;
   grid-gap: $layout-mobile-grid-gap;
 
-  &--flex { // JS modification
+  &--flex { // portfolioJS
     display: flex;
     flex-wrap: wrap;
+    grid-gap: 0;
   }
 
   &__item {
     @include flex-center;
     position: relative;
     overflow: hidden;
-    border: 2px solid red;
     
     &::after {
       @include content-absolute;
@@ -83,14 +83,15 @@
     display: block;
     fill: $color-main;
 
-    // for grid
-    /* height: 100%;
-    min-height: $layout-mobile-grid-height;
-    min-width: 100vw / $layout-mobile-grid-columns; */
-
-
-    width: 100%;
     height: 100%;
+    min-height: $layout-mobile-grid-height;
+    min-width: 100vw / $layout-mobile-grid-columns;
+
+    &--flex { // portfolioJS
+      min-height: 0;
+      min-width: 0;
+      width: 100%;
+    }
   }
   
   &__svg-line {
@@ -101,12 +102,8 @@
   &__image {
     //display: none;
     position: absolute;
-
-    // for grid
-    /* height: 100%;
-    width: 100%; */
-
-
+    height: 100%;
+    width: 100%;
     opacity: 0.5;
     filter: saturate(100%);
     transition: 
@@ -125,9 +122,18 @@
       grid-auto-rows: $layout-tablet-grid-height;
       grid-gap: $layout-tablet-grid-gap;
 
+      &--flex { // portfolioJS
+        grid-gap: 0;
+      }
+
       &__svg-solid {
-        /* min-height: $layout-tablet-grid-height;
-        min-width: 100vw / $layout-tablet-grid-columns; */
+        min-height: $layout-tablet-grid-height;
+        min-width: 100vw / $layout-tablet-grid-columns;
+
+        &--flex { // portfolioJS
+          min-height: 0;
+          min-width: 0;
+        }
       }
     }
   }
@@ -140,9 +146,18 @@
       grid-auto-rows: $layout-desktop-grid-height;
       grid-gap: $layout-desktop-grid-gap;
 
+      &--flex { // portfolioJS
+        grid-gap: 0;
+      }
+
       &__svg-solid {
-        /* min-height: $layout-desktop-grid-height;
-        min-width: 100vw / $layout-desktop-grid-columns; */
+        min-height: $layout-desktop-grid-height;
+        min-width: 100vw / $layout-desktop-grid-columns;
+
+        &--flex { // portfolioJS
+          min-height: 0;
+          min-width: 0;
+        }
       }
     }
   }

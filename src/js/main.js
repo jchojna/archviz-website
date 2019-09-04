@@ -161,6 +161,10 @@ if (portfolio) {
   const addFlexClasses = () => {
     portfolioGrid.classList.add('grid--flex');
 
+    for (let i = 0; i < portfolioSvgs.length; i++) {
+      portfolioSvgs[i].classList.add('grid__svg-solid--flex');
+
+    }
   }
 
 
