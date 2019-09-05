@@ -83,6 +83,67 @@ const fadeIn = () => {
 }
 
 /*
+######## ##     ## ########   #######  ######## ######## ##       ########
+   ##    ##     ## ##     ## ##     ##    ##       ##    ##       ##
+   ##    ##     ## ##     ## ##     ##    ##       ##    ##       ##
+   ##    ######### ########  ##     ##    ##       ##    ##       ######
+   ##    ##     ## ##   ##   ##     ##    ##       ##    ##       ##
+   ##    ##     ## ##    ##  ##     ##    ##       ##    ##       ##
+   ##    ##     ## ##     ##  #######     ##       ##    ######## ########
+*/
+
+const timestamp = () => {
+  return new Date().getTime();
+};
+
+// Returns a function, that, when invoked, will only be triggered at most once
+// during a given window of time. Normally, the throttled function will run
+// as much as it can, without ever going more than once per `wait` duration;
+// but if you'd like to disable the execution on the leading edge, pass
+// `{leading: false}`. To disable execution on the trailing edge, ditto.
+
+const throttle = (func, wait, options) => {
+  var timeout, context, args, result;
+  var previous = 0;
+  if (!options) options = {};
+
+  const later = () => {
+    previous = options.leading === false ? 0 : timestamp();
+    timeout = null;
+    result = func.apply(context, args);
+    if (!timeout) context = args = null;
+  };
+
+  const throttled = () => {
+    var now = timestamp();
+    if (!previous && options.leading === false) previous = now;
+    var remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+    return result;
+  };
+
+  throttled.cancel = () => {
+    clearTimeout(timeout);
+    previous = 0;
+    timeout = context = args = null;
+  };
+
+  return throttled;
+};
+
+/*
 ##     ## ######## ##    ## ##     ##
 ###   ### ##       ###   ## ##     ##
 #### #### ##       ####  ## ##     ##
@@ -157,7 +218,7 @@ if (portfolio) {
   const portfolioGridImages = document.querySelectorAll('.grid__image--js');
 
   //const lazyPlaceholders = [...portfolioPlaceholders];
-  let lazyLoadOffset = 500;
+  let lazyLoadBuffer = 500;
   let lazyLoadPause = false;
 
   /********** LAYOUT **********/
@@ -236,44 +297,60 @@ if (portfolio) {
 
   /********** LAZY LOADING **********/
 
-  // Checks index of first unloaded image visible in the current viewport
-  const checkFirstImageIndex = (items) => {
-    for (let i=0; i<items.length; i++) {
-      const imageOffset = items[i].offsetTop;
-      const viewportOffset = window.pageYOffset - lazyLoadOffset;
-      const itemSrc = items[i].lastElementChild.lastElementChild.getAttribute('src');
-      if ( imageOffset >= viewportOffset && itemSrc === "assets/img/blank-image.png" ) {
-        return i;
-      }
-    }
-  }
-
-
   const lazyLoad = (imageIndex) => {
-
     // when there's no argument passed
-    if (!imageIndex) {
-      imageIndex = checkFirstImageIndex(portfolioGridItems);
-    }
-
+    if (!imageIndex) imageIndex = 0;
     // quit if number exceed total no. of items
-    if (imageIndex === portfolioGridItems.length) {
+    if (imageIndex === portfolioGridItems.length) return;
+  
+    const image = portfolioGridImages[imageIndex];
+    const imageOffset = portfolioGridItems[imageIndex].offsetTop;
+    const viewportTopOffset = window.pageYOffset - lazyLoadBuffer;
+    const viewportBottomOffset = window.pageYOffset + window.innerHeight + lazyLoadBuffer;
+    const imageSrc = image.getAttribute('src');
+    const imageNewSrc = image.getAttribute('data-src');
+
+    if (imageOffset >= viewportTopOffset) { // if image is below top viewport border
+      if (imageOffset < viewportBottomOffset) { // if image is inside viewport
+        if (imageSrc === "assets/img/blank-image.png") { // if proper src is not applied yet
+          image.setAttribute('src', '');
+          image.setAttribute('src', imageNewSrc);
+          image.onload = () => {
+            image.classList.add('loaded');
+            lazyLoad(++imageIndex);
+            return;
+          }
+        } else { // if proper src is already applied
+          lazyLoad(++imageIndex);
+          return;
+        }
+      } else { // if image is below bottom viewport border
+        return;
+      }
+    } else { // if image is above top viewport border
+      lazyLoad(++imageIndex);
       return;
     }
-
-    const image = portfolioGridImages[imageIndex];
-    image.setAttribute('src', '');
-    const imageSrc = image.getAttribute('data-src');
-    image.setAttribute('src', imageSrc);
-    
-    image.onload = () => {
-      image.classList.add('loaded');
-      imageIndex++;
-      lazyLoad(imageIndex);
-    }
-    
-    
   }
+
+
+
+
+
+
+
+
+  /********** FUNCTION CALLS **********/
+  
+  setFlexBasis();
+  lazyLoad();
+  window.addEventListener('resize', setFlexBasis);
+  window.addEventListener('scroll', throttle(() => lazyLoad(0), 500));
+
+
+
+
+
 
 
 
@@ -290,7 +367,6 @@ if (portfolio) {
         return;
       } else if ( !portfolioThumbnails[item].firstElementChild.lastElementChild.classList.contains("portfolio__image--loaded") ) {
         portfolioImages[item].onload = () => {
-          portfolioImages[item].classList.add("portfolio__image--loaded");
           item++;
           lazyLoadOld(item);
         }
@@ -301,38 +377,6 @@ if (portfolio) {
       }
     };
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /********** FUNCTION CALLS **********/
-  
-  setFlexBasis();
-  lazyLoad();
-  window.addEventListener('resize', setFlexBasis);
 }
 
 
