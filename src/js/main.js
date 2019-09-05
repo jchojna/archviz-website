@@ -33,6 +33,9 @@ if ("serviceWorker" in navigator) {
 const pageContainer = document.querySelector('.page-container--js');
 const pageOverlay = document.querySelector('.page-overlay--js');
 const portfolio = document.querySelector('.portfolio--js');
+const gallery = document.querySelector('.gallery--js');
+const about = document.querySelector('.about--js');
+const form = document.querySelector('.form--js');
 
 /********** MENU **********/
 
@@ -285,19 +288,9 @@ if (portfolio) {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
   /********** LAZY LOADING **********/
 
-  const lazyLoad = (imageIndex) => {
+  var lazyLoad = (imageIndex) => {
     // when there's no argument passed
     if (!imageIndex) imageIndex = 0;
     // quit if number exceed total no. of items
@@ -316,7 +309,7 @@ if (portfolio) {
           image.setAttribute('src', '');
           image.setAttribute('src', imageNewSrc);
           image.onload = () => {
-            image.classList.add('loaded');
+            image.classList.add('grid__image--loaded');
             lazyLoad(++imageIndex);
             return;
           }
@@ -343,9 +336,7 @@ if (portfolio) {
   /********** FUNCTION CALLS **********/
   
   setFlexBasis();
-  lazyLoad();
   window.addEventListener('resize', setFlexBasis);
-  window.addEventListener('scroll', throttle(() => lazyLoad(0), 500));
 
 
 
@@ -355,30 +346,48 @@ if (portfolio) {
 
 
 
-  function lazyLoadOld(item) {
-    
-    if ( imageOffset < window.pageYOffset - lazyLoadOffset) {
-      item++;
-      lazyLoadOld(item);
-    // checks if image is inside the viewport
-    } else if ( imageOffset < window.innerHeight + window.pageYOffset + lazyLoadOffset ) {
-      // checks if there's unloaded image in the viewport before the currently loading
-      if ( item > firstThumbIndex || lazyLoadPause ) {
-        return;
-      } else if ( !portfolioThumbnails[item].firstElementChild.lastElementChild.classList.contains("portfolio__image--loaded") ) {
-        portfolioImages[item].onload = () => {
-          item++;
-          lazyLoadOld(item);
-        }
-        portfolioImages[item].src = portfolioImages[item].getAttribute("data-src");
-      } else {
-        item++;
-        lazyLoadOld(item);
-      }
-    };
-  }
-}
 
+
+
+
+} // END OF PORTFOLIO
+
+/*
+ ######      ###    ##       ##       ######## ########  ##    ##
+##    ##    ## ##   ##       ##       ##       ##     ##  ##  ##
+##         ##   ##  ##       ##       ##       ##     ##   ####
+##   #### ##     ## ##       ##       ######   ########     ##
+##    ##  ######### ##       ##       ##       ##   ##      ##
+##    ##  ##     ## ##       ##       ##       ##    ##     ##
+ ######   ##     ## ######## ######## ######## ##     ##    ##
+*/
+
+if (gallery) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+} // END OF GALLERY
 
 /*
    ###    ########   #######  ##     ## ########
@@ -390,13 +399,12 @@ if (portfolio) {
 ##     ## ########   #######   #######     ##
 */
 
-const cardHeader = document.querySelectorAll('.card__header--js');
-const cardDescription = document.querySelectorAll('.card__description--js');
-const cardDropdown = document.querySelectorAll('.card__dropdown--js');
-const dropdownTransition = 500 + "ms";
+if (about) {
 
-if (cardHeader) {
-
+  const cardHeader = document.querySelectorAll('.card__header--js');
+  const cardDescription = document.querySelectorAll('.card__description--js');
+  const cardDropdown = document.querySelectorAll('.card__dropdown--js');
+  const dropdownTransition = 500 + "ms";
   const translateCard = (card) => {
     const cardHeight = card.clientHeight;
     const cardTranslation = card.style.marginTop;
@@ -439,9 +447,9 @@ if (cardHeader) {
 
 
 
-/*   window.onload = () => {
+  window.onload = () => {
     minimizeCards();
-  } */
+  }
 
   for (let i = 0; i < cardHeader.length; i++ ) {
     const card = cardHeader[i];
@@ -450,7 +458,15 @@ if (cardHeader) {
   }
 
   window.addEventListener('resize', adjustCards);
-}
+
+
+
+
+
+
+
+
+} // END OF ABOUT
 
 /*
  ######   #######  ##    ## ########    ###     ######  ########
@@ -462,7 +478,7 @@ if (cardHeader) {
  ######   #######  ##    ##    ##    ##     ##  ######     ##
 */
 
-if (submitButton) {
+if (form) {
 
   const resetCheckboxes = () => {
     for ( const checkbox of checkboxes ) {
@@ -536,7 +552,12 @@ if (submitButton) {
   submitButton.addEventListener('click', validateCheckboxes);
   modalClose.addEventListener('click', toggleModal);
   modalContainer.addEventListener('click', windowQuit);
-}
+
+
+
+
+
+} // END OF CONTACT
 
 /*
  #######  ##    ## ##        #######     ###    ########
@@ -548,17 +569,10 @@ if (submitButton) {
  #######  ##    ## ########  #######  ##     ## ########
 */
 
-/* window.onload = () => {
-  fadeIn();
-} */
-
-/* const pageOverlay = document.querySelector('.page-overlay--js');
-
-const fadeInPage = () => {
-  pageOverlay.classList.remove('page-overlay--onload');
-}
-
 window.onload = () => {
-  fadeInPage();
-} */
-
+  fadeIn();
+  if (portfolio) {
+    lazyLoad();
+    window.addEventListener('scroll', throttle(() => lazyLoad(0), 1000));
+  }
+}
