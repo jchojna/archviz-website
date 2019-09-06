@@ -31,7 +31,6 @@ if ("serviceWorker" in navigator) {
 /********** OVERALL **********/
 
 const pageContainer = document.querySelector('.page-container--js');
-const pageOverlay = document.querySelector('.page-overlay--js');
 const portfolio = document.querySelector('.portfolio--js');
 const gallery = document.querySelector('.gallery--js');
 const about = document.querySelector('.about--js');
@@ -78,11 +77,31 @@ const desktopBreakpoint = 1200;
  #######     ###    ######## ##     ## ##     ## ######## ########
 */
 
+const pageOverlay = document.querySelector('.page-overlay--js');
+const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
+
 const fadeIn = () => {
   if (!pageOverlay.classList.contains('page-overlay--onload')) {
     pageOverlay.classList.add('page-overlay--onload');
   }
   pageOverlay.classList.remove('page-overlay--onload');
+}
+
+const toNextPage = (e, callback, timeout) => {
+  e.preventDefault();
+  const linkClicked = e.target;
+  if (linkClicked.tagName === "A") {
+    pageOverlay.classList.add('page-overlay--visible');
+    setTimeout(() => callback(linkClicked), timeout);
+  }
+}
+
+const delayLink = (element) => {
+  window.location = element.href;
+}
+
+for ( const link of fadeOutLinks ) {
+  link.addEventListener('click', () => toNextPage(event, delayLink, 600));
 }
 
 /*
