@@ -36,12 +36,6 @@ const gallery = document.querySelector('.gallery--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
 
-/********** MENU **********/
-
-const mainMenuList = document.querySelector('.main-menu__list--js');
-const mobileMenu = document.querySelector('.mobile-menu--js');
-const burgerButton = document.querySelector('.burger--js');
-
 /********** FORM **********/
 
 const submitButton = document.querySelector('.form__submit--js');
@@ -209,6 +203,12 @@ const throttle = (func, wait, options) => {
 ##     ## ######## ##    ##  #######
 */
 
+/********** MENU **********/
+
+const mainMenuList = document.querySelector('.main-menu__list--js');
+const mobileMenu = document.querySelector('.mobile-menu--js');
+const burgerButton = document.querySelector('.burger--js');
+
 const generateMobileMenu = () => {
   const mobileMenuList = mainMenuList.cloneNode(true);
   const mobileMenuItems = mobileMenuList.children;
@@ -242,16 +242,20 @@ const handleMobileMenu = (e) => {
 
 burgerButton.addEventListener('click', handleMobileMenu );
 
+/********** GO TO TOP BUTTON **********/
 
+const goToTopButton = document.querySelector('.go-top--js');
 
+const toggleGoTopButton = () => {
+  let scroll = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
+  if (scroll > 1000) {
+    goToTopButton.classList.add('go-top--visible');
+  } else {
+    goToTopButton.classList.remove('go-top--visible');
+  }
+}
 
-
-
-
-
-
-
-
+window.addEventListener('scroll', toggleGoTopButton );
 
 /*
 ########   #######  ########  ######## ########  #######  ##       ####  #######
