@@ -432,14 +432,14 @@ if (portfolio) {
  ######   ##     ## ######## ######## ######## ##     ##    ##
 */
 
-if (gallery) {
+if (gallery) { //////////////////////////////////////////////////////// GALLERY
 
- const showGallery = (e) => { // SHOW GALLERY
+ const showGallery = (e) => { //////////////////////////////////// SHOW GALLERY
   e.preventDefault();
   const self = e.target;
   const currentIndex = self.index;
 
-  const generateGallery = () => {
+  const generateGallery = () => { //////////////////////////// GENERATE GALLERY
     for (const image of portfolioGridImages) {
 
       const imageAlt = image.alt;
@@ -470,20 +470,21 @@ if (gallery) {
 
 
 
+  //***************************************************** INITIAL FUNCTION CALL
 
 
+  //***************************************************************** VARIABLES
 
 
-    }
-  }
+  //************************************************************ FUNCTION CALLS
 
   /********** FUNCTION CALLS **********/
   
   gallery.children.length <= 1 ? generateGallery() : false;
 
- } // END OF SHOW GALLERY
+ } //////////////////////////////////////////////////////// END OF SHOW GALLERY
 
- /********** EVENT LISTENERS **********/
+ //************************************************************ EVENT LISTENERS
 
   for (let i = 0; i < portfolioGridImages.length; i++) {
     const gridImage = portfolioGridImages[i];
@@ -491,7 +492,7 @@ if (gallery) {
     gridImage.addEventListener('click', showGallery);
   }
 
-} // END OF GALLERY
+} ////////////////////////////////////////////////////////////// END OF GALLERY
 
 /*
    ###    ########   #######  ##     ## ########
