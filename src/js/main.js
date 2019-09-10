@@ -5,10 +5,9 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("serviceworker.js").then(
       function(registration) {
         // Registration was successful
-        console.log(
-          "ServiceWorker registration successful with scope: ",
+        /* console.log("ServiceWorker registration successful with scope: ",
           registration.scope
-        );
+        ); */
       },
       function(err) {
         // registration failed :(
@@ -414,30 +413,10 @@ if (portfolio) {
     }
   }
 
-
-
-
-
-
-
-
   /********** FUNCTION CALLS **********/
   
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
-
-
-
-
-
-
-
-
-
-
-
-
-
 } // END OF PORTFOLIO
 
 /*
@@ -451,6 +430,20 @@ if (portfolio) {
 */
 
 if (gallery) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -531,10 +524,6 @@ if (about) {
     }
   }
 
-
-
-
-
   window.onload = () => {
     minimizeCards();
   }
@@ -546,13 +535,6 @@ if (about) {
   }
 
   window.addEventListener('resize', adjustCards);
-
-
-
-
-
-
-
 
 } // END OF ABOUT
 
@@ -634,17 +616,10 @@ if (form) {
     }
   }
 
-
-
   checkboxContainer.addEventListener('click', handleCheckboxes );
   submitButton.addEventListener('click', validateCheckboxes);
   modalClose.addEventListener('click', toggleModal);
   modalContainer.addEventListener('click', windowQuit);
-
-
-
-
-
 } // END OF CONTACT
 
 /*
