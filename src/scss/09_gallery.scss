@@ -6,9 +6,10 @@
   right: 0;
   bottom: 0;
   background-color: rgba($color: #000, $alpha: 0.7);
+  z-index: 2;
 
   &--visible {
-    display: flex;
+    @include flex-center;
   }
 
   &__header {
@@ -18,11 +19,8 @@
 
 .images {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
 
   &--visible {
     @include flex-center;
@@ -42,10 +40,15 @@
 }
 
 .navigation {
-  display: none;
 
   &__list {
-
+    @include flex-center;
+    list-style-type: none;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
   }
 
   &__item {
@@ -56,22 +59,50 @@
 
   }
 
+  &__button {
+    opacity: 0.5;
+    z-index: 99;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &--switch {
+      
+    }
+
+    &--left {
+
+    }
+
+    &--right {
+
+    }
+
+    &--close {
+
+    }
+  }
+
   &__svg {
+    fill: none;
+    stroke-width: 200;
+    stroke: #fff;
+    width: 50px;
+    height: 50px;
+    //stroke-linecap: round;
+    pointer-events: none;
 
     &--up-arrow {
-
+      transform: rotate(-90deg);
     }
 
     &--down-arrow {
-      
+      transform: rotate(90deg);
     }
 
-    &--down-left {
-      
-    }
-
-    &--down-right {
-      
+    &--left-arrow {
+      transform: rotate(180deg);
     }
   }
 }
