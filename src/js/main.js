@@ -443,44 +443,39 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     for (const image of portfolioGridImages) {
 
       const imageAlt = image.alt;
-      const imageSrc = image.getAttribute('src');
+      const imageSrc = image.getAttribute('data-src2');
       const imageHeading = imageAlt.split(' | ').slice(0,1).join();
       
       gallery.innerHTML += `
-        <section class="images">
-          <h3 class="images__heading">
-            ${imageHeading}
-          </h3>
-          <img
-            src="${imageSrc}"
-            alt="${imageAlt}"
-            class="images__image"
-          >
-        </section>
-        `;
-      
-      
-      
-      
-      
-
-
-
-
+      <section class="images images--js">
+        <h3 class="images__heading">
+          ${imageHeading}
+        </h3>
+        <img
+          src="${imageSrc}"
+          alt="${imageAlt}"
+          class="images__image"
+        >
+      </section>
+      `;
+    }
+  } /////////////////////////////////////////////////// END OF GENERATE GALLERY
 
 
 
   //***************************************************** INITIAL FUNCTION CALL
 
+  gallery.children.length <= 1 ? generateGallery() : false;
 
   //***************************************************************** VARIABLES
 
+  const imageSections = document.querySelectorAll('.images--js');
+  const currentImageSection = imageSections[currentIndex];
 
   //************************************************************ FUNCTION CALLS
 
-  /********** FUNCTION CALLS **********/
-  
-  gallery.children.length <= 1 ? generateGallery() : false;
+  gallery.classList.add('gallery--visible');
+  currentImageSection.classList.add('images--visible');
 
  } //////////////////////////////////////////////////////// END OF SHOW GALLERY
 

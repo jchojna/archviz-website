@@ -1,20 +1,48 @@
 .gallery {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: #000, $alpha: 0.7);
+
+  &--visible {
+    display: flex;
+  }
 
   &__header {
 
   }
+}
 
-  &__container {
+.images {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
+  &--visible {
+    @include flex-center;
   }
 
-  &__description {
+  &__heading {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
+  &__image {
+    max-width: 90%;
+    max-height: 90%;
   }
 }
 
 .navigation {
+  display: none;
 
   &__list {
 
