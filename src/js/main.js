@@ -432,14 +432,16 @@ if (portfolio) {
  ######   ##     ## ######## ######## ######## ##     ##    ##
 */
 
-if (gallery) { //////////////////////////////////////////////////////// GALLERY
+if (gallery) { //······················································ GALLERY
 
- const showGallery = (e) => { //////////////////////////////////// SHOW GALLERY
+  
+
+  const showGallery = (e) => { //································· SHOW GALLERY
   e.preventDefault();
   const self = e.target;
-  const currentIndex = self.index;
+  let currentIndex = self.index;
 
-  const generateGallery = () => { //////////////////////////// GENERATE GALLERY
+  const generateGallery = () => { //······················ GENERATE GALLERY   ·
     for (const image of portfolioGridImages) {
 
       const imageAlt = image.alt;
@@ -459,27 +461,73 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       </section>
       `;
     }
-  } /////////////////////////////////////////////////// END OF GENERATE GALLERY
+  } //············································· END OF GENERATE GALLERY   ·
+  const toggleGallery = () => { //·························· TOGGLE GALLERY   ·
+    gallery.classList.toggle('gallery--visible');
+    currentImageSection.classList.toggle('images--visible');
 
+  } //··············································· END OF TOGGLE GALLERY   ·
+  const toggleImage = () => { //······························ TOGGLE IMAGE   ·
+    const currentImage = imageSections[currentIndex];
+    currentImage.classList.toggle('images--visible');
 
+  } //················································· END OF TOGGLE IMAGE   ·
+  const switchImage = () => { //······························ SWITCH IMAGE   ·
 
-  //***************************************************** INITIAL FUNCTION CALL
+    
+
+  } //················································· END OF SWITCH IMAGE   ·
+  const showLeft = () => { //···································· SHOW LEFT   ·
+
+    toggleImage();
+    currentIndex--;
+    toggleImage();
+
+  } //···················································· END OF SHOW LEFT   ·
+  const showRight = () => { //·································· SHOW RIGHT   ·
+
+    console.log('r');
+  } //··················································· END OF SHOW RIGHT   ·
+  const closeGallery = () => { //···························· CLOSE GALLERY   ·
+
+    toggleGallery();
+    switchButton.removeEventListener('click', switchImage);
+    leftButton.removeEventListener('click', showLeft);
+    rightButton.removeEventListener('click', showRight);
+    closeButton.removeEventListener('click', closeGallery);
+
+  } //················································ END OF CLOSE GALLERY   ·
+
+  //················································· INITIAL FUNCTION CALL   ·
 
   gallery.children.length <= 1 ? generateGallery() : false;
 
-  //***************************************************************** VARIABLES
+  //····························································· VARIABLES   ·
 
   const imageSections = document.querySelectorAll('.images--js');
   const currentImageSection = imageSections[currentIndex];
 
-  //************************************************************ FUNCTION CALLS
+  const switchButton = document.querySelector('.navigation__button--js-switch');
+  const leftButton = document.querySelector('.navigation__button--js-left');
+  const rightButton = document.querySelector('.navigation__button--js-right');
+  const closeButton = document.querySelector('.navigation__button--js-close');
 
-  gallery.classList.add('gallery--visible');
-  currentImageSection.classList.add('images--visible');
+  //························································ FUNCTION CALLS   |
 
- } //////////////////////////////////////////////////////// END OF SHOW GALLERY
+  toggleGallery();
 
- //************************************************************ EVENT LISTENERS
+  //······················································· EVENT LISTENERS   |
+  
+  switchButton.addEventListener('click', switchImage);
+  leftButton.addEventListener('click', showLeft);
+  rightButton.addEventListener('click', showRight);
+  closeButton.addEventListener('click', closeGallery);
+
+ } //······················································ END OF SHOW GALLERY
+
+ //····························································· FUNCTION CALLS
+
+ //···························································· EVENT LISTENERS
 
   for (let i = 0; i < portfolioGridImages.length; i++) {
     const gridImage = portfolioGridImages[i];
@@ -487,7 +535,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     gridImage.addEventListener('click', showGallery);
   }
 
-} ////////////////////////////////////////////////////////////// END OF GALLERY
+} //···························································· END OF GALLERY
 
 /*
    ###    ########   #######  ##     ## ########
