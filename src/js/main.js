@@ -499,13 +499,16 @@ if (gallery) { //·······························�
     toggleImage();
 
   } //................................................... END OF VIEW IMAGE ...
-  const closeGallery = () => { //............................ CLOSE GALLERY ...
+  const closeGallery = (e) => { //............................ CLOSE GALLERY ...
 
-    toggleGallery();
+    if (e.target === imageSections[currentIndex] || e.target === closeButton) {
+      toggleGallery();
+    } else return;
     switchButton.removeEventListener('click', switchImage);
     leftButton.removeEventListener('click', viewImage);
     rightButton.removeEventListener('click', viewImage);
     closeButton.removeEventListener('click', closeGallery);
+    gallery.removeEventListener('click', closeGallery);
 
   } //................................................ END OF CLOSE GALLERY ...
 
@@ -532,6 +535,7 @@ if (gallery) { //·······························�
   leftButton.addEventListener('click', viewImage);
   rightButton.addEventListener('click', viewImage);
   closeButton.addEventListener('click', closeGallery);
+  gallery.addEventListener('click', closeGallery);
 
  } //...................................................... END OF SHOW GALLERY
 
