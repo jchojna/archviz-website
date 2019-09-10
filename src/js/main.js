@@ -35,6 +35,10 @@ const gallery = document.querySelector('.gallery--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
 
+/********** PORTFOLIO **********/
+
+const portfolioGridImages = document.querySelectorAll('.grid__image--js');
+
 /********** FORM **********/
 
 const submitButton = document.querySelector('.form__submit--js');
@@ -305,7 +309,6 @@ if (portfolio) {
   const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
   const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
-  const portfolioGridImages = document.querySelectorAll('.grid__image--js');
 
   //const lazyPlaceholders = [...portfolioPlaceholders];
   let lazyLoadBuffer = 500;
@@ -431,6 +434,28 @@ if (portfolio) {
 
 if (gallery) {
 
+ const showGallery = (e) => {
+  e.preventDefault();
+  const self = e.target;
+  const currentIndex = self.index;
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -449,24 +474,13 @@ if (gallery) {
 
 
 
+ }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  for (let i = 0; i < portfolioGridImages.length; i++) {
+    const gridImage = portfolioGridImages[i];
+    gridImage.index = i;
+    gridImage.addEventListener('click', showGallery);
+  }
 
 } // END OF GALLERY
 
