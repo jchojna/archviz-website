@@ -434,14 +434,14 @@ if (portfolio) {
 
 if (gallery) { //······················································ GALLERY
 
-  
-
   const showGallery = (e) => { //································· SHOW GALLERY
+
   e.preventDefault();
   const self = e.target;
   let currentIndex = self.index;
 
-  const generateGallery = () => { //······················ GENERATE GALLERY   ·
+  const generateGallery = () => { //······················ GENERATE GALLERY ...
+
     for (const image of portfolioGridImages) {
 
       const imageAlt = image.alt;
@@ -461,73 +461,83 @@ if (gallery) { //·······························�
       </section>
       `;
     }
-  } //············································· END OF GENERATE GALLERY   ·
-  const toggleGallery = () => { //·························· TOGGLE GALLERY   ·
-    gallery.classList.toggle('gallery--visible');
-    currentImageSection.classList.toggle('images--visible');
+  } //............................................. END OF GENERATE GALLERY ...
+  const loopIndex = (e, collection, index) => { //.............. LOOP INDEX ...
 
-  } //··············································· END OF TOGGLE GALLERY   ·
-  const toggleImage = () => { //······························ TOGGLE IMAGE   ·
+    const self = e.target;
+    const maxIndex = collection.length-1;
+    if (self === rightButton) {
+      index === maxIndex ? index = 0 : index++;
+    } else if (self === leftButton) {
+      index === 0 ? index = maxIndex : index--;
+    }
+    return index;
+
+  } //.......................................................... LOOP INDEX ...
+  const toggleGallery = () => { //.......................... TOGGLE GALLERY ...
+
+    gallery.classList.toggle('gallery--visible');
     const currentImage = imageSections[currentIndex];
     currentImage.classList.toggle('images--visible');
 
-  } //················································· END OF TOGGLE IMAGE   ·
-  const switchImage = () => { //······························ SWITCH IMAGE   ·
+  } //............................................... END OF TOGGLE GALLERY ...
+  const toggleImage = () => { //.............................. TOGGLE IMAGE ...
+
+    const currentImage = imageSections[currentIndex];
+    currentImage.classList.toggle('images--visible');
+
+  } //................................................. END OF TOGGLE IMAGE ...
+  const switchImage = () => { //.............................. SWITCH IMAGE ...
 
     
 
-  } //················································· END OF SWITCH IMAGE   ·
-  const showLeft = () => { //···································· SHOW LEFT   ·
+  } //................................................. END OF SWITCH IMAGE ...
+  const viewImage = () => { //.................................. VIEW IMAGE ...
 
     toggleImage();
-    currentIndex--;
+    currentIndex = loopIndex(event, imageSections, currentIndex);
     toggleImage();
 
-  } //···················································· END OF SHOW LEFT   ·
-  const showRight = () => { //·································· SHOW RIGHT   ·
-
-    console.log('r');
-  } //··················································· END OF SHOW RIGHT   ·
-  const closeGallery = () => { //···························· CLOSE GALLERY   ·
+  } //................................................... END OF VIEW IMAGE ...
+  const closeGallery = () => { //............................ CLOSE GALLERY ...
 
     toggleGallery();
     switchButton.removeEventListener('click', switchImage);
-    leftButton.removeEventListener('click', showLeft);
-    rightButton.removeEventListener('click', showRight);
+    leftButton.removeEventListener('click', viewImage);
+    rightButton.removeEventListener('click', viewImage);
     closeButton.removeEventListener('click', closeGallery);
 
-  } //················································ END OF CLOSE GALLERY   ·
+  } //................................................ END OF CLOSE GALLERY ...
 
-  //················································· INITIAL FUNCTION CALL   ·
+  //................................................. INITIAL FUNCTION CALL ...
 
   gallery.children.length <= 1 ? generateGallery() : false;
 
-  //····························································· VARIABLES   ·
+  //............................................................. VARIABLES ...
 
   const imageSections = document.querySelectorAll('.images--js');
-  const currentImageSection = imageSections[currentIndex];
 
   const switchButton = document.querySelector('.navigation__button--js-switch');
   const leftButton = document.querySelector('.navigation__button--js-left');
   const rightButton = document.querySelector('.navigation__button--js-right');
   const closeButton = document.querySelector('.navigation__button--js-close');
 
-  //························································ FUNCTION CALLS   |
+  //........................................................ FUNCTION CALLS ...
 
   toggleGallery();
 
-  //······················································· EVENT LISTENERS   |
+  //....................................................... EVENT LISTENERS ...
   
   switchButton.addEventListener('click', switchImage);
-  leftButton.addEventListener('click', showLeft);
-  rightButton.addEventListener('click', showRight);
+  leftButton.addEventListener('click', viewImage);
+  rightButton.addEventListener('click', viewImage);
   closeButton.addEventListener('click', closeGallery);
 
- } //······················································ END OF SHOW GALLERY
+ } //...................................................... END OF SHOW GALLERY
 
- //····························································· FUNCTION CALLS
+ //............................................................. FUNCTION CALLS
 
- //···························································· EVENT LISTENERS
+ //............................................................ EVENT LISTENERS
 
   for (let i = 0; i < portfolioGridImages.length; i++) {
     const gridImage = portfolioGridImages[i];
@@ -535,7 +545,7 @@ if (gallery) { //·······························�
     gridImage.addEventListener('click', showGallery);
   }
 
-} //···························································· END OF GALLERY
+} //............................................................ END OF GALLERY
 
 /*
    ###    ########   #######  ##     ## ########
