@@ -434,47 +434,56 @@ if (portfolio) {
 
 if (gallery) {
 
- const showGallery = (e) => {
+ const showGallery = (e) => { // SHOW GALLERY
   e.preventDefault();
   const self = e.target;
   const currentIndex = self.index;
+
+  const generateGallery = () => {
+    for (const image of portfolioGridImages) {
+
+      const imageAlt = image.alt;
+      const imageSrc = image.getAttribute('src');
+      const imageHeading = imageAlt.split(' | ').slice(0,1).join();
+      
+      gallery.innerHTML += `
+        <section class="images">
+          <h3 class="images__heading">
+            ${imageHeading}
+          </h3>
+          <img
+            src="${imageSrc}"
+            alt="${imageAlt}"
+            class="images__image"
+          >
+        </section>
+        `;
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+    }
+  }
+
+  /********** FUNCTION CALLS **********/
   
-    
+  gallery.children.length <= 1 ? generateGallery() : false;
 
+ } // END OF SHOW GALLERY
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- }
+ /********** EVENT LISTENERS **********/
 
   for (let i = 0; i < portfolioGridImages.length; i++) {
     const gridImage = portfolioGridImages[i];
