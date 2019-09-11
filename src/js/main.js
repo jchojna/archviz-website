@@ -436,149 +436,145 @@ if (gallery) { //·······························�
 
   const showGallery = (e) => { //································· SHOW GALLERY
 
-  e.preventDefault();
-  const self = e.target;
-  let currentIndex = self.index;
-
-  const generateGallery = () => { //······················ GENERATE GALLERY ...
-
-    for (const image of portfolioGridImages) {
-
-      const imageAlt = image.alt;
-      const imageSrc = image.getAttribute('data-src2');
-      const imageHeading = imageAlt.split(' | ').slice(0,1).join();
-      
-      gallery.innerHTML += `
-      <section class="images images--js">
-        <h3 class="images__heading">
-          ${imageHeading}
-        </h3>
-        <img
-          src="${imageSrc}"
-          alt="${imageAlt}"
-          class="images__image"
-        >
-      </section>
-      `;
-    }
-  } //............................................. END OF GENERATE GALLERY ...
-  const loopIndex = (collection, index, action) => { //......... LOOP INDEX ...
-
-    const maxIndex = collection.length-1;
-    if (action === 'increase') {
-      index >= maxIndex ? index = 0 : index++;
-    } else if (action === 'decrease') {
-      index <= 0 ? index = maxIndex : index--;
-    }
-    return index;
-
-  } //.......................................................... LOOP INDEX ...
-  const toggleGallery = (action, direction) => { //......... TOGGLE GALLERY ...
-
-    const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
-    const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
-    const currentImage = imageSections[currentIndex];
-    const prevImage = imageSections[prevIndex];
-    const nextImage = imageSections[nextIndex];
-
-    switch (action) {
-
-      case 'toggle':
-      gallery.classList.toggle('gallery--visible');
-      prevImage.classList.toggle('images--visible');
-      prevImage.classList.toggle('images--hidden-left');
-      currentImage.classList.toggle('images--visible');
-      nextImage.classList.toggle('images--visible');
-      nextImage.classList.toggle('images--hidden-right');
-      break;
-
-      case 'hideImage':
-      if (direction === 'left') {
-        nextImage.classList.toggle('images--visible');
-        nextImage.classList.toggle('images--hidden-right');
-      } else if (direction === 'right') {
-        prevImage.classList.toggle('images--visible');
-        prevImage.classList.toggle('images--hidden-left');
-      }
-      break;
-
-      case 'showImage':
-      if (direction === 'left') {
-        prevImage.classList.toggle('images--visible');
-        prevImage.classList.toggle('images--hidden-left');
-        currentImage.classList.toggle('images--hidden-left');
-        nextImage.classList.toggle('images--hidden-right');
-      } else if (direction === 'right') {
-        nextImage.classList.toggle('images--visible');
-        nextImage.classList.toggle('images--hidden-right');
-        currentImage.classList.toggle('images--hidden-right');
-        prevImage.classList.toggle('images--hidden-left');
-      }
-      break;
-    }
-  } //................................................... END OF SHOW IMAGE ...
-  const switchImage = () => { //.............................. SWITCH IMAGE ...
-
-    
-
-  } //................................................. END OF SWITCH IMAGE ...
-  const viewImage = (e) => { //................................. VIEW IMAGE ...
-
+    e.preventDefault();
     const self = e.target;
-    if (self === leftButton) {
-      toggleGallery('hideImage','left');
-      currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
-      toggleGallery('showImage','left');
-    } else if (self === rightButton) {
-      toggleGallery('hideImage','right');
-      currentIndex = loopIndex(imageSections, currentIndex, 'increase');
-      toggleGallery('showImage','right');
-    }
+    let currentIndex = self.index;
 
-  } //................................................... END OF VIEW IMAGE ...
-  const closeGallery = (e) => { //........................... CLOSE GALLERY ...
+    const generateGallery = () => { //···················· GENERATE GALLERY ...
 
-    if (e.target === imageSections[currentIndex] || e.target === closeButton) {
-      toggleGallery('toggle');
-    } else return;
-    switchButton.removeEventListener('click', switchImage);
-    leftButton.removeEventListener('click', viewImage);
-    rightButton.removeEventListener('click', viewImage);
-    closeButton.removeEventListener('click', closeGallery);
-    gallery.removeEventListener('click', closeGallery);
+      for (const image of portfolioGridImages) {
 
-  } //................................................ END OF CLOSE GALLERY ...
+        const imageAlt = image.alt;
+        const imageSrc = image.getAttribute('data-src2');
+        const imageHeading = imageAlt.split(' | ').slice(0,1).join();
+        
+        gallery.innerHTML += `
+        <section class="images images--js">
+          <h3 class="images__heading">
+            ${imageHeading}
+          </h3>
+          <img
+            src="${imageSrc}"
+            alt="${imageAlt}"
+            class="images__image"
+          >
+        </section>
+        `;
+      }
+    } //........................................... END OF GENERATE GALLERY ...
+    const loopIndex = (collection, index, action) => { //....... LOOP INDEX ...
 
-  //................................................. INITIAL FUNCTION CALL ...
+      const maxIndex = collection.length-1;
+      if (action === 'increase') {
+        index >= maxIndex ? index = 0 : index++;
+      } else if (action === 'decrease') {
+        index <= 0 ? index = maxIndex : index--;
+      }
+      return index;
 
-  gallery.children.length <= 1 ? generateGallery() : false;
+    } //........................................................ LOOP INDEX ...
+    const displayGallery = (action, direction) => { //......... TOGGLE GALLERY ...
 
-  //............................................................. VARIABLES ...
-
-  const imageSections = document.querySelectorAll('.images--js');
-
-  const switchButton = document.querySelector('.navigation__button--js-switch');
-  const leftButton = document.querySelector('.navigation__button--js-left');
-  const rightButton = document.querySelector('.navigation__button--js-right');
-  const closeButton = document.querySelector('.navigation__button--js-close');
-
-  //........................................................ FUNCTION CALLS ...
-
-  toggleGallery('toggle');
-
-  //....................................................... EVENT LISTENERS ...
+      const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
+      const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
+      const currentImage = imageSections[currentIndex];
+      const prevImage = imageSections[prevIndex];
+      const nextImage = imageSections[nextIndex];
   
-  switchButton.addEventListener('click', switchImage);
-  leftButton.addEventListener('click', viewImage);
-  rightButton.addEventListener('click', viewImage);
-  closeButton.addEventListener('click', closeGallery);
-  gallery.addEventListener('click', closeGallery);
+      switch (action) {
+  
+        case 'toggle':
+        gallery.classList.toggle('gallery--visible');
+        prevImage.classList.toggle('images--visible');
+        prevImage.classList.toggle('images--hidden-left');
+        currentImage.classList.toggle('images--visible');
+        nextImage.classList.toggle('images--visible');
+        nextImage.classList.toggle('images--hidden-right');
+        break;
+  
+        case 'hideImage':
+        if (direction === 'left') {
+          nextImage.classList.toggle('images--visible');
+          nextImage.classList.toggle('images--hidden-right');
+        } else if (direction === 'right') {
+          prevImage.classList.toggle('images--visible');
+          prevImage.classList.toggle('images--hidden-left');
+        }
+        break;
+  
+        case 'showImage':
+        if (direction === 'left') {
+          prevImage.classList.toggle('images--visible');
+          prevImage.classList.toggle('images--hidden-left');
+          currentImage.classList.toggle('images--hidden-left');
+          nextImage.classList.toggle('images--hidden-right');
+        } else if (direction === 'right') {
+          nextImage.classList.toggle('images--visible');
+          nextImage.classList.toggle('images--hidden-right');
+          currentImage.classList.toggle('images--hidden-right');
+          prevImage.classList.toggle('images--hidden-left');
+        }
+        break;
+      }
+    } //................................................... END OF SHOW IMAGE ...
+    
+     //................................................. END OF SHOW IMAGE ...
+    const viewImage = (e) => { //............................... VIEW IMAGE ...
 
- } //...................................................... END OF SHOW GALLERY
+      const self = e.target;
+      const currentImageSection = imageSections[currentIndex];
 
- //............................................................. FUNCTION CALLS
+      switch (self) {
 
- //............................................................ EVENT LISTENERS
+        case leftButton:
+          displayGallery('hideImage','left');
+          currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
+          displayGallery('showImage','left');
+          break;
+
+        case rightButton:
+          displayGallery('hideImage','right');
+          currentIndex = loopIndex(imageSections, currentIndex, 'increase');
+          displayGallery('showImage','right');
+          break;
+
+        case switchButton:
+          
+          break;
+        
+        case currentImageSection:
+        case closeButton:
+          displayGallery('toggle');
+          gallery.removeEventListener('click', viewImage);
+          break;
+      }
+    } //................................................. END OF VIEW IMAGE ...
+    //............................................... INITIAL FUNCTION CALL ...
+
+    gallery.children.length <= 1 ? generateGallery() : false;
+
+    //........................................................... VARIABLES ...
+
+    const imageSections = document.querySelectorAll('.images--js');
+    const switchButton = document.querySelector('.navigation__button--js-switch');
+    const leftButton = document.querySelector('.navigation__button--js-left');
+    const rightButton = document.querySelector('.navigation__button--js-right');
+    const closeButton = document.querySelector('.navigation__button--js-close');
+
+    //...................................................... FUNCTION CALLS ...
+
+    displayGallery('toggle');
+
+    //..................................................... EVENT LISTENERS ...
+    
+    gallery.addEventListener('click', viewImage);
+    //window.addEventListener('keyup', () => console.log('gfds'));
+
+  } //..................................................... END OF SHOW GALLERY
+
+  //............................................................ FUNCTION CALLS
+
+  //........................................................... EVENT LISTENERS
 
   for (let i = 0; i < portfolioGridImages.length; i++) {
     const gridImage = portfolioGridImages[i];
