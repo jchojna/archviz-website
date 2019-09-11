@@ -473,7 +473,7 @@ if (gallery) { //·······························�
     return index;
 
   } //.......................................................... LOOP INDEX ...
-  const toggleGallery = () => { //.......................... TOGGLE GALLERY ...
+  const toggleGallery = (action, direction) => { //......... TOGGLE GALLERY ...
 
     const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
     const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
@@ -481,52 +481,41 @@ if (gallery) { //·······························�
     const prevImage = imageSections[prevIndex];
     const nextImage = imageSections[nextIndex];
 
-    gallery.classList.toggle('gallery--visible');
+    switch (action) {
 
-    prevImage.classList.toggle('images--visible');
-    prevImage.classList.toggle('images--hidden-left');
-    currentImage.classList.toggle('images--visible');
-    nextImage.classList.toggle('images--visible');
-    nextImage.classList.toggle('images--hidden-right');
-
-  } //............................................... END OF TOGGLE GALLERY ...
-  const hideImage = (direction) => { //......................... HIDE IMAGE ...
-
-    const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
-    const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
-    const currentImage = imageSections[currentIndex];
-    const prevImage = imageSections[prevIndex];
-    const nextImage = imageSections[nextIndex];
-
-    if (direction === 'left') {
-      nextImage.classList.toggle('images--visible');
-      nextImage.classList.toggle('images--hidden-right');
-    } else if (direction === 'right') {
+      case 'toggle':
+      gallery.classList.toggle('gallery--visible');
       prevImage.classList.toggle('images--visible');
       prevImage.classList.toggle('images--hidden-left');
-    }
-
-  } //................................................... END OF HIDE IMAGE ...
-  const showImage = (direction) => { //......................... SHOW IMAGE ...
-
-    const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
-    const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
-    const currentImage = imageSections[currentIndex];
-    const prevImage = imageSections[prevIndex];
-    const nextImage = imageSections[nextIndex];
-
-    if (direction === 'left') {
-      prevImage.classList.toggle('images--visible');
-      prevImage.classList.toggle('images--hidden-left');
-      currentImage.classList.toggle('images--hidden-left');
-      nextImage.classList.toggle('images--hidden-right');
-    } else if (direction === 'right') {
+      currentImage.classList.toggle('images--visible');
       nextImage.classList.toggle('images--visible');
       nextImage.classList.toggle('images--hidden-right');
-      currentImage.classList.toggle('images--hidden-right');
-      prevImage.classList.toggle('images--hidden-left');
-    }
+      break;
 
+      case 'hideImage':
+      if (direction === 'left') {
+        nextImage.classList.toggle('images--visible');
+        nextImage.classList.toggle('images--hidden-right');
+      } else if (direction === 'right') {
+        prevImage.classList.toggle('images--visible');
+        prevImage.classList.toggle('images--hidden-left');
+      }
+      break;
+
+      case 'showImage':
+      if (direction === 'left') {
+        prevImage.classList.toggle('images--visible');
+        prevImage.classList.toggle('images--hidden-left');
+        currentImage.classList.toggle('images--hidden-left');
+        nextImage.classList.toggle('images--hidden-right');
+      } else if (direction === 'right') {
+        nextImage.classList.toggle('images--visible');
+        nextImage.classList.toggle('images--hidden-right');
+        currentImage.classList.toggle('images--hidden-right');
+        prevImage.classList.toggle('images--hidden-left');
+      }
+      break;
+    }
   } //................................................... END OF SHOW IMAGE ...
   const switchImage = () => { //.............................. SWITCH IMAGE ...
 
@@ -537,20 +526,20 @@ if (gallery) { //·······························�
 
     const self = e.target;
     if (self === leftButton) {
-      hideImage('left');
+      toggleGallery('hideImage','left');
       currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
-      showImage('left');
+      toggleGallery('showImage','left');
     } else if (self === rightButton) {
-      hideImage('right');
+      toggleGallery('hideImage','right');
       currentIndex = loopIndex(imageSections, currentIndex, 'increase');
-      showImage('right');
+      toggleGallery('showImage','right');
     }
 
   } //................................................... END OF VIEW IMAGE ...
   const closeGallery = (e) => { //........................... CLOSE GALLERY ...
 
     if (e.target === imageSections[currentIndex] || e.target === closeButton) {
-      toggleGallery();
+      toggleGallery('toggle');
     } else return;
     switchButton.removeEventListener('click', switchImage);
     leftButton.removeEventListener('click', viewImage);
@@ -575,7 +564,7 @@ if (gallery) { //·······························�
 
   //........................................................ FUNCTION CALLS ...
 
-  toggleGallery();
+  toggleGallery('toggle');
 
   //....................................................... EVENT LISTENERS ...
   
