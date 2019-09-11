@@ -462,9 +462,8 @@ if (gallery) { //·······························�
       `;
     }
   } //............................................. END OF GENERATE GALLERY ...
-  const loopIndex = (e, collection, index) => { //.............. LOOP INDEX ...
+  const loopIndex = (collection, index, action) => { //.............. LOOP INDEX ...
 
-    const self = e.target;
     const maxIndex = collection.length-1;
     if (self === rightButton) {
       index === maxIndex ? index = 0 : index++;
@@ -492,10 +491,15 @@ if (gallery) { //·······························�
     
 
   } //................................................. END OF SWITCH IMAGE ...
-  const viewImage = () => { //.................................. VIEW IMAGE ...
+  const viewImage = (e) => { //.................................. VIEW IMAGE ...
 
     toggleImage();
-    currentIndex = loopIndex(event, imageSections, currentIndex);
+    const self = e.target;
+    if (self === leftButton) {
+      currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
+    } else if (self === rightButton) {
+      currentIndex = loopIndex(imageSections, currentIndex, 'increase');
+    }
     toggleImage();
 
   } //................................................... END OF VIEW IMAGE ...
