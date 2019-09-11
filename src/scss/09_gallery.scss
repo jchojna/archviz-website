@@ -19,11 +19,23 @@
 
 .images {
   display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  transition: transform 1s;
 
   &--visible {
     @include flex-center;
+  }
+
+  &--hidden-left {
+    transform: translateX(-100%);
+  }
+  
+  &--hidden-right {
+    transform: translateX(100%);
   }
 
   &__heading {

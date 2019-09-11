@@ -462,48 +462,92 @@ if (gallery) { //·······························�
       `;
     }
   } //............................................. END OF GENERATE GALLERY ...
-  const loopIndex = (collection, index, action) => { //.............. LOOP INDEX ...
+  const loopIndex = (collection, index, action) => { //......... LOOP INDEX ...
 
     const maxIndex = collection.length-1;
-    if (self === rightButton) {
-      index === maxIndex ? index = 0 : index++;
-    } else if (self === leftButton) {
-      index === 0 ? index = maxIndex : index--;
+    if (action === 'increase') {
+      index >= maxIndex ? index = 0 : index++;
+    } else if (action === 'decrease') {
+      index <= 0 ? index = maxIndex : index--;
     }
     return index;
 
   } //.......................................................... LOOP INDEX ...
   const toggleGallery = () => { //.......................... TOGGLE GALLERY ...
 
-    gallery.classList.toggle('gallery--visible');
+    const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
+    const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
     const currentImage = imageSections[currentIndex];
+    const prevImage = imageSections[prevIndex];
+    const nextImage = imageSections[nextIndex];
+
+    gallery.classList.toggle('gallery--visible');
+
+    prevImage.classList.toggle('images--visible');
+    prevImage.classList.toggle('images--hidden-left');
     currentImage.classList.toggle('images--visible');
+    nextImage.classList.toggle('images--visible');
+    nextImage.classList.toggle('images--hidden-right');
 
   } //............................................... END OF TOGGLE GALLERY ...
-  const toggleImage = () => { //.............................. TOGGLE IMAGE ...
+  const hideImage = (direction) => { //......................... HIDE IMAGE ...
 
+    const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
+    const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
     const currentImage = imageSections[currentIndex];
-    currentImage.classList.toggle('images--visible');
+    const prevImage = imageSections[prevIndex];
+    const nextImage = imageSections[nextIndex];
 
-  } //................................................. END OF TOGGLE IMAGE ...
+    if (direction === 'left') {
+      nextImage.classList.toggle('images--visible');
+      nextImage.classList.toggle('images--hidden-right');
+    } else if (direction === 'right') {
+      prevImage.classList.toggle('images--visible');
+      prevImage.classList.toggle('images--hidden-left');
+    }
+
+  } //................................................... END OF HIDE IMAGE ...
+  const showImage = (direction) => { //......................... SHOW IMAGE ...
+
+    const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
+    const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
+    const currentImage = imageSections[currentIndex];
+    const prevImage = imageSections[prevIndex];
+    const nextImage = imageSections[nextIndex];
+
+    if (direction === 'left') {
+      prevImage.classList.toggle('images--visible');
+      prevImage.classList.toggle('images--hidden-left');
+      currentImage.classList.toggle('images--hidden-left');
+      nextImage.classList.toggle('images--hidden-right');
+    } else if (direction === 'right') {
+      nextImage.classList.toggle('images--visible');
+      nextImage.classList.toggle('images--hidden-right');
+      currentImage.classList.toggle('images--hidden-right');
+      prevImage.classList.toggle('images--hidden-left');
+    }
+
+  } //................................................... END OF SHOW IMAGE ...
   const switchImage = () => { //.............................. SWITCH IMAGE ...
 
     
 
   } //................................................. END OF SWITCH IMAGE ...
-  const viewImage = (e) => { //.................................. VIEW IMAGE ...
+  const viewImage = (e) => { //................................. VIEW IMAGE ...
 
-    toggleImage();
     const self = e.target;
     if (self === leftButton) {
+      hideImage('left');
       currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
+      showImage('left');
     } else if (self === rightButton) {
+      hideImage('right');
       currentIndex = loopIndex(imageSections, currentIndex, 'increase');
+      showImage('right');
     }
-    toggleImage();
 
   } //................................................... END OF VIEW IMAGE ...
-  const closeGallery = (e) => { //............................ CLOSE GALLERY ...
+  const closeGallery = (e) => { //........................... CLOSE GALLERY ...
 
     if (e.target === imageSections[currentIndex] || e.target === closeButton) {
       toggleGallery();
