@@ -480,7 +480,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DISPLAY GALLERY
     const displayGallery = (e, action) => {
 
-      const self = e.target;
+      const self = e.keyCode || e.target;
       const portfolioGridImage = portfolioGridImages[currentIndex];
       const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
       const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
@@ -490,6 +490,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
   
       switch (self) {
   
+        case 27:
         case portfolioGridImage:
         case currentImageSection:
         case closeButton:
@@ -501,6 +502,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         nextImageSection.classList.toggle('images--hidden-right');
         break;
 
+        case 37:
         case leftButton:
           if (action === 'hideImage') {
             nextImageSection.classList.toggle('images--visible');
@@ -513,6 +515,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           }
         break;
         
+        case 39:
         case rightButton:
           if (action === 'hideImage') {
             prevImageSection.classList.toggle('images--visible');
@@ -527,33 +530,44 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       }
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: VIEW IMAGE
-    const viewImage = (e) => { 
+    const viewImage = (e) => {
 
-      const self = e.target;
+      const self = e.keyCode || e.target;
       const currentImageSection = imageSections[currentIndex];
 
       switch (self) {
 
+        case 37:
         case leftButton:
+          e.preventDefault();
           displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
           displayGallery(e,'showImage');
           break;
 
+        case 39:
         case rightButton:
+          e.preventDefault();
           displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'increase');
           displayGallery(e,'showImage');
           break;
 
+        case 13:
+        case 38:
+        case 40:
         case switchButton:
-          
+          e.preventDefault();
+          console.log('test');
           break;
         
+        case 27:
         case currentImageSection:
         case closeButton:
+          e.preventDefault();
           displayGallery(e);
           gallery.removeEventListener('click', viewImage);
+          window.removeEventListener('keydown', viewImage);
           break;
       }
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -569,7 +583,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     displayGallery(e);
     //......................................................... EVENT LISTENERS
     gallery.addEventListener('click', viewImage);
-    //window.addEventListener('keyup', () => console.log('gfds'));
+    window.addEventListener('keydown', viewImage);
   } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //............................................................ FUNCTION CALLS
 
