@@ -432,15 +432,18 @@ if (portfolio) {
  ######   ##     ## ######## ######## ######## ##     ##    ##
 */
 
-if (gallery) { //······················································ GALLERY
 
-  const showGallery = (e) => { //································· SHOW GALLERY
+if (gallery) { //////////////////////////////////////////////////////// GALLERY
+
+  //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SHOW GALLERY
+  const showGallery = (e) => {
 
     e.preventDefault();
     const self = e.target;
     let currentIndex = self.index;
 
-    const generateGallery = () => { //···················· GENERATE GALLERY ...
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::: GENERATE GALLERY
+    const generateGallery = () => {
 
       for (const image of portfolioGridImages) {
 
@@ -461,8 +464,9 @@ if (gallery) { //·······························�
         </section>
         `;
       }
-    } //........................................... END OF GENERATE GALLERY ...
-    const loopIndex = (collection, index, action) => { //....... LOOP INDEX ...
+    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: LOOP INDEX
+    const loopIndex = (collection, index, action) => {
 
       const maxIndex = collection.length-1;
       if (action === 'increase') {
@@ -472,8 +476,9 @@ if (gallery) { //·······························�
       }
       return index;
 
-    } //........................................................ LOOP INDEX ...
-    const displayGallery = (e, action) => { //......... TOGGLE GALLERY ...
+    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DISPLAY GALLERY
+    const displayGallery = (e, action) => {
 
       const self = e.target;
       const portfolioGridImage = portfolioGridImages[currentIndex];
@@ -520,10 +525,9 @@ if (gallery) { //·······························�
           }
         break;
       }
-    } //................................................... END OF SHOW IMAGE ...
-    
-     //................................................. END OF SHOW IMAGE ...
-    const viewImage = (e) => { //............................... VIEW IMAGE ...
+    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: VIEW IMAGE
+    const viewImage = (e) => { 
 
       const self = e.target;
       const currentImageSection = imageSections[currentIndex];
@@ -552,30 +556,21 @@ if (gallery) { //·······························�
           gallery.removeEventListener('click', viewImage);
           break;
       }
-    } //................................................. END OF VIEW IMAGE ...
-    //............................................... INITIAL FUNCTION CALL ...
-
+    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //................................................... INITIAL FUNCTION CALL
     gallery.children.length <= 1 ? generateGallery() : false;
-
-    //........................................................... VARIABLES ...
-
+    //............................................................... VARIABLES
     const imageSections = document.querySelectorAll('.images--js');
     const switchButton = document.querySelector('.navigation__button--js-switch');
     const leftButton = document.querySelector('.navigation__button--js-left');
     const rightButton = document.querySelector('.navigation__button--js-right');
     const closeButton = document.querySelector('.navigation__button--js-close');
-
-    //...................................................... FUNCTION CALLS ...
-
+    //.......................................................... FUNCTION CALLS
     displayGallery(e);
-
-    //..................................................... EVENT LISTENERS ...
-    
+    //......................................................... EVENT LISTENERS
     gallery.addEventListener('click', viewImage);
     //window.addEventListener('keyup', () => console.log('gfds'));
-
-  } //..................................................... END OF SHOW GALLERY
-
+  } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //............................................................ FUNCTION CALLS
 
   //........................................................... EVENT LISTENERS
@@ -586,7 +581,7 @@ if (gallery) { //·······························�
     gridImage.addEventListener('click', showGallery);
   }
 
-} //............................................................ END OF GALLERY
+} /////////////////////////////////////////////////////////////////////////////
 
 /*
    ###    ########   #######  ##     ## ########
