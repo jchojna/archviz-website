@@ -465,6 +465,12 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         `;
       }
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::: GET TWO-DIGIT NUMBER
+    const getTwoDigit = (number) => {
+      let strNumber = number.toString();
+      strNumber.length === 1 ? strNumber = `0${strNumber}` : false;
+      return strNumber;
+    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: LOOP INDEX
     const loopIndex = (collection, index, action) => {
 
@@ -487,6 +493,8 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       const currentImageSection = imageSections[currentIndex];
       const prevImageSection = imageSections[prevIndex];
       const nextImageSection = imageSections[nextIndex];
+
+      imageNumber.textContent = `${currentIndex+1} / ${imageSections.length}`;
   
       switch (self) {
   
@@ -527,6 +535,9 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
             prevImageSection.classList.toggle('images--hidden-left');
           }
         break;
+
+        default:
+          return;
       }
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: VIEW IMAGE
@@ -558,7 +569,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         case 40:
         case switchButton:
           e.preventDefault();
-          console.log('test');
+          const number = getTwoDigit(currentIndex);
           break;
         
         case 27:
@@ -569,6 +580,9 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           gallery.removeEventListener('click', viewImage);
           window.removeEventListener('keydown', viewImage);
           break;
+
+        default:
+          return;
       }
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //................................................... INITIAL FUNCTION CALL
@@ -579,6 +593,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     const leftButton = document.querySelector('.navigation__button--js-left');
     const rightButton = document.querySelector('.navigation__button--js-right');
     const closeButton = document.querySelector('.navigation__button--js-close');
+    const imageNumber = document.querySelector('.navigation__counter--js');
     //.......................................................... FUNCTION CALLS
     displayGallery(e);
     //......................................................... EVENT LISTENERS
