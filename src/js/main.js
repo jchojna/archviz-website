@@ -473,47 +473,51 @@ if (gallery) { //·······························�
       return index;
 
     } //........................................................ LOOP INDEX ...
-    const displayGallery = (action, direction) => { //......... TOGGLE GALLERY ...
+    const displayGallery = (e, action) => { //......... TOGGLE GALLERY ...
 
+      const self = e.target;
+      const portfolioGridImage = portfolioGridImages[currentIndex];
       const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
       const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
-      const currentImage = imageSections[currentIndex];
-      const prevImage = imageSections[prevIndex];
-      const nextImage = imageSections[nextIndex];
+      const currentImageSection = imageSections[currentIndex];
+      const prevImageSection = imageSections[prevIndex];
+      const nextImageSection = imageSections[nextIndex];
   
-      switch (action) {
+      switch (self) {
   
-        case 'toggle':
+        case portfolioGridImage:
+        case currentImageSection:
+        case closeButton:
         gallery.classList.toggle('gallery--visible');
-        prevImage.classList.toggle('images--visible');
-        prevImage.classList.toggle('images--hidden-left');
-        currentImage.classList.toggle('images--visible');
-        nextImage.classList.toggle('images--visible');
-        nextImage.classList.toggle('images--hidden-right');
+        prevImageSection.classList.toggle('images--visible');
+        prevImageSection.classList.toggle('images--hidden-left');
+        currentImageSection.classList.toggle('images--visible');
+        nextImageSection.classList.toggle('images--visible');
+        nextImageSection.classList.toggle('images--hidden-right');
         break;
-  
-        case 'hideImage':
-        if (direction === 'left') {
-          nextImage.classList.toggle('images--visible');
-          nextImage.classList.toggle('images--hidden-right');
-        } else if (direction === 'right') {
-          prevImage.classList.toggle('images--visible');
-          prevImage.classList.toggle('images--hidden-left');
-        }
+
+        case leftButton:
+          if (action === 'hideImage') {
+            nextImageSection.classList.toggle('images--visible');
+            nextImageSection.classList.toggle('images--hidden-right');
+          } else if (action === 'showImage') {
+            prevImageSection.classList.toggle('images--visible');
+            prevImageSection.classList.toggle('images--hidden-left');
+            currentImageSection.classList.toggle('images--hidden-left');
+            nextImageSection.classList.toggle('images--hidden-right');
+          }
         break;
-  
-        case 'showImage':
-        if (direction === 'left') {
-          prevImage.classList.toggle('images--visible');
-          prevImage.classList.toggle('images--hidden-left');
-          currentImage.classList.toggle('images--hidden-left');
-          nextImage.classList.toggle('images--hidden-right');
-        } else if (direction === 'right') {
-          nextImage.classList.toggle('images--visible');
-          nextImage.classList.toggle('images--hidden-right');
-          currentImage.classList.toggle('images--hidden-right');
-          prevImage.classList.toggle('images--hidden-left');
-        }
+        
+        case rightButton:
+          if (action === 'hideImage') {
+            prevImageSection.classList.toggle('images--visible');
+            prevImageSection.classList.toggle('images--hidden-left');
+          } else if (action === 'showImage') {
+            nextImageSection.classList.toggle('images--visible');
+            nextImageSection.classList.toggle('images--hidden-right');
+            currentImageSection.classList.toggle('images--hidden-right');
+            prevImageSection.classList.toggle('images--hidden-left');
+          }
         break;
       }
     } //................................................... END OF SHOW IMAGE ...
@@ -527,15 +531,15 @@ if (gallery) { //·······························�
       switch (self) {
 
         case leftButton:
-          displayGallery('hideImage','left');
+          displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
-          displayGallery('showImage','left');
+          displayGallery(e,'showImage');
           break;
 
         case rightButton:
-          displayGallery('hideImage','right');
+          displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'increase');
-          displayGallery('showImage','right');
+          displayGallery(e,'showImage');
           break;
 
         case switchButton:
@@ -544,7 +548,7 @@ if (gallery) { //·······························�
         
         case currentImageSection:
         case closeButton:
-          displayGallery('toggle');
+          displayGallery(e);
           gallery.removeEventListener('click', viewImage);
           break;
       }
@@ -563,7 +567,7 @@ if (gallery) { //·······························�
 
     //...................................................... FUNCTION CALLS ...
 
-    displayGallery('toggle');
+    displayGallery(e);
 
     //..................................................... EVENT LISTENERS ...
     
