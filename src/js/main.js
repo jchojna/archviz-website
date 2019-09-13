@@ -1,22 +1,3 @@
-"use strict";
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker.register("serviceworker.js").then(
-      function(registration) {
-        // Registration was successful
-        /* console.log("ServiceWorker registration successful with scope: ",
-          registration.scope
-        ); */
-      },
-      function(err) {
-        // registration failed :(
-        console.log("ServiceWorker registration failed: ", err);
-      }
-    );
-  });
-}
-
 /*
 ##     ##    ###    ########  ####    ###    ########  ##       ########  ######
 ##     ##   ## ##   ##     ##  ##    ## ##   ##     ## ##       ##       ##    ##
@@ -27,24 +8,20 @@ if ("serviceWorker" in navigator) {
    ###    ##     ## ##     ## #### ##     ## ########  ######## ########  ######
 */
 
-/********** OVERALL **********/
-
+//..................................................................... OVERALL
 const pageContainer = document.querySelector('.page-container--js');
 const portfolio = document.querySelector('.portfolio--js');
 const gallery = document.querySelector('.gallery--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
 
-/********** PORTFOLIO **********/
-
+//................................................................... PORTFOLIO
 const portfolioGridImages = document.querySelectorAll('.grid__image--js');
 
-/********** FORM **********/
-
+//........................................................................ FORM
 const submitButton = document.querySelector('.form__submit--js');
 
-/********** VERIFICATION **********/
-
+//................................................................ VERIFICATION
 const checkboxContainer = document.querySelector('.form__verification--js');
 const checkboxes = document.querySelectorAll('.checkbox__input--js');
 const checkboxReject = document.querySelector('.checkbox__input--js-reject');
@@ -52,15 +29,14 @@ const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
 const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
 let responseState = "empty";
 
-/********** MODAL BOX **********/
-
+//................................................................... MODAL BOX
 const modalContainer = document.querySelector('.modal--js');
 const modalText = document.querySelector('.modal__text--js');
 const modalClose = document.querySelector('.modal__close--js');
 
 let timeoutHandler = null;
 
-/********** MEDIA **********/
+//....................................................................... MEDIA
 const tabletBreakpoint = 768;
 const desktopBreakpoint = 1200;
 
@@ -74,16 +50,20 @@ const desktopBreakpoint = 1200;
  #######     ###    ######## ##     ## ##     ## ######## ########
 */
 
+//................................................................... VARIABLES
 const pageOverlay = document.querySelector('.page-overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
 
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: FADE IN EFFECT
 const fadeIn = () => {
+
   if (!pageOverlay.classList.contains('page-overlay--onload')) {
     pageOverlay.classList.add('page-overlay--onload');
   }
   pageOverlay.classList.remove('page-overlay--onload');
-}
 
+} //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//::::::::::::::::::::::::::::::::::::::::::::::: GO TO NEXT PAGE AFTER TIMEOUT
 const toNextPage = (e, callback, timeout) => {
   e.preventDefault();
   const linkClicked = e.target;
@@ -91,12 +71,13 @@ const toNextPage = (e, callback, timeout) => {
     pageOverlay.classList.add('page-overlay--visible');
     setTimeout(() => callback(linkClicked), timeout);
   }
-}
-
+} //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DELAY LINK
 const delayLink = (element) => {
   window.location = element.href;
 }
-
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//............................................................. EVENT LISTENERS
 for ( const link of fadeOutLinks ) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
 }
