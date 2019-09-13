@@ -38,6 +38,14 @@
     transform: translateX(100%);
   }
 
+  &--hidden-top {
+    transform: translateY(-100%);
+  }
+  
+  &--hidden-bottom {
+    transform: translateY(100%);
+  }
+
   &__heading {
     position: absolute;
     bottom: 20px;
