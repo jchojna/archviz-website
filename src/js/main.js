@@ -431,7 +431,6 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       for (const image of portfolioGridImages) {
 
         const imageAlt = image.alt;
-        const imageSrc = image.getAttribute('data-src2');
         const imageHeading = imageAlt.split(' | ').slice(0,1).join();
         
         gallery.innerHTML += `
@@ -440,9 +439,9 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
             ${imageHeading}
           </h3>
           <img
-            src="${imageSrc}"
+            src=""
             alt="${imageAlt}"
-            class="images__image"
+            class="images__image images__image--js"
           >
         </section>
         `;
@@ -450,9 +449,11 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::::::::::::::::::::::::::::::::::::::::::::::::::: GET TWO-DIGIT NUMBER
     const getTwoDigit = (number) => {
+
       let strNumber = number.toString();
       strNumber.length === 1 ? strNumber = `0${strNumber}` : false;
       return strNumber;
+
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: LOOP INDEX
     const loopIndex = (collection, index, action) => {
@@ -514,6 +515,42 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       const nextImageSection = imageSections[nextIndex];
 
       imageNumber.textContent = `${getTwoDigit(currentIndex+1)} / ${getTwoDigit(imageSections.length)}`;
+      
+      //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: LOAD IMAGE
+      const lazyLoadImage = (index, option, amount) => {
+
+        const currentImage = images[index];
+        const currentGridImage = portfolioGridImages[index];
+        const currentSrc = currentImage.getAttribute('src');
+        const currentImageSrc = currentGridImage.getAttribute('data-src2');
+
+        if (currentSrc === "") {
+          currentImage.src = currentImageSrc;
+        }
+
+        currentImage.onload = () => {
+
+          if (amount > 0) {
+            const indexToInc = index;
+            const indexToDec = index;
+
+            amount--;
+  
+            if (option === 'prev' || option === 'start') {
+              index = loopIndex(imageSections, indexToDec, 'decrease');
+              lazyLoadImage(index, 'prev', amount);
+              console.log('prev');
+            }
+  
+            if (option === 'next' || option === 'start') {
+              index = loopIndex(imageSections, indexToInc, 'increase');
+              lazyLoadImage(index, 'next', amount);
+              console.log('next');
+            }
+          }
+        }
+
+      } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   
       switch (self) {
   
@@ -527,6 +564,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         currentImageSection.classList.toggle('images--visible');
         nextImageSection.classList.toggle('images--visible');
         nextImageSection.classList.toggle('images--hidden-right');
+        lazyLoadImage(currentIndex, 'start', 5);
         break;
 
         case 37:
@@ -613,6 +651,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     //............................................................... VARIABLES
 
     const imageSections = document.querySelectorAll('.images--js');
+    const images = document.querySelectorAll('.images__image--js');
     const switchButton = document.querySelector('.navigation__button--js-switch');
     const leftButton = document.querySelector('.navigation__button--js-left');
     const rightButton = document.querySelector('.navigation__button--js-right');
