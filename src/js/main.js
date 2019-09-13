@@ -485,7 +485,14 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       return index;
 
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    let i = 0;
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: REMOVE EVENTS
+    const removeAllEvents = () => {
+
+      window.removeEventListener('scroll', slideVertically);
+      gallery.removeEventListener('click', viewImage);
+      window.removeEventListener('keydown', viewImage);
+
+    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::::::::::::::::::::::::::::::::::::::::::::::::: SLIDE IMAGE VERTICALLY
     const slideVertically = () => {
 
@@ -495,9 +502,6 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       if (prevScroll === null) {
         prevScroll = nextScroll;
       }
-      console.log(`${i}:prevScroll: ${prevScroll}`);
-      console.log(`${i}:nextScroll: ${nextScroll}`);
-      console.log(`==============================`);
 
       if (nextScroll !== prevScroll) {
         
@@ -508,31 +512,27 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         }
         
         setTimeout(() => {
-          displayGallery(e);
-          console.log(e.target);
           currentImageSection.classList.remove("images--hidden-top");
           currentImageSection.classList.remove("images--hidden-bottom");
+          displayGallery(e);
         }, 1000);
-        window.removeEventListener('scroll', slideVertically);
-        console.log(`exit`);
-        console.log(`====`);
+
+        removeAllEvents();
         prevScroll = null;
       }
-      i++;
 
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DISPLAY GALLERY
     const displayGallery = (e, action) => {
 
       const self = e.keyCode || e.target;
-      const portfolioGridImage = portfolioGridImages[currentIndex];
       const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
       const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
       const currentImageSection = imageSections[currentIndex];
       const prevImageSection = imageSections[prevIndex];
       const nextImageSection = imageSections[nextIndex];
 
-      imageNumber.textContent = `${currentIndex+1} / ${imageSections.length}`;
+      imageNumber.textContent = `${getTwoDigit(currentIndex+1)} / ${getTwoDigit(imageSections.length)}`;
   
       switch (self) {
   
@@ -577,6 +577,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         default:
           return;
       }
+
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: VIEW IMAGE
     const viewImage = (e) => {
@@ -607,38 +608,47 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         case 40:
         case switchButton:
           e.preventDefault();
-          const number = getTwoDigit(currentIndex);
           break;
         
         case 27:
+        case portfolioGridImage:
         case currentImageSection:
         case closeButton:
           e.preventDefault();
           displayGallery(e);
-          gallery.removeEventListener('click', viewImage);
-          window.removeEventListener('keydown', viewImage);
-          window.removeEventListener('scroll', slideVertically);
+          removeAllEvents();
           break;
 
         default:
           return;
       }
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
     //................................................... INITIAL FUNCTION CALL
+
     gallery.children.length <= 1 ? generateGallery() : false;
+
     //............................................................... VARIABLES
+
     const imageSections = document.querySelectorAll('.images--js');
     const switchButton = document.querySelector('.navigation__button--js-switch');
     const leftButton = document.querySelector('.navigation__button--js-left');
     const rightButton = document.querySelector('.navigation__button--js-right');
     const closeButton = document.querySelector('.navigation__button--js-close');
     const imageNumber = document.querySelector('.navigation__counter--js');
+    const portfolioGridImage = portfolioGridImages[currentIndex];
+
     //.......................................................... FUNCTION CALLS
+
     displayGallery(e);
+
     //......................................................... EVENT LISTENERS
+
     gallery.addEventListener('click', viewImage);
-    window.addEventListener('scroll', slideVertically);
     window.addEventListener('keydown', viewImage);
+    window.addEventListener('scroll', slideVertically);
+
   } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //............................................................ FUNCTION CALLS
 
