@@ -435,6 +435,8 @@ if (portfolio) {
 
 if (gallery) { //////////////////////////////////////////////////////// GALLERY
 
+  let prevScroll = null;
+
   //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SHOW GALLERY
   const showGallery = (e) => {
 
@@ -481,6 +483,42 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         index <= 0 ? index = maxIndex : index--;
       }
       return index;
+
+    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    let i = 0;
+    //:::::::::::::::::::::::::::::::::::::::::::::::::: SLIDE IMAGE VERTICALLY
+    const slideVertically = () => {
+
+      const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const currentImageSection = imageSections[currentIndex];
+
+      if (prevScroll === null) {
+        prevScroll = nextScroll;
+      }
+      console.log(`${i}:prevScroll: ${prevScroll}`);
+      console.log(`${i}:nextScroll: ${nextScroll}`);
+      console.log(`==============================`);
+
+      if (nextScroll !== prevScroll) {
+        
+        if (nextScroll > prevScroll) {
+          currentImageSection.classList.add("images--hidden-top");
+        } else {
+          currentImageSection.classList.add("images--hidden-bottom");
+        }
+        
+        setTimeout(() => {
+          displayGallery(e);
+          console.log(e.target);
+          currentImageSection.classList.remove("images--hidden-top");
+          currentImageSection.classList.remove("images--hidden-bottom");
+        }, 1000);
+        window.removeEventListener('scroll', slideVertically);
+        console.log(`exit`);
+        console.log(`====`);
+        prevScroll = null;
+      }
+      i++;
 
     } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DISPLAY GALLERY
@@ -579,6 +617,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           displayGallery(e);
           gallery.removeEventListener('click', viewImage);
           window.removeEventListener('keydown', viewImage);
+          window.removeEventListener('scroll', slideVertically);
           break;
 
         default:
@@ -598,6 +637,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     displayGallery(e);
     //......................................................... EVENT LISTENERS
     gallery.addEventListener('click', viewImage);
+    window.addEventListener('scroll', slideVertically);
     window.addEventListener('keydown', viewImage);
   } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //............................................................ FUNCTION CALLS
