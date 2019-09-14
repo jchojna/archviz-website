@@ -413,19 +413,18 @@ if (portfolio) {
  ######   ##     ## ######## ######## ######## ##     ##    ##
 */
 
-
 if (gallery) { //////////////////////////////////////////////////////// GALLERY
 
   let prevScroll = null;
 
-  //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SHOW GALLERY
+  //////////////////////////////////////////////////////////////// SHOW GALLERY
   const showGallery = (e) => {
 
     e.preventDefault();
     const self = e.target;
     let currentIndex = self.index;
 
-    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::: GENERATE GALLERY
+    ////////////////////////////////////////// GENERATE GALLERY << SHOW GALLERY
     const generateGallery = () => {
 
       for (const image of portfolioGridImages) {
@@ -446,16 +445,16 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         </section>
         `;
       }
-    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //:::::::::::::::::::::::::::::::::::::::::::::::::::: GET TWO-DIGIT NUMBER
+    }
+    ////////////////////////////////////// GET TWO-DIGIT NUMBER << SHOW GALLERY
     const getTwoDigit = (number) => {
 
       let strNumber = number.toString();
       strNumber.length === 1 ? strNumber = `0${strNumber}` : false;
       return strNumber;
 
-    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: LOOP INDEX
+    }
+    //////////////////////////////////////////////// LOOP INDEX << SHOW GALLERY
     const loopIndex = (collection, index, action) => {
 
       const maxIndex = collection.length-1;
@@ -466,16 +465,16 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       }
       return index;
 
-    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: REMOVE EVENTS
+    }
+    ///////////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY
     const removeAllEvents = () => {
 
       window.removeEventListener('scroll', slideVertically);
       gallery.removeEventListener('click', viewImage);
       window.removeEventListener('keydown', viewImage);
 
-    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //:::::::::::::::::::::::::::::::::::::::::::::::::: SLIDE IMAGE VERTICALLY
+    }
+    //////////////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY
     const slideVertically = () => {
 
       const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -503,8 +502,8 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         prevScroll = null;
       }
 
-    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DISPLAY GALLERY
+    }
+    /////////////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY
     const displayGallery = (e, action) => {
 
       const self = e.keyCode || e.target;
@@ -516,7 +515,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
 
       imageNumber.textContent = `${getTwoDigit(currentIndex+1)} / ${getTwoDigit(imageSections.length)}`;
       
-      //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: LOAD IMAGE
+      ////////////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY
       const lazyLoadImage = (index, option, amount) => {
 
         //const currentlyDisplayedImageSection = document.querySelector('.images--js-current');
@@ -562,8 +561,8 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
             }
           }
         }
-      } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  
+      }
+      /////////////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY
       switch (self) {
   
         case 27:
@@ -615,9 +614,8 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         default:
           return;
       }
-
-    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: VIEW IMAGE
+    }
+    //////////////////////////////////////////////// VIEW IMAGE << SHOW GALLERY
     const viewImage = (e) => {
 
       const self = e.keyCode || e.target;
@@ -660,14 +658,12 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         default:
           return;
       }
-    } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    ///////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////
-    //................................................... INITIAL FUNCTION CALL
+    }
+    //////////////////////////////////// INITIAL FUNCTION CALLS << SHOW GALLERY
 
     gallery.children.length <= 1 ? generateGallery() : false;
 
-    //............................................................... VARIABLES
+    ///////////////////////////////////////////////// VARIABLES << SHOW GALLERY
 
     const imageSections = document.querySelectorAll('.images--js');
     const images = document.querySelectorAll('.images__image--js');
@@ -678,20 +674,19 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     const imageNumber = document.querySelector('.navigation__counter--js');
     const portfolioGridImage = portfolioGridImages[currentIndex];
 
-    //.......................................................... FUNCTION CALLS
+    //////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY
 
     displayGallery(e);
 
-    //......................................................... EVENT LISTENERS
+    /////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY
 
     gallery.addEventListener('click', viewImage);
     window.addEventListener('keydown', viewImage);
     window.addEventListener('scroll', slideVertically);
 
-  } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  //............................................................ FUNCTION CALLS
-
-  //........................................................... EVENT LISTENERS
+  } /////////////////////////////////////////////////////// END OF SHOW GALLERY
+  ////////////////////////////////////////////////////////////// FUNCTION CALLS
+  ///////////////////////////////////////////////////////////// EVENT LISTENERS
 
   for (let i = 0; i < portfolioGridImages.length; i++) {
     const gridImage = portfolioGridImages[i];
