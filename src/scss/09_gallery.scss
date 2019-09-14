@@ -56,6 +56,14 @@
   &__image {
     max-width: 90%;
     max-height: 90%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s, visibility 0s;
+
+    &--loaded {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 
