@@ -519,37 +519,49 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: LOAD IMAGE
       const lazyLoadImage = (index, option, amount) => {
 
+        //const currentlyDisplayedImageSection = document.querySelector('.images--js-current');
         const currentImage = images[index];
         const currentGridImage = portfolioGridImages[index];
         const currentSrc = currentImage.getAttribute('src');
         const currentImageSrc = currentGridImage.getAttribute('data-src2');
+        const indexToInc = index;
+        const indexToDec = index;
 
         if (currentSrc === "") {
           currentImage.src = currentImageSrc;
-        }
 
-        currentImage.onload = () => {
-
+        } else if (currentImage.complete) {
+          
           if (amount > 0) {
-            const indexToInc = index;
-            const indexToDec = index;
-
             amount--;
   
             if (option === 'prev' || option === 'start') {
               index = loopIndex(imageSections, indexToDec, 'decrease');
               lazyLoadImage(index, 'prev', amount);
-              console.log('prev');
             }
   
             if (option === 'next' || option === 'start') {
               index = loopIndex(imageSections, indexToInc, 'increase');
               lazyLoadImage(index, 'next', amount);
-              console.log('next');
             }
           }
         }
 
+        currentImage.onload = () => {
+          if (amount > 0) {
+            amount--;
+  
+            if (option === 'prev' || option === 'start') {
+              index = loopIndex(imageSections, indexToDec, 'decrease');
+              lazyLoadImage(index, 'prev', amount);
+            }
+  
+            if (option === 'next' || option === 'start') {
+              index = loopIndex(imageSections, indexToInc, 'increase');
+              lazyLoadImage(index, 'next', amount);
+            }
+          }
+        }
       } //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   
       switch (self) {
@@ -558,13 +570,14 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         case portfolioGridImage:
         case currentImageSection:
         case closeButton:
-        gallery.classList.toggle('gallery--visible');
-        prevImageSection.classList.toggle('images--visible');
-        prevImageSection.classList.toggle('images--hidden-left');
-        currentImageSection.classList.toggle('images--visible');
-        nextImageSection.classList.toggle('images--visible');
-        nextImageSection.classList.toggle('images--hidden-right');
-        lazyLoadImage(currentIndex, 'start', 5);
+          gallery.classList.toggle('gallery--visible');
+          prevImageSection.classList.toggle('images--visible');
+          prevImageSection.classList.toggle('images--hidden-left');
+          currentImageSection.classList.toggle('images--visible');
+          currentImageSection.classList.toggle('images--js-current');
+          nextImageSection.classList.toggle('images--visible');
+          nextImageSection.classList.toggle('images--hidden-right');
+          lazyLoadImage(currentIndex, 'start', 2);
         break;
 
         case 37:
@@ -575,8 +588,11 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           } else if (action === 'showImage') {
             prevImageSection.classList.toggle('images--visible');
             prevImageSection.classList.toggle('images--hidden-left');
+            currentImageSection.classList.toggle('images--js-current');
             currentImageSection.classList.toggle('images--hidden-left');
+            nextImageSection.classList.toggle('images--js-current');
             nextImageSection.classList.toggle('images--hidden-right');
+            lazyLoadImage(currentIndex, 'prev', 2);
           }
         break;
         
@@ -588,8 +604,11 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           } else if (action === 'showImage') {
             nextImageSection.classList.toggle('images--visible');
             nextImageSection.classList.toggle('images--hidden-right');
+            currentImageSection.classList.toggle('images--js-current');
             currentImageSection.classList.toggle('images--hidden-right');
+            prevImageSection.classList.toggle('images--js-current');
             prevImageSection.classList.toggle('images--hidden-left');
+            lazyLoadImage(currentIndex, 'next', 2);
           }
         break;
 
