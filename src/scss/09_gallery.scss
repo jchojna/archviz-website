@@ -1,23 +1,82 @@
 .gallery {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: #000, $alpha: 0.7);
+  z-index: 2;
+
+  &--visible {
+    @include flex-center;
+  }
 
   &__header {
 
   }
+}
 
-  &__container {
+.images {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
 
+  &--visible {
+    @include flex-center;
   }
 
-  &__description {
+  &--hidden-left {
+    transform: translateX(-100%);
+  }
+  
+  &--hidden-right {
+    transform: translateX(100%);
+  }
 
+  &--hidden-top {
+    transform: translateY(-100%);
+  }
+  
+  &--hidden-bottom {
+    transform: translateY(100%);
+  }
+
+  &__heading {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__image {
+    max-width: 90%;
+    max-height: 90%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s, visibility 0s;
+
+    &--loaded {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 
 .navigation {
 
   &__list {
-
+    @include flex-center;
+    list-style-type: none;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
   }
 
   &__item {
@@ -28,22 +87,50 @@
 
   }
 
+  &__button {
+    opacity: 0.5;
+    z-index: 99;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &--switch {
+      
+    }
+
+    &--left {
+
+    }
+
+    &--right {
+
+    }
+
+    &--close {
+
+    }
+  }
+
   &__svg {
+    fill: none;
+    stroke-width: 200;
+    stroke: #fff;
+    width: 50px;
+    height: 50px;
+    //stroke-linecap: round;
+    pointer-events: none;
 
     &--up-arrow {
-
+      transform: rotate(-90deg);
     }
 
     &--down-arrow {
-      
+      transform: rotate(90deg);
     }
 
-    &--down-left {
-      
-    }
-
-    &--down-right {
-      
+    &--left-arrow {
+      transform: rotate(180deg);
     }
   }
 }

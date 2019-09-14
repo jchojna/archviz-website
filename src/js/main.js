@@ -1,23 +1,3 @@
-"use strict";
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker.register("serviceworker.js").then(
-      function(registration) {
-        // Registration was successful
-        console.log(
-          "ServiceWorker registration successful with scope: ",
-          registration.scope
-        );
-      },
-      function(err) {
-        // registration failed :(
-        console.log("ServiceWorker registration failed: ", err);
-      }
-    );
-  });
-}
-
 /*
 ##     ##    ###    ########  ####    ###    ########  ##       ########  ######
 ##     ##   ## ##   ##     ##  ##    ## ##   ##     ## ##       ##       ##    ##
@@ -28,20 +8,20 @@ if ("serviceWorker" in navigator) {
    ###    ##     ## ##     ## #### ##     ## ########  ######## ########  ######
 */
 
-/********** OVERALL **********/
-
+//..................................................................... OVERALL
 const pageContainer = document.querySelector('.page-container--js');
 const portfolio = document.querySelector('.portfolio--js');
 const gallery = document.querySelector('.gallery--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
 
-/********** FORM **********/
+//................................................................... PORTFOLIO
+const portfolioGridImages = document.querySelectorAll('.grid__image--js');
 
+//........................................................................ FORM
 const submitButton = document.querySelector('.form__submit--js');
 
-/********** VERIFICATION **********/
-
+//................................................................ VERIFICATION
 const checkboxContainer = document.querySelector('.form__verification--js');
 const checkboxes = document.querySelectorAll('.checkbox__input--js');
 const checkboxReject = document.querySelector('.checkbox__input--js-reject');
@@ -49,15 +29,14 @@ const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
 const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
 let responseState = "empty";
 
-/********** MODAL BOX **********/
-
+//................................................................... MODAL BOX
 const modalContainer = document.querySelector('.modal--js');
 const modalText = document.querySelector('.modal__text--js');
 const modalClose = document.querySelector('.modal__close--js');
 
 let timeoutHandler = null;
 
-/********** MEDIA **********/
+//....................................................................... MEDIA
 const tabletBreakpoint = 768;
 const desktopBreakpoint = 1200;
 
@@ -71,16 +50,20 @@ const desktopBreakpoint = 1200;
  #######     ###    ######## ##     ## ##     ## ######## ########
 */
 
+//................................................................... VARIABLES
 const pageOverlay = document.querySelector('.page-overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
 
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: FADE IN EFFECT
 const fadeIn = () => {
+
   if (!pageOverlay.classList.contains('page-overlay--onload')) {
     pageOverlay.classList.add('page-overlay--onload');
   }
   pageOverlay.classList.remove('page-overlay--onload');
-}
 
+} //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//::::::::::::::::::::::::::::::::::::::::::::::: GO TO NEXT PAGE AFTER TIMEOUT
 const toNextPage = (e, callback, timeout) => {
   e.preventDefault();
   const linkClicked = e.target;
@@ -88,12 +71,13 @@ const toNextPage = (e, callback, timeout) => {
     pageOverlay.classList.add('page-overlay--visible');
     setTimeout(() => callback(linkClicked), timeout);
   }
-}
-
+} //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DELAY LINK
 const delayLink = (element) => {
   window.location = element.href;
 }
-
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//............................................................. EVENT LISTENERS
 for ( const link of fadeOutLinks ) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
 }
@@ -306,7 +290,6 @@ if (portfolio) {
   const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
   const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
-  const portfolioGridImages = document.querySelectorAll('.grid__image--js');
 
   //const lazyPlaceholders = [...portfolioPlaceholders];
   let lazyLoadBuffer = 500;
@@ -414,30 +397,10 @@ if (portfolio) {
     }
   }
 
-
-
-
-
-
-
-
   /********** FUNCTION CALLS **********/
   
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
-
-
-
-
-
-
-
-
-
-
-
-
-
 } // END OF PORTFOLIO
 
 /*
@@ -450,32 +413,290 @@ if (portfolio) {
  ######   ##     ## ######## ######## ######## ##     ##    ##
 */
 
-if (gallery) {
+if (gallery) { //////////////////////////////////////////////////////// GALLERY
 
+  let prevScroll = null;
 
+  //////////////////////////////////////////////////////////////// SHOW GALLERY
+  const showGallery = (e) => {
 
+    e.preventDefault();
+    const self = e.target;
+    let currentIndex = self.index;
 
+    ////////////////////////////////////////// GENERATE GALLERY << SHOW GALLERY
+    const generateGallery = () => {
 
+      for (const image of portfolioGridImages) {
 
+        const imageAlt = image.alt;
+        const imageHeading = imageAlt.split(' | ').slice(0,1).join();
+        
+        gallery.innerHTML += `
+        <section class="images images--js">
+          <h3 class="images__heading">
+            ${imageHeading}
+          </h3>
+          <img
+            src=""
+            alt="${imageAlt}"
+            class="images__image images__image--js"
+          >
+        </section>
+        `;
+      }
+    }
+    ////////////////////////////////////// GET TWO-DIGIT NUMBER << SHOW GALLERY
+    const getTwoDigit = (number) => {
 
+      let strNumber = number.toString();
+      strNumber.length === 1 ? strNumber = `0${strNumber}` : false;
+      return strNumber;
 
+    }
+    //////////////////////////////////////////////// LOOP INDEX << SHOW GALLERY
+    const loopIndex = (collection, index, action) => {
 
+      const maxIndex = collection.length-1;
+      if (action === 'increase') {
+        index >= maxIndex ? index = 0 : index++;
+      } else if (action === 'decrease') {
+        index <= 0 ? index = maxIndex : index--;
+      }
+      return index;
 
+    }
+    ///////////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY
+    const removeAllEvents = () => {
 
+      window.removeEventListener('scroll', slideVertically);
+      gallery.removeEventListener('click', viewImage);
+      window.removeEventListener('keydown', viewImage);
 
+    }
+    //////////////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY
+    const slideVertically = () => {
 
+      const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const currentImageSection = imageSections[currentIndex];
 
+      if (prevScroll === null) {
+        prevScroll = nextScroll;
+      }
 
+      if (nextScroll !== prevScroll) {
+        
+        if (nextScroll > prevScroll) {
+          currentImageSection.classList.add("images--hidden-top");
+        } else {
+          currentImageSection.classList.add("images--hidden-bottom");
+        }
+        
+        setTimeout(() => {
+          currentImageSection.classList.remove("images--hidden-top");
+          currentImageSection.classList.remove("images--hidden-bottom");
+          displayGallery(e);
+        }, 1000);
 
+        removeAllEvents();
+        prevScroll = null;
+      }
 
+    }
+    /////////////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY
+    const displayGallery = (e, action) => {
 
+      const self = e.keyCode || e.target;
+      const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
+      const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
+      const currentImageSection = imageSections[currentIndex];
+      const prevImageSection = imageSections[prevIndex];
+      const nextImageSection = imageSections[nextIndex];
 
+      imageNumber.textContent = `${getTwoDigit(currentIndex+1)} / ${getTwoDigit(imageSections.length)}`;
+      
+      ////////////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY
+      const lazyLoadImage = (index, option, amount) => {
 
+        //const currentlyDisplayedImageSection = document.querySelector('.images--js-current');
+        const currentImage = images[index];
+        const currentGridImage = portfolioGridImages[index];
+        const currentSrc = currentImage.getAttribute('src');
+        const currentImageSrc = currentGridImage.getAttribute('data-src2');
+        const indexToInc = index;
+        const indexToDec = index;
 
+        if (currentSrc === "") {
+          currentImage.src = currentImageSrc;
 
+        } else if (currentImage.complete) {
+          
+          if (amount > 0) {
+            amount--;
+            currentImage.classList.add('images__image--loaded');
+  
+            if (option === 'prev' || option === 'start') {
+              index = loopIndex(imageSections, indexToDec, 'decrease');
+              lazyLoadImage(index, 'prev', amount);
+            }
+  
+            if (option === 'next' || option === 'start') {
+              index = loopIndex(imageSections, indexToInc, 'increase');
+              lazyLoadImage(index, 'next', amount);
+            }
+          }
+        }
 
+        currentImage.onload = () => {
+          if (amount > 0) {
+            amount--;
+            currentImage.classList.add('images__image--loaded');
+  
+            if (option === 'prev' || option === 'start') {
+              index = loopIndex(imageSections, indexToDec, 'decrease');
+              lazyLoadImage(index, 'prev', amount);
+            }
+  
+            if (option === 'next' || option === 'start') {
+              index = loopIndex(imageSections, indexToInc, 'increase');
+              lazyLoadImage(index, 'next', amount);
+            }
+          }
+        }
+      }
+      /////////////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY
+      switch (self) {
+  
+        case 27:
+        case portfolioGridImage:
+        case currentImageSection:
+        case closeButton:
+          gallery.classList.toggle('gallery--visible');
+          prevImageSection.classList.toggle('images--visible');
+          prevImageSection.classList.toggle('images--hidden-left');
+          currentImageSection.classList.toggle('images--visible');
+          currentImageSection.classList.toggle('images--js-current');
+          nextImageSection.classList.toggle('images--visible');
+          nextImageSection.classList.toggle('images--hidden-right');
+          lazyLoadImage(currentIndex, 'start', 2);
+        break;
 
-} // END OF GALLERY
+        case 37:
+        case leftButton:
+          if (action === 'hideImage') {
+            nextImageSection.classList.toggle('images--visible');
+            nextImageSection.classList.toggle('images--hidden-right');
+          } else if (action === 'showImage') {
+            prevImageSection.classList.toggle('images--visible');
+            prevImageSection.classList.toggle('images--hidden-left');
+            currentImageSection.classList.toggle('images--js-current');
+            currentImageSection.classList.toggle('images--hidden-left');
+            nextImageSection.classList.toggle('images--js-current');
+            nextImageSection.classList.toggle('images--hidden-right');
+            lazyLoadImage(currentIndex, 'prev', 2);
+          }
+        break;
+        
+        case 39:
+        case rightButton:
+          if (action === 'hideImage') {
+            prevImageSection.classList.toggle('images--visible');
+            prevImageSection.classList.toggle('images--hidden-left');
+          } else if (action === 'showImage') {
+            nextImageSection.classList.toggle('images--visible');
+            nextImageSection.classList.toggle('images--hidden-right');
+            currentImageSection.classList.toggle('images--js-current');
+            currentImageSection.classList.toggle('images--hidden-right');
+            prevImageSection.classList.toggle('images--js-current');
+            prevImageSection.classList.toggle('images--hidden-left');
+            lazyLoadImage(currentIndex, 'next', 2);
+          }
+        break;
+
+        default:
+          return;
+      }
+    }
+    //////////////////////////////////////////////// VIEW IMAGE << SHOW GALLERY
+    const viewImage = (e) => {
+
+      const self = e.keyCode || e.target;
+      const currentImageSection = imageSections[currentIndex];
+
+      switch (self) {
+
+        case 37:
+        case leftButton:
+          e.preventDefault();
+          displayGallery(e,'hideImage');
+          currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
+          displayGallery(e,'showImage');
+          break;
+
+        case 39:
+        case rightButton:
+          e.preventDefault();
+          displayGallery(e,'hideImage');
+          currentIndex = loopIndex(imageSections, currentIndex, 'increase');
+          displayGallery(e,'showImage');
+          break;
+
+        case 13:
+        case 38:
+        case 40:
+        case switchButton:
+          e.preventDefault();
+          break;
+        
+        case 27:
+        case portfolioGridImage:
+        case currentImageSection:
+        case closeButton:
+          e.preventDefault();
+          displayGallery(e);
+          removeAllEvents();
+          break;
+
+        default:
+          return;
+      }
+    }
+    //////////////////////////////////// INITIAL FUNCTION CALLS << SHOW GALLERY
+
+    gallery.children.length <= 1 ? generateGallery() : false;
+
+    ///////////////////////////////////////////////// VARIABLES << SHOW GALLERY
+
+    const imageSections = document.querySelectorAll('.images--js');
+    const images = document.querySelectorAll('.images__image--js');
+    const switchButton = document.querySelector('.navigation__button--js-switch');
+    const leftButton = document.querySelector('.navigation__button--js-left');
+    const rightButton = document.querySelector('.navigation__button--js-right');
+    const closeButton = document.querySelector('.navigation__button--js-close');
+    const imageNumber = document.querySelector('.navigation__counter--js');
+    const portfolioGridImage = portfolioGridImages[currentIndex];
+
+    //////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY
+
+    displayGallery(e);
+
+    /////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY
+
+    gallery.addEventListener('click', viewImage);
+    window.addEventListener('keydown', viewImage);
+    window.addEventListener('scroll', slideVertically);
+
+  } /////////////////////////////////////////////////////// END OF SHOW GALLERY
+  ////////////////////////////////////////////////////////////// FUNCTION CALLS
+  ///////////////////////////////////////////////////////////// EVENT LISTENERS
+
+  for (let i = 0; i < portfolioGridImages.length; i++) {
+    const gridImage = portfolioGridImages[i];
+    gridImage.index = i;
+    gridImage.addEventListener('click', showGallery);
+  }
+
+} /////////////////////////////////////////////////////////////////////////////
 
 /*
    ###    ########   #######  ##     ## ########
@@ -531,10 +752,6 @@ if (about) {
     }
   }
 
-
-
-
-
   window.onload = () => {
     minimizeCards();
   }
@@ -546,13 +763,6 @@ if (about) {
   }
 
   window.addEventListener('resize', adjustCards);
-
-
-
-
-
-
-
 
 } // END OF ABOUT
 
@@ -634,17 +844,10 @@ if (form) {
     }
   }
 
-
-
   checkboxContainer.addEventListener('click', handleCheckboxes );
   submitButton.addEventListener('click', validateCheckboxes);
   modalClose.addEventListener('click', toggleModal);
   modalContainer.addEventListener('click', windowQuit);
-
-
-
-
-
 } // END OF CONTACT
 
 /*
