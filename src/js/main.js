@@ -533,6 +533,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           
           if (amount > 0) {
             amount--;
+            currentImage.classList.add('images__image--loaded');
   
             if (option === 'prev' || option === 'start') {
               index = loopIndex(imageSections, indexToDec, 'decrease');
@@ -549,6 +550,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         currentImage.onload = () => {
           if (amount > 0) {
             amount--;
+            currentImage.classList.add('images__image--loaded');
   
             if (option === 'prev' || option === 'start') {
               index = loopIndex(imageSections, indexToDec, 'decrease');
