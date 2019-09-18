@@ -17,6 +17,7 @@ const form = document.querySelector('.form--js');
 
 //................................................................... PORTFOLIO
 const portfolioGridImages = document.querySelectorAll('.grid__image--js');
+const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
 
 //........................................................................ FORM
 const submitButton = document.querySelector('.form__submit--js');
@@ -287,7 +288,6 @@ if (portfolio) {
   /********** VARIABLES **********/
 
   const portfolioGrid = document.querySelector('.grid--js');
-  const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
   const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
 
@@ -427,21 +427,36 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
     ////////////////////////////////////////// GENERATE GALLERY << SHOW GALLERY
     const generateGallery = () => {
 
-      for (const image of portfolioGridImages) {
+      for (let i = 0; i < portfolioGridImages.length; i++) {
 
+        const image = portfolioGridImages[i];
         const imageAlt = image.alt;
         const imageHeading = imageAlt.split(' | ').slice(0,1).join();
+
+        const svg = portfolioSvgs[i];
+        const svgSolidHref = svg.firstElementChild.getAttribute('href');
+        const svgLineHref = svgSolidHref.replace('solid', 'line');
+        const viewBoxWidth = svg.viewBox.baseVal.width;
+        const viewBoxHeight = svg.viewBox.baseVal.height;
         
         gallery.innerHTML += `
         <section class="images images--js">
           <h3 class="images__heading">
             ${imageHeading}
           </h3>
-          <img
-            src=""
-            alt="${imageAlt}"
-            class="images__image images__image--js"
-          >
+          <div class="images__container">
+            <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
+              <use href="${svgSolidHref}"></use>
+            </svg>
+            <svg class="images__svg-line" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
+              <use href="${svgLineHref}"></use>
+            </svg>
+            <img
+              src=""
+              alt="${imageAlt}"
+              class="images__image images__image--js"
+            >
+          </div>
         </section>
         `;
       }
