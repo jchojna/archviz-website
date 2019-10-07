@@ -45,9 +45,7 @@ object {
 .disabled {
   opacity: 0.5;
 }
-
-/********** PAGE OVERLAY **********/
-
+///////////////////////////////////////////////////////////////// PAGE OVERLAY 
 .page-overlay {
   background-color: black;
   opacity: 0;
@@ -71,9 +69,7 @@ object {
     transition: visibility 0s, opacity $time-page-overlay;
   }
 }
-
-/********** PAGE CONTAINER **********/
-
+/////////////////////////////////////////////////////////////// PAGE CONTAINER 
 .page-container {
   display: none;
   flex-direction: column;
@@ -96,9 +92,7 @@ object {
     background-color: #000;
   }
 }
-
-/********** BUTTONS **********/
-
+////////////////////////////////////////////////////////////////////// BUTTONS 
 .button {
   background: none;
   border: none;

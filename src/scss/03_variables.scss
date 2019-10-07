@@ -1,5 +1,4 @@
-/********** TIME **********/
-
+///////////////////////////////////////////////////////////////////////// TIME 
 $time-page-overlay: 0.6s;
 $time-mobile-menu: 0.5s;
 $time-hover-menu: 0.3s;
@@ -17,16 +16,15 @@ $time-gallery: 1s;
 //$time-menu-item: 0.2s;
 //$time-fade: 0.5s;
 
-/********** TRANSFORM **********/
-
-$scale-grid-item: 1.2;
-
-/********** TIMING **********/
-
+// TIMING
 $timing-ease-in-strong: cubic-bezier(0,0.6,0.4,1);
 $timing-ease-out-strong: cubic-bezier(0.6,0,1,0.4);
 
-/********** COLORS **********/
+//////////////////////////////////////////////////////////////////// TRANSFORM 
+
+$scale-grid-item: 1.2;
+
+/////////////////////////////////////////////////////////////////////// COLORS 
 
 $color-background: #555;
 $color-background-lighter: lighten($color-background, 30%);
@@ -40,7 +38,7 @@ $color-main-dark: darken($color-main, 30%);
 //$color-secondary: rgb(29, 211, 235);
 //$navbar-background-color: rgba(0,0,0,0.4);
 
-/********** LAYOUT **********/
+/////////////////////////////////////////////////////////////////////// LAYOUT 
 
 $layout-container-width: 1200px;
 
@@ -66,12 +64,10 @@ $layout-desktop-grid-columns: 3;
 
 $layout-footer-offset: 20px;
 
-/********** SIZE **********/
-
 $size-go-top-button: 50px;
 $size-checkbox: 30px;
 
-/********** MEDIA **********/
+//////////////////////////////////////////////////////////////////////// MEDIA 
 
 $media-tablet: 768px;
 $media-desktop: 1200px;

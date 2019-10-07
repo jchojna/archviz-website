@@ -1,5 +1,4 @@
-/********** HEADER **********/
-
+/////////////////////////////////////////////////////////////////////// HEADER 
 .header {
   position: fixed;
   top: 0;
@@ -26,9 +25,7 @@
     }
   }
 }
-
-/********** NAVIGATION **********/
-
+/////////////////////////////////////////////////////////////////// NAVIGATION 
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -59,9 +56,7 @@
     }
   }
 }
-
-/********** LOGO **********/
-
+///////////////////////////////////////////////////////////////////////// LOGO 
 .logo {
   display: flex;
   height: $layout-sm-logo;
@@ -95,9 +90,7 @@
     }
   }
 }
-
-/********** MAIN MENU **********/
-
+//////////////////////////////////////////////////////////////////// MAIN MENU 
 .main-menu {
 
   &__list {
@@ -198,11 +191,9 @@
   transform: translateY(0);
   transition: transform $transition-navbar $ease-in-strong;
 }
-
 */
 
-/********** MOBILE MENU **********/
-
+////////////////////////////////////////////////////////////////// MOBILE MENU 
 .mobile-menu {
   @include position-fixed;
   @include flex-center;
@@ -231,9 +222,7 @@
     @extend .main-menu__link;
   }
 }
-
-/********** BURGER BUTTON **********/
-
+//////////////////////////////////////////////////////////////// BURGER BUTTON 
 .burger {
   background: none;
   border: none;
@@ -257,9 +246,7 @@
     display: none;
   }
 }
-
-/********** GO TO TOP BUTTON **********/
-
+///////////////////////////////////////////////////////////// GO TO TOP BUTTON 
 .go-top {
   @include flex-center;
   position: fixed;

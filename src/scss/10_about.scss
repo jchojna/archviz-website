@@ -1,12 +1,11 @@
-/********** ABOUT **********/
-
+//////////////////////////////////////////////////////////////////////// ABOUT 
 .about {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
 }
-
+///////////////////////////////////////////////////////////////////////// INFO 
 .info {
   width: 100%;
   max-width: $layout-container-width;
@@ -28,7 +27,7 @@
     padding-top: $layout-lg-logo + ($layout-lg-offset * 2);
   }
 }
-
+///////////////////////////////////////////////////////////////////////// CARD 
 .card {
   font-weight: 300;
   font-size: 1.1rem;
@@ -92,9 +91,7 @@
     }
   }
 }
-
-/********** CLIENTS **********/
-
+////////////////////////////////////////////////////////////////////// CLIENTS 
 .clients {
   background-color: $color-main;
   display: flex;
