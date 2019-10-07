@@ -115,15 +115,17 @@
   }
 
   &__item {
-    fill: #fff;
     width: 100%;
     height: 100%;
     max-width: 150px;
     max-height: 100px;
-    transition: fill $time-hover-icon;
+    background-color: transparent;
+    transition: background-color $time-hover-icon;
+    border-radius: 10px;
 
     &:hover {
       fill: $color-background;
+      background-color: rgba($color: $color-background, $alpha: 0.2);
     }
   }
 
@@ -136,9 +138,10 @@
   }
 
   &__svg {
+    fill: #fff;
     width: 100%;
     height: 100%;
-
+    pointer-events: none;
   }
 
   @media only screen and (min-width: $media-tablet) {
