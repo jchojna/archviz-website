@@ -30,7 +30,7 @@ $color-background: #555;
 $color-background-lighter: lighten($color-background, 30%);
 $color-background-darker: darken($color-background, 5%);
 
-$color-main: rgb(200, 202, 83);
+$color-main: rgb(194, 63, 24);
 $color-main-lighter: lighten($color-main, 10%);
 $color-main-darker: darken($color-main, 15%);
 $color-main-dark: darken($color-main, 30%);
@@ -48,7 +48,7 @@ $layout-lg-logo: 100px;
 
 $layout-sm-offset: 20px;
 $layout-md-offset: 40px;
-$layout-lg-offset: 60px;
+$layout-lg-offset: 30px;
 
 $layout-mobile-grid-gap: 1rem;
 $layout-tablet-grid-gap: 1rem;
