@@ -67,14 +67,29 @@
     @include flex-center;
     position: relative;
     transform: scale(1);
-    transition:
-      transform $time-grid-item ease-out;
-
+    transition: transform $time-grid-item ease-out;
     width: 100%;
     height: 100%;
 
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgb(0, 238, 255);
+      opacity: 0.05;
+      pointer-events: none;
+      transition: opacity $time-grid-item;
+    }
+
     &:hover {
       transform: scale($scale-grid-item);
+
+      &::after {
+        opacity: 0;
+      }
     }
   }
 
@@ -104,19 +119,18 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    opacity: 0;
-    filter: saturate(100%);
-    transition: filter $time-grid-item ease-out;
+    opacity: 0;    
+    filter: saturate(0) brightness(0.75);
 
     &--loaded {
       //display: block;
       visibility: visible;
       opacity: 1;
-      transition: opacity $time-grid-image;
+      transition: opacity $time-grid-image, filter $time-grid-item;
     }
 
     &:hover {
-      filter: saturate(0%);
+      filter: saturate(100%);
     }
   }
 
