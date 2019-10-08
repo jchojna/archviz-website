@@ -8,31 +8,6 @@
   </symbol>
 
   <!-- ////////////////////////////////////////////////////////////// ICONS -->
-  <symbol id="burger-button" viewBox="0 0 1000 1000">
-    <path class="bb-1" d="M940,120H60C26.9,120,0,93.1,0,60v0C0,26.9,26.9,0,60,0h880c33.1,0,60,26.9,60,60v0	C1000,93.1,973.1,120,940,120z"/>
-    <path class="bb-2" d="M940,560H60c-33.1,0-60-26.9-60-60v0c0-33.1,26.9-60,60-60h880c33.1,0,60,26.9,60,60v0 C1000,533.1,973.1,560,940,560z"/>
-    <path class="bb-3" d="M940,1000H60c-33.1,0-60-26.9-60-60v0c0-33.1,26.9-60,60-60h880c33.1,0,60,26.9,60,60v0 C1000,973.1,973.1,1000,940,1000z"/>
-  </symbol>
-
-  <symbol id="close-button" viewBox="0 0 1000 1000">
-    <!-- <filter id="dropshadow">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
-      <feOffset dx="0" dy="0" result="offsetblur"/>
-        <feComponentTransfer>
-        <feFuncA type="linear" slope="0.5"/>
-      </feComponentTransfer>
-      <feMerge> 
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter> -->
-    <path d="M50 50l900 900M50 950l900-900"/>
-  </symbol>
-
-  <symbol id="arrow" viewBox="0 0 1000 1000">
-    <path class="svg-lightbox-icons" d="M281 950l450-450-450-450"/>
-  </symbol>
-  
   <symbol id="checkmark" viewBox="0 0 24 24">
     <path class="checkmark" d="M9 21l-9-8.6 2.8-2.9 6.2 5.9 12.2-12.4 2.8 2.8-15 15.2z"/>
   </symbol>

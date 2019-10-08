@@ -190,11 +190,6 @@ const throttle = (func, wait, options) => {
 ##     ## ######## ##    ##  #######
 */
 
-//////////////////////////////////////////////////////////////////// VARIABLES 
-const mainMenuList = document.querySelector('.main-menu__list--js');
-const mobileMenu = document.querySelector('.mobile-menu--js');
-const burgerButton = document.querySelector('.burger--js');
-
 // F0 /////////////////////////////////////////////////// GENERATE MOBILE MENU 
 
 const generateMobileMenu = () => {
@@ -219,6 +214,9 @@ const generateMobileMenu = () => {
 
 const toggleMobileMenu = () => {
   mobileMenu.classList.toggle('mobile-menu--hidden');
+  burgerTop.classList.toggle('burger__line--rotate-left');
+  burgerCenter.classList.toggle('burger__line--rotate-right');
+  burgerBottom.classList.toggle('burger__line--rotate-left');
 }
 // F0 ///////////////////////////////////////////////////// HANDLE MOBILE MENU 
 
@@ -229,9 +227,6 @@ const handleMobileMenu = (e) => {
   }
   toggleMobileMenu();
 }
-
-burgerButton.addEventListener('click', handleMobileMenu );
-
 // F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR 
 
 const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
@@ -275,8 +270,17 @@ const toggleGoTopButton = () => {
     goToTopButton.classList.remove('go-top--visible');
   }
 }
+//////////////////////////////////////////////////////////////////// VARIABLES 
+const mainMenuList = document.querySelector('.main-menu__list--js');
+const mobileMenu = document.querySelector('.mobile-menu--js');
+const burgerButton = document.querySelector('.burger--js');
+const burgerTop = document.querySelector('.burger__line--js-top');
+const burgerCenter = document.querySelector('.burger__line--js-center');
+const burgerBottom = document.querySelector('.burger__line--js-bottom');
 
+////////////////////////////////////////////////////////////// EVENT LISTENERS 
 window.addEventListener('scroll', toggleGoTopButton );
+burgerButton.addEventListener('click', handleMobileMenu );
 
 /*
 ########   #######  ########  ######## ########  #######  ##       ####  #######
