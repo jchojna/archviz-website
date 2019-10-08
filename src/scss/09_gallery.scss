@@ -92,15 +92,24 @@
   }
 }
 /////////////////////////////////////////////////////////////////// NAVIGATION 
-.navigation {
+.gallery-nav {
+    position: relative;
+    padding: 10px 30px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 
   &__list {
-    @include flex-center;
     list-style-type: none;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 30px;
+    justify-content: end;
+    align-content: end;
     z-index: 1;
   }
 
@@ -113,49 +122,58 @@
   }
 
   &__button {
-    opacity: 0.5;
-    z-index: 99;
+    fill: #fff;
+    width: $size-button-gallery;
+    transition: fill $time-button-gallery;
 
     &:hover {
-      opacity: 1;
-    }
-
-    &--switch {
-      
-    }
-
-    &--left {
-
-    }
-
-    &--right {
-
-    }
-
-    &--close {
-
+      fill: $color-main;
     }
   }
 
   &__svg {
-    fill: none;
-    stroke-width: 200;
-    stroke: #fff;
-    width: 50px;
-    height: 50px;
-    //stroke-linecap: round;
     pointer-events: none;
+  }
+}
+//////////////////////////////////////////////////////////////// SWITCH BUTTON 
+.switch {
+  position: relative;
+  @include flex-center;
 
-    &--up-arrow {
-      transform: rotate(-90deg);
+  &__center {
+    stroke-width: 40px;
+    stroke: #fff;
+    transition: stroke $time-button-gallery, transform $time-button-gallery;
+
+    &--linear {
+      fill: none;
+    }
+  }
+
+  &__left {
+    position: absolute;
+    transform: translateX(-40%);
+    transition: transform $time-button-gallery;
+  }
+
+  &__right {
+    position: absolute;
+    transform: translateX(40%);
+    transition: transform $time-button-gallery;
+  }
+
+  &:hover {
+    .switch__left {
+      transform: translateX(-60%) scale(0.8);
     }
 
-    &--down-arrow {
-      transform: rotate(90deg);
+    .switch__center {
+      stroke: $color-main;
+      transform: scale(1.8);
     }
-
-    &--left-arrow {
-      transform: rotate(180deg);
+  
+    .switch__right {
+      transform: translateX(65%) scale(0.8);
     }
   }
 }

@@ -692,11 +692,10 @@ if (gallery) {
     //////////////////////////////////////////////// VARIABLES << SHOW GALLERY 
     const imageSections = document.querySelectorAll('.images--js');
     const images = document.querySelectorAll('.images__image--js');
-    const switchButton = document.querySelector('.navigation__button--js-switch');
-    const leftButton = document.querySelector('.navigation__button--js-left');
-    const rightButton = document.querySelector('.navigation__button--js-right');
-    const closeButton = document.querySelector('.navigation__button--js-close');
-    const imageNumber = document.querySelector('.navigation__counter--js');
+    const switchButton = document.querySelector('.gallery-nav__button--js-switch');
+    const leftButton = document.querySelector('.gallery-nav__button--js-left');
+    const rightButton = document.querySelector('.gallery-nav__button--js-right');
+    const closeButton = document.querySelector('.gallery-nav__button--js-close');
     const portfolioGridImage = portfolioGridImages[currentIndex];
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
