@@ -8,21 +8,21 @@
    ###    ##     ## ##     ## #### ##     ## ########  ######## ########  ######
 */
 
-//..................................................................... OVERALL
+////////////////////////////////////////////////////////////////////// OVERALL 
 const pageContainer = document.querySelector('.page-container--js');
 const portfolio = document.querySelector('.portfolio--js');
 const gallery = document.querySelector('.gallery--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
 
-//................................................................... PORTFOLIO
+//////////////////////////////////////////////////////////////////// PORTFOLIO 
 const portfolioGridImages = document.querySelectorAll('.grid__image--js');
 const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
 
-//........................................................................ FORM
+///////////////////////////////////////////////////////////////////////// FORM 
 const submitButton = document.querySelector('.form__submit--js');
 
-//................................................................ VERIFICATION
+///////////////////////////////////////////////////////////////// VERIFICATION 
 const checkboxContainer = document.querySelector('.form__verification--js');
 const checkboxes = document.querySelectorAll('.checkbox__input--js');
 const checkboxReject = document.querySelector('.checkbox__input--js-reject');
@@ -30,14 +30,14 @@ const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
 const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
 let responseState = "empty";
 
-//................................................................... MODAL BOX
+//////////////////////////////////////////////////////////////////// MODAL BOX 
 const modalContainer = document.querySelector('.modal--js');
 const modalText = document.querySelector('.modal__text--js');
 const modalClose = document.querySelector('.modal__close--js');
 
 let timeoutHandler = null;
 
-//....................................................................... MEDIA
+//////////////////////////////////////////////////////////////////////// MEDIA 
 const tabletBreakpoint = 768;
 const desktopBreakpoint = 1200;
 
@@ -51,11 +51,12 @@ const desktopBreakpoint = 1200;
  #######     ###    ######## ##     ## ##     ## ######## ########
 */
 
-//................................................................... VARIABLES
+//////////////////////////////////////////////////////////////////// VARIABLES 
 const pageOverlay = document.querySelector('.page-overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
 
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: FADE IN EFFECT
+// F0 ///////////////////////////////////////////////////////// FADE IN EFFECT 
+
 const fadeIn = () => {
 
   if (!pageOverlay.classList.contains('page-overlay--onload')) {
@@ -63,8 +64,9 @@ const fadeIn = () => {
   }
   pageOverlay.classList.remove('page-overlay--onload');
 
-} //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//::::::::::::::::::::::::::::::::::::::::::::::: GO TO NEXT PAGE AFTER TIMEOUT
+}
+// F0 ////////////////////////////////////////// GO TO NEXT PAGE AFTER TIMEOUT 
+
 const toNextPage = (e, callback, timeout) => {
   e.preventDefault();
   const linkClicked = e.target;
@@ -72,13 +74,13 @@ const toNextPage = (e, callback, timeout) => {
     pageOverlay.classList.add('page-overlay--visible');
     setTimeout(() => callback(linkClicked), timeout);
   }
-} //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: DELAY LINK
+}
+// F0 ///////////////////////////////////////////////////////////// DELAY LINK 
 const delayLink = (element) => {
   window.location = element.href;
 }
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//............................................................. EVENT LISTENERS
+
+////////////////////////////////////////////////////////////// EVENT LISTENERS 
 for ( const link of fadeOutLinks ) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
 }
@@ -188,11 +190,7 @@ const throttle = (func, wait, options) => {
 ##     ## ######## ##    ##  #######
 */
 
-/********** MENU **********/
-
-const mainMenuList = document.querySelector('.main-menu__list--js');
-const mobileMenu = document.querySelector('.mobile-menu--js');
-const burgerButton = document.querySelector('.burger--js');
+// F0 /////////////////////////////////////////////////// GENERATE MOBILE MENU 
 
 const generateMobileMenu = () => {
   const mobileMenuList = mainMenuList.cloneNode(true);
@@ -212,10 +210,15 @@ const generateMobileMenu = () => {
     }
   }
 }
+// F0 ///////////////////////////////////////////////////// TOGGLE MOBILE MENU 
 
 const toggleMobileMenu = () => {
   mobileMenu.classList.toggle('mobile-menu--hidden');
+  burgerTop.classList.toggle('burger__line--rotate-left');
+  burgerCenter.classList.toggle('burger__line--rotate-right');
+  burgerBottom.classList.toggle('burger__line--rotate-left');
 }
+// F0 ///////////////////////////////////////////////////// HANDLE MOBILE MENU 
 
 const handleMobileMenu = (e) => {
   e.preventDefault();
@@ -224,10 +227,7 @@ const handleMobileMenu = (e) => {
   }
   toggleMobileMenu();
 }
-
-burgerButton.addEventListener('click', handleMobileMenu );
-
-/********** HIDING NAVBAR **********/
+// F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR 
 
 const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
 let navbarPrevScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -258,7 +258,7 @@ const handleNavbar = () => {
 
 window.addEventListener('scroll', handleNavbar);
 
-/********** GO TO TOP BUTTON **********/
+// F0 /////////////////////////////////////////////////////// GO TO TOP BUTTON 
 
 const goToTopButton = document.querySelector('.go-top--js');
 
@@ -270,8 +270,17 @@ const toggleGoTopButton = () => {
     goToTopButton.classList.remove('go-top--visible');
   }
 }
+//////////////////////////////////////////////////////////////////// VARIABLES 
+const mainMenuList = document.querySelector('.main-menu__list--js');
+const mobileMenu = document.querySelector('.mobile-menu--js');
+const burgerButton = document.querySelector('.burger--js');
+const burgerTop = document.querySelector('.burger__line--js-top');
+const burgerCenter = document.querySelector('.burger__line--js-center');
+const burgerBottom = document.querySelector('.burger__line--js-bottom');
 
+////////////////////////////////////////////////////////////// EVENT LISTENERS 
 window.addEventListener('scroll', toggleGoTopButton );
+burgerButton.addEventListener('click', handleMobileMenu );
 
 /*
 ########   #######  ########  ######## ########  #######  ##       ####  #######
@@ -285,7 +294,7 @@ window.addEventListener('scroll', toggleGoTopButton );
 
 if (portfolio) {
 
-  /********** VARIABLES **********/
+  ////////////////////////////////////////////////////////////////// VARIABLES 
 
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
@@ -295,14 +304,13 @@ if (portfolio) {
   let lazyLoadBuffer = 500;
   let lazyLoadPause = false;
 
-  /********** LAYOUT **********/
+  // F0 ///////////////////////////////////////////// GET VIEWPORT WIDTH VALUE 
 
-  // get viewport width value
   const getViewportWidth = () => {
     return window.innerWidth || document.documentElement.clientWidth;
   }
+  // F0 ///////////////////// SET ASPECT RATIOS (WIDTH / HEIGHT) OF EACH IMAGE 
 
-  // Set aspect ratios ( width / height ) of each image
   const setAspectRatios = () => {
     const ratios = [];
     for ( const svg of portfolioSvgs ) {
@@ -310,6 +318,7 @@ if (portfolio) {
     };
     return ratios;
   }
+  // F0 ///////////////////////////////////////////////////// ADD FLEX CLASSES 
 
   const addFlexClasses = () => {
     portfolioGrid.classList.add('grid--flex');
@@ -317,8 +326,8 @@ if (portfolio) {
       svg.classList.add('grid__svg-solid--flex');
     }
   }
+  // F1 //////////////////////////////////////////// SET WIDTH OF EACH WRAPPER 
 
-  // Set width of each image wrapper
   const setFlexBasis = () => {
     const viewportWidth = getViewportWidth();
     const imageRatios = setAspectRatios();
@@ -358,8 +367,7 @@ if (portfolio) {
       }
     }
   }
-
-  /********** LAZY LOADING **********/
+  // F1 ///////////////////////////////////////////////////////// LAZY LOADING 
 
   var lazyLoad = (imageIndex) => {
     // when there's no argument passed
@@ -397,11 +405,11 @@ if (portfolio) {
     }
   }
 
-  /********** FUNCTION CALLS **********/
+  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
   
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
-} // END OF PORTFOLIO
+}
 
 /*
  ######      ###    ##       ##       ######## ########  ##    ##
@@ -413,21 +421,23 @@ if (portfolio) {
  ######   ##     ## ######## ######## ######## ##     ##    ##
 */
 
-if (gallery) { //////////////////////////////////////////////////////// GALLERY
+if (gallery) {
 
   let prevScroll = null;
 
-  //////////////////////////////////////////////////////////////// SHOW GALLERY
+  // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
   const showGallery = (e) => {
 
     e.preventDefault();
     const self = e.target;
     let currentIndex = self.index;
 
-    ////////////////////////////////////////// GENERATE GALLERY << SHOW GALLERY
-    const generateGallery = () => {
+    // F0 /////////////////////////////////// GENERATE GALLERY << SHOW GALLERY 
 
-      for (let i = 0; i < portfolioGridImages.length; i++) {
+    const generateGallery = () => {
+      const imagesAmount = portfolioGridImages.length;
+
+      for (let i = 0; i < imagesAmount; i++) {
 
         const image = portfolioGridImages[i];
         const imageAlt = image.alt;
@@ -438,12 +448,16 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         const svgLineHref = svgSolidHref.replace('solid', 'line');
         const viewBoxWidth = svg.viewBox.baseVal.width;
         const viewBoxHeight = svg.viewBox.baseVal.height;
+        const number = getTwoDigit(i + 1);
         
         gallery.innerHTML += `
         <section class="images images--js">
-          <h3 class="images__heading">
-            ${imageHeading}
-          </h3>
+          <div class="images__description">
+            <p class="images__counter images__counter--js">
+              ${number} / ${imagesAmount}
+            </p>
+            <h3 class="images__heading">${imageHeading}</h3>
+          </div>
           <div class="images__container">
             <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
               <use href="${svgSolidHref}"></use>
@@ -461,7 +475,8 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         `;
       }
     }
-    ////////////////////////////////////// GET TWO-DIGIT NUMBER << SHOW GALLERY
+    // F0 /////////////////////////////// GET TWO-DIGIT NUMBER << SHOW GALLERY 
+
     const getTwoDigit = (number) => {
 
       let strNumber = number.toString();
@@ -469,7 +484,8 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       return strNumber;
 
     }
-    //////////////////////////////////////////////// LOOP INDEX << SHOW GALLERY
+    // F0 ///////////////////////////////////////// LOOP INDEX << SHOW GALLERY 
+
     const loopIndex = (collection, index, action) => {
 
       const maxIndex = collection.length-1;
@@ -479,9 +495,9 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         index <= 0 ? index = maxIndex : index--;
       }
       return index;
-
     }
-    ///////////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY
+    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
+
     const removeAllEvents = () => {
 
       window.removeEventListener('scroll', slideVertically);
@@ -489,7 +505,8 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       window.removeEventListener('keydown', viewImage);
 
     }
-    //////////////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY
+    // F1 ///////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY 
+
     const slideVertically = () => {
 
       const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -516,9 +533,9 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
         removeAllEvents();
         prevScroll = null;
       }
-
     }
-    /////////////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY
+    // F2 //////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY 
+
     const displayGallery = (e, action) => {
 
       const self = e.keyCode || e.target;
@@ -527,10 +544,9 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
       const currentImageSection = imageSections[currentIndex];
       const prevImageSection = imageSections[prevIndex];
       const nextImageSection = imageSections[nextIndex];
-
-      imageNumber.textContent = `${getTwoDigit(currentIndex+1)} / ${getTwoDigit(imageSections.length)}`;
       
-      ////////////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY
+      // F1 /////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
+
       const lazyLoadImage = (index, option, amount) => {
 
         //const currentlyDisplayedImageSection = document.querySelector('.images--js-current');
@@ -579,7 +595,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           }
         }
       }
-      /////////////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY
+      // F1 //////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
       switch (self) {
   
         case 27:
@@ -632,7 +648,7 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           return;
       }
     }
-    //////////////////////////////////////////////// VIEW IMAGE << SHOW GALLERY
+    // F1 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
     const viewImage = (e) => {
 
       const self = e.keyCode || e.target;
@@ -676,42 +692,36 @@ if (gallery) { //////////////////////////////////////////////////////// GALLERY
           return;
       }
     }
-    //////////////////////////////////// INITIAL FUNCTION CALLS << SHOW GALLERY
-
+    /////////////////////////////////// INITIAL FUNCTION CALLS << SHOW GALLERY 
     gallery.children.length <= 1 ? generateGallery() : false;
 
-    ///////////////////////////////////////////////// VARIABLES << SHOW GALLERY
-
+    //////////////////////////////////////////////// VARIABLES << SHOW GALLERY 
     const imageSections = document.querySelectorAll('.images--js');
     const images = document.querySelectorAll('.images__image--js');
-    const switchButton = document.querySelector('.navigation__button--js-switch');
-    const leftButton = document.querySelector('.navigation__button--js-left');
-    const rightButton = document.querySelector('.navigation__button--js-right');
-    const closeButton = document.querySelector('.navigation__button--js-close');
-    const imageNumber = document.querySelector('.navigation__counter--js');
+    const switchButton = document.querySelector('.gallery-nav__button--js-switch');
+    const leftButton = document.querySelector('.gallery-nav__button--js-left');
+    const rightButton = document.querySelector('.gallery-nav__button--js-right');
+    const closeButton = document.querySelector('.gallery-nav__button--js-close');
     const portfolioGridImage = portfolioGridImages[currentIndex];
 
-    //////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY
-
+    /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
     displayGallery(e);
 
-    /////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY
-
+    ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY 
     gallery.addEventListener('click', viewImage);
     window.addEventListener('keydown', viewImage);
     window.addEventListener('scroll', slideVertically);
-
-  } /////////////////////////////////////////////////////// END OF SHOW GALLERY
-  ////////////////////////////////////////////////////////////// FUNCTION CALLS
-  ///////////////////////////////////////////////////////////// EVENT LISTENERS
+  }
+  // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
+  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
+  //////////////////////////////////////////////////////////// EVENT LISTENERS 
 
   for (let i = 0; i < portfolioGridImages.length; i++) {
     const gridImage = portfolioGridImages[i];
     gridImage.index = i;
     gridImage.addEventListener('click', showGallery);
   }
-
-} /////////////////////////////////////////////////////////////////////////////
+}
 
 /*
    ###    ########   #######  ##     ## ########
@@ -779,7 +789,7 @@ if (about) {
 
   window.addEventListener('resize', adjustCards);
 
-} // END OF ABOUT
+}
 
 /*
  ######   #######  ##    ## ########    ###     ######  ########
@@ -863,7 +873,7 @@ if (form) {
   submitButton.addEventListener('click', validateCheckboxes);
   modalClose.addEventListener('click', toggleModal);
   modalContainer.addEventListener('click', windowQuit);
-} // END OF CONTACT
+}
 
 /*
  #######  ##    ## ##        #######     ###    ########

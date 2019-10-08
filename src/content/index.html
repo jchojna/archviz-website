@@ -7,7 +7,7 @@
     <title>Jakub Chojna | Architectural Visualization</title>
     <meta name="description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
 
-    <!-- Open Graph -->
+    <!---------------------------------------------------------- OPEN GRAPH -->
     <meta property="og:title" content="Jakub Chojna | Architectural Visualization" />
     <meta property="og:description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
     <meta property="og:url" content="https://jchojna.github.io/archviz-website/" />
@@ -29,25 +29,24 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <!-- PAGE OVERLAY -->
+    <!-------------------------------------------------------- PAGE OVERLAY -->
     <div class="page-overlay page-overlay--onload page-overlay--js"></div>
-
-    <!-- PAGE HEADER -->
+    <!--------------------------------------------------------- PAGE HEADER -->
     <header class="header">
       <h1 class="header__heading visuallyhidden">
         Architectural Visualizations
       </h1>
-      <!-- MAIN NAVIGATION -->
+      <!--------------------------------------------------- MAIN NAVIGATION -->
       <nav class="navigation navigation--align-top">
         <h2 class="navigation__heading visuallyhidden">Main Navigation</h2>
-        <!-- PAGE LOGO -->
+        <!------------------------------------------------------- PAGE LOGO -->
         <a href="index.html" class="logo fadeOut--js">
           <svg class="logo__svg">
-            <use xlink:href="assets/svg/logos-icons.svg#page-logo" />
+            <use xlink:href="assets/svg/icons.svg#page-logo" />
           </svg>
         </a>
-        <!-- END OF PAGE LOGO -->
-        <!-- MAIN MENU -->
+        <!------------------------------------------------ END OF PAGE LOGO -->
+        <!------------------------------------------------------- MAIN MENU -->
         <section class="main-menu">
           <h3 class="main-menu__heading visuallyhidden">Main Menu</h3>
           <ul class="main-menu__list main-menu__list--js">
@@ -74,37 +73,48 @@
             </li>
           </ul>
         </section>
-        <!-- END OF MAIN MENU -->
-        <!-- MOBILE MENU -->
+        <!------------------------------------------------ END OF MAIN MENU -->
+        <!----------------------------------------------------- MOBILE MENU -->
         <section class="mobile-menu mobile-menu--hidden mobile-menu--js">
           <h3 class="mobile-menu__heading visuallyhidden">Mobile Menu</h3>
         </section>
-        <!-- END OF MOBILE MENU -->
-        <!-- BURGER BUTTON -->
-        <button class="burger burger--js" aria-label="open mobile menu">
-          <svg class="burger__svg" viewBox="0 0 1000 1000">
-            <use href="assets/svg/logos-icons.svg#burger-button" />
+        <!---------------------------------------------- END OF MOBILE MENU -->
+        <!--------------------------------------------------- BURGER BUTTON -->
+        <button class="button burger burger--js" aria-label="open mobile menu">
+          <svg class="burger__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <line
+              class="burger__line burger__line--top burger__line--js-top"
+              x1="-24" y1="8" x2="100" y2="8"
+            />
+            <line
+              class="burger__line burger__line--center burger__line--js-center"
+              x1="-12" y1="50" x2="112" y2="50"
+            />
+            <line
+              class="burger__line burger__line--bottom burger__line--js-bottom"
+              x1="0" y1="92" x2="124" y2="92"
+            />
           </svg>
         </button>
-        <!-- END OF BURGER BUTTON -->
-        <!-- GO TO TOP BUTTON -->
+        <!-------------------------------------------- END OF BURGER BUTTON -->
+        <!------------------------------------------------ GO TO TOP BUTTON -->
         <a href="#page-container" class="go-top go-top--js">
           <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
         </a>
-        <!-- END OF GO TO TOP BUTTON -->
+        <!----------------------------------------- END OF GO TO TOP BUTTON -->
       </nav>
-      <!-- END OF MAIN NAVIGATION -->
+      <!-------------------------------------------- END OF MAIN NAVIGATION -->
     </header>
-    <!-- END OF PAGE HEADER -->
+    <!-------------------------------------------------- END OF PAGE HEADER -->
 
-    <!-- PAGE CONTAINER -->
+    <!------------------------------------------------------ PAGE CONTAINER -->
     <div
       id="page-container"
       class="page-container page-container--main-page page-container--visible"
     >
-      <!-- PORTFOLIO -->
+      <!--------------------------------------------------------- PORTFOLIO -->
       <main class="portfolio portfolio--js">
-        <!-- GRID -->
+        <!------------------------------------------------------------ GRID -->
         <section class="grid grid--js">
           <h2 class="grid__heading visuallyhidden">Grid of Visualizations</h2>
 
@@ -1262,127 +1272,93 @@
             </a>
           </section>
         </section>
-        <!-- END OF GRID -->
-        <!-- GALLERY -->
+        <!----------------------------------------------------- END OF GRID -->
+        <!--------------------------------------------------------- GALLERY -->
         <section class="gallery gallery--js">
           <header class="gallery__header">
-            <h2 class="navigation__heading visuallyhidden">
+            <h2 class="gallery__heading visuallyhidden">
               Gallery of Visualizations
             </h2>
-            <!-- GALLERY NAVIGATION -->
-            <nav class="navigation">
-              <h3 class="navigation__heading visuallyhidden">
+            <!------------------------------------------ GALLERY NAVIGATION -->
+            <nav class="gallery-nav">
+              <h3 class="gallery-nav__heading visuallyhidden">
                 Gallery navigation
               </h3>
-              <ul class="navigation__list">
-                <li class="navigation__item">
-                  <p class="navigation__counter navigation__counter--js"></p>
-                </li>
-                <li class="navigation__item">
-                  <button class="button navigation__button navigation__button--switch navigation__button--js-switch">
-                    <svg
-                      class="navigation__svg navigation__svg--up-arrow navigation__svg--down-arrow"
-                      viewBox="0 0 1000 1000"
-                    >
-                      <use href="assets/svg/logos-icons.svg#arrow" />
+              <ul class="gallery-nav__list">
+                <li class="gallery-nav__item">
+                  <button class="button gallery-nav__button switch gallery-nav__button--js-switch">
+                    <svg class="switch__left" viewBox="0 0 512 512">
+                      <use href="assets/svg/icons.svg#arrow-left" />
+                    </svg>
+                    <svg class="switch__center" viewBox="0 0 512 512">
+                      <use href="assets/svg/icons.svg#switch" />
+                    </svg>
+                    <svg class="switch__right" viewBox="0 0 512 512">
+                      <use href="assets/svg/icons.svg#arrow-right" />
                     </svg>
                   </button>
                 </li>
-                <li class="navigation__item">
-                  <button class="button navigation__button navigation__button--left navigation__button--js-left">
-                    <svg
-                      class="navigation__svg navigation__svg--left-arrow"
-                      viewBox="0 0 1000 1000"
-                    >
-                      <use href="assets/svg/logos-icons.svg#arrow" />
+                <li class="gallery-nav__item">
+                  <button class="button gallery-nav__button gallery-nav__button--js-left">
+                    <svg class="gallery-nav__svg gallery-nav__svg--left-arrow" viewBox="0 0 512 512">
+                      <use href="assets/svg/icons.svg#arrow-left" />
                     </svg>
                   </button>
                 </li>
-                <li class="navigation__item">
-                  <button class="button navigation__button navigation__button--right navigation__button--js-right">
-                    <svg
-                      class="navigation__svg navigation__svg--right-arrow"
-                      viewBox="0 0 1000 1000"
-                    >
-                      <use href="assets/svg/logos-icons.svg#arrow" />
+                <li class="gallery-nav__item">
+                  <button class="button gallery-nav__button gallery-nav__button--js-right">
+                    <svg class="gallery-nav__svg gallery-nav__svg--right-arrow" viewBox="0 0 512 512">
+                      <use href="assets/svg/icons.svg#arrow-right" />
                     </svg>
                   </button>
                 </li>
-                <li class="navigation__item">
-                  <button class="button navigation__button navigation__button--close navigation__button--js-close">
-                    <svg
-                      class="navigation__svg navigation__svg--close"
-                      viewBox="0 0 1000 1000"
-                    >
-                      <use href="assets/svg/logos-icons.svg#close-button" />
+                <li class="gallery-nav__item">
+                  <button class="button gallery-nav__button gallery-nav__button--js-close">
+                    <svg class="gallery-nav__svg gallery-nav__svg--close" viewBox="0 0 512 512">
+                      <use href="assets/svg/icons.svg#close" />
                     </svg>
                   </button>
                 </li>
               </ul>
             </nav>
-            <!-- END OF GALLERY NAVIGATION -->
+            <!----------------------------------- END OF GALLERY NAVIGATION -->
           </header>
-        </section> <!-- END OF GALLERY -->
+        </section>
+        <!-------------------------------------------------- END OF GALLERY -->
       </main>
-      <!-- END OF PORTFOLIO -->
-      <!-- PAGE FOOTER -->
+      <!-------------------------------------------------- END OF PORTFOLIO -->
+      <!------------------------------------------------------- PAGE FOOTER -->
       <footer class="footer">
         <section class="footer__container">
           <h2 class="footer__heading visuallyhidden">Page Footer</h2>
-          <!-- SOCIAL MEDIA -->
+          <!-------------------------------------------------- SOCIAL MEDIA -->
           <nav class="social social--horizontal">
             <h3 class="social__heading">Social Media</h3>
-            <!-- SOCIAL LIST -->
             <ul class="social__list">
-              <!-- BEHANCE -->
               <li class="social__item">
-                <a
-                  href="https://www.behance.net/jakubchojna"
-                  class="social__link"
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                >
+                <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-behance-square"></i>
                 </a>
               </li>
-              <!-- LINKEDIN -->
               <li class="social__item">
-                <a
-                  href="https://www.linkedin.com/in/jakub-chojna-126897b7/"
-                  class="social__link"
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                >
+                <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-linkedin"></i>
                 </a>
               </li>
-              <!-- GITHUB -->
               <li class="social__item">
-                <a
-                  href="https://github.com/jchojna/"
-                  class="social__link"
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                >
+                <a href="https://github.com/jchojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-github-square"></i>
                 </a>
               </li>
-              <!-- FACEBOOK -->
               <li class="social__item">
-                <a
-                  href="https://www.facebook.com/jakub.chojna/"
-                  class="social__link"
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                >
+                <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-facebook-square"></i>
                 </a>
               </li>
             </ul>
-            <!-- SOCIAL LIST -->
           </nav>
-          <!-- END OF SOCIAL MEDIA -->
-          <!-- COPYRIGHT -->
+          <!------------------------------------------- END OF SOCIAL MEDIA -->
+          <!----------------------------------------------------- COPYRIGHT -->
           <section class="copyright">
             <h3 class="copyright__heading">Copyright</h3>
             <p class="copyright__text">
@@ -1390,13 +1366,12 @@
               designed and developed by Jakub Chojna
             </p>
           </section>
-          <!-- END OF COPYRIGHT -->
+          <!---------------------------------------------- END OF COPYRIGHT -->
         </section>
       </footer>
-      <!-- END OF PAGE FOOTER -->
+      <!------------------------------------------------ END OF PAGE FOOTER -->
     </div>
-    <!-- END OF PAGE CONTAINER -->
-
+    <!----------------------------------------------- END OF PAGE CONTAINER -->
     <script src="js/main.js"></script>
   </body>
 </html>

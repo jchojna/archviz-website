@@ -16,8 +16,8 @@ html {
 *,
 *:before,
 *:after {
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   box-sizing: inherit;
 }
 
@@ -26,7 +26,7 @@ body {
   color: #fff;
   font-size: 16px;
   line-height: 1.4;
-  font-family: 'Quicksand', Arial, sans-serif;
+  font-family: 'Poppins', 'Work Sans', Arial, sans-serif;
 }
 
 img {
@@ -45,9 +45,7 @@ object {
 .disabled {
   opacity: 0.5;
 }
-
-/********** PAGE OVERLAY **********/
-
+///////////////////////////////////////////////////////////////// PAGE OVERLAY 
 .page-overlay {
   background-color: black;
   opacity: 0;
@@ -71,9 +69,7 @@ object {
     transition: visibility 0s, opacity $time-page-overlay;
   }
 }
-
-/********** PAGE CONTAINER **********/
-
+/////////////////////////////////////////////////////////////// PAGE CONTAINER 
 .page-container {
   display: none;
   flex-direction: column;
@@ -96,13 +92,13 @@ object {
     background-color: #000;
   }
 }
-
-/********** BUTTONS **********/
-
+////////////////////////////////////////////////////////////////////// BUTTONS 
 .button {
   background: none;
   border: none;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 
   &--primary {
     display: inline-block;

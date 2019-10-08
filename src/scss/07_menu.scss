@@ -1,5 +1,4 @@
-/********** HEADER **********/
-
+/////////////////////////////////////////////////////////////////////// HEADER 
 .header {
   position: fixed;
   top: 0;
@@ -26,9 +25,7 @@
     }
   }
 }
-
-/********** NAVIGATION **********/
-
+/////////////////////////////////////////////////////////////////// NAVIGATION 
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -59,9 +56,7 @@
     }
   }
 }
-
-/********** LOGO **********/
-
+///////////////////////////////////////////////////////////////////////// LOGO 
 .logo {
   display: flex;
   height: $layout-sm-logo;
@@ -95,9 +90,7 @@
     }
   }
 }
-
-/********** MAIN MENU **********/
-
+//////////////////////////////////////////////////////////////////// MAIN MENU 
 .main-menu {
 
   &__list {
@@ -116,17 +109,16 @@
   }
 
   &__link {
-    color: white;
-    letter-spacing: 0.2rem;
-    line-height: 1;
+    @include flex-center;
+    color: #fff;
     font-size: 1.5rem;
-    font-weight: bold;
-    transition: color $time-hover-menu, -webkit-text-stroke-color $time-hover-menu;
+    font-weight: 700;
+    transition: color $time-hover-menu;
+    margin: 0 10px;
 
     &--large {
-      color: transparent;
-      -webkit-text-stroke: 2px white;
-      font-size: 3rem;
+      color: #fff;
+      font-size: 4rem;
     }
 
     &--small {
@@ -134,7 +126,8 @@
     }
 
     &--active-large {
-      color: white;
+      color: $color-main;
+      //background-color: $color-main;
     }
     
     &--active-small {
@@ -160,9 +153,9 @@
 
       &__item {
 
-        &--large:not(:last-child) {
+        /* &--large:not(:last-child) {
           margin: 0 0 1rem 0;
-        }
+        } */
         
         &--small:not(:last-child) {
           margin: 0 0 0.5rem 0;
@@ -181,9 +174,9 @@
       
       &__item {
 
-        &--large:not(:last-child) {
+        /* &--large:not(:last-child) {
           margin: 0 5rem 0 0;
-        }
+        } */
         
         &--small:not(:last-child) {
           margin: 0 3rem 0 0;
@@ -198,11 +191,9 @@
   transform: translateY(0);
   transition: transform $transition-navbar $ease-in-strong;
 }
-
 */
 
-/********** MOBILE MENU **********/
-
+////////////////////////////////////////////////////////////////// MOBILE MENU 
 .mobile-menu {
   @include position-fixed;
   @include flex-center;
@@ -231,35 +222,53 @@
     @extend .main-menu__link;
   }
 }
-
-/********** BURGER BUTTON **********/
-
+//////////////////////////////////////////////////////////////// BURGER BUTTON 
 .burger {
-  background: none;
-  border: none;
-  cursor: pointer;
-  fill: #fff;
-  height: $layout-sm-logo;
-  width: $layout-sm-logo;
-  padding: 5px;
-  z-index: 1;
+  position: relative;
+  width: $size-button-burger;
+  height: $size-button-burger;
 
   &__svg {
-    height: 100%;
     width: 100%;
+    height: 100%;
+    stroke: #fff;
+    stroke-width: 16;
+    transition: stroke $time-hover-menu;
+
+    &:hover {
+      stroke: $color-main;
+    }
   }
 
-  &:hover {
-    fill: $color-main;
+  &__line {
+    transition: transform $time-hover-menu;
+
+    &--rotate-left {
+      transform: rotate(-45deg);
+    }
+
+    &--rotate-right {
+      transform: rotate(45deg);
+    }
+
+    &--top {
+      transform-origin: 95% 14%;
+    }
+    
+    &--center {
+      transform-origin: 50% 50%;
+    }
+    
+    &--bottom {
+      transform-origin: 5% 85%;
+    }
   }
 
   @media only screen and (min-width: $media-tablet) {
     display: none;
   }
 }
-
-/********** GO TO TOP BUTTON **********/
-
+///////////////////////////////////////////////////////////// GO TO TOP BUTTON 
 .go-top {
   @include flex-center;
   position: fixed;
@@ -272,8 +281,8 @@
   color: #fff;
   border: 4px solid #fff;
   border-radius: 50%;
-  width: $size-go-top-button;
-  height: $size-go-top-button;
+  width: $size-button-go-top;
+  height: $size-button-go-top;
 
   &--visible {
     visibility: visible;

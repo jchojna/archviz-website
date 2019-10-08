@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <!-- PAGE OVERLAY -->
+    <!-------------------------------------------------------- PAGE OVERLAY -->
     <div class="page-overlay page-overlay--onload page-overlay--js"></div>
-
-    <!-- MODAL BOX -->
+    <!------------------------------------------------- END OF PAGE OVERLAY -->
+    <!----------------------------------------------------------- MODAL BOX -->
     <div class="modal modal--js">
       <section class="modal__box">
         <h2 class="modal__heading visuallyhidden">Alert</h2>
@@ -20,23 +20,23 @@
         <i class="modal__close modal__close--js fas fa-times"></i>
       </section>
     </div>
-
-    <!-- PAGE HEADER -->
+    <!---------------------------------------------------- END OF MODAL BOX -->
+    <!--------------------------------------------------------- PAGE HEADER -->
     <header class="header">
       <h1 class="header__heading visuallyhidden">
         Architectural Visualizations
       </h1>
-      <!-- MAIN NAVIGATION -->
+      <!--------------------------------------------------- MAIN NAVIGATION -->
       <nav class="navigation navigation--align-top">
         <h2 class="navigation__heading visuallyhidden">Main Navigation</h2>
-        <!-- PAGE LOGO -->
+        <!------------------------------------------------------- PAGE LOGO -->
         <a href="index.html" class="logo fadeOut--js">
           <svg class="logo__svg">
-            <use xlink:href="assets/svg/logos-icons.svg#page-logo" />
+            <use xlink:href="assets/svg/icons.svg#page-logo" />
           </svg>
         </a>
-        <!-- END OF PAGE LOGO -->
-        <!-- MAIN MENU -->
+        <!------------------------------------------------ END OF PAGE LOGO -->
+        <!------------------------------------------------------- MAIN MENU -->
         <section class="main-menu">
           <h3 class="main-menu__heading visuallyhidden">Main Menu</h3>
           <ul class="main-menu__list main-menu__list--js">
@@ -63,41 +63,40 @@
             </li>
           </ul>
         </section>
-        <!-- END OF MAIN MENU -->
-        <!-- MOBILE MENU -->
+        <!------------------------------------------------ END OF MAIN MENU -->
+        <!----------------------------------------------------- MOBILE MENU -->
         <section class="mobile-menu mobile-menu--hidden mobile-menu--js">
           <h3 class="mobile-menu__heading visuallyhidden">Mobile Menu</h3>
         </section>
-        <!-- END OF MOBILE MENU -->
-        <!-- BURGER BUTTON -->
+        <!---------------------------------------------- END OF MOBILE MENU -->
+        <!--------------------------------------------------- BURGER BUTTON -->
         <button class="burger burger--js" aria-label="open mobile menu">
           <svg class="burger__svg" viewBox="0 0 1000 1000">
-            <use href="assets/svg/logos-icons.svg#burger-button" />
+            <use href="assets/svg/icons.svg#burger-button" />
           </svg>
         </button>
-        <!-- END OF BURGER BUTTON -->
-        <!-- GO TO TOP BUTTON -->
+        <!-------------------------------------------- END OF BURGER BUTTON -->
+        <!------------------------------------------------ GO TO TOP BUTTON -->
         <div class="go-top go-top--js">
           <a href="#page-container" class="go-top__link">
             <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
           </a>
         </div>
-        <!-- END OF GO TO TOP BUTTON -->
+        <!----------------------------------------- END OF GO TO TOP BUTTON -->
       </nav>
-      <!-- END OF MAIN NAVIGATION -->
+      <!-------------------------------------------- END OF MAIN NAVIGATION -->
     </header>
-    <!-- END OF PAGE HEADER -->
-
-    <!-- PAGE CONTAINER -->
+    <!-------------------------------------------------- END OF PAGE HEADER -->
+    <!------------------------------------------------------ PAGE CONTAINER -->
     <main id="page-container" class="page-container page-container--visible page-container--js">
-      <!-- FORM -->
+      <!-------------------------------------------------------------- FORM -->
       <form
         action="#"
         method="post"
         autocomplete="off"
         class="form form--js">
         <h2 class="form__heading">Contact me!</h2>
-        <!-- NAME -->
+        <!------------------------------------------------------------ NAME -->
         <p class="input">
           <label for="name" class="input__label">Name:</label>
           <input
@@ -106,8 +105,9 @@
             class="input__data"
             name="userName"
             placeholder="your name">
-        </p> <!-- END OF NAME -->
-        <!-- EMAIL -->
+        </p>
+        <!----------------------------------------------------- END OF NAME -->
+        <!----------------------------------------------------------- EMAIL -->
         <p class="input">
           <label for="email" class="input__label">E-mail:</label>
           <input
@@ -117,8 +117,9 @@
             name="userEmail"
             placeholder="your e-mail address">
           <span class="contact__error"></span>
-        </p> <!-- END OF EMAIL -->
-        <!-- PHONE -->
+        </p>
+        <!---------------------------------------------------- END OF EMAIL -->
+        <!----------------------------------------------------------- PHONE -->
         <p class="input">
           <label for="phone" class="input__label">Phone:</label>
           <input
@@ -128,8 +129,9 @@
             name="userPhone"
             placeholder="your phone number">
           <span class="contact__error"></span>
-        </p><!-- END OF PHONE -->
-        <!-- TITLE -->
+        </p>
+        <!---------------------------------------------------- END OF PHONE -->
+        <!----------------------------------------------------------- TITLE -->
         <p class="input">
           <label for="title" class="input__label">Title:</label>
           <input
@@ -138,8 +140,9 @@
             class="input__data"
             name="userTitle"
             placeholder="title of your message">
-        </p> <!-- END OF TITLE -->
-        <!-- MESSAGE -->
+        </p>
+        <!---------------------------------------------------- END OF TITLE -->
+        <!--------------------------------------------------------- MESSAGE -->
         <p class="input input--message">
           <label for="message" class="input__label">Message:</label>
           <textarea
@@ -149,8 +152,9 @@
             rows="10"
             cols="10"
             placeholder="write your message"></textarea>
-        </p> <!-- END OF MESSAGE -->
-        <!-- VERIFICATION -->
+        </p>
+        <!-------------------------------------------------- END OF MESSAGE -->
+        <!---------------------------------------------------- VERIFICATION -->
         <fieldset class="form__verification form__verification--js">
           <legend class="form__question visuallyhidden">
             Are you a robot?
@@ -163,7 +167,7 @@
               name="checkbox1">
             <span class="checkbox__field"></span>
             <svg class="checkbox__mark" viewBox="0 0 24 24">
-              <use href="assets/svg/logos-icons.svg#checkmark"/>
+              <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
             I'm a robot
           </label>
@@ -175,7 +179,7 @@
               name="checkbox2">
             <span class="checkbox__field"></span>
             <svg class="checkbox__mark" viewBox="0 0 24 24">
-              <use href="assets/svg/logos-icons.svg#checkmark"/>
+              <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
             I'm not a robot
           </label>
@@ -187,22 +191,21 @@
               name="checkbox3">
             <span class="checkbox__field"></span>
             <svg class="checkbox__mark" viewBox="0 0 24 24">
-              <use href="assets/svg/logos-icons.svg#checkmark"/>
+              <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
             I wish I was...
           </label>
-        </fieldset><!-- END OF CHECKBOXES -->
-        <!-- SUBMIT BUTTON -->
+        </fieldset>
+        <!--------------------------------------------- END OF VERIFICATION -->
         <button type="submit" class="form__submit form__submit--js">SEND</button>
-        <!-- END OF SUBMIT BUTTONs -->
-      </form> <!-- END OF FORM -->
-
-      <!-- PAGE FOOTER -->
+      </form>
+      <!------------------------------------------------------- END OF FORM -->
+      <!------------------------------------------------------- PAGE FOOTER -->
       <footer class="footer">
-        <!-- FOOTER CONTAINER -->
+        <!------------------------------------------------ FOOTER CONTAINER -->
         <section class="footer__container footer__container--contact">
           <h2 class="footer__heading visuallyhidden">Page Footer</h2>
-          <!-- ADDRESS SECTION -->
+          <!----------------------------------------------- ADDRESS SECTION -->
           <section class="address">
             <h3 class="address__header visuallyhidden">Address</h3>
             <table class="table">
@@ -224,47 +227,46 @@
               </tbody>
             </table>
           </section>
-          <!-- END OF ADDRESS SECTION -->
-          <!-- SOCIAL MEDIA -->
+          <!---------------------------------------- END OF ADDRESS SECTION -->
+          <!-------------------------------------------------- SOCIAL MEDIA -->
           <nav class="social">
-            <h3 class="social__heading visuallyhidden">Social Media</h3>
-            <!-- SOCIAL LIST -->
+            <h3 class="social__heading">Social Media</h3>
             <ul class="social__list">
-              <!-- BEHANCE -->
               <li class="social__item">
                 <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-behance-square"></i>
                 </a>
               </li>
-              <!-- LINKEDIN -->
               <li class="social__item">
                 <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-linkedin"></i>
                 </a>
               </li>
-              <!-- GITHUB -->
               <li class="social__item">
                 <a href="https://github.com/jchojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-github-square"></i>
                 </a>
               </li>
-              <!-- FACEBOOK -->
               <li class="social__item">
                 <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
                   <i class="social__icon fab fa-facebook-square"></i>
                 </a>
               </li>
-            </ul> <!-- SOCIAL LIST -->
-          </nav> <!-- END OF SOCIAL MEDIA -->
-        </section> <!-- END OF FOOTER CONTAINER -->
-        <!-- COPYRIGHT -->
+            </ul>
+          </nav>
+          <!------------------------------------------- END OF SOCIAL MEDIA -->
+        </section>
+        <!----------------------------------------- END OF FOOTER CONTAINER -->
+        <!------------------------------------------------------- COPYRIGHT -->
         <section class="copyright">
           <h2 class="copyright__heading visuallyhidden">Copyright</h2>
           <p class="copyright__text">Copyright &copy; 2019 Jakub Chojna. All rights reserved. Website designed and developed by Jakub Chojna</p>
-        </section> <!-- END OF COPYRIGHT -->
-      </footer> <!-- END OF FOOTER -->
-    </main> <!-- END OF PAGE CONTAINER -->
-
+        </section>
+        <!------------------------------------------------ END OF COPYRIGHT -->
+      </footer>
+      <!----------------------------------------------------- END OF FOOTER -->
+    </main>
+    <!----------------------------------------------- END OF PAGE CONTAINER -->
     <script src="js/main.js"></script>
   </body>
 </html>
