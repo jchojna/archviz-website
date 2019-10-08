@@ -431,8 +431,9 @@ if (gallery) {
     // F0 /////////////////////////////////// GENERATE GALLERY << SHOW GALLERY 
 
     const generateGallery = () => {
+      const imagesAmount = portfolioGridImages.length;
 
-      for (let i = 0; i < portfolioGridImages.length; i++) {
+      for (let i = 0; i < imagesAmount; i++) {
 
         const image = portfolioGridImages[i];
         const imageAlt = image.alt;
@@ -443,12 +444,16 @@ if (gallery) {
         const svgLineHref = svgSolidHref.replace('solid', 'line');
         const viewBoxWidth = svg.viewBox.baseVal.width;
         const viewBoxHeight = svg.viewBox.baseVal.height;
+        const number = getTwoDigit(i + 1);
         
         gallery.innerHTML += `
         <section class="images images--js">
-          <h3 class="images__heading">
-            ${imageHeading}
-          </h3>
+          <div class="images__description">
+            <p class="images__counter images__counter--js">
+              ${number} / ${imagesAmount}
+            </p>
+            <h3 class="images__heading">${imageHeading}</h3>
+          </div>
           <div class="images__container">
             <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
               <use href="${svgSolidHref}"></use>
@@ -524,7 +529,6 @@ if (gallery) {
         removeAllEvents();
         prevScroll = null;
       }
-
     }
     // F2 //////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY 
 
@@ -536,8 +540,6 @@ if (gallery) {
       const currentImageSection = imageSections[currentIndex];
       const prevImageSection = imageSections[prevIndex];
       const nextImageSection = imageSections[nextIndex];
-
-      imageNumber.textContent = `${getTwoDigit(currentIndex+1)} / ${getTwoDigit(imageSections.length)}`;
       
       // F1 /////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
 
