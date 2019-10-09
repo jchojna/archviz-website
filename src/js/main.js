@@ -190,26 +190,6 @@ const throttle = (func, wait, options) => {
 ##     ## ######## ##    ##  #######
 */
 
-// F0 /////////////////////////////////////////////////// GENERATE MOBILE MENU 
-
-const generateMobileMenu = () => {
-  const mobileMenuList = mainMenuList.cloneNode(true);
-  const mobileMenuItems = mobileMenuList.children;
-  const regex = /active/;
-  
-  mobileMenu.appendChild(mobileMenuList);
-  mobileMenuList.className = "mobile-menu__list";
-
-  for (const mobileMenuItem of mobileMenuItems) {
-    const mobileMenuLink = mobileMenuItem.firstElementChild;
-    mobileMenuItem.className = "mobile-menu__item";
-    if ( regex.test(mobileMenuLink.className) ) {
-      mobileMenuLink.className = "mobile-menu__link mobile-menu__link--active";
-    } else {
-      mobileMenuLink.className = "mobile-menu__link";
-    }
-  }
-}
 // F0 ///////////////////////////////////////////////////// TOGGLE MOBILE MENU 
 
 const toggleMobileMenu = () => {
@@ -217,15 +197,6 @@ const toggleMobileMenu = () => {
   burgerTop.classList.toggle('burger__line--rotate-left');
   burgerCenter.classList.toggle('burger__line--rotate-right');
   burgerBottom.classList.toggle('burger__line--rotate-left');
-}
-// F0 ///////////////////////////////////////////////////// HANDLE MOBILE MENU 
-
-const handleMobileMenu = (e) => {
-  e.preventDefault();
-  if ( mobileMenu.children.length === 1 ) {
-    generateMobileMenu();
-  }
-  toggleMobileMenu();
 }
 // F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR 
 
@@ -280,7 +251,7 @@ const burgerBottom = document.querySelector('.burger__line--js-bottom');
 
 ////////////////////////////////////////////////////////////// EVENT LISTENERS 
 window.addEventListener('scroll', toggleGoTopButton );
-burgerButton.addEventListener('click', handleMobileMenu );
+burgerButton.addEventListener('click', toggleMobileMenu );
 
 /*
 ########   #######  ########  ######## ########  #######  ##       ####  #######
@@ -298,7 +269,7 @@ if (portfolio) {
 
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
-  const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
+  const portfolioGridLinks = document.querySelectorAll('.grid__button--js');
 
   //const lazyPlaceholders = [...portfolioPlaceholders];
   let lazyLoadBuffer = 500;
@@ -316,7 +287,6 @@ if (portfolio) {
     for ( const svg of portfolioSvgs ) {
       ratios.push( 1000 / svg.viewBox.baseVal.height );
     };
-    console.log('ratios', portfolioSvgs);
     return ratios;
   }
   // F0 ///////////////////////////////////////////////////// ADD FLEX CLASSES 
@@ -385,7 +355,7 @@ if (portfolio) {
 
     if (imageOffset >= viewportTopOffset) { // if image is below top viewport border
       if (imageOffset < viewportBottomOffset) { // if image is inside viewport
-        if (imageSrc === "assets/img/blank-image.png") { // if proper src is not applied yet
+        if (imageSrc === "") { // if proper src is not applied yet
           image.setAttribute('src', '');
           image.setAttribute('src', imageNewSrc);
           image.onload = () => {
