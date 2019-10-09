@@ -642,10 +642,9 @@ if (gallery) {
           break;
 
         case 13:
-        case 38:
-        case 40:
         case switchButton:
           currentImage.classList.toggle('images__image--loaded');
+          switchCenter.classList.toggle('switch__center--linear');
           break;
         
         case 27:
@@ -670,6 +669,7 @@ if (gallery) {
     const leftButton = document.querySelector('.gallery-nav__button--js-left');
     const rightButton = document.querySelector('.gallery-nav__button--js-right');
     const closeButton = document.querySelector('.gallery-nav__button--js-close');
+    const switchCenter = document.querySelector('.switch__center--js');
     const portfolioGridImage = portfolioGridImages[currentIndex];
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
