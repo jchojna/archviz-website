@@ -63,7 +63,7 @@
     pointer-events: none;
   }
 
-  &__link {
+  &__button {
     @include flex-center;
     position: relative;
     transform: scale(1);

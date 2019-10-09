@@ -316,6 +316,7 @@ if (portfolio) {
     for ( const svg of portfolioSvgs ) {
       ratios.push( 1000 / svg.viewBox.baseVal.height );
     };
+    console.log('ratios', portfolioSvgs);
     return ratios;
   }
   // F0 ///////////////////////////////////////////////////// ADD FLEX CLASSES 

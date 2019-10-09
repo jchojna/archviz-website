@@ -1,5 +1,61 @@
 const portfolio = [
   {
+    name: "Museum Extension",
+    viewbox: "0 0 1000 826",
+    src: "#museum-finland-01",
+    file: "museum-finland-01.jpg",
+    alt: "National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
+  },
+  {
+    name: "Adlestrop House",
+    viewbox: "0 0 1000 1000",
+    src: "#adlestrop-house",
+    file: "adlestrop-house.jpg",
+    alt: "Adlestrop House - interior view, UK | client: Michaelis Boyd"
+  },
+  {
+    name: "Science Center",
+    viewbox: "0 0 1000 1200",
+    src: "#science-center-exterior",
+    file: "science-center-exterior.jpg",
+    alt: "Science Center Concept - interior view | client: Outpost"
+  },
+  {
+    name: "Forest House",
+    viewbox: "0 0 1000 575",
+    src: "#forest-house",
+    file: "forest-house-birdwatcher.jpg",
+    alt: "Forest House for a Birdwatcher | personal work"
+  },
+  {
+    name: "Twickenham Riverside",
+    viewbox: "0 0 1000 750",
+    src: "#twickenham-02",
+    file: "twickenham-02.jpg",
+    alt: "Twickenham Riverside Concept, London, UK"
+  },
+  {
+    name: "Residential Building",
+    viewbox: "0 0 1000 625",
+    src: "#large-residential-01",
+    file: "large-residential-building-01.jpg",
+    alt: "Large residential building | client: PRES"
+  },
+  {
+    name: "Lakes & Dales",
+    viewbox: "0 0 1000 452",
+    src: "#lakes-dales-interior",
+    file: "lakes&dales-interior.jpg",
+    alt: "Lakes & Dales - interior view, UK | client: Outpost"
+  },
+  {
+    name: "Museum Extension",
+    viewbox: "0 0 1000 826",
+    src: "#museum-finland-03",
+    file: "museum-finland-03.jpg",
+    alt: "National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
+  },
+  {
     name: "Holiday Let",
     viewbox: "0 0 1000 544",
     src: "#holiday-let",
@@ -28,6 +84,13 @@ const portfolio = [
     alt: "Kindergarten competition in Kočevje, Slovenia | 1st Prize | client: Svet Vmes"
   },
   {
+    name: "Lund's Town Hall",
+    viewbox: "0 0 1000 736",
+    src: "#lunds-stadshall-01",
+    file: "lunds-stadshall-01.jpg",
+    alt: "Town Hall Renovation Concept in Lund, Sweden | client: Terroir"
+  },
+  {
     name: "Faculty of Mechanical Engineering",
     viewbox: "0 0 1000 448",
     src: "#faculty-buildings-01",
@@ -47,6 +110,20 @@ const portfolio = [
     src: "#watertower-01",
     file: "watertower-denmark-01.jpg",
     alt: "Water Tower in Denmark - view on the concrete structure | client: AFI"
+  },
+  {
+    name: "Science Center",
+    viewbox: "0 0 1000 699",
+    src: "#science-center-interior",
+    file: "science-center-interior.jpg",
+    alt: "Science Center Concept - interior view | client: Outpost"
+  },
+  {
+    name: "Residential Building",
+    viewbox: "0 0 1000 600",
+    src: "#large-residential-02",
+    file: "large-residential-building-02.jpg",
+    alt: "Large residential building | client: PRES"
   },
   {
     name: "Parametric Pavilion",
@@ -84,6 +161,13 @@ const portfolio = [
     alt: "LightWeb light installation | Clue Light competition entry"
   },
   {
+    name: "Twickenham Riverside",
+    viewbox: "0 0 1000 723",
+    src: "#twickenham-01",
+    file: "twickenham-01.jpg",
+    alt: "Twickenham Riverside Concept, London, UK"
+  },
+  {
     name: "Kindergarten",
     viewbox: "0 0 1000 583",
     src: "#kindergarten-01",
@@ -96,6 +180,13 @@ const portfolio = [
     src: "#h2ouse-03",
     file: "h2ouse-dom-na-wodzie-03.JPG",
     alt: "h2Ouse - house on the water for flood victims | personal work"
+  },
+  {
+    name: "Lund's Town Hall",
+    viewbox: "0 0 1000 729",
+    src: "#lunds-stadshall-02",
+    file: "lunds-stadshall-02.jpg",
+    alt: "Town Hall Renovation Concept in Lund, Sweden | client: Terroir"
   },
   {
     name: "Quick Park Konstancin",
@@ -269,6 +360,13 @@ const portfolio = [
     alt: "Urban planning design in Frankfurt am Main, Germany | client: Bartłomiej Matuszewski"
   },
   {
+    name: "Museum Extension",
+    viewbox: "0 0 1000 969",
+    src: "#museum-finland-02",
+    file: "museum-finland-02.jpg",
+    alt: "National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
+  },
+  {
     name: "Libero Gallery",
     viewbox: "0 0 1000 600",
     src: "#gallery-libero",
@@ -420,9 +518,9 @@ const generateHTML = (obj) => {
     `<!-- ${name.toUpperCase()} -->
     <section class="grid__item grid__item--js">
       <h4 class="grid__title grid__title--js">${name}</h4>
-      <a href="#" class="grid__link">
+      <button href="#" class="button grid__button">
         <svg
-          class="grid__svg-solid"
+          class="grid__svg-solid grid__svg-solid--js"
           viewBox="${viewbox}"
         >
           <use
@@ -439,11 +537,11 @@ const generateHTML = (obj) => {
         </svg>
         <img 
           src="assets/img/1920px/${file}"
-          data-src="assets/img/960px/${file}"
+          data-src="assets/img/1000px/${file}"
           data-src2="assets/img/1920px/${file}"
           class="grid__image grid__image--js"
           alt="${alt}">
-      </a>
+      </button>
     </section>`
 
     root.textContent = generatedHTML;
