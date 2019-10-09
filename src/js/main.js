@@ -623,12 +623,12 @@ if (gallery) {
 
       const self = e.keyCode || e.target;
       const currentImageSection = imageSections[currentIndex];
+      const currentImage = images[currentIndex];
 
       switch (self) {
 
         case 37:
         case leftButton:
-          e.preventDefault();
           displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
           displayGallery(e,'showImage');
@@ -636,7 +636,6 @@ if (gallery) {
 
         case 39:
         case rightButton:
-          e.preventDefault();
           displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'increase');
           displayGallery(e,'showImage');
@@ -646,14 +645,13 @@ if (gallery) {
         case 38:
         case 40:
         case switchButton:
-          e.preventDefault();
+          currentImage.classList.toggle('images__image--loaded');
           break;
         
         case 27:
         case portfolioGridImage:
         case currentImageSection:
         case closeButton:
-          e.preventDefault();
           displayGallery(e);
           removeAllEvents();
           break;

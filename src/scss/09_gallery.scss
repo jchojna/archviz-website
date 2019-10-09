@@ -70,6 +70,7 @@
   }
 
   &__container {
+    @include flex-center;
     position: relative;
   }
 
@@ -96,11 +97,12 @@
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1s, visibility 0s;
+    transition: opacity $time-image-gallery, visibility 0s $time-image-gallery;
 
     &--loaded {
       opacity: 1;
       visibility: visible;
+      transition: opacity $time-image-gallery, visibility 0s;
     }
   }
 }
