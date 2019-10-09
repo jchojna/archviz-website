@@ -242,7 +242,6 @@ const toggleGoTopButton = () => {
   }
 }
 //////////////////////////////////////////////////////////////////// VARIABLES 
-const mainMenuList = document.querySelector('.main-menu__list--js');
 const mobileMenu = document.querySelector('.mobile-menu--js');
 const burgerButton = document.querySelector('.burger--js');
 const burgerTop = document.querySelector('.burger__line--js-top');

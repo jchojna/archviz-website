@@ -31,12 +31,20 @@
   justify-content: space-between;
   align-items: center;
 
+  &:hover &__item {
+    transform: translateY(0);
+    transition: transform $time-menu-translation $timing-ease-in-strong;
+  }
+
   &--align-top {
     align-items: flex-start;
   }
 
   &__list {
     display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
     list-style: none;
   }
 
@@ -62,21 +70,12 @@
       font-size: 4rem;
     }
 
-    &--small {
-
-    }
-
-    &--active-large {
-      color: $color-main;
-    }
-    
-    &--active-small {
+    &--active {
       color: $color-main;
     }
 
     &:hover {
       color: $color-main;
-      -webkit-text-stroke-color: $color-main;
     }
   }
 
@@ -86,19 +85,12 @@
 
       &__list {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-end;
       }
 
       &__item {
-
-        &--large:not(:last-child) {
-          margin: 0 0 20px 0;
-        }
         
-        &--small:not(:last-child) {
-          margin: 0 0 0.5rem 0;
+        &:not(:last-child) {
+          margin: 0 0 20px 0;
         }
       }
     }
@@ -117,26 +109,14 @@
       }
       
       &__item {
-
-        &--large:not(:last-child) {
-          margin: 0 30px 0 0;
-        }
         
-        &--small:not(:last-child) {
-          margin: 0 3rem 0 0;
+        &:not(:last-child) {
+          margin: 0 30px 0 0;
         }
       }
     }
   }
 }
-
-/* 
-.nav__menu:hover .nav__menu-item {    // showing each menu item when hover over navbar
-  transform: translateY(0);
-  transition: transform $transition-navbar $ease-in-strong;
-}
-*/
-
 ////////////////////////////////////////////////////////////////// MOBILE MENU 
 .mobile-menu {
   @include position-fixed;
@@ -149,13 +129,15 @@
   &--hidden {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 1s, opacity $time-mobile-menu;
+    transition: visibility 0s $time-mobile-menu, opacity $time-mobile-menu;
   }
 
   &__list {
     @include flex-center;
     flex-direction: column;
     list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   &__item {
@@ -164,20 +146,8 @@
 
   &__link {
     @extend .main-menu__link;
+    font-size: 3rem;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-  
 }
 ///////////////////////////////////////////////////////////////////////// LOGO 
 .logo {
@@ -218,6 +188,7 @@
   position: relative;
   width: $size-button-burger;
   height: $size-button-burger;
+  z-index: 1;
 
   &__svg {
     width: 100%;
