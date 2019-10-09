@@ -518,7 +518,7 @@ const generateHTML = (obj) => {
     `<!-- ${name.toUpperCase()} -->
     <section class="grid__item grid__item--js">
       <h4 class="grid__title grid__title--js">${name}</h4>
-      <button href="#" class="button grid__button">
+      <button href="#" class="button grid__button grid__button--js">
         <svg
           class="grid__svg-solid grid__svg-solid--js"
           viewBox="${viewbox}"
@@ -536,7 +536,7 @@ const generateHTML = (obj) => {
           />
         </svg>
         <img 
-          src="assets/img/1920px/${file}"
+          src=""
           data-src="assets/img/1000px/${file}"
           data-src2="assets/img/1920px/${file}"
           class="grid__image grid__image--js"
