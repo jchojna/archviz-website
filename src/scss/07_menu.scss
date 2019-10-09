@@ -25,24 +25,74 @@
     }
   }
 }
-/////////////////////////////////////////////////////////////////// NAVIGATION 
-.navigation {
+//////////////////////////////////////////////////////////////////// MAIN MENU 
+.main-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &:hover &__item {
+    transform: translateY(0);
+    transition: transform $time-menu-translation $timing-ease-in-strong;
+  }
 
   &--align-top {
     align-items: flex-start;
   }
 
-  &--top {
-    position: absolute;
+  &__list {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    list-style: none;
+  }
+
+  &__item {
+    transform: translateY(0);
+    transition: transform $time-menu-translation $timing-ease-in-strong;
+
+    &--hidden {
+      transform: translateY(-220px);
+      transition: transform $time-menu-translation $timing-ease-out-strong $time-menu-delay;
+    }
+  }
+
+  &__link {
+    @include flex-center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: color $time-hover-menu;
+
+    &--large {
+      color: #fff;
+      font-size: 4rem;
+    }
+
+    &--active {
+      color: $color-main;
+    }
+
+    &:hover {
+      color: $color-main;
+    }
   }
 
   @media only screen and (min-width: $media-tablet) {
 
     & {
 
+      &__list {
+        display: flex;
+      }
+
+      &__item {
+        
+        &:not(:last-child) {
+          margin: 0 0 20px 0;
+        }
+      }
     }
   }
 
@@ -53,7 +103,50 @@
       &--align-top {
         align-items: center;
       }
+
+      &__list {
+        flex-direction: row;
+      }
+      
+      &__item {
+        
+        &:not(:last-child) {
+          margin: 0 30px 0 0;
+        }
+      }
     }
+  }
+}
+////////////////////////////////////////////////////////////////// MOBILE MENU 
+.mobile-menu {
+  @include position-fixed;
+  @include flex-center;
+  background-color: #000;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity $time-mobile-menu;
+
+  &--hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s $time-mobile-menu, opacity $time-mobile-menu;
+  }
+
+  &__list {
+    @include flex-center;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+
+  }
+
+  &__link {
+    @extend .main-menu__link;
+    font-size: 3rem;
   }
 }
 ///////////////////////////////////////////////////////////////////////// LOGO 
@@ -90,143 +183,12 @@
     }
   }
 }
-//////////////////////////////////////////////////////////////////// MAIN MENU 
-.main-menu {
-
-  &__list {
-    display: none;
-    list-style: none;
-  }
-
-  &__item {
-    transform: translateY(0);
-    transition: transform $time-menu-translation $timing-ease-in-strong;
-
-    &--hidden {
-      transform: translateY(-220px);
-      transition: transform $time-menu-translation $timing-ease-out-strong $time-menu-delay;
-    }
-  }
-
-  &__link {
-    @include flex-center;
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 700;
-    transition: color $time-hover-menu;
-    margin: 0 10px;
-
-    &--large {
-      color: #fff;
-      font-size: 4rem;
-    }
-
-    &--small {
-
-    }
-
-    &--active-large {
-      color: $color-main;
-      //background-color: $color-main;
-    }
-    
-    &--active-small {
-      color: $color-main;
-    }
-
-    &:hover {
-      color: $color-main;
-      -webkit-text-stroke-color: $color-main;
-    }
-  }
-
-  @media only screen and (min-width: $media-tablet) {
-
-    & {
-
-      &__list {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-end;
-      }
-
-      &__item {
-
-        /* &--large:not(:last-child) {
-          margin: 0 0 1rem 0;
-        } */
-        
-        &--small:not(:last-child) {
-          margin: 0 0 0.5rem 0;
-        }
-      }
-    }
-  }
-
-  @media only screen and (min-width: $media-desktop) {
-
-    & {
-
-      &__list {
-        flex-direction: row;
-      }
-      
-      &__item {
-
-        /* &--large:not(:last-child) {
-          margin: 0 5rem 0 0;
-        } */
-        
-        &--small:not(:last-child) {
-          margin: 0 3rem 0 0;
-        }
-      }
-    }
-  }
-}
-
-/* 
-.nav__menu:hover .nav__menu-item {    // showing each menu item when hover over navbar
-  transform: translateY(0);
-  transition: transform $transition-navbar $ease-in-strong;
-}
-*/
-
-////////////////////////////////////////////////////////////////// MOBILE MENU 
-.mobile-menu {
-  @include position-fixed;
-  @include flex-center;
-  background-color: #000;
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity $time-mobile-menu;
-
-  &--hidden {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s 1s, opacity $time-mobile-menu;
-  }
-
-  &__list {
-    @include flex-center;
-    flex-direction: column;
-    list-style: none;
-  }
-
-  &__item {
-
-  }
-
-  &__link {
-    @extend .main-menu__link;
-  }
-}
 //////////////////////////////////////////////////////////////// BURGER BUTTON 
 .burger {
   position: relative;
   width: $size-button-burger;
   height: $size-button-burger;
+  z-index: 1;
 
   &__svg {
     width: 100%;

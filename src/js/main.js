@@ -190,26 +190,6 @@ const throttle = (func, wait, options) => {
 ##     ## ######## ##    ##  #######
 */
 
-// F0 /////////////////////////////////////////////////// GENERATE MOBILE MENU 
-
-const generateMobileMenu = () => {
-  const mobileMenuList = mainMenuList.cloneNode(true);
-  const mobileMenuItems = mobileMenuList.children;
-  const regex = /active/;
-  
-  mobileMenu.appendChild(mobileMenuList);
-  mobileMenuList.className = "mobile-menu__list";
-
-  for (const mobileMenuItem of mobileMenuItems) {
-    const mobileMenuLink = mobileMenuItem.firstElementChild;
-    mobileMenuItem.className = "mobile-menu__item";
-    if ( regex.test(mobileMenuLink.className) ) {
-      mobileMenuLink.className = "mobile-menu__link mobile-menu__link--active";
-    } else {
-      mobileMenuLink.className = "mobile-menu__link";
-    }
-  }
-}
 // F0 ///////////////////////////////////////////////////// TOGGLE MOBILE MENU 
 
 const toggleMobileMenu = () => {
@@ -217,15 +197,6 @@ const toggleMobileMenu = () => {
   burgerTop.classList.toggle('burger__line--rotate-left');
   burgerCenter.classList.toggle('burger__line--rotate-right');
   burgerBottom.classList.toggle('burger__line--rotate-left');
-}
-// F0 ///////////////////////////////////////////////////// HANDLE MOBILE MENU 
-
-const handleMobileMenu = (e) => {
-  e.preventDefault();
-  if ( mobileMenu.children.length === 1 ) {
-    generateMobileMenu();
-  }
-  toggleMobileMenu();
 }
 // F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR 
 
@@ -271,7 +242,6 @@ const toggleGoTopButton = () => {
   }
 }
 //////////////////////////////////////////////////////////////////// VARIABLES 
-const mainMenuList = document.querySelector('.main-menu__list--js');
 const mobileMenu = document.querySelector('.mobile-menu--js');
 const burgerButton = document.querySelector('.burger--js');
 const burgerTop = document.querySelector('.burger__line--js-top');
@@ -280,7 +250,7 @@ const burgerBottom = document.querySelector('.burger__line--js-bottom');
 
 ////////////////////////////////////////////////////////////// EVENT LISTENERS 
 window.addEventListener('scroll', toggleGoTopButton );
-burgerButton.addEventListener('click', handleMobileMenu );
+burgerButton.addEventListener('click', toggleMobileMenu );
 
 /*
 ########   #######  ########  ######## ########  #######  ##       ####  #######
@@ -298,7 +268,7 @@ if (portfolio) {
 
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
-  const portfolioGridLinks = document.querySelectorAll('.grid__link--js');
+  const portfolioGridLinks = document.querySelectorAll('.grid__button--js');
 
   //const lazyPlaceholders = [...portfolioPlaceholders];
   let lazyLoadBuffer = 500;
@@ -384,7 +354,7 @@ if (portfolio) {
 
     if (imageOffset >= viewportTopOffset) { // if image is below top viewport border
       if (imageOffset < viewportBottomOffset) { // if image is inside viewport
-        if (imageSrc === "assets/img/blank-image.png") { // if proper src is not applied yet
+        if (imageSrc === "") { // if proper src is not applied yet
           image.setAttribute('src', '');
           image.setAttribute('src', imageNewSrc);
           image.onload = () => {
@@ -653,12 +623,12 @@ if (gallery) {
 
       const self = e.keyCode || e.target;
       const currentImageSection = imageSections[currentIndex];
+      const currentImage = images[currentIndex];
 
       switch (self) {
 
         case 37:
         case leftButton:
-          e.preventDefault();
           displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
           displayGallery(e,'showImage');
@@ -666,24 +636,21 @@ if (gallery) {
 
         case 39:
         case rightButton:
-          e.preventDefault();
           displayGallery(e,'hideImage');
           currentIndex = loopIndex(imageSections, currentIndex, 'increase');
           displayGallery(e,'showImage');
           break;
 
         case 13:
-        case 38:
-        case 40:
         case switchButton:
-          e.preventDefault();
+          currentImage.classList.toggle('images__image--loaded');
+          switchCenter.classList.toggle('switch__center--linear');
           break;
         
         case 27:
         case portfolioGridImage:
         case currentImageSection:
         case closeButton:
-          e.preventDefault();
           displayGallery(e);
           removeAllEvents();
           break;
@@ -702,6 +669,7 @@ if (gallery) {
     const leftButton = document.querySelector('.gallery-nav__button--js-left');
     const rightButton = document.querySelector('.gallery-nav__button--js-right');
     const closeButton = document.querySelector('.gallery-nav__button--js-close');
+    const switchCenter = document.querySelector('.switch__center--js');
     const portfolioGridImage = portfolioGridImages[currentIndex];
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
