@@ -44,10 +44,15 @@ const toNextPage = (e, callback, timeout) => {
   }
 }
 // F0 ///////////////////////////////////////////////////////////// DELAY LINK 
+
 const delayLink = (element) => {
   window.location = element.href;
 }
+// F0 /////////////////////////////////////////////////// GET TWO-DIGIT NUMBER 
 
+const getTwoDigit = (number) => {
+  return number.toString().length === 1 ? `0${number}` : number;
+}
 ////////////////////////////////////////////////////////////// EVENT LISTENERS 
 for ( const link of fadeOutLinks ) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
@@ -362,10 +367,6 @@ if (gallery) {
   // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
   const showGallery = (e) => {
 
-    e.preventDefault();
-    const self = e.target;
-    let currentIndex = self.index;
-
     // F0 /////////////////////////////////// GENERATE GALLERY << SHOW GALLERY 
 
     const generateGallery = () => {
@@ -408,15 +409,6 @@ if (gallery) {
         </section>
         `;
       }
-    }
-    // F0 /////////////////////////////// GET TWO-DIGIT NUMBER << SHOW GALLERY 
-
-    const getTwoDigit = (number) => {
-
-      let strNumber = number.toString();
-      strNumber.length === 1 ? strNumber = `0${strNumber}` : false;
-      return strNumber;
-
     }
     // F0 ///////////////////////////////////////// LOOP INDEX << SHOW GALLERY 
 
@@ -582,6 +574,7 @@ if (gallery) {
           return;
       }
     }
+    // F2 ///////////////////////////////////////////// END OF DISPLAY GALLERY 
     // F1 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
     const viewImage = (e) => {
 
@@ -627,6 +620,9 @@ if (gallery) {
     gallery.children.length <= 1 ? generateGallery() : false;
 
     //////////////////////////////////////////////// VARIABLES << SHOW GALLERY 
+    const self = e.target;
+    let currentIndex = self.index;
+
     const imageSections = document.querySelectorAll('.images--js');
     const images = document.querySelectorAll('.images__image--js');
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
@@ -645,9 +641,7 @@ if (gallery) {
     window.addEventListener('scroll', slideVertically);
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
-
   //////////////////////////////////////////////////////////////////////////// 
-
   let prevScroll = null;
 
   [...portfolioGridImages].forEach((a, i) => {
