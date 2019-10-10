@@ -27,7 +27,6 @@ $layout-sm-logo: 40px;
 $layout-md-logo: 80px;
 $layout-lg-logo: 100px;
 
-$size-burger-button: 40px;
 $size-go-top: 50px;
 
 $hover-main-menu: 0.3s;
@@ -36,6 +35,8 @@ $delay-main-menu: 0.5s;
 $go-top-button: 1s;
 
 ////////////////////////////////////////////////////////////////// MOBILE MENU 
+$size-burger-button: 30px;
+
 $toggle-mobile-menu: 0.5s;
 
 /////////////////////////////////////////////////////////////// PORTFOLIO GRID 
@@ -52,11 +53,14 @@ $grid-cols-lg: 3;
 ///////////////////////////////////////////////////////////////// PORTFOLIO JS 
 $scale-grid-item: 1.1;
 
-$hover-grid-item: 0.3s;
+$hover-grid-item: 0.4s;
 $load-grid-image: 1.5s;
 
 ////////////////////////////////////////////////////////////////////// GALLERY 
-$size-gallery-button: 50px;
+$offset-gallery: 15px;
+
+$size-gallery-button: 40px;
+$gap-gallery-button: 20px;
 
 $toggle-gallery: 0.7s;
 $hover-gallery-button: 0.4s;

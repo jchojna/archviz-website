@@ -36,10 +36,6 @@
     transition: transform $translate-main-menu $ease-in-strong;
   }
 
-  &--align-top {
-    align-items: flex-start;
-  }
-
   &__list {
     display: none;
     flex-direction: column;
@@ -82,6 +78,10 @@
   @media only screen and (min-width: $media-md) {
 
     & {
+
+      &--align-top {
+        align-items: flex-start;
+      }
 
       &__list {
         display: flex;
