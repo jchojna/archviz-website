@@ -1,47 +1,4 @@
 /*
-##     ##    ###    ########  ####    ###    ########  ##       ########  ######
-##     ##   ## ##   ##     ##  ##    ## ##   ##     ## ##       ##       ##    ##
-##     ##  ##   ##  ##     ##  ##   ##   ##  ##     ## ##       ##       ##
-##     ## ##     ## ########   ##  ##     ## ########  ##       ######    ######
- ##   ##  ######### ##   ##    ##  ######### ##     ## ##       ##             ##
-  ## ##   ##     ## ##    ##   ##  ##     ## ##     ## ##       ##       ##    ##
-   ###    ##     ## ##     ## #### ##     ## ########  ######## ########  ######
-*/
-
-////////////////////////////////////////////////////////////////////// OVERALL 
-const pageContainer = document.querySelector('.page-container--js');
-const portfolio = document.querySelector('.portfolio--js');
-const gallery = document.querySelector('.gallery--js');
-const about = document.querySelector('.about--js');
-const form = document.querySelector('.form--js');
-
-//////////////////////////////////////////////////////////////////// PORTFOLIO 
-const portfolioGridImages = document.querySelectorAll('.grid__image--js');
-const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
-
-///////////////////////////////////////////////////////////////////////// FORM 
-const submitButton = document.querySelector('.form__submit--js');
-
-///////////////////////////////////////////////////////////////// VERIFICATION 
-const checkboxContainer = document.querySelector('.form__verification--js');
-const checkboxes = document.querySelectorAll('.checkbox__input--js');
-const checkboxReject = document.querySelector('.checkbox__input--js-reject');
-const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
-const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
-let responseState = "empty";
-
-//////////////////////////////////////////////////////////////////// MODAL BOX 
-const modalContainer = document.querySelector('.modal--js');
-const modalText = document.querySelector('.modal__text--js');
-const modalClose = document.querySelector('.modal__close--js');
-
-let timeoutHandler = null;
-
-//////////////////////////////////////////////////////////////////////// MEDIA 
-const tabletBreakpoint = 768;
-const desktopBreakpoint = 1200;
-
-/*
  #######  ##     ## ######## ########     ###    ##       ##
 ##     ## ##     ## ##       ##     ##   ## ##   ##       ##
 ##     ## ##     ## ##       ##     ##  ##   ##  ##       ##
@@ -54,6 +11,17 @@ const desktopBreakpoint = 1200;
 //////////////////////////////////////////////////////////////////// VARIABLES 
 const pageOverlay = document.querySelector('.page-overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
+const pageContainer = document.querySelector('.page-container--js');
+const portfolio = document.querySelector('.portfolio--js');
+const gallery = document.querySelector('.gallery--js');
+const about = document.querySelector('.about--js');
+const form = document.querySelector('.form--js');
+
+const portfolioGridImages = document.querySelectorAll('.grid__image--js');
+const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
+
+const tabletBreakpoint = 768;
+const desktopBreakpoint = 1200;
 
 // F0 ///////////////////////////////////////////////////////// FADE IN EFFECT 
 
@@ -200,9 +168,6 @@ const toggleMobileMenu = () => {
 }
 // F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR 
 
-const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
-let navbarPrevScroll = window.pageYOffset || document.documentElement.scrollTop;
-
 const handleNavbar = () => {
   const navbarNextScroll = window.pageYOffset || document.documentElement.scrollTop;
   let delayStart = 0.3;
@@ -231,8 +196,6 @@ window.addEventListener('scroll', handleNavbar);
 
 // F0 /////////////////////////////////////////////////////// GO TO TOP BUTTON 
 
-const goToTopButton = document.querySelector('.go-top--js');
-
 const toggleGoTopButton = () => {
   let scroll = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
   if (scroll > 1000) {
@@ -247,6 +210,9 @@ const burgerButton = document.querySelector('.burger--js');
 const burgerTop = document.querySelector('.burger__line--js-top');
 const burgerCenter = document.querySelector('.burger__line--js-center');
 const burgerBottom = document.querySelector('.burger__line--js-bottom');
+const goToTopButton = document.querySelector('.go-top--js');
+const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
+let navbarPrevScroll = window.pageYOffset || document.documentElement.scrollTop;
 
 ////////////////////////////////////////////////////////////// EVENT LISTENERS 
 window.addEventListener('scroll', toggleGoTopButton );
@@ -691,6 +657,19 @@ if (gallery) {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
    ###    ########   #######  ##     ## ########
   ## ##   ##     ## ##     ## ##     ##    ##
@@ -837,6 +816,21 @@ if (form) {
     }
   }
 
+  ////////////////////////////////////////////////////////////////// VARIABLES 
+  const checkboxContainer = document.querySelector('.form__verification--js');
+  const checkboxes = document.querySelectorAll('.checkbox__input--js');
+  const checkboxReject = document.querySelector('.checkbox__input--js-reject');
+  const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
+  const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
+  let responseState = "empty";
+  
+  const modalContainer = document.querySelector('.modal--js');
+  const modalText = document.querySelector('.modal__text--js');
+  const modalClose = document.querySelector('.modal__close--js');
+  
+  const submitButton = document.querySelector('.form__submit--js');
+
+  //////////////////////////////////////////////////////////// EVENT LISTENERS 
   checkboxContainer.addEventListener('click', handleCheckboxes );
   submitButton.addEventListener('click', validateCheckboxes);
   modalClose.addEventListener('click', toggleModal);
