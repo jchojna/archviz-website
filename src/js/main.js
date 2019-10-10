@@ -432,8 +432,9 @@ if (gallery) {
         currentImageGraphics.classList.remove('images__graphics--visible-from-right');
         currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
         currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
+        switchCenter.classList.remove('switch__center--linear');
+        lazyLoadImage(currentIndex, 'start', 2);
       }
-      lazyLoadImage(currentIndex, 'start', 2);
     }
     // F1 ////////////////////////////// HANDLE CLASSES CHANGE << SHOW GALLERY 
 
@@ -452,7 +453,6 @@ if (gallery) {
       currentImageSection = imageSections[currentIndex];
       currentImageDescription = currentImageSection.firstElementChild;
       currentImageGraphics = currentImageSection.lastElementChild;
-      currentImage = images[currentIndex];
 
       currentImageGraphics.classList.remove(`images__graphics--hidden-to-${direction}`);
       currentImageGraphics.classList.remove(`images__graphics--hidden-to-${opposite}`);
@@ -461,10 +461,17 @@ if (gallery) {
       currentImageGraphics.classList.add('images__graphics--visible');
       currentImageGraphics.classList.add(`images__graphics--visible-from-${direction}`);
     }
-    // F1 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
+    // F2 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
 
     const viewImage = (e) => {
       const self = e.keyCode || e.target;
+
+      const keepPlaceholderMode = () => {
+        const placeholderFlag = switchCenter.classList.contains('switch__center--linear')
+        ? true : false;
+        currentImage = images[currentIndex];
+        placeholderFlag ? currentImage.classList.remove('images__image--loaded') : false;
+      }
 
       switch (self) {
 
@@ -472,12 +479,14 @@ if (gallery) {
         case leftButton:
           handleClassesChange('left');
           lazyLoadImage(currentIndex, 'prev', 2);
+          keepPlaceholderMode();
           break;
 
         case 39:
         case rightButton:
           handleClassesChange('right');
           lazyLoadImage(currentIndex, 'next', 2);
+          keepPlaceholderMode();
           break;
 
         case 38:
@@ -527,7 +536,6 @@ if (gallery) {
           }
         }
       }
-
       currentImage.onload = () => {
         if (amount > 0) {
           amount--;
