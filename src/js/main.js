@@ -359,8 +359,6 @@ if (portfolio) {
 
 if (gallery) {
 
-  let prevScroll = null;
-
   // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
   const showGallery = (e) => {
 
@@ -647,14 +645,15 @@ if (gallery) {
     window.addEventListener('scroll', slideVertically);
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
-  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
-  //////////////////////////////////////////////////////////// EVENT LISTENERS 
 
-  for (let i = 0; i < portfolioGridImages.length; i++) {
-    const gridImage = portfolioGridImages[i];
-    gridImage.index = i;
-    gridImage.addEventListener('click', showGallery);
-  }
+  //////////////////////////////////////////////////////////////////////////// 
+
+  let prevScroll = null;
+
+  [...portfolioGridImages].forEach((a, i) => {
+    a.index = i;
+    a.addEventListener('click', showGallery);
+  })
 }
 
 
