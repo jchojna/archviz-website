@@ -1,16 +1,28 @@
 ////////////////////////////////////////////////////////////////////// GALLERY 
 .gallery {
-  display: none;
+  @include flex-center;
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba($color: #000, $alpha: 0.7);
-  z-index: 2;
+  opacity: 0;
+  z-index: -1;
+  transition:
+    opacity $gallery-toggle,
+    visibility 0s $gallery-toggle,
+    z-index 0s $gallery-toggle;
 
   &--visible {
-    @include flex-center;
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+    transition:
+      opacity $gallery-toggle,
+      visibility 0s,
+      z-index 0s;
   }
 
   &__header {
