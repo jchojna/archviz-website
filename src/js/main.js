@@ -375,6 +375,7 @@ if (portfolio) {
 if (gallery) {
 
   // F0 ///////////////////////////////////////////////////// GENERATE GALLERY 
+
   const generateGallery = () => {
     const imagesAmount = portfolioGridImages.length;
 
@@ -414,68 +415,67 @@ if (gallery) {
       `;
     }
   }
-
-
-
   // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
+
   const showGallery = (e) => {
 
-    // F2 //////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY 
+    // F1 ///////////////////////////////////////// SHOW IMAGE << SHOW GALLERY 
+
     const showImage = () => {
       gallery.classList.toggle('gallery--visible');
       currentImageSection.classList.toggle('images--visible');
       currentImageDescription.classList.toggle('images__description--visible');
       currentImageGraphics.classList.toggle('images__graphics--visible');
 
-      currentImageGraphics.classList.remove('images__graphics--visible-from-left');
-      currentImageGraphics.classList.remove('images__graphics--visible-from-right');
-      currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
-      currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
+      if (gallery.classList.contains('gallery--visible')) {
+        currentImageGraphics.classList.remove('images__graphics--visible-from-left');
+        currentImageGraphics.classList.remove('images__graphics--visible-from-right');
+        currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
+        currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
+      }
       //lazyLoadImage(currentIndex, 'start', 2);
-      
     }
-    // F2 ///////////////////////////////////////////// END OF DISPLAY GALLERY 
+    // F1 ////////////////////////////// HANDLE CLASSES CHANGE << SHOW GALLERY 
+
+    const handleClassesChange = (direction) => {
+      const opposite = direction === 'left' ? 'right' : 'left';
+      const action = direction === 'left' ? 'decrease' : 'increase';
+
+      currentImageGraphics.classList.remove(`images__graphics--visible-from-${direction}`);
+      currentImageGraphics.classList.remove(`images__graphics--visible-from-${opposite}`);
+      currentImageSection.classList.remove('images--visible');
+      currentImageDescription.classList.remove('images__description--visible');
+      currentImageGraphics.classList.remove('images__graphics--visible');
+      currentImageGraphics.classList.add(`images__graphics--hidden-to-${opposite}`);
+
+      currentIndex = loopIndexRange(imageSections, currentIndex, action);
+      currentImageSection = imageSections[currentIndex];
+      currentImageDescription = currentImageSection.firstElementChild;
+      currentImageGraphics = currentImageSection.lastElementChild;
+      currentImage = images[currentIndex];
+
+      currentImageGraphics.classList.remove(`images__graphics--hidden-to-${direction}`);
+      currentImageGraphics.classList.remove(`images__graphics--hidden-to-${opposite}`);
+      currentImageSection.classList.add('images--visible');
+      currentImageDescription.classList.add('images__description--visible');
+      currentImageGraphics.classList.add('images__graphics--visible');
+      currentImageGraphics.classList.add(`images__graphics--visible-from-${direction}`);
+    }
     // F1 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
+
     const viewImage = (e) => {
-      const self = e.target;
+      const self = e.keyCode || e.target;
 
       switch (self) {
 
         case 37:
         case leftButton:
-
-          currentImageGraphics.classList.remove('images__graphics--visible-from-left');
-          currentImageGraphics.classList.remove('images__graphics--visible-from-right');
-          currentImageSection.classList.remove('images--visible');
-          currentImageDescription.classList.remove('images__description--visible');
-          currentImageGraphics.classList.remove('images__graphics--visible');
-          currentImageGraphics.classList.add('images__graphics--hidden-to-right');
-
-          currentIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
-          currentImageSection = imageSections[currentIndex];
-          currentImageDescription = currentImageSection.firstElementChild;
-          currentImageGraphics = currentImageSection.lastElementChild;
-          currentImage = images[currentIndex];
-
-          currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
-          currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
-          currentImageSection.classList.add('images--visible');
-          currentImageDescription.classList.add('images__description--visible');
-          currentImageGraphics.classList.add('images__graphics--visible');
-          currentImageGraphics.classList.add('images__graphics--visible-from-left');
-
-
+          handleClassesChange('left');
           break;
 
         case 39:
         case rightButton:
-
-
-
-
-
-
-
+          handleClassesChange('right');
           break;
 
         case 13:
@@ -494,7 +494,8 @@ if (gallery) {
           return;
       }
     }
-    // F1 /////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
+    // F1 //////////////////////////////////// LAZY LOAD IMAGE << SHOW GALLERY 
+
     const lazyLoadImage = (index, option, amount) => {
 
       const currentImage = images[index];
@@ -542,16 +543,8 @@ if (gallery) {
         }
       }
     }
-    // F1 //////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
-      
-    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
-    const removeAllEvents = () => {
-      gallery.removeEventListener('click', viewImage);
-      window.removeEventListener('keydown', viewImage);
-      window.removeEventListener('scroll', slideVertically);
-    }
-
     // F1 ///////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY 
+
     const slideVertically = () => {
 
       const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -578,6 +571,13 @@ if (gallery) {
         removeAllEvents();
         prevScroll = null;
       }
+    }
+    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
+
+    const removeAllEvents = () => {
+      gallery.removeEventListener('click', viewImage);
+      window.removeEventListener('keydown', viewImage);
+      window.removeEventListener('scroll', slideVertically);
     }
     //////////////////////////////////////////////// VARIABLES << SHOW GALLERY 
     // INDEX
@@ -610,7 +610,7 @@ if (gallery) {
 
     ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY 
     gallery.addEventListener('click', viewImage);
-    //window.addEventListener('keydown', viewImage);
+    window.addEventListener('keydown', viewImage);
     //window.addEventListener('scroll', slideVertically);
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
