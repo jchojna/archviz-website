@@ -53,6 +53,16 @@ const delayLink = (element) => {
 const getTwoDigit = (number) => {
   return number.toString().length === 1 ? `0${number}` : number;
 }
+// F0 /////////////////////////////////////////////////////// LOOP INDEX RANGE 
+const loopIndexRange = (collection, index, action) => {
+
+  const maxIndex = collection.length - 1;
+  if (action === 'increase') {
+    return index >= maxIndex ? 0 : ++index;
+  } else if (action === 'decrease') {
+    return index <= 0 ? maxIndex : --index;
+  }
+}
 ////////////////////////////////////////////////////////////// EVENT LISTENERS 
 for ( const link of fadeOutLinks ) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
@@ -373,11 +383,9 @@ if (gallery) {
       const imagesAmount = portfolioGridImages.length;
 
       for (let i = 0; i < imagesAmount; i++) {
-
         const image = portfolioGridImages[i];
         const imageAlt = image.alt;
         const imageHeading = imageAlt.split(' | ').slice(0,1).join();
-
         const svg = portfolioSvgs[i];
         const svgSolidHref = svg.firstElementChild.getAttribute('href');
         const svgLineHref = svgSolidHref.replace('solid', 'line');
@@ -410,63 +418,13 @@ if (gallery) {
         `;
       }
     }
-    // F0 ///////////////////////////////////////// LOOP INDEX << SHOW GALLERY 
-
-    const loopIndex = (collection, index, action) => {
-
-      const maxIndex = collection.length-1;
-      if (action === 'increase') {
-        index >= maxIndex ? index = 0 : index++;
-      } else if (action === 'decrease') {
-        index <= 0 ? index = maxIndex : index--;
-      }
-      return index;
-    }
-    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
-
-    const removeAllEvents = () => {
-
-      window.removeEventListener('scroll', slideVertically);
-      gallery.removeEventListener('click', viewImage);
-      window.removeEventListener('keydown', viewImage);
-
-    }
-    // F1 ///////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY 
-
-    const slideVertically = () => {
-
-      const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
-      const currentImageSection = imageSections[currentIndex];
-
-      if (prevScroll === null) {
-        prevScroll = nextScroll;
-      }
-
-      if (nextScroll !== prevScroll) {
-        
-        if (nextScroll > prevScroll) {
-          currentImageSection.classList.add("images--hidden-top");
-        } else {
-          currentImageSection.classList.add("images--hidden-bottom");
-        }
-        
-        setTimeout(() => {
-          currentImageSection.classList.remove("images--hidden-top");
-          currentImageSection.classList.remove("images--hidden-bottom");
-          displayGallery(e);
-        }, 1000);
-
-        removeAllEvents();
-        prevScroll = null;
-      }
-    }
     // F2 //////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY 
 
     const displayGallery = (e, action) => {
 
       const self = e.keyCode || e.target;
-      const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
-      const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
+      const prevIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
+      const nextIndex = loopIndexRange(imageSections, currentIndex, 'increase');
       const currentImageSection = imageSections[currentIndex];
       const prevImageSection = imageSections[prevIndex];
       const nextImageSection = imageSections[nextIndex];
@@ -493,12 +451,12 @@ if (gallery) {
             currentImage.classList.add('images__image--loaded');
   
             if (option === 'prev' || option === 'start') {
-              index = loopIndex(imageSections, indexToDec, 'decrease');
+              index = loopIndexRange(imageSections, indexToDec, 'decrease');
               lazyLoadImage(index, 'prev', amount);
             }
   
             if (option === 'next' || option === 'start') {
-              index = loopIndex(imageSections, indexToInc, 'increase');
+              index = loopIndexRange(imageSections, indexToInc, 'increase');
               lazyLoadImage(index, 'next', amount);
             }
           }
@@ -510,17 +468,18 @@ if (gallery) {
             currentImage.classList.add('images__image--loaded');
   
             if (option === 'prev' || option === 'start') {
-              index = loopIndex(imageSections, indexToDec, 'decrease');
+              index = loopIndexRange(imageSections, indexToDec, 'decrease');
               lazyLoadImage(index, 'prev', amount);
             }
   
             if (option === 'next' || option === 'start') {
-              index = loopIndex(imageSections, indexToInc, 'increase');
+              index = loopIndexRange(imageSections, indexToInc, 'increase');
               lazyLoadImage(index, 'next', amount);
             }
           }
         }
       }
+      
       // F1 //////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
       switch (self) {
   
@@ -587,14 +546,14 @@ if (gallery) {
         case 37:
         case leftButton:
           displayGallery(e,'hideImage');
-          currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
+          currentIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
           displayGallery(e,'showImage');
           break;
 
         case 39:
         case rightButton:
           displayGallery(e,'hideImage');
-          currentIndex = loopIndex(imageSections, currentIndex, 'increase');
+          currentIndex = loopIndexRange(imageSections, currentIndex, 'increase');
           displayGallery(e,'showImage');
           break;
 
