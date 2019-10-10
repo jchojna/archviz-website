@@ -46,9 +46,21 @@
     font-size: 1.4rem;
     font-weight: bold;
     visibility: hidden;
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      opacity $horizontal-slide/2,
+      transform $horizontal-slide/2,
+      visibility 0s $horizontal-slide/2;
 
     &--visible {
       visibility: visible;
+      transform: translateY(0);
+      opacity: 1;
+      transition:
+        opacity $horizontal-slide,
+        transform $horizontal-slide,
+        visibility 0s;
     }
   }
 
