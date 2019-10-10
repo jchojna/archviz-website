@@ -27,6 +27,7 @@
   width: 100%;
   height: 100%;
   visibility: hidden;
+  transform: translateY(0);
   transition: visibility 0s $horizontal-slide;
 
   &--visible {
@@ -35,6 +36,16 @@
     z-index: 0;
   }
 
+  &--hidden-top {
+    transform: translateY(-100vh);
+    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
+  }
+
+  &--hidden-bottom {
+    transform: translateY(100vh);
+    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
+  }
+  
   &__description {
     display: flex;
     justify-content: center;

@@ -571,12 +571,12 @@ if (gallery) {
         } else {
           currentImageSection.classList.add("images--hidden-bottom");
         }
-        
+        showImage();
+
         setTimeout(() => {
           currentImageSection.classList.remove("images--hidden-top");
           currentImageSection.classList.remove("images--hidden-bottom");
-          displayGallery(e);
-        }, 1000);
+        }, 700);
 
         removeAllEvents();
         prevScroll = null;
@@ -594,7 +594,6 @@ if (gallery) {
     const self = e.target;
     let currentIndex = self.index;
     // IMAGES
-    //const portfolioGridImage = portfolioGridImages[currentIndex];
     const imageSections = document.querySelectorAll('.images--js');
     const images = document.querySelectorAll('.images__image--js');
     let currentImageSection = imageSections[currentIndex];
@@ -621,7 +620,7 @@ if (gallery) {
     ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY 
     gallery.addEventListener('click', viewImage);
     window.addEventListener('keydown', viewImage);
-    //window.addEventListener('scroll', slideVertically);
+    window.addEventListener('scroll', slideVertically);
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
 
