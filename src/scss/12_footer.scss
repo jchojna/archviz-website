@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////// FOOTER 
 .footer {
-  padding: $layout-footer-offset $layout-sm-offset;
+  padding: $offset-footer $layout-sm-offset;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +69,7 @@
   }
 
   &__link {
-    color: $color-background-lighter;
+    color: $color-background-light;
 
     &:hover {
       color: #fff;
@@ -82,9 +82,9 @@
 }
 //////////////////////////////////////////////////////////////////// COPYRIGHT 
 .copyright {
-  color: $color-background-lighter;
+  color: $color-background-light;
   font-size: 0.8rem;
-  border-top: 2px solid $color-background-lighter;
+  border-top: 2px solid $color-background-light;
   padding-top: 0.5rem;
   width: 100%;
   text-align: center;

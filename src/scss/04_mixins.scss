@@ -32,8 +32,8 @@
   font-weight: bold;
   border: 1px solid #fff;
   transition:
-    background-color $time-hover-icon,
-    border-color $time-hover-icon;
+    background-color $hover-icon,
+    border-color $hover-icon;
 }
 
 @mixin button-hover {

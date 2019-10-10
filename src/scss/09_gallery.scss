@@ -11,16 +11,16 @@
   opacity: 0;
   z-index: -1;
   transition:
-    opacity $gallery-toggle,
-    visibility 0s $gallery-toggle,
-    z-index 0s $gallery-toggle;
+    opacity $toggle-gallery,
+    visibility 0s $toggle-gallery,
+    z-index 0s $toggle-gallery;
 
   &--visible {
     visibility: visible;
     opacity: 1;
     z-index: 2;
     transition:
-      opacity $gallery-toggle,
+      opacity $toggle-gallery,
       visibility 0s,
       z-index 0s;
   }
@@ -40,7 +40,7 @@
   height: 100%;
   visibility: hidden;
   transform: translateY(0);
-  transition: visibility 0s $horizontal-slide;
+  transition: visibility 0s $slide-horizontal;
 
   &--visible {
     visibility: visible;
@@ -50,12 +50,12 @@
 
   &--hidden-top {
     transform: translateY(-100vh);
-    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
+    transition: transform $slide-vertical ease-out, visibility 0s $slide-horizontal;
   }
 
   &--hidden-bottom {
     transform: translateY(100vh);
-    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
+    transition: transform $slide-vertical ease-out, visibility 0s $slide-horizontal;
   }
   
   &__description {
@@ -71,17 +71,17 @@
     transform: translateY(100%);
     opacity: 0;
     transition:
-      opacity $horizontal-slide/2,
-      transform $horizontal-slide/2,
-      visibility 0s $horizontal-slide/2;
+      opacity $slide-horizontal/2,
+      transform $slide-horizontal/2,
+      visibility 0s $slide-horizontal/2;
 
     &--visible {
       visibility: visible;
       transform: translateY(0);
       opacity: 1;
       transition:
-        opacity $horizontal-slide,
-        transform $horizontal-slide,
+        opacity $slide-horizontal,
+        transform $slide-horizontal,
         visibility 0s;
     }
   }
@@ -100,7 +100,7 @@
     @include flex-center;
     position: absolute;
     visibility: hidden;
-    transition: visibility 0s $horizontal-slide;
+    transition: visibility 0s $slide-horizontal;
 
     &--visible {
       visibility: visible;
@@ -108,16 +108,16 @@
     }
 
     &--hidden-to-left {
-      animation: hideToLeft $horizontal-slide forwards;
+      animation: hideToLeft $slide-horizontal forwards;
     }
     &--hidden-to-right {
-      animation: hideToRight $horizontal-slide forwards;
+      animation: hideToRight $slide-horizontal forwards;
     }
     &--visible-from-left {
-      animation: showFromLeft $horizontal-slide forwards;
+      animation: showFromLeft $slide-horizontal forwards;
     }
     &--visible-from-right {
-      animation: showFromRight $horizontal-slide forwards;
+      animation: showFromRight $slide-horizontal forwards;
     }
   }
 
@@ -144,12 +144,12 @@
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity $time-image-gallery, visibility 0s $time-image-gallery;
+    transition: opacity $load-gallery-image, visibility 0s $load-gallery-image;
 
     &--loaded {
       opacity: 1;
       visibility: inherit;
-      transition: opacity $time-image-gallery, visibility 0s;
+      transition: opacity $load-gallery-image, visibility 0s;
     }
   }
 }
@@ -185,8 +185,8 @@
 
   &__button {
     fill: #fff;
-    width: $size-button-gallery;
-    transition: fill $time-button-gallery;
+    width: $size-gallery-button;
+    transition: fill $hover-gallery-button;
 
     &:hover {
       fill: $color-main;
@@ -205,7 +205,7 @@
   &__center {
     stroke-width: 40px;
     stroke: #fff;
-    transition: stroke $time-button-gallery, transform $time-button-gallery;
+    transition: stroke $hover-gallery-button, transform $hover-gallery-button;
 
     &--linear {
       fill: none;
@@ -215,13 +215,13 @@
   &__left {
     position: absolute;
     transform: translateX(-40%);
-    transition: transform $time-button-gallery;
+    transition: transform $hover-gallery-button;
   }
 
   &__right {
     position: absolute;
     transform: translateX(40%);
-    transition: transform $time-button-gallery;
+    transition: transform $hover-gallery-button;
   }
 
   &:hover {

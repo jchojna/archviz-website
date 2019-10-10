@@ -49,7 +49,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  transition: visibility 0s $time-page-overlay, opacity $time-page-overlay;
+  transition: visibility 0s $page-overlay, opacity $page-overlay;
   visibility: hidden;
   z-index: 999;
 
@@ -61,7 +61,7 @@ a {
   &--visible {
     visibility: visible;
     opacity: 1;
-    transition: visibility 0s, opacity $time-page-overlay;
+    transition: visibility 0s, opacity $page-overlay;
   }
 }
 /////////////////////////////////////////////////////////////// PAGE CONTAINER 
@@ -80,7 +80,7 @@ a {
     display: flex;
     opacity: 1;
     pointer-events: all;
-    transition: opacity $time-mobile-menu;
+    transition: opacity $toggle-mobile-menu;
   }
 
   &--main-page {
@@ -107,6 +107,6 @@ a {
   }
   
   &--primary:hover {
-    background-color: $color-main-darker;
+    background-color: $color-main-dark;
   }
 }

@@ -15,14 +15,14 @@
   display: grid;
   flex-grow: 1;
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
     padding: $layout-md-offset*2 $layout-md-offset;
     padding-top: $layout-md-logo + ($layout-md-offset * 2);
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem 2rem;
   }
   
-  @media only screen and (min-width: $media-desktop) {
+  @media only screen and (min-width: $media-lg) {
     padding: $layout-lg-offset*2 $layout-lg-offset;
     padding-top: $layout-lg-logo + ($layout-lg-offset * 2);
   }
@@ -58,7 +58,7 @@
   &__dropdown {
     font-size: 1.6em;
     pointer-events: none;
-    transition: transform $time-dropdown;
+    transition: transform $rotate-dropdown;
 
     &--reversed {
       transform: rotate(180deg);
@@ -67,7 +67,7 @@
 
   &__description {
     overflow: hidden;
-    transition: all $time-dropdown;
+    transition: transform $rotate-dropdown;
     border-bottom: 2px solid #fff;
     padding: 1.5rem 0;
 
@@ -117,7 +117,7 @@
     max-width: 150px;
     max-height: 100px;
     background-color: transparent;
-    transition: background-color $time-hover-icon;
+    transition: background-color $hover-icon;
     border-radius: 10px;
 
     &:hover {
@@ -141,14 +141,14 @@
     pointer-events: none;
   }
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
     &__list {
       grid-template-columns: repeat(4, 1fr);
       padding: $layout-md-offset;
     }
   }
   
-  @media only screen and (min-width: $media-desktop) {
+  @media only screen and (min-width: $media-lg) {
     &__list {
       padding: $layout-lg-offset 0;
     }

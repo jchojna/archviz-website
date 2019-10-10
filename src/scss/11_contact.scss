@@ -44,14 +44,14 @@
     border-bottom: 2px solid #fff;
     background: none;
     color: $color-main;
-    transition: background-color $time-hover-icon;
+    transition: background-color $hover-icon;
 
     &--message {
       min-height: 200px;
     }
 
     &:focus {
-      background-color: $color-background-darker;
+      background-color: $color-background-dark;
     }
 
     &::placeholder {
@@ -79,7 +79,7 @@
   }
 
   &__field {
-    background-color: $color-background-darker;
+    background-color: $color-background-dark;
     height: $size-checkbox;
     width: $size-checkbox;
     margin-right: 1rem;
@@ -92,9 +92,9 @@
     opacity: 0;
     transform: scale(1);
     transition:
-      visibility 0s $time-checkbox,
-      opacity $time-checkbox,
-      transform $time-checkbox ease-out;
+      visibility 0s $toggle-checkbox,
+      opacity $toggle-checkbox,
+      transform $toggle-checkbox ease-out;
 
     &--visible {
       visibility: visible;
@@ -111,12 +111,12 @@
   z-index: 4;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s $time-modal, opacity $time-modal, transform $time-modal ease-in;
+  transition: visibility 0s $toggle-modal, opacity $toggle-modal, transform $toggle-modal ease-in;
 
   &--visible {
     visibility: visible;
     opacity: 1;
-    transition: visibility 0s, opacity $time-modal, transform $time-modal ease-out;
+    transition: visibility 0s, opacity $toggle-modal, transform $toggle-modal ease-out;
   }
 
   &__box {

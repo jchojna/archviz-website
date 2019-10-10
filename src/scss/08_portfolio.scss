@@ -7,9 +7,9 @@
 .grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat($layout-mobile-grid-columns, 1fr);
-  grid-auto-rows: $layout-mobile-grid-height;
-  grid-gap: $layout-mobile-grid-gap;
+  grid-template-columns: repeat($grid-cols-sm, 1fr);
+  grid-auto-rows: $grid-item-height-sm;
+  grid-gap: $grid-gap-sm;
 
   &--flex { // portfolioJS
     display: flex;
@@ -27,7 +27,7 @@
       box-shadow: inset 0 0 10rem rgba(0,0,0,0.5);
       opacity: 0;
       pointer-events: none;
-      transition: opacity $time-grid-item ease-out,
+      transition: opacity $hover-grid-item ease-out,
     }
     
     &:hover {
@@ -39,8 +39,8 @@
         opacity: 1;
         transform: scale(1);
         transition: 
-          opacity $time-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
-          transform $time-grid-item ease-out;
+          opacity $hover-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
+          transform $hover-grid-item ease-out;
       }
     }
   }
@@ -57,8 +57,8 @@
     transform: scale(6);
     transform-origin: center;
     transition: 
-      opacity $time-grid-item cubic-bezier(0.1,0.9,0.1,0.9),
-      transform $time-grid-item ease-out;
+      opacity $hover-grid-item cubic-bezier(0.1,0.9,0.1,0.9),
+      transform $hover-grid-item ease-out;
     z-index: 1;
     pointer-events: none;
   }
@@ -67,7 +67,7 @@
     @include flex-center;
     position: relative;
     transform: scale(1);
-    transition: transform $time-grid-item ease-out;
+    transition: transform $hover-grid-item ease-out;
     width: 100%;
     height: 100%;
 
@@ -81,7 +81,7 @@
       background-color: rgb(0, 238, 255);
       opacity: 0.04;
       pointer-events: none;
-      transition: opacity $time-grid-item;
+      transition: opacity $hover-grid-item;
     }
 
     &:hover {
@@ -98,8 +98,8 @@
     fill: $color-main;
 
     height: 100%;
-    min-height: $layout-mobile-grid-height;
-    min-width: 100vw / $layout-mobile-grid-columns;
+    min-height: $grid-item-height-sm;
+    min-width: 100vw / $grid-cols-sm;
 
     &--flex { // portfolioJS
       min-height: 0;
@@ -124,7 +124,7 @@
     &--loaded {
       visibility: visible;
       opacity: 1;
-      transition: opacity $time-grid-image, filter $time-grid-item;
+      transition: opacity $load-grid-image, filter $hover-grid-item;
     }
 
     &:hover {
@@ -132,21 +132,21 @@
     }
   }
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
 
     & {
 
-      grid-template-columns: repeat($layout-tablet-grid-columns, 1fr);
-      grid-auto-rows: $layout-tablet-grid-height;
-      grid-gap: $layout-tablet-grid-gap;
+      grid-template-columns: repeat($grid-cols-md, 1fr);
+      grid-auto-rows: $grid-item-height-md;
+      grid-gap: $grid-gap-md;
 
       &--flex { // portfolioJS
         grid-gap: 0;
       }
 
       &__svg-solid {
-        min-height: $layout-tablet-grid-height;
-        min-width: 100vw / $layout-tablet-grid-columns;
+        min-height: $grid-item-height-md;
+        min-width: 100vw / $grid-cols-md;
 
         &--flex { // portfolioJS
           min-height: 0;
@@ -156,21 +156,21 @@
     }
   }
   
-  @media only screen and (min-width: $media-desktop) {
+  @media only screen and (min-width: $media-lg) {
 
     & {
 
-      grid-template-columns: repeat($layout-desktop-grid-columns, 1fr);
-      grid-auto-rows: $layout-desktop-grid-height;
-      grid-gap: $layout-desktop-grid-gap;
+      grid-template-columns: repeat($grid-cols-lg, 1fr);
+      grid-auto-rows: $grid-item-height-lg;
+      grid-gap: $grid-gap-lg;
 
       &--flex { // portfolioJS
         grid-gap: 0;
       }
 
       &__svg-solid {
-        min-height: $layout-desktop-grid-height;
-        min-width: 100vw / $layout-desktop-grid-columns;
+        min-height: $grid-item-height-lg;
+        min-width: 100vw / $grid-cols-lg;
 
         &--flex { // portfolioJS
           min-height: 0;
