@@ -433,7 +433,7 @@ if (gallery) {
         currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
         currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
       }
-      //lazyLoadImage(currentIndex, 'start', 2);
+      lazyLoadImage(currentIndex, 'start', 2);
     }
     // F1 ////////////////////////////// HANDLE CLASSES CHANGE << SHOW GALLERY 
 
@@ -471,14 +471,16 @@ if (gallery) {
         case 37:
         case leftButton:
           handleClassesChange('left');
+          lazyLoadImage(currentIndex, 'prev', 2);
           break;
 
         case 39:
         case rightButton:
           handleClassesChange('right');
+          lazyLoadImage(currentIndex, 'next', 2);
           break;
 
-        case 13:
+        case 38:
         case switchButton:
           currentImage.classList.toggle('images__image--loaded');
           switchCenter.classList.toggle('switch__center--linear');

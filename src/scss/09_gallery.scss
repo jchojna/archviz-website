@@ -20,7 +20,6 @@
 }
 /////////////////////////////////////////////////////////////////////// IMAGES 
 .images {
-  //display: none;
   @include flex-center;
   position: absolute;
   top: 0;
@@ -126,7 +125,7 @@
 
     &--loaded {
       opacity: 1;
-      visibility: visible;
+      visibility: inherit;
       transition: opacity $time-image-gallery, visibility 0s;
     }
   }
