@@ -1,16 +1,28 @@
 ////////////////////////////////////////////////////////////////////// GALLERY 
 .gallery {
-  display: none;
+  @include flex-center;
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba($color: #000, $alpha: 0.7);
-  z-index: 2;
+  opacity: 0;
+  z-index: -1;
+  transition:
+    opacity $gallery-toggle,
+    visibility 0s $gallery-toggle,
+    z-index 0s $gallery-toggle;
 
   &--visible {
-    @include flex-center;
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+    transition:
+      opacity $gallery-toggle,
+      visibility 0s,
+      z-index 0s;
   }
 
   &__header {
@@ -20,34 +32,32 @@
 }
 /////////////////////////////////////////////////////////////////////// IMAGES 
 .images {
-  display: none;
+  @include flex-center;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  transition: transform 1s;
+  visibility: hidden;
+  transform: translateY(0);
+  transition: visibility 0s $horizontal-slide;
 
   &--visible {
-    @include flex-center;
-  }
-
-  &--hidden-left {
-    transform: translateX(-100%);
-  }
-  
-  &--hidden-right {
-    transform: translateX(100%);
+    visibility: visible;
+    transition: visibility 0s;
+    z-index: 0;
   }
 
   &--hidden-top {
-    transform: translateY(-100%);
-  }
-  
-  &--hidden-bottom {
-    transform: translateY(100%);
+    transform: translateY(-100vh);
+    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
   }
 
+  &--hidden-bottom {
+    transform: translateY(100vh);
+    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
+  }
+  
   &__description {
     display: flex;
     justify-content: center;
@@ -57,6 +67,23 @@
     left: 20px;
     font-size: 1.4rem;
     font-weight: bold;
+    visibility: hidden;
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      opacity $horizontal-slide/2,
+      transform $horizontal-slide/2,
+      visibility 0s $horizontal-slide/2;
+
+    &--visible {
+      visibility: visible;
+      transform: translateY(0);
+      opacity: 1;
+      transition:
+        opacity $horizontal-slide,
+        transform $horizontal-slide,
+        visibility 0s;
+    }
   }
 
   &__counter {
@@ -69,9 +96,29 @@
     font-weight: normal;
   }
 
-  &__container {
+  &__graphics {
     @include flex-center;
-    position: relative;
+    position: absolute;
+    visibility: hidden;
+    transition: visibility 0s $horizontal-slide;
+
+    &--visible {
+      visibility: visible;
+      transition: visibility 0s;
+    }
+
+    &--hidden-to-left {
+      animation: hideToLeft $horizontal-slide forwards;
+    }
+    &--hidden-to-right {
+      animation: hideToRight $horizontal-slide forwards;
+    }
+    &--visible-from-left {
+      animation: showFromLeft $horizontal-slide forwards;
+    }
+    &--visible-from-right {
+      animation: showFromRight $horizontal-slide forwards;
+    }
   }
 
   &__svg-solid {
@@ -101,7 +148,7 @@
 
     &--loaded {
       opacity: 1;
-      visibility: visible;
+      visibility: inherit;
       transition: opacity $time-image-gallery, visibility 0s;
     }
   }

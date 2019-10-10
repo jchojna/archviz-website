@@ -1,47 +1,4 @@
 /*
-##     ##    ###    ########  ####    ###    ########  ##       ########  ######
-##     ##   ## ##   ##     ##  ##    ## ##   ##     ## ##       ##       ##    ##
-##     ##  ##   ##  ##     ##  ##   ##   ##  ##     ## ##       ##       ##
-##     ## ##     ## ########   ##  ##     ## ########  ##       ######    ######
- ##   ##  ######### ##   ##    ##  ######### ##     ## ##       ##             ##
-  ## ##   ##     ## ##    ##   ##  ##     ## ##     ## ##       ##       ##    ##
-   ###    ##     ## ##     ## #### ##     ## ########  ######## ########  ######
-*/
-
-////////////////////////////////////////////////////////////////////// OVERALL 
-const pageContainer = document.querySelector('.page-container--js');
-const portfolio = document.querySelector('.portfolio--js');
-const gallery = document.querySelector('.gallery--js');
-const about = document.querySelector('.about--js');
-const form = document.querySelector('.form--js');
-
-//////////////////////////////////////////////////////////////////// PORTFOLIO 
-const portfolioGridImages = document.querySelectorAll('.grid__image--js');
-const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
-
-///////////////////////////////////////////////////////////////////////// FORM 
-const submitButton = document.querySelector('.form__submit--js');
-
-///////////////////////////////////////////////////////////////// VERIFICATION 
-const checkboxContainer = document.querySelector('.form__verification--js');
-const checkboxes = document.querySelectorAll('.checkbox__input--js');
-const checkboxReject = document.querySelector('.checkbox__input--js-reject');
-const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
-const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
-let responseState = "empty";
-
-//////////////////////////////////////////////////////////////////// MODAL BOX 
-const modalContainer = document.querySelector('.modal--js');
-const modalText = document.querySelector('.modal__text--js');
-const modalClose = document.querySelector('.modal__close--js');
-
-let timeoutHandler = null;
-
-//////////////////////////////////////////////////////////////////////// MEDIA 
-const tabletBreakpoint = 768;
-const desktopBreakpoint = 1200;
-
-/*
  #######  ##     ## ######## ########     ###    ##       ##
 ##     ## ##     ## ##       ##     ##   ## ##   ##       ##
 ##     ## ##     ## ##       ##     ##  ##   ##  ##       ##
@@ -54,6 +11,17 @@ const desktopBreakpoint = 1200;
 //////////////////////////////////////////////////////////////////// VARIABLES 
 const pageOverlay = document.querySelector('.page-overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
+const pageContainer = document.querySelector('.page-container--js');
+const portfolio = document.querySelector('.portfolio--js');
+const gallery = document.querySelector('.gallery--js');
+const about = document.querySelector('.about--js');
+const form = document.querySelector('.form--js');
+
+const portfolioGridImages = document.querySelectorAll('.grid__image--js');
+const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
+
+const tabletBreakpoint = 768;
+const desktopBreakpoint = 1200;
 
 // F0 ///////////////////////////////////////////////////////// FADE IN EFFECT 
 
@@ -76,10 +44,25 @@ const toNextPage = (e, callback, timeout) => {
   }
 }
 // F0 ///////////////////////////////////////////////////////////// DELAY LINK 
+
 const delayLink = (element) => {
   window.location = element.href;
 }
+// F0 /////////////////////////////////////////////////// GET TWO-DIGIT NUMBER 
 
+const getTwoDigit = (number) => {
+  return number.toString().length === 1 ? `0${number}` : number;
+}
+// F0 /////////////////////////////////////////////////////// LOOP INDEX RANGE 
+const loopIndexRange = (collection, index, action) => {
+
+  const maxIndex = collection.length - 1;
+  if (action === 'increase') {
+    return index >= maxIndex ? 0 : ++index;
+  } else if (action === 'decrease') {
+    return index <= 0 ? maxIndex : --index;
+  }
+}
 ////////////////////////////////////////////////////////////// EVENT LISTENERS 
 for ( const link of fadeOutLinks ) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
@@ -200,9 +183,6 @@ const toggleMobileMenu = () => {
 }
 // F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR 
 
-const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
-let navbarPrevScroll = window.pageYOffset || document.documentElement.scrollTop;
-
 const handleNavbar = () => {
   const navbarNextScroll = window.pageYOffset || document.documentElement.scrollTop;
   let delayStart = 0.3;
@@ -231,8 +211,6 @@ window.addEventListener('scroll', handleNavbar);
 
 // F0 /////////////////////////////////////////////////////// GO TO TOP BUTTON 
 
-const goToTopButton = document.querySelector('.go-top--js');
-
 const toggleGoTopButton = () => {
   let scroll = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
   if (scroll > 1000) {
@@ -247,6 +225,9 @@ const burgerButton = document.querySelector('.burger--js');
 const burgerTop = document.querySelector('.burger__line--js-top');
 const burgerCenter = document.querySelector('.burger__line--js-center');
 const burgerBottom = document.querySelector('.burger__line--js-bottom');
+const goToTopButton = document.querySelector('.go-top--js');
+const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
+let navbarPrevScroll = window.pageYOffset || document.documentElement.scrollTop;
 
 ////////////////////////////////////////////////////////////// EVENT LISTENERS 
 window.addEventListener('scroll', toggleGoTopButton );
@@ -393,87 +374,184 @@ if (portfolio) {
 
 if (gallery) {
 
-  let prevScroll = null;
+  // F0 ///////////////////////////////////////////////////// GENERATE GALLERY 
 
+  const generateGallery = () => {
+    const imagesAmount = portfolioGridImages.length;
+
+    for (let i = 0; i < imagesAmount; i++) {
+      const image = portfolioGridImages[i];
+      const imageAlt = image.alt;
+      const imageHeading = imageAlt.split(' | ').slice(0,1).join();
+      const svg = portfolioSvgs[i];
+      const svgSolidHref = svg.firstElementChild.getAttribute('href');
+      const svgLineHref = svgSolidHref.replace('solid', 'line');
+      const viewBoxWidth = svg.viewBox.baseVal.width;
+      const viewBoxHeight = svg.viewBox.baseVal.height;
+      const number = getTwoDigit(i + 1);
+      
+      gallery.innerHTML += `
+      <section class="images images--js">
+        <div class="images__description">
+          <p class="images__counter images__counter--js">
+            ${number} / ${imagesAmount}
+          </p>
+          <h3 class="images__heading">${imageHeading}</h3>
+        </div>
+        <div class="images__graphics">
+          <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
+            <use href="${svgSolidHref}"></use>
+          </svg>
+          <svg class="images__svg-line" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
+            <use href="${svgLineHref}"></use>
+          </svg>
+          <img
+            src=""
+            alt="${imageAlt}"
+            class="images__image images__image--js"
+          >
+        </div>
+      </section>
+      `;
+    }
+  }
   // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
+
   const showGallery = (e) => {
 
-    e.preventDefault();
-    const self = e.target;
-    let currentIndex = self.index;
+    // F1 ///////////////////////////////////////// SHOW IMAGE << SHOW GALLERY 
 
-    // F0 /////////////////////////////////// GENERATE GALLERY << SHOW GALLERY 
+    const showImage = () => {
+      gallery.classList.toggle('gallery--visible');
+      currentImageSection.classList.toggle('images--visible');
+      currentImageDescription.classList.toggle('images__description--visible');
+      currentImageGraphics.classList.toggle('images__graphics--visible');
 
-    const generateGallery = () => {
-      const imagesAmount = portfolioGridImages.length;
+      if (gallery.classList.contains('gallery--visible')) {
+        currentImageGraphics.classList.remove('images__graphics--visible-from-left');
+        currentImageGraphics.classList.remove('images__graphics--visible-from-right');
+        currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
+        currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
+        switchCenter.classList.remove('switch__center--linear');
+        lazyLoadImage(currentIndex, 'start', 2);
+      }
+    }
+    // F1 ////////////////////////////// HANDLE CLASSES CHANGE << SHOW GALLERY 
 
-      for (let i = 0; i < imagesAmount; i++) {
+    const handleClassesChange = (direction) => {
+      const opposite = direction === 'left' ? 'right' : 'left';
+      const action = direction === 'left' ? 'decrease' : 'increase';
 
-        const image = portfolioGridImages[i];
-        const imageAlt = image.alt;
-        const imageHeading = imageAlt.split(' | ').slice(0,1).join();
+      currentImageGraphics.classList.remove(`images__graphics--visible-from-${direction}`);
+      currentImageGraphics.classList.remove(`images__graphics--visible-from-${opposite}`);
+      currentImageSection.classList.remove('images--visible');
+      currentImageDescription.classList.remove('images__description--visible');
+      currentImageGraphics.classList.remove('images__graphics--visible');
+      currentImageGraphics.classList.add(`images__graphics--hidden-to-${opposite}`);
 
-        const svg = portfolioSvgs[i];
-        const svgSolidHref = svg.firstElementChild.getAttribute('href');
-        const svgLineHref = svgSolidHref.replace('solid', 'line');
-        const viewBoxWidth = svg.viewBox.baseVal.width;
-        const viewBoxHeight = svg.viewBox.baseVal.height;
-        const number = getTwoDigit(i + 1);
+      currentIndex = loopIndexRange(imageSections, currentIndex, action);
+      currentImageSection = imageSections[currentIndex];
+      currentImageDescription = currentImageSection.firstElementChild;
+      currentImageGraphics = currentImageSection.lastElementChild;
+
+      currentImageGraphics.classList.remove(`images__graphics--hidden-to-${direction}`);
+      currentImageGraphics.classList.remove(`images__graphics--hidden-to-${opposite}`);
+      currentImageSection.classList.add('images--visible');
+      currentImageDescription.classList.add('images__description--visible');
+      currentImageGraphics.classList.add('images__graphics--visible');
+      currentImageGraphics.classList.add(`images__graphics--visible-from-${direction}`);
+    }
+    // F2 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
+
+    const viewImage = (e) => {
+      const self = e.keyCode || e.target;
+
+      const keepPlaceholderMode = () => {
+        const placeholderFlag = switchCenter.classList.contains('switch__center--linear')
+        ? true : false;
+        currentImage = images[currentIndex];
+        placeholderFlag ? currentImage.classList.remove('images__image--loaded') : false;
+      }
+
+      switch (self) {
+
+        case 37:
+        case leftButton:
+          handleClassesChange('left');
+          lazyLoadImage(currentIndex, 'prev', 2);
+          keepPlaceholderMode();
+          break;
+
+        case 39:
+        case rightButton:
+          handleClassesChange('right');
+          lazyLoadImage(currentIndex, 'next', 2);
+          keepPlaceholderMode();
+          break;
+
+        case 38:
+        case switchButton:
+          currentImage.classList.toggle('images__image--loaded');
+          switchCenter.classList.toggle('switch__center--linear');
+          break;
         
-        gallery.innerHTML += `
-        <section class="images images--js">
-          <div class="images__description">
-            <p class="images__counter images__counter--js">
-              ${number} / ${imagesAmount}
-            </p>
-            <h3 class="images__heading">${imageHeading}</h3>
-          </div>
-          <div class="images__container">
-            <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
-              <use href="${svgSolidHref}"></use>
-            </svg>
-            <svg class="images__svg-line" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
-              <use href="${svgLineHref}"></use>
-            </svg>
-            <img
-              src=""
-              alt="${imageAlt}"
-              class="images__image images__image--js"
-            >
-          </div>
-        </section>
-        `;
+        case 27:
+        case closeButton:
+          showImage();
+          removeAllEvents();
+          break;
+
+        default:
+          return;
       }
     }
-    // F0 /////////////////////////////// GET TWO-DIGIT NUMBER << SHOW GALLERY 
+    // F1 //////////////////////////////////// LAZY LOAD IMAGE << SHOW GALLERY 
 
-    const getTwoDigit = (number) => {
+    const lazyLoadImage = (index, option, amount) => {
 
-      let strNumber = number.toString();
-      strNumber.length === 1 ? strNumber = `0${strNumber}` : false;
-      return strNumber;
+      const currentImage = images[index];
+      const currentGridImage = portfolioGridImages[index];
+      const currentSrc = currentImage.getAttribute('src');
+      const currentImageSrc = currentGridImage.getAttribute('data-src2');
+      const indexToInc = index;
+      const indexToDec = index;
 
-    }
-    // F0 ///////////////////////////////////////// LOOP INDEX << SHOW GALLERY 
+      if (currentSrc === "") {
+        currentImage.src = currentImageSrc;
 
-    const loopIndex = (collection, index, action) => {
+      } else if (currentImage.complete) {
+        
+        if (amount > 0) {
+          amount--;
+          currentImage.classList.add('images__image--loaded');
 
-      const maxIndex = collection.length-1;
-      if (action === 'increase') {
-        index >= maxIndex ? index = 0 : index++;
-      } else if (action === 'decrease') {
-        index <= 0 ? index = maxIndex : index--;
+          if (option === 'prev' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToDec, 'decrease');
+            lazyLoadImage(index, 'prev', amount);
+          }
+
+          if (option === 'next' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToInc, 'increase');
+            lazyLoadImage(index, 'next', amount);
+          }
+        }
       }
-      return index;
-    }
-    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
+      currentImage.onload = () => {
+        if (amount > 0) {
+          amount--;
+          currentImage.classList.add('images__image--loaded');
 
-    const removeAllEvents = () => {
+          if (option === 'prev' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToDec, 'decrease');
+            lazyLoadImage(index, 'prev', amount);
+          }
 
-      window.removeEventListener('scroll', slideVertically);
-      gallery.removeEventListener('click', viewImage);
-      window.removeEventListener('keydown', viewImage);
-
+          if (option === 'next' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToInc, 'increase');
+            lazyLoadImage(index, 'next', amount);
+          }
+        }
+      }
     }
     // F1 ///////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY 
 
@@ -493,187 +571,51 @@ if (gallery) {
         } else {
           currentImageSection.classList.add("images--hidden-bottom");
         }
-        
+        showImage();
+
         setTimeout(() => {
           currentImageSection.classList.remove("images--hidden-top");
           currentImageSection.classList.remove("images--hidden-bottom");
-          displayGallery(e);
-        }, 1000);
+        }, 700);
 
         removeAllEvents();
         prevScroll = null;
       }
     }
-    // F2 //////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY 
+    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
 
-    const displayGallery = (e, action) => {
-
-      const self = e.keyCode || e.target;
-      const prevIndex = loopIndex(imageSections, currentIndex, 'decrease');
-      const nextIndex = loopIndex(imageSections, currentIndex, 'increase');
-      const currentImageSection = imageSections[currentIndex];
-      const prevImageSection = imageSections[prevIndex];
-      const nextImageSection = imageSections[nextIndex];
-      
-      // F1 /////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
-
-      const lazyLoadImage = (index, option, amount) => {
-
-        //const currentlyDisplayedImageSection = document.querySelector('.images--js-current');
-        const currentImage = images[index];
-        const currentGridImage = portfolioGridImages[index];
-        const currentSrc = currentImage.getAttribute('src');
-        const currentImageSrc = currentGridImage.getAttribute('data-src2');
-        const indexToInc = index;
-        const indexToDec = index;
-
-        if (currentSrc === "") {
-          currentImage.src = currentImageSrc;
-
-        } else if (currentImage.complete) {
-          
-          if (amount > 0) {
-            amount--;
-            currentImage.classList.add('images__image--loaded');
-  
-            if (option === 'prev' || option === 'start') {
-              index = loopIndex(imageSections, indexToDec, 'decrease');
-              lazyLoadImage(index, 'prev', amount);
-            }
-  
-            if (option === 'next' || option === 'start') {
-              index = loopIndex(imageSections, indexToInc, 'increase');
-              lazyLoadImage(index, 'next', amount);
-            }
-          }
-        }
-
-        currentImage.onload = () => {
-          if (amount > 0) {
-            amount--;
-            currentImage.classList.add('images__image--loaded');
-  
-            if (option === 'prev' || option === 'start') {
-              index = loopIndex(imageSections, indexToDec, 'decrease');
-              lazyLoadImage(index, 'prev', amount);
-            }
-  
-            if (option === 'next' || option === 'start') {
-              index = loopIndex(imageSections, indexToInc, 'increase');
-              lazyLoadImage(index, 'next', amount);
-            }
-          }
-        }
-      }
-      // F1 //////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
-      switch (self) {
-  
-        case 27:
-        case portfolioGridImage:
-        case currentImageSection:
-        case closeButton:
-          gallery.classList.toggle('gallery--visible');
-          prevImageSection.classList.toggle('images--visible');
-          prevImageSection.classList.toggle('images--hidden-left');
-          currentImageSection.classList.toggle('images--visible');
-          currentImageSection.classList.toggle('images--js-current');
-          nextImageSection.classList.toggle('images--visible');
-          nextImageSection.classList.toggle('images--hidden-right');
-          lazyLoadImage(currentIndex, 'start', 2);
-        break;
-
-        case 37:
-        case leftButton:
-          if (action === 'hideImage') {
-            nextImageSection.classList.toggle('images--visible');
-            nextImageSection.classList.toggle('images--hidden-right');
-          } else if (action === 'showImage') {
-            prevImageSection.classList.toggle('images--visible');
-            prevImageSection.classList.toggle('images--hidden-left');
-            currentImageSection.classList.toggle('images--js-current');
-            currentImageSection.classList.toggle('images--hidden-left');
-            nextImageSection.classList.toggle('images--js-current');
-            nextImageSection.classList.toggle('images--hidden-right');
-            lazyLoadImage(currentIndex, 'prev', 2);
-          }
-        break;
-        
-        case 39:
-        case rightButton:
-          if (action === 'hideImage') {
-            prevImageSection.classList.toggle('images--visible');
-            prevImageSection.classList.toggle('images--hidden-left');
-          } else if (action === 'showImage') {
-            nextImageSection.classList.toggle('images--visible');
-            nextImageSection.classList.toggle('images--hidden-right');
-            currentImageSection.classList.toggle('images--js-current');
-            currentImageSection.classList.toggle('images--hidden-right');
-            prevImageSection.classList.toggle('images--js-current');
-            prevImageSection.classList.toggle('images--hidden-left');
-            lazyLoadImage(currentIndex, 'next', 2);
-          }
-        break;
-
-        default:
-          return;
-      }
+    const removeAllEvents = () => {
+      gallery.removeEventListener('click', viewImage);
+      window.removeEventListener('keydown', viewImage);
+      window.removeEventListener('scroll', slideVertically);
     }
-    // F1 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
-    const viewImage = (e) => {
-
-      const self = e.keyCode || e.target;
-      const currentImageSection = imageSections[currentIndex];
-      const currentImage = images[currentIndex];
-
-      switch (self) {
-
-        case 37:
-        case leftButton:
-          displayGallery(e,'hideImage');
-          currentIndex = loopIndex(imageSections, currentIndex, 'decrease');
-          displayGallery(e,'showImage');
-          break;
-
-        case 39:
-        case rightButton:
-          displayGallery(e,'hideImage');
-          currentIndex = loopIndex(imageSections, currentIndex, 'increase');
-          displayGallery(e,'showImage');
-          break;
-
-        case 13:
-        case switchButton:
-          currentImage.classList.toggle('images__image--loaded');
-          switchCenter.classList.toggle('switch__center--linear');
-          break;
-        
-        case 27:
-        case portfolioGridImage:
-        case currentImageSection:
-        case closeButton:
-          displayGallery(e);
-          removeAllEvents();
-          break;
-
-        default:
-          return;
-      }
-    }
-    /////////////////////////////////// INITIAL FUNCTION CALLS << SHOW GALLERY 
-    gallery.children.length <= 1 ? generateGallery() : false;
-
     //////////////////////////////////////////////// VARIABLES << SHOW GALLERY 
+    // INDEX
+    const self = e.target;
+    let currentIndex = self.index;
+    // IMAGES
     const imageSections = document.querySelectorAll('.images--js');
     const images = document.querySelectorAll('.images__image--js');
+    let currentImageSection = imageSections[currentIndex];
+    let currentImageDescription = currentImageSection.firstElementChild;
+    let currentImageGraphics = currentImageSection.lastElementChild;
+    let currentImage = images[currentIndex];
+
+    const prevIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
+    const nextIndex = loopIndexRange(imageSections, currentIndex, 'increase');
+
+    const prevImageSection = imageSections[prevIndex];
+    const nextImageSection = imageSections[nextIndex];
+
+    // NAVIGATION
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
     const leftButton = document.querySelector('.gallery-nav__button--js-left');
     const rightButton = document.querySelector('.gallery-nav__button--js-right');
     const closeButton = document.querySelector('.gallery-nav__button--js-close');
     const switchCenter = document.querySelector('.switch__center--js');
-    const portfolioGridImage = portfolioGridImages[currentIndex];
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
-    displayGallery(e);
+    showImage();
 
     ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY 
     gallery.addEventListener('click', viewImage);
@@ -681,15 +623,42 @@ if (gallery) {
     window.addEventListener('scroll', slideVertically);
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
-  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
-  //////////////////////////////////////////////////////////// EVENT LISTENERS 
 
-  for (let i = 0; i < portfolioGridImages.length; i++) {
-    const gridImage = portfolioGridImages[i];
-    gridImage.index = i;
-    gridImage.addEventListener('click', showGallery);
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+  ////////////////////////////////////////////////////////////////// VARIABLES 
+  let prevScroll = null;
+  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
+  gallery.children.length <= 1 ? generateGallery() : false;
+  //////////////////////////////////////////////////////////// EVENT LISTENERS 
+  [...portfolioGridImages].forEach((a, i) => {
+    a.index = i;
+    a.addEventListener('click', showGallery);
+  })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
    ###    ########   #######  ##     ## ########
@@ -837,6 +806,21 @@ if (form) {
     }
   }
 
+  ////////////////////////////////////////////////////////////////// VARIABLES 
+  const checkboxContainer = document.querySelector('.form__verification--js');
+  const checkboxes = document.querySelectorAll('.checkbox__input--js');
+  const checkboxReject = document.querySelector('.checkbox__input--js-reject');
+  const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
+  const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
+  let responseState = "empty";
+  
+  const modalContainer = document.querySelector('.modal--js');
+  const modalText = document.querySelector('.modal__text--js');
+  const modalClose = document.querySelector('.modal__close--js');
+  
+  const submitButton = document.querySelector('.form__submit--js');
+
+  //////////////////////////////////////////////////////////// EVENT LISTENERS 
   checkboxContainer.addEventListener('click', handleCheckboxes );
   submitButton.addEventListener('click', validateCheckboxes);
   modalClose.addEventListener('click', toggleModal);

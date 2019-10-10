@@ -17,8 +17,6 @@ html {
 *,
 *:before,
 *:after {
-  /* margin: 0;
-  padding: 0; */
   box-sizing: inherit;
 }
 
@@ -37,10 +35,6 @@ img {
 
 a {
   text-decoration: none;
-}
-
-object {
-  pointer-events: all;
 }
 
 .disabled {

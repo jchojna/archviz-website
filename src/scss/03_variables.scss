@@ -11,14 +11,7 @@ $time-go-top-button: 1s;
 $time-dropdown: 0.3s;
 $time-checkbox: 0.4s;
 $time-modal: 0.5s;
-$time-gallery: 1s;
-$time-button-gallery: 0.4s;
-$time-image-gallery: 0.6s;
-//$time-desaturation: 1s;
-//$time-menu-item: 0.2s;
-//$time-fade: 0.5s;
 
-// TIMING
 $timing-ease-in-strong: cubic-bezier(0,0.6,0.4,1);
 $timing-ease-out-strong: cubic-bezier(0.6,0,1,0.4);
 
@@ -73,18 +66,10 @@ $size-checkbox: 30px;
 $media-tablet: 768px;
 $media-desktop: 1200px;
 
+////////////////////////////////////////////////////////////////////// GALLERY 
 
-
-/* $arrows-offset: 30px;
-$lightbox-icon-half-width: 2px;
-$lightbox-icon-length: 40px; */
-
-/* $form-input-height: 40px;
-$form-corner-radius: 10px; */
-
-
-
-/*
-$layout-lightbox-desc-offset: 15px;
-$layout-about-gap: 20px;
-*/
+$time-button-gallery: 0.4s;
+$time-image-gallery: 0.6s;
+$horizontal-slide: 0.6s;
+$vertical-slide: 0.7s;
+$gallery-toggle: 0.7s;
