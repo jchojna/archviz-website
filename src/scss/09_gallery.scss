@@ -20,32 +20,20 @@
 }
 /////////////////////////////////////////////////////////////////////// IMAGES 
 .images {
-  display: none;
+  //display: none;
+  @include flex-center;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  transition: transform $time-gallery;
+  visibility: hidden;
+  transition: visibility 0s $horizontal-slide;
 
   &--visible {
-    @include flex-center;
-  }
-
-  &--hidden-left {
-    transform: translateX(-100%);
-  }
-  
-  &--hidden-right {
-    transform: translateX(100%);
-  }
-
-  &--hidden-top {
-    transform: translateY(-100%);
-  }
-  
-  &--hidden-bottom {
-    transform: translateY(100%);
+    visibility: visible;
+    transition: visibility 0s;
+    z-index: 0;
   }
 
   &__description {
@@ -57,6 +45,11 @@
     left: 20px;
     font-size: 1.4rem;
     font-weight: bold;
+    visibility: hidden;
+
+    &--visible {
+      visibility: visible;
+    }
   }
 
   &__counter {
@@ -69,9 +62,29 @@
     font-weight: normal;
   }
 
-  &__container {
+  &__graphics {
     @include flex-center;
-    position: relative;
+    position: absolute;
+    visibility: hidden;
+    transition: visibility 0s $horizontal-slide;
+
+    &--visible {
+      visibility: visible;
+      transition: visibility 0s;
+    }
+
+    &--hidden-to-left {
+      animation: hideToLeft $horizontal-slide forwards;
+    }
+    &--hidden-to-right {
+      animation: hideToRight $horizontal-slide forwards;
+    }
+    &--visible-from-left {
+      animation: showFromLeft $horizontal-slide forwards;
+    }
+    &--visible-from-right {
+      animation: showFromRight $horizontal-slide forwards;
+    }
   }
 
   &__svg-solid {

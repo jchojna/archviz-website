@@ -374,187 +374,108 @@ if (portfolio) {
 
 if (gallery) {
 
+  // F0 ///////////////////////////////////////////////////// GENERATE GALLERY 
+  const generateGallery = () => {
+    const imagesAmount = portfolioGridImages.length;
+
+    for (let i = 0; i < imagesAmount; i++) {
+      const image = portfolioGridImages[i];
+      const imageAlt = image.alt;
+      const imageHeading = imageAlt.split(' | ').slice(0,1).join();
+      const svg = portfolioSvgs[i];
+      const svgSolidHref = svg.firstElementChild.getAttribute('href');
+      const svgLineHref = svgSolidHref.replace('solid', 'line');
+      const viewBoxWidth = svg.viewBox.baseVal.width;
+      const viewBoxHeight = svg.viewBox.baseVal.height;
+      const number = getTwoDigit(i + 1);
+      
+      gallery.innerHTML += `
+      <section class="images images--js">
+        <div class="images__description">
+          <p class="images__counter images__counter--js">
+            ${number} / ${imagesAmount}
+          </p>
+          <h3 class="images__heading">${imageHeading}</h3>
+        </div>
+        <div class="images__graphics">
+          <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
+            <use href="${svgSolidHref}"></use>
+          </svg>
+          <svg class="images__svg-line" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
+            <use href="${svgLineHref}"></use>
+          </svg>
+          <img
+            src=""
+            alt="${imageAlt}"
+            class="images__image images__image--js"
+          >
+        </div>
+      </section>
+      `;
+    }
+  }
+
+
+
   // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
   const showGallery = (e) => {
 
-    // F0 /////////////////////////////////// GENERATE GALLERY << SHOW GALLERY 
-
-    const generateGallery = () => {
-      const imagesAmount = portfolioGridImages.length;
-
-      for (let i = 0; i < imagesAmount; i++) {
-        const image = portfolioGridImages[i];
-        const imageAlt = image.alt;
-        const imageHeading = imageAlt.split(' | ').slice(0,1).join();
-        const svg = portfolioSvgs[i];
-        const svgSolidHref = svg.firstElementChild.getAttribute('href');
-        const svgLineHref = svgSolidHref.replace('solid', 'line');
-        const viewBoxWidth = svg.viewBox.baseVal.width;
-        const viewBoxHeight = svg.viewBox.baseVal.height;
-        const number = getTwoDigit(i + 1);
-        
-        gallery.innerHTML += `
-        <section class="images images--js">
-          <div class="images__description">
-            <p class="images__counter images__counter--js">
-              ${number} / ${imagesAmount}
-            </p>
-            <h3 class="images__heading">${imageHeading}</h3>
-          </div>
-          <div class="images__container">
-            <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
-              <use href="${svgSolidHref}"></use>
-            </svg>
-            <svg class="images__svg-line" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
-              <use href="${svgLineHref}"></use>
-            </svg>
-            <img
-              src=""
-              alt="${imageAlt}"
-              class="images__image images__image--js"
-            >
-          </div>
-        </section>
-        `;
-      }
-    }
     // F2 //////////////////////////////////// DISPLAY GALLERY << SHOW GALLERY 
+    const showImage = () => {
+      gallery.classList.toggle('gallery--visible');
+      currentImageSection.classList.toggle('images--visible');
+      currentImageDescription.classList.toggle('images__description--visible');
+      currentImageGraphics.classList.toggle('images__graphics--visible');
 
-    const displayGallery = (e, action) => {
-
-      const self = e.keyCode || e.target;
-      const prevIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
-      const nextIndex = loopIndexRange(imageSections, currentIndex, 'increase');
-      const currentImageSection = imageSections[currentIndex];
-      const prevImageSection = imageSections[prevIndex];
-      const nextImageSection = imageSections[nextIndex];
+      currentImageGraphics.classList.remove('images__graphics--visible-from-left');
+      currentImageGraphics.classList.remove('images__graphics--visible-from-right');
+      currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
+      currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
+      //lazyLoadImage(currentIndex, 'start', 2);
       
-      // F1 /////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
-
-      const lazyLoadImage = (index, option, amount) => {
-
-        //const currentlyDisplayedImageSection = document.querySelector('.images--js-current');
-        const currentImage = images[index];
-        const currentGridImage = portfolioGridImages[index];
-        const currentSrc = currentImage.getAttribute('src');
-        const currentImageSrc = currentGridImage.getAttribute('data-src2');
-        const indexToInc = index;
-        const indexToDec = index;
-
-        if (currentSrc === "") {
-          currentImage.src = currentImageSrc;
-
-        } else if (currentImage.complete) {
-          
-          if (amount > 0) {
-            amount--;
-            currentImage.classList.add('images__image--loaded');
-  
-            if (option === 'prev' || option === 'start') {
-              index = loopIndexRange(imageSections, indexToDec, 'decrease');
-              lazyLoadImage(index, 'prev', amount);
-            }
-  
-            if (option === 'next' || option === 'start') {
-              index = loopIndexRange(imageSections, indexToInc, 'increase');
-              lazyLoadImage(index, 'next', amount);
-            }
-          }
-        }
-
-        currentImage.onload = () => {
-          if (amount > 0) {
-            amount--;
-            currentImage.classList.add('images__image--loaded');
-  
-            if (option === 'prev' || option === 'start') {
-              index = loopIndexRange(imageSections, indexToDec, 'decrease');
-              lazyLoadImage(index, 'prev', amount);
-            }
-  
-            if (option === 'next' || option === 'start') {
-              index = loopIndexRange(imageSections, indexToInc, 'increase');
-              lazyLoadImage(index, 'next', amount);
-            }
-          }
-        }
-      }
-      
-      // F1 //////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
-      switch (self) {
-  
-        case 27:
-        case portfolioGridImage:
-        case currentImageSection:
-        case closeButton:
-          gallery.classList.toggle('gallery--visible');
-          prevImageSection.classList.toggle('images--visible');
-          prevImageSection.classList.toggle('images--hidden-left');
-          currentImageSection.classList.toggle('images--visible');
-          currentImageSection.classList.toggle('images--js-current');
-          nextImageSection.classList.toggle('images--visible');
-          nextImageSection.classList.toggle('images--hidden-right');
-          lazyLoadImage(currentIndex, 'start', 2);
-        break;
-
-        case 37:
-        case leftButton:
-          if (action === 'hideImage') {
-            nextImageSection.classList.toggle('images--visible');
-            nextImageSection.classList.toggle('images--hidden-right');
-          } else if (action === 'showImage') {
-            prevImageSection.classList.toggle('images--visible');
-            prevImageSection.classList.toggle('images--hidden-left');
-            currentImageSection.classList.toggle('images--js-current');
-            currentImageSection.classList.toggle('images--hidden-left');
-            nextImageSection.classList.toggle('images--js-current');
-            nextImageSection.classList.toggle('images--hidden-right');
-            lazyLoadImage(currentIndex, 'prev', 2);
-          }
-        break;
-        
-        case 39:
-        case rightButton:
-          if (action === 'hideImage') {
-            prevImageSection.classList.toggle('images--visible');
-            prevImageSection.classList.toggle('images--hidden-left');
-          } else if (action === 'showImage') {
-            nextImageSection.classList.toggle('images--visible');
-            nextImageSection.classList.toggle('images--hidden-right');
-            currentImageSection.classList.toggle('images--js-current');
-            currentImageSection.classList.toggle('images--hidden-right');
-            prevImageSection.classList.toggle('images--js-current');
-            prevImageSection.classList.toggle('images--hidden-left');
-            lazyLoadImage(currentIndex, 'next', 2);
-          }
-        break;
-
-        default:
-          return;
-      }
     }
     // F2 ///////////////////////////////////////////// END OF DISPLAY GALLERY 
     // F1 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
     const viewImage = (e) => {
-
-      const self = e.keyCode || e.target;
-      const currentImageSection = imageSections[currentIndex];
-      const currentImage = images[currentIndex];
+      const self = e.target;
 
       switch (self) {
 
         case 37:
         case leftButton:
-          displayGallery(e,'hideImage');
+
+          currentImageGraphics.classList.remove('images__graphics--visible-from-left');
+          currentImageGraphics.classList.remove('images__graphics--visible-from-right');
+          currentImageSection.classList.remove('images--visible');
+          currentImageDescription.classList.remove('images__description--visible');
+          currentImageGraphics.classList.remove('images__graphics--visible');
+          currentImageGraphics.classList.add('images__graphics--hidden-to-right');
+
           currentIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
-          displayGallery(e,'showImage');
+          currentImageSection = imageSections[currentIndex];
+          currentImageDescription = currentImageSection.firstElementChild;
+          currentImageGraphics = currentImageSection.lastElementChild;
+          currentImage = images[currentIndex];
+
+          currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
+          currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
+          currentImageSection.classList.add('images--visible');
+          currentImageDescription.classList.add('images__description--visible');
+          currentImageGraphics.classList.add('images__graphics--visible');
+          currentImageGraphics.classList.add('images__graphics--visible-from-left');
+
+
           break;
 
         case 39:
         case rightButton:
-          displayGallery(e,'hideImage');
-          currentIndex = loopIndexRange(imageSections, currentIndex, 'increase');
-          displayGallery(e,'showImage');
+
+
+
+
+
+
+
           break;
 
         case 13:
@@ -564,10 +485,8 @@ if (gallery) {
           break;
         
         case 27:
-        case portfolioGridImage:
-        case currentImageSection:
         case closeButton:
-          displayGallery(e);
+          showImage();
           removeAllEvents();
           break;
 
@@ -575,34 +494,144 @@ if (gallery) {
           return;
       }
     }
-    /////////////////////////////////// INITIAL FUNCTION CALLS << SHOW GALLERY 
-    gallery.children.length <= 1 ? generateGallery() : false;
+    // F1 /////////////// LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
+    const lazyLoadImage = (index, option, amount) => {
 
+      const currentImage = images[index];
+      const currentGridImage = portfolioGridImages[index];
+      const currentSrc = currentImage.getAttribute('src');
+      const currentImageSrc = currentGridImage.getAttribute('data-src2');
+      const indexToInc = index;
+      const indexToDec = index;
+
+      if (currentSrc === "") {
+        currentImage.src = currentImageSrc;
+
+      } else if (currentImage.complete) {
+        
+        if (amount > 0) {
+          amount--;
+          currentImage.classList.add('images__image--loaded');
+
+          if (option === 'prev' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToDec, 'decrease');
+            lazyLoadImage(index, 'prev', amount);
+          }
+
+          if (option === 'next' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToInc, 'increase');
+            lazyLoadImage(index, 'next', amount);
+          }
+        }
+      }
+
+      currentImage.onload = () => {
+        if (amount > 0) {
+          amount--;
+          currentImage.classList.add('images__image--loaded');
+
+          if (option === 'prev' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToDec, 'decrease');
+            lazyLoadImage(index, 'prev', amount);
+          }
+
+          if (option === 'next' || option === 'start') {
+            index = loopIndexRange(imageSections, indexToInc, 'increase');
+            lazyLoadImage(index, 'next', amount);
+          }
+        }
+      }
+    }
+    // F1 //////// END OF LAZY LOAD IMAGE << DISPLAY GALLERY << SHOW GALLERY 
+      
+    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
+    const removeAllEvents = () => {
+      gallery.removeEventListener('click', viewImage);
+      window.removeEventListener('keydown', viewImage);
+      window.removeEventListener('scroll', slideVertically);
+    }
+
+    // F1 ///////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY 
+    const slideVertically = () => {
+
+      const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const currentImageSection = imageSections[currentIndex];
+
+      if (prevScroll === null) {
+        prevScroll = nextScroll;
+      }
+
+      if (nextScroll !== prevScroll) {
+        
+        if (nextScroll > prevScroll) {
+          currentImageSection.classList.add("images--hidden-top");
+        } else {
+          currentImageSection.classList.add("images--hidden-bottom");
+        }
+        
+        setTimeout(() => {
+          currentImageSection.classList.remove("images--hidden-top");
+          currentImageSection.classList.remove("images--hidden-bottom");
+          displayGallery(e);
+        }, 1000);
+
+        removeAllEvents();
+        prevScroll = null;
+      }
+    }
     //////////////////////////////////////////////// VARIABLES << SHOW GALLERY 
+    // INDEX
     const self = e.target;
     let currentIndex = self.index;
-
+    // IMAGES
+    //const portfolioGridImage = portfolioGridImages[currentIndex];
     const imageSections = document.querySelectorAll('.images--js');
     const images = document.querySelectorAll('.images__image--js');
+    let currentImageSection = imageSections[currentIndex];
+    let currentImageDescription = currentImageSection.firstElementChild;
+    let currentImageGraphics = currentImageSection.lastElementChild;
+    let currentImage = images[currentIndex];
+
+    const prevIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
+    const nextIndex = loopIndexRange(imageSections, currentIndex, 'increase');
+
+    const prevImageSection = imageSections[prevIndex];
+    const nextImageSection = imageSections[nextIndex];
+
+    // NAVIGATION
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
     const leftButton = document.querySelector('.gallery-nav__button--js-left');
     const rightButton = document.querySelector('.gallery-nav__button--js-right');
     const closeButton = document.querySelector('.gallery-nav__button--js-close');
     const switchCenter = document.querySelector('.switch__center--js');
-    const portfolioGridImage = portfolioGridImages[currentIndex];
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
-    displayGallery(e);
+    showImage();
 
     ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY 
     gallery.addEventListener('click', viewImage);
-    window.addEventListener('keydown', viewImage);
-    window.addEventListener('scroll', slideVertically);
+    //window.addEventListener('keydown', viewImage);
+    //window.addEventListener('scroll', slideVertically);
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
-  //////////////////////////////////////////////////////////////////////////// 
-  let prevScroll = null;
 
+
+
+
+
+
+
+
+
+
+
+
+
+  ////////////////////////////////////////////////////////////////// VARIABLES 
+  let prevScroll = null;
+  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
+  gallery.children.length <= 1 ? generateGallery() : false;
+  //////////////////////////////////////////////////////////// EVENT LISTENERS 
   [...portfolioGridImages].forEach((a, i) => {
     a.index = i;
     a.addEventListener('click', showGallery);
