@@ -64,10 +64,13 @@
   &__dropdown {
     width: $size-dropdown;
     pointer-events: none;
-    transition: transform $rotate-dropdown;
 
     &--reversed {
       transform: rotate(180deg);
+    }
+    
+    &--transition {
+      transition: transform $rotate-dropdown;
     }
   }
 
@@ -75,10 +78,9 @@
     overflow: hidden;
     border-bottom: 2px solid #fff;
     padding: 1em 0;
-    transition: height $rotate-dropdown;
 
-    &--minimized {
-
+    &--transition {
+      transition: margin $rotate-dropdown;
     }
   }
 
