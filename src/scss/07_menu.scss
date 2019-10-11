@@ -128,6 +128,7 @@
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity $toggle-mobile-menu;
+  pointer-events: auto;
 
   &--hidden {
     visibility: hidden;
