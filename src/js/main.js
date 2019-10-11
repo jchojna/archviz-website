@@ -683,66 +683,44 @@ if (gallery) {
 */
 
 if (about) {
-
-  // F0 /////////////////////////////////////////////////////// TRANSLATE CARD 
-
-  const translateCard = (card) => {
-    const cardHeight = card.clientHeight;
-    const cardTranslation = card.style.marginTop;
-    
-    if ( cardTranslation === "0px" || cardTranslation === "" ) {
-      card.style.marginTop = `${(-1) * cardHeight - 2}px`;
-    } else {
-      card.style.marginTop = "0px";
-    }
+  
+  var minimizeCards = () => {
+    [...cardDescription].forEach(c=>c.style.marginTop=`${(-1)*c.clientHeight-3}px`);
+    [...cardDropdown].forEach(d=>d.classList.toggle('card__dropdown--reversed'));
   }
-  // F0 ////////////////////////////////////////////////////// ROTATE DROPDOWN 
 
-  const rotateDropdown = (dropdown) => {
+  const handleCard = (e) => {
+    const {index} = e.target;
+    const card = cardDescription[index];
+    const dropdown = cardDropdown[index];
+    const {marginTop} = card.style;
+
+    if (!card.classList.contains('card__description--transition')) {
+      card.classList.add('card__description--transition');
+      dropdown.classList.add('card__dropdown--transition');
+    }
+    card.style.marginTop = marginTop === "0px" || marginTop === ""
+    ? `${(-1) * card.clientHeight - 3}px`
+    : "0px";
     dropdown.classList.toggle('card__dropdown--reversed');
   }
   
-  const minimizeCards = () => {    
-    for ( const card of cardDescription ) {
-      translateCard(card);
-    }
+  const handleCardsOnResize = () => {
+    [...cardDescription].forEach(c => c.style.marginTop =
+    c.style.marginTop === "0px" || c.style.marginTop === ""
+    ? "0px"
+    : `${(-1) * c.clientHeight - 3}px`);
   }
-  // F1 ///////////////////////////////////////////////////////// HANDLE CARDS 
-    
-  const handleCards = (e) => {
-    const idx = e.target.index;
-    const cardArrow = cardDropdown[idx];
-    const cardText = cardDescription[idx];
-    translateCard(cardText);
-    rotateDropdown(cardArrow);
-  }
-  // F0 ///////////////////////////////////////////////////////// ADJUST CARDS 
-  
-  const adjustCards = () => {
-    
-    for (const card of cardDescription) {
-      const cardHeight = card.clientHeight;
-      card.style.marginTop = `${(-1) * cardHeight - 3}px`;
-    }
-  }
-  ////////////////////////////////////////////////////////////////// VARIABLES 
+
   const cardHeader = document.querySelectorAll('.card__header--js');
   const cardDescription = document.querySelectorAll('.card__description--js');
   const cardDropdown = document.querySelectorAll('.card__dropdown--js');
 
-  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
-  window.onload = () => {
-    minimizeCards();
-  }
-
-  //////////////////////////////////////////////////////////// EVENT LISTENERS 
-
-  for (let i = 0; i < cardHeader.length; i++ ) {
-    const card = cardHeader[i];
-    card.index = i;
-    card.addEventListener('click', handleCards);
-  }
-  window.addEventListener('resize', adjustCards);
+  [...cardHeader].forEach((a,i) => {
+    a.index = i;
+    a.addEventListener('click', handleCard);
+  });
+  window.addEventListener('resize', handleCardsOnResize);
 }
 
 /*
@@ -859,5 +837,8 @@ window.onload = () => {
   if (portfolio) {
     lazyLoad();
     window.addEventListener('scroll', throttle(() => lazyLoad(0), 1000));
+  }
+  if (about) {
+    minimizeCards();
   }
 }
