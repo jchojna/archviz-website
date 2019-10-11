@@ -428,7 +428,10 @@ if (gallery) {
       
       const {width, height} = currentSvg.viewBox.baseVal;
       const {innerWidth, innerHeight} = window;
-      const heightOffset = 120;
+      const heightOffset = innerWidth >= desktopBreakpoint ? 120
+      : innerWidth >= tabletBreakpoint ? 100
+      : 80;
+      
       const areaHeight = innerHeight - heightOffset;
       const svgAspectRatio = width / height;
       const areaAspectRatio = innerWidth / areaHeight;
