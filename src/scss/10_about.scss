@@ -10,53 +10,59 @@
   width: 100%;
   max-width: $layout-container-width;
   margin: auto;
-  padding: ($layout-sm-offset * 2) $layout-sm-offset;
-  padding-top: $layout-sm-logo + ($layout-sm-offset * 2);
+  padding: $layout-sm-offset;
+  padding-top: $layout-sm-logo + $layout-sm-offset * 2;
   display: grid;
   flex-grow: 1;
 
   @media only screen and (min-width: $media-md) {
-    padding: $layout-md-offset*2 $layout-md-offset;
-    padding-top: $layout-md-logo + ($layout-md-offset * 2);
+    padding: $layout-md-offset;
+    padding-top: $layout-md-logo + $layout-md-offset * 2;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem 2rem;
   }
   
   @media only screen and (min-width: $media-lg) {
-    padding: $layout-lg-offset*2 $layout-lg-offset;
-    padding-top: $layout-lg-logo + ($layout-lg-offset * 2);
+    padding: $layout-lg-offset;
+    padding-top: $layout-lg-logo + $layout-lg-offset * 2;
   }
 }
 ///////////////////////////////////////////////////////////////////////// CARD 
 .card {
+  font-size: 1rem;
   font-weight: 300;
-  font-size: 1.1rem;
-  text-align: justify;
-  width: 100%;
   overflow: hidden;
   padding-bottom: 2px;
+  text-align: justify;
+  width: 100%;
 
   &__header {
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    user-select: none;
-    padding: 1rem 0;
-    border-bottom: 2px solid #fff;
     background-color: $color-background;
+    border-bottom: 2px solid #fff;
+    cursor: pointer;
+    display: flex;
+    fill: #fff;
+    justify-content: space-between;
+    padding: 1.2em 0 0.7em;
+    position: relative;
+    user-select: none;
+    transition: color $hover-card, fill $hover-card;
+
+    &:hover {
+      color: $color-main;
+      fill: $color-main;
+    }
   }
 
   &__heading {
-    grid-column-start: 2;
-    text-align: center;
-    color: #fff;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
     pointer-events: none;
   }
 
   &__dropdown {
-    font-size: 1.6em;
+    width: $size-dropdown;
     pointer-events: none;
     transition: transform $rotate-dropdown;
 
@@ -67,9 +73,9 @@
 
   &__description {
     overflow: hidden;
-    transition: transform $rotate-dropdown;
     border-bottom: 2px solid #fff;
-    padding: 1.5rem 0;
+    padding: 1em 0;
+    transition: height $rotate-dropdown;
 
     &--minimized {
 
