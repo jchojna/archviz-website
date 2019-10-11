@@ -394,7 +394,7 @@ if (gallery) {
       <section class="images images--js">
         <div class="images__description">
           <p class="images__counter images__counter--js">
-            ${number} / ${imagesAmount}
+            <span class="images__counter--current">${number}</span>/${imagesAmount}
           </p>
           <h3 class="images__heading">${imageHeading}</h3>
         </div>
