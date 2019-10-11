@@ -57,10 +57,14 @@ $hover-grid-item: 0.4s;
 $load-grid-image: 1.5s;
 
 ////////////////////////////////////////////////////////////////////// GALLERY 
-$offset-gallery: 15px;
+$offset-gallery-sm: 5px;
+$offset-gallery-md: 10px;
+$offset-gallery-lg: 15px;
 
-$size-gallery-button: 30px;
-$gap-gallery-button: 30px;
+$size-gallery-button-sm: 30px;
+$size-gallery-button-md: 35px;
+$size-gallery-button-lg: 40px;
+$gap-gallery-button: 20px;
 
 $toggle-gallery: 0.7s;
 $hover-gallery-button: 0.4s;

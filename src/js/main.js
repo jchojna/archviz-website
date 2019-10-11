@@ -428,8 +428,8 @@ if (gallery) {
       
       const {width, height} = currentSvg.viewBox.baseVal;
       const {innerWidth, innerHeight} = window;
-      const heightOffset = innerWidth >= desktopBreakpoint ? 120
-      : innerWidth >= tabletBreakpoint ? 100
+      const heightOffset = innerWidth >= desktopBreakpoint ? 150
+      : innerWidth >= tabletBreakpoint ? 120
       : 80;
       
       const areaHeight = innerHeight - heightOffset;
