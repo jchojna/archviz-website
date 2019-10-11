@@ -6,6 +6,7 @@
   width: 100%;
   padding: $layout-sm-offset;
   z-index: 2;
+  pointer-events: none;
 
   &--background {
     background-color: $color-background;
@@ -38,10 +39,12 @@
 
   &__list {
     display: none;
+    padding: 0;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
     list-style: none;
+    pointer-events: auto;
   }
 
   &__item {
@@ -150,6 +153,7 @@
   display: flex;
   height: $layout-sm-logo;
   width: $layout-sm-logo;
+  pointer-events: auto;
 
   &:hover .logo__svg {
     fill: $color-main;
@@ -184,6 +188,7 @@
   position: relative;
   width: $size-burger-button;
   height: $size-burger-button;
+  pointer-events: auto;
   z-index: 1;
 
   &__svg {
