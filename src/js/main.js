@@ -672,19 +672,6 @@ if (gallery) {
   })
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
    ###    ########   #######  ##     ## ########
   ## ##   ##     ## ##     ## ##     ##    ##
@@ -697,10 +684,8 @@ if (gallery) {
 
 if (about) {
 
-  const cardHeader = document.querySelectorAll('.card__header--js');
-  const cardDescription = document.querySelectorAll('.card__description--js');
-  const cardDropdown = document.querySelectorAll('.card__dropdown--js');
-  const dropdownTransition = 500 + "ms";
+  // F0 /////////////////////////////////////////////////////// TRANSLATE CARD 
+
   const translateCard = (card) => {
     const cardHeight = card.clientHeight;
     const cardTranslation = card.style.marginTop;
@@ -711,6 +696,7 @@ if (about) {
       card.style.marginTop = "0px";
     }
   }
+  // F0 ////////////////////////////////////////////////////// ROTATE DROPDOWN 
 
   const rotateDropdown = (dropdown) => {
     dropdown.classList.toggle('card__dropdown--reversed');
@@ -721,15 +707,16 @@ if (about) {
       translateCard(card);
     }
   }
+  // F1 ///////////////////////////////////////////////////////// HANDLE CARDS 
     
   const handleCards = (e) => {
     const idx = e.target.index;
-
     const cardArrow = cardDropdown[idx];
     const cardText = cardDescription[idx];
     translateCard(cardText);
     rotateDropdown(cardArrow);
   }
+  // F0 ///////////////////////////////////////////////////////// ADJUST CARDS 
   
   const adjustCards = () => {
     
@@ -738,19 +725,24 @@ if (about) {
       card.style.marginTop = `${(-1) * cardHeight - 3}px`;
     }
   }
+  ////////////////////////////////////////////////////////////////// VARIABLES 
+  const cardHeader = document.querySelectorAll('.card__header--js');
+  const cardDescription = document.querySelectorAll('.card__description--js');
+  const cardDropdown = document.querySelectorAll('.card__dropdown--js');
 
+  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
   window.onload = () => {
     minimizeCards();
   }
+
+  //////////////////////////////////////////////////////////// EVENT LISTENERS 
 
   for (let i = 0; i < cardHeader.length; i++ ) {
     const card = cardHeader[i];
     card.index = i;
     card.addEventListener('click', handleCards);
   }
-
   window.addEventListener('resize', adjustCards);
-
 }
 
 /*
