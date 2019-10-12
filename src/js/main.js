@@ -804,7 +804,6 @@ if (form) {
       toggleModal();
     }
   }
-
   ////////////////////////////////////////////////////////////////// VARIABLES 
   const checkboxContainer = document.querySelector('.form__verification--js');
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
@@ -812,6 +811,8 @@ if (form) {
   const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
   const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
   let responseState = "empty";
+
+  const formInputs = document.querySelectorAll('.input__data--js');
   
   const modalContainer = document.querySelector('.modal--js');
   const modalText = document.querySelector('.modal__text--js');
@@ -824,6 +825,12 @@ if (form) {
   submitButton.addEventListener('click', validateCheckboxes);
   modalClose.addEventListener('click', toggleModal);
   modalContainer.addEventListener('click', windowQuit);
+
+  [...formInputs].forEach(input => {
+    const key = `jc-${input.getAttribute('id')}`;
+    input.value = localStorage.getItem(key) ? localStorage.getItem(key) : "";
+    input.addEventListener('keyup', () => localStorage.setItem(key, input.value));
+  })
 }
 
 /*
