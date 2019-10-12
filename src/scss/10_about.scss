@@ -10,7 +10,9 @@
   align-content: start;
   display: grid;
   flex-grow: 1;
+  justify-content: start;
   margin: auto;
+  margin-bottom: 2em;
   max-width: $layout-container-width;
   padding: $layout-sm-offset;
   padding-top: $layout-sm-logo + $layout-sm-offset * 2;
@@ -30,31 +32,40 @@
 }
 ///////////////////////////////////////////////////////////////////////// CARD 
 .card {
+  align-self: start;
   border-bottom: 1px solid #fff;
   font-size: 1rem;
   font-weight: 300;
   overflow: hidden;
+  color: #fff;
+  fill: #fff;
   text-align: justify;
+  transition: border-color $hover-card;
   width: 100%;
+
+  &:hover {
+    border-color: #fff;
+    color: #fff;
+    fill: #fff;
+  }
+
+  &--rolled-up {
+    border-color: $color-background-light;
+    color: $color-background-light;
+    fill: $color-background-light;
+  }
 
   &__header {
     align-items: center;
     background-color: $color-background;
-    border-color: $color-background;
     border-bottom: 1px solid #fff;
     cursor: pointer;
     display: flex;
-    fill: #fff;
     justify-content: space-between;
     padding: 1.2em 0 0.7em;
     position: relative;
     transition: color $hover-card, fill $hover-card;
     user-select: none;
-
-    &:hover {
-      color: $color-main;
-      fill: $color-main;
-    }
   }
 
   &__heading {
@@ -79,6 +90,7 @@
 
   &__description {
     align-items: flex-start;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
