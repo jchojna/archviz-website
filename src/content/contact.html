@@ -120,63 +120,67 @@
         method="post"
         autocomplete="off"
         class="form form--js">
-        <h2 class="form__heading">Contact me!</h2>
+        <h2 class="form__heading">Contact Me:</h2>
         <!------------------------------------------------------------ NAME -->
         <p class="input">
-          <label for="name" class="input__label">Name:</label>
           <input
-            type="text"
-            id="name"
-            class="input__data"
-            name="userName"
-            placeholder="your name">
+          type="text"
+          id="name"
+          class="input__data"
+          maxlength="50"
+          name="userName"
+          placeholder="your name">
+          <label for="name" class="input__label">Name:</label>
         </p>
         <!----------------------------------------------------- END OF NAME -->
         <!----------------------------------------------------------- EMAIL -->
         <p class="input">
-          <label for="email" class="input__label">E-mail:</label>
           <input
-            type="email"
-            id="email"
-            class="input__data"
-            name="userEmail"
-            placeholder="your e-mail address">
+          type="email"
+          id="email"
+          class="input__data"
+          maxlength="30"
+          name="userEmail"
+          placeholder="your e-mail address">
+          <label for="email" class="input__label">E-mail:</label>
           <span class="contact__error"></span>
         </p>
         <!---------------------------------------------------- END OF EMAIL -->
         <!----------------------------------------------------------- PHONE -->
         <p class="input">
-          <label for="phone" class="input__label">Phone:</label>
           <input
-            type="tel"
-            id="phone"
-            class="input__data"
-            name="userPhone"
-            placeholder="your phone number">
+          type="tel"
+          id="phone"
+          class="input__data"
+          maxlength="20"
+          name="userPhone"
+          placeholder="your phone number">
+          <label for="phone" class="input__label">Phone:</label>
           <span class="contact__error"></span>
         </p>
         <!---------------------------------------------------- END OF PHONE -->
         <!----------------------------------------------------------- TITLE -->
         <p class="input">
-          <label for="title" class="input__label">Title:</label>
           <input
-            type="text"
-            id="title"
-            class="input__data"
-            name="userTitle"
-            placeholder="title of your message">
+          type="text"
+          id="title"
+          class="input__data"
+          maxlength="50"
+          name="userTitle"
+          placeholder="title of your message">
+          <label for="title" class="input__label">Title:</label>
         </p>
         <!---------------------------------------------------- END OF TITLE -->
         <!--------------------------------------------------------- MESSAGE -->
         <p class="input input--message">
-          <label for="message" class="input__label">Message:</label>
           <textarea
-            id="message"
-            class="input__data input__data--message"
-            name="userDesc"
-            rows="10"
-            cols="10"
-            placeholder="write your message"></textarea>
+          id="message"
+          class="input__data input__data--message"
+          name="userDesc"
+          rows="10"
+          cols="10"
+          placeholder="write your message"></textarea>
+          <label for="message" class="input__label">Message:</label>
         </p>
         <!-------------------------------------------------- END OF MESSAGE -->
         <!---------------------------------------------------- VERIFICATION -->
