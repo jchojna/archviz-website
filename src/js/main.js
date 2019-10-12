@@ -394,11 +394,11 @@ if (gallery) {
       <section class="images images--js">
         <div class="images__description">
           <p class="images__counter images__counter--js">
-            ${number} / ${imagesAmount}
+            <span class="images__counter--current">${number}</span>/${imagesAmount}
           </p>
           <h3 class="images__heading">${imageHeading}</h3>
         </div>
-        <div class="images__graphics">
+        <div class="images__container images__container--js">
           <svg class="images__svg-solid images__svg-solid--js" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}">
             <use href="${svgSolidHref}"></use>
           </svg>
@@ -419,19 +419,44 @@ if (gallery) {
 
   const showGallery = (e) => {
 
+    
+    // F0 ///////////////////////////// SET WITH AND HEIGHT OF IMAGE CONTAINER 
+
+    const setImageSize = () => {
+      currentImageContainer = imageContainers[currentIndex];
+      const currentSvg = svgs[currentIndex];
+      
+      const {width, height} = currentSvg.viewBox.baseVal;
+      const {innerWidth, innerHeight} = window;
+      const heightOffset = innerWidth >= desktopBreakpoint ? 150
+      : innerWidth >= tabletBreakpoint ? 120
+      : 80;
+      
+      const areaHeight = innerHeight - heightOffset;
+      const svgAspectRatio = width / height;
+      const areaAspectRatio = innerWidth / areaHeight;
+
+      if (svgAspectRatio >= areaAspectRatio) {
+        currentImageContainer.style.width = "100%";
+        currentImageContainer.style.height = `${innerWidth / svgAspectRatio}px`;
+      } else {
+        currentImageContainer.style.width = `${areaHeight * svgAspectRatio}px`;
+        currentImageContainer.style.height = `${areaHeight}px`;
+      }
+    }
     // F1 ///////////////////////////////////////// SHOW IMAGE << SHOW GALLERY 
 
     const showImage = () => {
       gallery.classList.toggle('gallery--visible');
       currentImageSection.classList.toggle('images--visible');
       currentImageDescription.classList.toggle('images__description--visible');
-      currentImageGraphics.classList.toggle('images__graphics--visible');
+      currentImageContainer.classList.toggle('images__container--visible');
 
       if (gallery.classList.contains('gallery--visible')) {
-        currentImageGraphics.classList.remove('images__graphics--visible-from-left');
-        currentImageGraphics.classList.remove('images__graphics--visible-from-right');
-        currentImageGraphics.classList.remove('images__graphics--hidden-to-left');
-        currentImageGraphics.classList.remove('images__graphics--hidden-to-right');
+        currentImageContainer.classList.remove('images__container--visible-from-left');
+        currentImageContainer.classList.remove('images__container--visible-from-right');
+        currentImageContainer.classList.remove('images__container--hidden-to-left');
+        currentImageContainer.classList.remove('images__container--hidden-to-right');
         switchCenter.classList.remove('switch__center--linear');
         lazyLoadImage(currentIndex, 'start', 2);
       }
@@ -442,24 +467,24 @@ if (gallery) {
       const opposite = direction === 'left' ? 'right' : 'left';
       const action = direction === 'left' ? 'decrease' : 'increase';
 
-      currentImageGraphics.classList.remove(`images__graphics--visible-from-${direction}`);
-      currentImageGraphics.classList.remove(`images__graphics--visible-from-${opposite}`);
+      currentImageContainer.classList.remove(`images__container--visible-from-${direction}`);
+      currentImageContainer.classList.remove(`images__container--visible-from-${opposite}`);
       currentImageSection.classList.remove('images--visible');
       currentImageDescription.classList.remove('images__description--visible');
-      currentImageGraphics.classList.remove('images__graphics--visible');
-      currentImageGraphics.classList.add(`images__graphics--hidden-to-${opposite}`);
+      currentImageContainer.classList.remove('images__container--visible');
+      currentImageContainer.classList.add(`images__container--hidden-to-${opposite}`);
 
       currentIndex = loopIndexRange(imageSections, currentIndex, action);
       currentImageSection = imageSections[currentIndex];
       currentImageDescription = currentImageSection.firstElementChild;
-      currentImageGraphics = currentImageSection.lastElementChild;
+      currentImageContainer = currentImageSection.lastElementChild;
 
-      currentImageGraphics.classList.remove(`images__graphics--hidden-to-${direction}`);
-      currentImageGraphics.classList.remove(`images__graphics--hidden-to-${opposite}`);
+      currentImageContainer.classList.remove(`images__container--hidden-to-${direction}`);
+      currentImageContainer.classList.remove(`images__container--hidden-to-${opposite}`);
       currentImageSection.classList.add('images--visible');
       currentImageDescription.classList.add('images__description--visible');
-      currentImageGraphics.classList.add('images__graphics--visible');
-      currentImageGraphics.classList.add(`images__graphics--visible-from-${direction}`);
+      currentImageContainer.classList.add('images__container--visible');
+      currentImageContainer.classList.add(`images__container--visible-from-${direction}`);
     }
     // F2 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
 
@@ -480,6 +505,7 @@ if (gallery) {
           handleClassesChange('left');
           lazyLoadImage(currentIndex, 'prev', 2);
           keepPlaceholderMode();
+          setImageSize();
           break;
 
         case 39:
@@ -487,6 +513,7 @@ if (gallery) {
           handleClassesChange('right');
           lazyLoadImage(currentIndex, 'next', 2);
           keepPlaceholderMode();
+          setImageSize();
           break;
 
         case 38:
@@ -595,17 +622,13 @@ if (gallery) {
     let currentIndex = self.index;
     // IMAGES
     const imageSections = document.querySelectorAll('.images--js');
+    const imageContainers = document.querySelectorAll('.images__container--js');
     const images = document.querySelectorAll('.images__image--js');
+    const svgs = document.querySelectorAll('.images__svg-solid--js');
     let currentImageSection = imageSections[currentIndex];
+    let currentImageContainer = imageContainers[currentIndex];
     let currentImageDescription = currentImageSection.firstElementChild;
-    let currentImageGraphics = currentImageSection.lastElementChild;
     let currentImage = images[currentIndex];
-
-    const prevIndex = loopIndexRange(imageSections, currentIndex, 'decrease');
-    const nextIndex = loopIndexRange(imageSections, currentIndex, 'increase');
-
-    const prevImageSection = imageSections[prevIndex];
-    const nextImageSection = imageSections[nextIndex];
 
     // NAVIGATION
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
@@ -615,12 +638,14 @@ if (gallery) {
     const switchCenter = document.querySelector('.switch__center--js');
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
+    setImageSize();
     showImage();
 
     ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY 
     gallery.addEventListener('click', viewImage);
     window.addEventListener('keydown', viewImage);
     window.addEventListener('scroll', slideVertically);
+    window.addEventListener('resize', setImageSize)
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
 
@@ -647,19 +672,6 @@ if (gallery) {
   })
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
    ###    ########   #######  ##     ## ########
   ## ##   ##     ## ##     ## ##     ##    ##
@@ -671,61 +683,48 @@ if (gallery) {
 */
 
 if (about) {
-
-  const cardHeader = document.querySelectorAll('.card__header--js');
-  const cardDescription = document.querySelectorAll('.card__description--js');
-  const cardDropdown = document.querySelectorAll('.card__dropdown--js');
-  const dropdownTransition = 500 + "ms";
-  const translateCard = (card) => {
-    const cardHeight = card.clientHeight;
-    const cardTranslation = card.style.marginTop;
-    
-    if ( cardTranslation === "0px" || cardTranslation === "" ) {
-      card.style.marginTop = `${(-1) * cardHeight - 2}px`;
-    } else {
-      card.style.marginTop = "0px";
-    }
+  
+  var minimizeCards = () => {
+    [...cards].forEach(c=>c.classList.toggle('card--rolled-up'));
+    [...cardDescriptions].forEach(c=>c.style.marginTop=`${(-1)*c.clientHeight-3}px`);
+    [...cardDropdowns].forEach(d=>d.classList.toggle('card__dropdown--reversed'));
   }
 
-  const rotateDropdown = (dropdown) => {
+  const handleCard = (e) => {
+    const {index} = e.target;
+    const cardContainer = cards[index];
+    const card = cardDescriptions[index];
+    const dropdown = cardDropdowns[index];
+    const {marginTop} = card.style;
+
+    if (!card.classList.contains('card__description--transition')) {
+      card.classList.add('card__description--transition');
+      dropdown.classList.add('card__dropdown--transition');
+    }
+    cardContainer.classList.toggle('card--rolled-up');
+    card.style.marginTop = marginTop === "0px" || marginTop === ""
+    ? `${(-1) * card.clientHeight - 3}px`
+    : "0px";
     dropdown.classList.toggle('card__dropdown--reversed');
   }
   
-  const minimizeCards = () => {    
-    for ( const card of cardDescription ) {
-      translateCard(card);
-    }
-  }
-    
-  const handleCards = (e) => {
-    const idx = e.target.index;
-
-    const cardArrow = cardDropdown[idx];
-    const cardText = cardDescription[idx];
-    translateCard(cardText);
-    rotateDropdown(cardArrow);
-  }
-  
-  const adjustCards = () => {
-    
-    for (const card of cardDescription) {
-      const cardHeight = card.clientHeight;
-      card.style.marginTop = `${(-1) * cardHeight - 3}px`;
-    }
+  const handleCardsOnResize = () => {
+    [...cardDescriptions].forEach(c => c.style.marginTop =
+    c.style.marginTop === "0px" || c.style.marginTop === ""
+    ? "0px"
+    : `${(-1) * c.clientHeight - 3}px`);
   }
 
-  window.onload = () => {
-    minimizeCards();
-  }
+  const cards = document.querySelectorAll('.card--js');
+  const cardHeaders = document.querySelectorAll('.card__header--js');
+  const cardDescriptions = document.querySelectorAll('.card__description--js');
+  const cardDropdowns = document.querySelectorAll('.card__dropdown--js');
 
-  for (let i = 0; i < cardHeader.length; i++ ) {
-    const card = cardHeader[i];
-    card.index = i;
-    card.addEventListener('click', handleCards);
-  }
-
-  window.addEventListener('resize', adjustCards);
-
+  [...cardHeaders].forEach((a,i) => {
+    a.index = i;
+    a.addEventListener('click', handleCard);
+  });
+  window.addEventListener('resize', handleCardsOnResize);
 }
 
 /*
@@ -842,5 +841,8 @@ window.onload = () => {
   if (portfolio) {
     lazyLoad();
     window.addEventListener('scroll', throttle(() => lazyLoad(0), 1000));
+  }
+  if (about) {
+    window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }
 }

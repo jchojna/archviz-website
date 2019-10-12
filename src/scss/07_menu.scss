@@ -6,19 +6,20 @@
   width: 100%;
   padding: $layout-sm-offset;
   z-index: 2;
+  pointer-events: none;
 
   &--background {
     background-color: $color-background;
   }
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       padding: $layout-md-offset;
     }
   }
 
-  @media only screen and (min-width: $media-desktop) {
+  @media only screen and (min-width: $media-lg) {
 
     & {
       padding: $layout-lg-offset;
@@ -33,28 +34,26 @@
 
   &:hover &__item {
     transform: translateY(0);
-    transition: transform $time-menu-translation $timing-ease-in-strong;
-  }
-
-  &--align-top {
-    align-items: flex-start;
+    transition: transform $translate-main-menu $ease-in-strong;
   }
 
   &__list {
     display: none;
+    padding: 0;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
     list-style: none;
+    pointer-events: auto;
   }
 
   &__item {
     transform: translateY(0);
-    transition: transform $time-menu-translation $timing-ease-in-strong;
+    transition: transform $translate-main-menu $ease-in-strong;
 
     &--hidden {
       transform: translateY(-220px);
-      transition: transform $time-menu-translation $timing-ease-out-strong $time-menu-delay;
+      transition: transform $translate-main-menu $ease-out-strong $delay-main-menu;
     }
   }
 
@@ -63,7 +62,7 @@
     color: #fff;
     font-size: 1.5rem;
     font-weight: 700;
-    transition: color $time-hover-menu;
+    transition: color $hover-main-menu;
 
     &--large {
       color: #fff;
@@ -79,9 +78,13 @@
     }
   }
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
 
     & {
+
+      &--align-top {
+        align-items: flex-start;
+      }
 
       &__list {
         display: flex;
@@ -96,7 +99,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-desktop) {
+  @media only screen and (min-width: $media-lg) {
 
     & {
       
@@ -124,12 +127,13 @@
   background-color: #000;
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity $time-mobile-menu;
+  transition: visibility 0s, opacity $toggle-mobile-menu;
+  pointer-events: auto;
 
   &--hidden {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s $time-mobile-menu, opacity $time-mobile-menu;
+    transition: visibility 0s $toggle-mobile-menu, opacity $toggle-mobile-menu;
   }
 
   &__list {
@@ -138,10 +142,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-
-  &__item {
-
   }
 
   &__link {
@@ -154,6 +154,7 @@
   display: flex;
   height: $layout-sm-logo;
   width: $layout-sm-logo;
+  pointer-events: auto;
 
   &:hover .logo__svg {
     fill: $color-main;
@@ -164,10 +165,10 @@
     width: 100%;
     fill: #fff;
     pointer-events: none;
-    transition: fill $time-hover-menu;
+    transition: fill $hover-main-menu;
   }
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       height: $layout-md-logo;
@@ -175,7 +176,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-desktop) {
+  @media only screen and (min-width: $media-lg) {
 
     & {
       height: $layout-lg-logo;
@@ -186,8 +187,9 @@
 //////////////////////////////////////////////////////////////// BURGER BUTTON 
 .burger {
   position: relative;
-  width: $size-button-burger;
-  height: $size-button-burger;
+  width: $size-burger-button;
+  height: $size-burger-button;
+  pointer-events: auto;
   z-index: 1;
 
   &__svg {
@@ -195,7 +197,7 @@
     height: 100%;
     stroke: #fff;
     stroke-width: 16;
-    transition: stroke $time-hover-menu;
+    transition: stroke $hover-main-menu;
 
     &:hover {
       stroke: $color-main;
@@ -203,7 +205,7 @@
   }
 
   &__line {
-    transition: transform $time-hover-menu;
+    transition: transform $hover-main-menu;
 
     &--rotate-left {
       transform: rotate(-45deg);
@@ -226,29 +228,30 @@
     }
   }
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
     display: none;
   }
 }
 ///////////////////////////////////////////////////////////// GO TO TOP BUTTON 
 .go-top {
   @include flex-center;
-  position: fixed;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s $time-go-top-button, opacity $time-go-top-button;
-  color: #fff;
   border: 4px solid #fff;
   border-radius: 50%;
-  width: $size-button-go-top;
-  height: $size-button-go-top;
+  bottom: 20px;
+  color: #fff;
+  height: $size-go-top;
+  left: 50%;
+  opacity: 0;
+  pointer-events: auto;
+  position: fixed;
+  transform: translateX(-50%);
+  transition: visibility 0s $go-top-button, opacity $go-top-button;
+  visibility: hidden;
+  width: $size-go-top;
 
   &--visible {
-    visibility: visible;
     opacity: 1;
-    transition: visibility 0s, opacity $time-go-top-button;
+    transition: visibility 0s, opacity $go-top-button;
+    visibility: visible;
   }
 }

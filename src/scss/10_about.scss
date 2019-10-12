@@ -7,150 +7,205 @@
 }
 ///////////////////////////////////////////////////////////////////////// INFO 
 .info {
-  width: 100%;
-  max-width: $layout-container-width;
-  margin: auto;
-  padding: ($layout-sm-offset * 2) $layout-sm-offset;
-  padding-top: $layout-sm-logo + ($layout-sm-offset * 2);
+  align-content: start;
   display: grid;
   flex-grow: 1;
+  justify-content: start;
+  margin: auto;
+  margin-bottom: 2em;
+  max-width: $layout-container-width;
+  padding: $layout-sm-offset;
+  padding-top: $layout-sm-logo + $layout-sm-offset * 2;
+  width: 100%;
 
-  @media only screen and (min-width: $media-tablet) {
-    padding: $layout-md-offset*2 $layout-md-offset;
-    padding-top: $layout-md-logo + ($layout-md-offset * 2);
+  @media only screen and (min-width: $media-md) {
+    gap: 40px;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem 2rem;
+    padding: $layout-md-offset;
+    padding-top: $layout-md-logo + $layout-md-offset * 2;
   }
   
-  @media only screen and (min-width: $media-desktop) {
-    padding: $layout-lg-offset*2 $layout-lg-offset;
-    padding-top: $layout-lg-logo + ($layout-lg-offset * 2);
+  @media only screen and (min-width: $media-lg) {
+    padding: $layout-lg-offset;
+    padding-top: $layout-lg-logo + $layout-lg-offset * 2;
   }
 }
 ///////////////////////////////////////////////////////////////////////// CARD 
 .card {
+  align-self: start;
+  border-bottom: 1px solid #fff;
+  font-size: 1rem;
   font-weight: 300;
-  font-size: 1.1rem;
-  text-align: justify;
-  width: 100%;
   overflow: hidden;
-  padding-bottom: 2px;
+  color: #fff;
+  fill: #fff;
+  text-align: justify;
+  transition: border-color $hover-card;
+  width: 100%;
+
+  &:hover {
+    border-color: #fff;
+    color: #fff;
+    fill: #fff;
+  }
+
+  &--rolled-up {
+    border-color: $color-background-light;
+    color: $color-background-light;
+    fill: $color-background-light;
+  }
 
   &__header {
+    align-items: center;
+    background-color: $color-background;
+    border-bottom: 1px solid #fff;
     cursor: pointer;
-    position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    padding: 1.2em 0 0.7em;
+    position: relative;
+    transition: color $hover-card, fill $hover-card;
     user-select: none;
-    padding: 1rem 0;
-    border-bottom: 2px solid #fff;
-    background-color: $color-background;
   }
 
   &__heading {
-    grid-column-start: 2;
-    text-align: center;
-    color: #fff;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
     pointer-events: none;
   }
 
   &__dropdown {
-    font-size: 1.6em;
     pointer-events: none;
-    transition: transform $time-dropdown;
+    width: $size-dropdown;
 
     &--reversed {
       transform: rotate(180deg);
     }
+    
+    &--transition {
+      transition: transform $rotate-dropdown;
+    }
   }
 
   &__description {
-    overflow: hidden;
-    transition: all $time-dropdown;
-    border-bottom: 2px solid #fff;
-    padding: 1.5rem 0;
+    align-items: flex-start;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5em 0;
 
-    &--minimized {
-
+    &--transition {
+      transition: margin $rotate-dropdown;
     }
   }
 
   &__text {
+    margin: 0;
 
     &--list {
-      list-style-position: inside;
+      padding: 0;
+      padding-left: 20px;
     }
   }
 
+  &__emphasized {
+    font-weight: 600;
+  }
+
   &__button {
-    @include button;
+    align-self: center;
+    border: 1px solid #fff;
+    border-radius: $radius-button;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    margin: 1rem 0;
+    padding: 0.7em 1em;
+    transition:
+      background-color $hover-icon,
+      border-color $hover-icon;
 
     &:hover {
-      @include button-hover;
+      background-color: $color-main;
+      border-color: transparent;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+
+      &__button {
+        align-self: flex-start;
+      }
     }
   }
 }
 ////////////////////////////////////////////////////////////////////// CLIENTS 
 .clients {
+  @include flex-center;
   background-color: $color-main;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   flex-grow: 1;
 
+  &__heading {
+    align-self: flex-start;
+    font-size: 1em;
+    margin: 0;
+    padding: $layout-sm-offset;
+    text-transform: uppercase;
+  }
+
   &__list {
-    list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    grid-gap: 4rem 5rem;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     justify-items: center;
-    align-items: center;
-    padding: $layout-sm-offset*2 $layout-sm-offset;
+    list-style: none;
+    margin: 0;
     max-width: $layout-container-width;
+    padding: $layout-sm-offset;
     width: 100%;
   }
 
   &__item {
+    @include flex-center;
+    border-radius: 6px;
+    fill: #fff;
+    max-height: 10em;
+    padding: 1em;
     width: 100%;
-    height: 100%;
-    max-width: 150px;
-    max-height: 100px;
-    background-color: transparent;
-    transition: background-color $time-hover-icon;
-    border-radius: 10px;
+    transition: background-color $hover-icon, fill $hover-icon;
 
     &:hover {
-      fill: $color-background;
-      background-color: rgba($color: $color-background, $alpha: 0.2);
+      background-color: rgba($color: $color-main-dark, $alpha: 0.5);
+      fill: $color-main;
     }
   }
 
   &__link {
-    width: 100%;
-    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
   }
 
   &__svg {
-    fill: #fff;
-    width: 100%;
-    height: 100%;
+    fill: inherit;
     pointer-events: none;
+    width: 100%;
   }
 
-  @media only screen and (min-width: $media-tablet) {
+  @media only screen and (min-width: $media-md) {
     &__list {
       grid-template-columns: repeat(4, 1fr);
       padding: $layout-md-offset;
     }
   }
   
-  @media only screen and (min-width: $media-desktop) {
+  @media only screen and (min-width: $media-lg) {
     &__list {
-      padding: $layout-lg-offset 0;
+      grid-template-columns: repeat(6, 1fr);
+      padding: $layout-lg-offset;
     }
   }
 }

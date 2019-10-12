@@ -23,14 +23,14 @@ html {
 body {
   background-color: #000;
   color: #fff;
+  font-family: 'Poppins', 'Work Sans', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
-  font-family: 'Poppins', 'Work Sans', Arial, sans-serif;
 }
 
 img {
-  max-width: 100%;
   max-height: 100%;
+  max-width: 100%;
 }
 
 a {
@@ -43,48 +43,48 @@ a {
 ///////////////////////////////////////////////////////////////// PAGE OVERLAY 
 .page-overlay {
   background-color: black;
+  bottom: 0;
+  left: 0;
   opacity: 0;
   position: fixed;
-  top: 0;
-  left: 0;
   right: 0;
-  bottom: 0;
-  transition: visibility 0s $time-page-overlay, opacity $time-page-overlay;
+  top: 0;
+  transition: visibility 0s $page-overlay, opacity $page-overlay;
   visibility: hidden;
   z-index: 999;
 
   &--onload {
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
   }
 
   &--visible {
-    visibility: visible;
     opacity: 1;
-    transition: visibility 0s, opacity $time-page-overlay;
+    transition: visibility 0s, opacity $page-overlay;
+    visibility: visible;
   }
 }
 /////////////////////////////////////////////////////////////// PAGE CONTAINER 
 .page-container {
+  align-items: stretch;
+  background-color: $color-background;
   display: none;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: stretch;
-  width: 100%;
   height: 100%;
+  justify-content: flex-end;
   min-height: 100vh;
   pointer-events: none;
-  background-color: $color-background;
+  width: 100%;
+
+  &--main-page {
+    background-color: #000;
+  }
 
   &--visible {
     display: flex;
     opacity: 1;
     pointer-events: all;
-    transition: opacity $time-mobile-menu;
-  }
-
-  &--main-page {
-    background-color: #000;
+    transition: opacity $toggle-mobile-menu;
   }
 }
 ////////////////////////////////////////////////////////////////////// BUTTONS 
@@ -94,19 +94,4 @@ a {
   cursor: pointer;
   margin: 0;
   padding: 0;
-
-  &--primary {
-    display: inline-block;
-    background-color: $color-main;
-    color: #fff;
-    font-weight: 500;
-    padding: 0.6rem 2rem;
-    margin-top: 2rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s;
-  }
-  
-  &--primary:hover {
-    background-color: $color-main-darker;
-  }
 }

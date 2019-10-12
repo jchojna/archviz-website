@@ -1,33 +1,42 @@
 ////////////////////////////////////////////////////////////////////// GALLERY 
 .gallery {
-  @include flex-center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
   visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba($color: #000, $alpha: 0.7);
+  background-color: rgba($color: #000, $alpha: 1);
   opacity: 0;
   z-index: -1;
   transition:
-    opacity $gallery-toggle,
-    visibility 0s $gallery-toggle,
-    z-index 0s $gallery-toggle;
+    opacity $toggle-gallery,
+    visibility 0s $toggle-gallery,
+    z-index 0s $toggle-gallery;
 
   &--visible {
     visibility: visible;
     opacity: 1;
     z-index: 2;
     transition:
-      opacity $gallery-toggle,
+      opacity $toggle-gallery,
       visibility 0s,
       z-index 0s;
   }
 
-  &__header {
-    width: 100%;
-    height: 100%;
+  @media only screen and (min-width: $media-md) {
+    & {
+      background-color: rgba($color: #000, $alpha: 0.7);
+    }
+  }
+  
+  @media only screen and (min-width: $media-lg) {
+    & {
+
+    }
   }
 }
 /////////////////////////////////////////////////////////////////////// IMAGES 
@@ -40,7 +49,7 @@
   height: 100%;
   visibility: hidden;
   transform: translateY(0);
-  transition: visibility 0s $horizontal-slide;
+  transition: visibility 0s $slide-horizontal;
 
   &--visible {
     visibility: visible;
@@ -50,45 +59,54 @@
 
   &--hidden-top {
     transform: translateY(-100vh);
-    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
+    transition: transform $slide-vertical ease-out, visibility 0s $slide-horizontal;
   }
 
   &--hidden-bottom {
     transform: translateY(100vh);
-    transition: transform $vertical-slide ease-out, visibility 0s $horizontal-slide;
+    transition: transform $slide-vertical ease-out, visibility 0s $slide-horizontal;
   }
   
   &__description {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
     position: absolute;
-    bottom: 10px;
-    left: 20px;
-    font-size: 1.4rem;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    font-size: 0.7em;
     font-weight: bold;
+    padding: $offset-gallery-sm;
     visibility: hidden;
     transform: translateY(100%);
     opacity: 0;
     transition:
-      opacity $horizontal-slide/2,
-      transform $horizontal-slide/2,
-      visibility 0s $horizontal-slide/2;
+      opacity $slide-horizontal/2,
+      transform $slide-horizontal/2,
+      visibility 0s $slide-horizontal/2;
+    z-index: 1;
 
     &--visible {
       visibility: visible;
       transform: translateY(0);
       opacity: 1;
       transition:
-        opacity $horizontal-slide,
-        transform $horizontal-slide,
+        opacity $slide-horizontal,
+        transform $slide-horizontal,
         visibility 0s;
     }
   }
 
   &__counter {
-    font-size: 3rem;
-    margin: 0;
+    white-space: nowrap;
+    font-size: 2em;
+    margin: 0 10px -5px 0;
+
+    &--current {
+      font-size: 1.2em;
+      color: $color-main;
+    }
   }
 
   &__heading {
@@ -96,11 +114,11 @@
     font-weight: normal;
   }
 
-  &__graphics {
+  &__container {
     @include flex-center;
-    position: absolute;
+    position: relative;
     visibility: hidden;
-    transition: visibility 0s $horizontal-slide;
+    transition: visibility 0s $slide-horizontal;
 
     &--visible {
       visibility: visible;
@@ -108,85 +126,81 @@
     }
 
     &--hidden-to-left {
-      animation: hideToLeft $horizontal-slide forwards;
+      animation: hideToLeft $slide-horizontal forwards;
     }
     &--hidden-to-right {
-      animation: hideToRight $horizontal-slide forwards;
+      animation: hideToRight $slide-horizontal forwards;
     }
     &--visible-from-left {
-      animation: showFromLeft $horizontal-slide forwards;
+      animation: showFromLeft $slide-horizontal forwards;
     }
     &--visible-from-right {
-      animation: showFromRight $horizontal-slide forwards;
+      animation: showFromRight $slide-horizontal forwards;
     }
   }
 
   &__svg-solid {
-    width: 100%;
-    height: 100%;
-    max-height: calc(100vh - 160px);
+    @include position-absolute;
     fill: $color-main;
   }
   
   &__svg-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @include position-absolute;
   }
 
   &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @include position-absolute;
     opacity: 0;
     visibility: hidden;
-    transition: opacity $time-image-gallery, visibility 0s $time-image-gallery;
+    transition: opacity $load-gallery-image, visibility 0s $load-gallery-image;
 
     &--loaded {
       opacity: 1;
       visibility: inherit;
-      transition: opacity $time-image-gallery, visibility 0s;
+      transition: opacity $load-gallery-image, visibility 0s;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      
+      &__description {
+      padding: $offset-gallery-md;
+      font-size: 1em;
+      }
+    }
+  }
+  
+  @media only screen and (min-width: $media-lg) {
+    & {
+
+      &__description {
+        padding: $offset-gallery-lg;
+        font-size: 1.3em;
+      }
     }
   }
 }
 /////////////////////////////////////////////////////////////////// NAVIGATION 
 .gallery-nav {
     position: relative;
-    padding: 10px 30px;
-    width: 100%;
-    height: 100%;
+    padding: $offset-gallery-sm * 2;
     z-index: 1;
 
   &__list {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
     display: grid;
     grid-template-columns: repeat(4, auto);
-    gap: 30px;
-    justify-content: end;
-    align-content: end;
+    gap: $gap-gallery-button;
     z-index: 1;
-  }
-
-  &__item {
-
-  }
-
-  &__counter {
-
   }
 
   &__button {
     fill: #fff;
-    width: $size-button-gallery;
-    transition: fill $time-button-gallery;
+    width: $size-gallery-button-sm;
+    transition: fill $hover-gallery-button;
 
     &:hover {
       fill: $color-main;
@@ -194,7 +208,29 @@
   }
 
   &__svg {
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      padding: $offset-gallery-md;
+
+      &__button {
+        width: $size-gallery-button-md;
+      }
+    }
+  }
+  
+  @media only screen and (min-width: $media-lg) {
+    & {
+      padding: $offset-gallery-lg;
+
+      &__button {
+        width: $size-gallery-button-lg;
+      }
+    }
   }
 }
 //////////////////////////////////////////////////////////////// SWITCH BUTTON 
@@ -205,7 +241,7 @@
   &__center {
     stroke-width: 40px;
     stroke: #fff;
-    transition: stroke $time-button-gallery, transform $time-button-gallery;
+    transition: stroke $hover-gallery-button, transform $hover-gallery-button;
 
     &--linear {
       fill: none;
@@ -215,13 +251,13 @@
   &__left {
     position: absolute;
     transform: translateX(-40%);
-    transition: transform $time-button-gallery;
+    transition: transform $hover-gallery-button;
   }
 
   &__right {
     position: absolute;
     transform: translateX(40%);
-    transition: transform $time-button-gallery;
+    transition: transform $hover-gallery-button;
   }
 
   &:hover {
