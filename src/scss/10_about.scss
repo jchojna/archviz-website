@@ -7,19 +7,20 @@
 }
 ///////////////////////////////////////////////////////////////////////// INFO 
 .info {
-  width: 100%;
-  max-width: $layout-container-width;
-  margin: auto;
-  padding: $layout-sm-offset;
-  padding-top: $layout-sm-logo + $layout-sm-offset * 2;
+  align-content: start;
   display: grid;
   flex-grow: 1;
+  margin: auto;
+  max-width: $layout-container-width;
+  padding: $layout-sm-offset;
+  padding-top: $layout-sm-logo + $layout-sm-offset * 2;
+  width: 100%;
 
   @media only screen and (min-width: $media-md) {
+    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
     padding: $layout-md-offset;
     padding-top: $layout-md-logo + $layout-md-offset * 2;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem 2rem;
   }
   
   @media only screen and (min-width: $media-lg) {
@@ -29,25 +30,26 @@
 }
 ///////////////////////////////////////////////////////////////////////// CARD 
 .card {
+  border-bottom: 1px solid #fff;
   font-size: 1rem;
   font-weight: 300;
   overflow: hidden;
-  padding-bottom: 2px;
   text-align: justify;
   width: 100%;
 
   &__header {
+    align-items: center;
     background-color: $color-background;
+    border-color: $color-background;
     border-bottom: 1px solid #fff;
     cursor: pointer;
     display: flex;
     fill: #fff;
     justify-content: space-between;
-    align-items: center;
     padding: 1.2em 0 0.7em;
     position: relative;
-    user-select: none;
     transition: color $hover-card, fill $hover-card;
+    user-select: none;
 
     &:hover {
       color: $color-main;
@@ -63,8 +65,8 @@
   }
 
   &__dropdown {
-    width: $size-dropdown;
     pointer-events: none;
+    width: $size-dropdown;
 
     &--reversed {
       transform: rotate(180deg);
@@ -76,10 +78,10 @@
   }
 
   &__description {
-    @include flex-center;
+    align-items: flex-start;
+    display: flex;
     flex-direction: column;
-    overflow: hidden;
-    border-bottom: 1px solid #fff;
+    justify-content: space-between;
     padding: 1.5em 0;
 
     &--transition {
@@ -92,7 +94,7 @@
 
     &--list {
       padding: 0;
-      padding-left: 5px;
+      padding-left: 20px;
     }
   }
 
@@ -101,71 +103,81 @@
   }
 
   &__button {
+    align-self: center;
+    border: 1px solid #fff;
+    border-radius: $radius-button;
     color: #fff;
     display: inline-block;
-    padding: 0.7em 1em;
-    margin: 1rem 0;
-    border-radius: $radius-button;
     font-weight: 600;
-    border: 1px solid #fff;
+    margin: 1rem 0;
+    padding: 0.7em 1em;
     transition:
       background-color $hover-icon,
       border-color $hover-icon;
 
     &:hover {
-      border-color: transparent;
       background-color: $color-main;
+      border-color: transparent;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+
+      &__button {
+        align-self: flex-start;
+      }
     }
   }
 }
 ////////////////////////////////////////////////////////////////////// CLIENTS 
 .clients {
+  align-items: center;
   background-color: $color-main;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-grow: 1;
+  justify-content: center;
 
   &__list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    grid-gap: 4rem 5rem;
-    justify-items: center;
     align-items: center;
-    padding: $layout-sm-offset*2 $layout-sm-offset;
+    display: grid;
+    grid-gap: 4rem 5rem;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    justify-items: center;
+    list-style: none;
     max-width: $layout-container-width;
+    padding: $layout-sm-offset*2 $layout-sm-offset;
     width: 100%;
   }
 
   &__item {
-    width: 100%;
-    height: 100%;
-    max-width: 150px;
-    max-height: 100px;
     background-color: transparent;
-    transition: background-color $hover-icon;
     border-radius: 10px;
+    max-height: 100px;
+    max-width: 150px;
+    height: 100%;
+    width: 100%;
+    transition: background-color $hover-icon;
 
     &:hover {
-      fill: $color-background;
       background-color: rgba($color: $color-background, $alpha: 0.2);
+      fill: $color-background;
     }
   }
 
   &__link {
-    width: 100%;
-    height: 100%;
-    display: flex;
     align-items: center;
+    display: flex;
+    height: 100%;
     justify-content: center;
+    width: 100%;
   }
 
   &__svg {
     fill: #fff;
-    width: 100%;
     height: 100%;
     pointer-events: none;
+    width: 100%;
   }
 
   @media only screen and (min-width: $media-md) {

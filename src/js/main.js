@@ -839,6 +839,6 @@ window.onload = () => {
     window.addEventListener('scroll', throttle(() => lazyLoad(0), 1000));
   }
   if (about) {
-    minimizeCards();
+    window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }
 }
