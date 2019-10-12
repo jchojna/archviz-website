@@ -22,11 +22,7 @@
   }
 
   &__submit {
-    @include button;
-
-    &:hover {
-      @include button-hover;
-    }
+    @extend .card__button;
   }
 }
 /////////////////////////////////////////////////////////////////////// INPUTS 

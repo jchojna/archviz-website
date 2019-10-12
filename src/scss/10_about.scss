@@ -38,11 +38,12 @@
 
   &__header {
     background-color: $color-background;
-    border-bottom: 2px solid #fff;
+    border-bottom: 1px solid #fff;
     cursor: pointer;
     display: flex;
     fill: #fff;
     justify-content: space-between;
+    align-items: center;
     padding: 1.2em 0 0.7em;
     position: relative;
     user-select: none;
@@ -75,9 +76,11 @@
   }
 
   &__description {
+    @include flex-center;
+    flex-direction: column;
     overflow: hidden;
-    border-bottom: 2px solid #fff;
-    padding: 1em 0;
+    border-bottom: 1px solid #fff;
+    padding: 1.5em 0;
 
     &--transition {
       transition: margin $rotate-dropdown;
@@ -85,17 +88,33 @@
   }
 
   &__text {
+    margin: 0;
 
     &--list {
-      list-style-position: inside;
+      padding: 0;
+      padding-left: 5px;
     }
   }
 
+  &__emphasized {
+    font-weight: 600;
+  }
+
   &__button {
-    @include button;
+    color: #fff;
+    display: inline-block;
+    padding: 0.7em 1em;
+    margin: 1rem 0;
+    border-radius: $radius-button;
+    font-weight: 600;
+    border: 1px solid #fff;
+    transition:
+      background-color $hover-icon,
+      border-color $hover-icon;
 
     &:hover {
-      @include button-hover;
+      border-color: transparent;
+      background-color: $color-main;
     }
   }
 }
