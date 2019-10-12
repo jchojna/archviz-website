@@ -132,50 +132,53 @@
 }
 ////////////////////////////////////////////////////////////////////// CLIENTS 
 .clients {
-  align-items: center;
+  @include flex-center;
   background-color: $color-main;
-  display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  justify-content: center;
+
+  &__heading {
+    align-self: flex-start;
+    font-size: 1em;
+    margin: 0;
+    padding: $layout-sm-offset;
+    text-transform: uppercase;
+  }
 
   &__list {
-    align-items: center;
     display: grid;
-    grid-gap: 4rem 5rem;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     justify-items: center;
     list-style: none;
+    margin: 0;
     max-width: $layout-container-width;
-    padding: $layout-sm-offset*2 $layout-sm-offset;
+    padding: $layout-sm-offset;
     width: 100%;
   }
 
   &__item {
-    background-color: transparent;
-    border-radius: 10px;
-    max-height: 100px;
-    max-width: 150px;
-    height: 100%;
+    @include flex-center;
+    border-radius: 6px;
+    fill: #fff;
+    max-height: 10em;
+    padding: 1em;
     width: 100%;
-    transition: background-color $hover-icon;
+    transition: background-color $hover-icon, fill $hover-icon;
 
     &:hover {
-      background-color: rgba($color: $color-background, $alpha: 0.2);
-      fill: $color-background;
+      background-color: rgba($color: $color-main-dark, $alpha: 0.5);
+      fill: $color-main;
     }
   }
 
   &__link {
-    align-items: center;
     display: flex;
-    height: 100%;
-    justify-content: center;
     width: 100%;
   }
 
   &__svg {
-    fill: #fff;
-    height: 100%;
+    fill: inherit;
     pointer-events: none;
     width: 100%;
   }
@@ -189,7 +192,8 @@
   
   @media only screen and (min-width: $media-lg) {
     &__list {
-      padding: $layout-lg-offset 0;
+      grid-template-columns: repeat(6, 1fr);
+      padding: $layout-lg-offset;
     }
   }
 }
