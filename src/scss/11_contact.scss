@@ -27,31 +27,49 @@
 }
 /////////////////////////////////////////////////////////////////////// INPUTS 
 .input {
+  color: $color-background-light;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-bottom: 0.5em;
 
   &__label {
+    font-weight: 400;
+    order: -1;
+    transition: color $hover-icon;
   }
 
   &__data {
-    padding: 0.5rem 0;
-    margin: 0.5rem 0;
-    width: 100%;
-    font-size: 1.2rem;
+    background: transparent;
     border: none;
-    border-bottom: 2px solid #fff;
-    background: none;
-    color: $color-main;
-    transition: background-color $hover-icon;
+    border: 2px solid transparent;
+    border-bottom-color: $color-background-light;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0;
+    padding: 0.7em;
+    transition: background-color $hover-icon, border-color $hover-icon;
+    width: 100%;
 
     &--message {
       min-height: 200px;
     }
 
     &:focus {
-      background-color: $color-background-dark;
+      border-color: #fff;
+      border-radius: 5px;
+
+      & + .input__label {
+        color: #fff;
+      }
     }
 
     &::placeholder {
-      color: rgba($color: #fff, $alpha: 0.3);
+      color: $color-background-light;
+      font-size: 0.8em;
+      font-weight: 300;
+      opacity: 1;
     }
   }
 }
