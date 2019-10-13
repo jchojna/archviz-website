@@ -19,27 +19,21 @@
 ////////////////////////////////////////////////////////////////////// ADDRESS 
 .address {
   width: 100%;
-  
-  &__header {
-  }
 }
 //////////////////////////////////////////////////////////////////////// TABLE 
 .table {
 
-  &__header {
-    font-size: 1.2rem;
+  &__heading {
+    color: $color-background-light;
+    border-bottom: 2px solid $color-background-light;
+    font-weight: 400;
+    padding-bottom: 0.2rem;
     text-align: left;
   }
 
-  &__heading {
-    padding-bottom: 0.3rem;
-  }
-
   &__body {
-  }
-
-  &__cell {
-
+    font-size: 0.9em;
+    font-weight: 300;
   }
 }
 /////////////////////////////////////////////////////////////////////// SOCIAL 

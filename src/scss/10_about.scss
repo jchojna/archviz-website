@@ -116,7 +116,8 @@
 
   &__button {
     align-self: center;
-    border: 1px solid #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
     border-radius: $radius-button;
     color: #fff;
     display: inline-block;
