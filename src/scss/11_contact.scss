@@ -87,10 +87,17 @@
   height: auto;
   opacity: 1;
   padding: 0.5rem 0;
+  position: relative;
+  transition: color $toggle-checkbox, opacity $toggle-checkbox;
 
-  &--hidden {
-    opacity: 0.3;
-    //visibility: hidden;
+  &:hover &__field {
+    border-color: #fff;
+  }
+
+  &--disabled {
+    color: $color-background-light;
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   &__input {
@@ -102,8 +109,15 @@
     border-radius: 5px;
     height: $size-checkbox;
     margin-right: 1em;
-    position: relative;
+    opacity: 1;
+    transition: border-color $hover-icon;
+    visibility: visible;
     width: $size-checkbox;
+
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   &__mark {
@@ -120,11 +134,11 @@
     &--visible {
       opacity: 1;
       transform: scale(1.5);
-      visibility: visible;
       transition:
         visibility 0s,
         opacity $toggle-checkbox,
         transform $toggle-checkbox ease-out;
+      visibility: visible;
     }
   }
 }
@@ -133,10 +147,10 @@
   @include position-fixed;
   @include flex-center;
   background-color: $color-background;
-  z-index: 4;
-  visibility: hidden;
   opacity: 0;
   transition: visibility 0s $toggle-modal, opacity $toggle-modal, transform $toggle-modal ease-in;
+  visibility: hidden;
+  z-index: 3;
 
   &--visible {
     visibility: visible;
@@ -145,24 +159,24 @@
   }
 
   &__box {
-    position: relative;
-    text-align: center;
     background-color: $color-main;
-    max-width: 80%;
-    padding: 3rem 2rem;
-    font-size: 1.6rem;
     border-radius: 1rem;
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
-    user-select: none;
+    font-size: 1.6rem;
+    max-width: 80%;
+    padding: 3rem 2rem;
+    position: relative;
+    text-align: center;
     transform: scale(1);
+    user-select: none;
   }
 
   &__close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 1rem;
     cursor: pointer;
+    margin: 1rem;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   &__close:hover {
