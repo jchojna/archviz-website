@@ -1,18 +1,32 @@
 /////////////////////////////////////////////////////////////////////// FOOTER 
 .footer {
   @include flex-center;
+  align-self: center;
   flex-direction: column;
-  padding: 0 $offset-footer;
+  max-width: $layout-container-width;
+  padding: $layout-sm-offset $layout-sm-offset 0;
+  width: 100%;
 
   &__container {
     @include flex-center;
-    max-width: $layout-container-width;
-    padding: 0.7em 0;
+    padding-bottom: 0.7em;
     width: 100%;
 
     &--contact {
       align-items: flex-end;
       justify-content: space-between;
+    }
+  }
+  
+  @media only screen and (min-width: $media-md) {
+    & {
+      padding: $layout-md-offset $layout-md-offset 0;
+    }
+  }
+  
+  @media only screen and (min-width: $media-lg) {
+    & {
+      padding: $layout-lg-offset $layout-lg-offset 0;
     }
   }
 }
