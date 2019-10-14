@@ -64,7 +64,6 @@
 
   &__data {
     background: transparent;
-    border: none;
     border: 2px solid transparent;
     border-bottom-color: $color-background-light;
     color: #fff;
@@ -76,9 +75,10 @@
     width: 100%;
 
     &:invalid {
-      background-color: $color-main;
-      border: 2px solid transparent;
+      border-color: $color-main;
       border-radius: 5px;
+      box-shadow: none;
+      color: $color-main;
     }
 
     &:focus {
@@ -110,6 +110,29 @@
   @media only screen and (min-width: $media-lg) {
     & {
 
+    }
+  }
+}
+//////////////////////////////////////////////////////////////// ERROR MESSAGE 
+.error {
+  background-color: $color-main;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  overflow: hidden;
+
+  &__text {
+    @include flex-center;
+    margin: 0;
+    height: 30px;
+    margin-top: -30px;
+    padding: 0.5em;
+    transition: margin $toggle-error;
+    
+    &--visible {
+      margin-top: 0;
+      transition: margin $toggle-error;
     }
   }
 }
@@ -227,15 +250,6 @@
 /* .contact__input:-moz-ui-invalid,
 .contact__description:-moz-ui-invalid {
   box-shadow: 0 0 0 5px rgba(0,0,0,0.3);
-} */
-
-/* 
-.contact__error {
-  color: $color-main;
-  height: 0.5rem;
-  margin-bottom: 0.5rem;
-  display: block;
-  text-align: center;
 } */
 
 /*

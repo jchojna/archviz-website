@@ -135,30 +135,34 @@
         </p>
         <!----------------------------------------------------- END OF NAME -->
         <!----------------------------------------------------------- EMAIL -->
-        <p class="input">
+        <div class="input">
           <input
           type="email"
           id="email"
-          class="input__data input__data--js"
+          class="input__data input__data--js input__data--js-verify"
           maxlength="30"
           name="userEmail"
           placeholder="your e-mail address">
           <label for="email" class="input__label">E-mail:</label>
-          <span class="contact__error"></span>
-        </p>
+          <div class="error error">
+            <p class="error__text error__text--js">Please enter correct e-mail address!</p>
+          </div>
+        </div>
         <!---------------------------------------------------- END OF EMAIL -->
         <!----------------------------------------------------------- PHONE -->
-        <p class="input">
+        <div class="input">
           <input
           type="tel"
           id="phone"
-          class="input__data input__data--js"
+          class="input__data input__data--js input__data--js-verify"
           maxlength="20"
           name="userPhone"
           placeholder="your phone number">
           <label for="phone" class="input__label">Phone:</label>
-          <span class="contact__error"></span>
-        </p>
+          <div class="error error--js">
+            <p class="error__text error__text--js">Please enter correct mobile phone number!</p>
+          </div>
+        </div>
         <!---------------------------------------------------- END OF PHONE -->
         <!----------------------------------------------------------- TITLE -->
         <p class="input">

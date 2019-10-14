@@ -746,6 +746,7 @@ if (form) {
       checkbox.disabled = false;
       checkbox.checked = false;
       checkbox.parentNode.classList.remove('checkbox--disabled');
+      checkbox.nextElementSibling.classList.remove('checkbox__field--hidden');
       checkboxMarks[i].classList.remove('checkbox__mark--visible');
     }
   }
@@ -786,15 +787,22 @@ if (form) {
   const validateInputs = (e) => {
     e.preventDefault();
 
-    [...formInputs].every(a => a.validity.valid)
+    [...formInputsVerify].forEach((input, index) => {
+      !input.validity.valid ?
+      errorMessages[index].classList.add('error__text--visible')
+      : errorMessages[index].classList.remove('error__text--visible');
+    });
+
+    [...formInputsVerify].filter(input => !input.validity.valid).length === 0
     ? validateCheckboxes(e)
-    : console.log('fail');
+    : false;
   }
 
   const validateCheckboxes = (e) => {
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
     if (status === 'accept') {
-      e.preventDefault();         // ! INSERT SEND MAIL CODE HERE
+      e.preventDefault();
+      // ! INSERT SEND MAIL CODE HERE
       console.log('success');
     } else {
       e.preventDefault();
@@ -821,6 +829,8 @@ if (form) {
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
+  const formInputsVerify = document.querySelectorAll('.input__data--js-verify');
+  const errorMessages = document.querySelectorAll('.error__text--js');
   
   const modalContainer = document.querySelector('.modal--js');
   const modalText = document.querySelector('.modal__text--js');
