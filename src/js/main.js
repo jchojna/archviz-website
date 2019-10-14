@@ -740,52 +740,65 @@ if (about) {
 if (form) {
 
   const resetCheckboxes = () => {
-    for ( const checkbox of checkboxes ) {
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      const checkbox = checkboxes[i];
       checkbox.disabled = false;
       checkbox.checked = false;
-      checkbox.parentNode.classList.remove('checkbox--hidden');
+      checkbox.parentNode.classList.remove('checkbox--disabled');
+      checkboxMarks[i].classList.remove('checkbox__mark--visible');
     }
   }
 
-  const hideOtherOptions = (element) => {
-    element.disabled ? element.disabled = false : element.disabled = true;
-    element.parentNode.classList.toggle('checkbox--hidden');
+  const toggleOption = (element) => {
+    element.disabled = element.disabled ? false : true;
+    element.parentNode.classList.toggle('checkbox--disabled');
   }
-  
+
   const handleCheckboxes = (e) => {
-    if ( e.target === checkboxReject ) {
-      checkboxReject.checked ? responseState = "reject" : responseState = "empty";
-      hideOtherOptions(checkboxAccept);
-      hideOtherOptions(checkboxOptional);
-      
-    } else if ( e.target === checkboxAccept ) {
-      checkboxAccept.checked ? responseState = "accept" : responseState = "empty";
-      checkboxOptional.checked ? checkboxOptional.checked = false : false;
-      hideOtherOptions(checkboxReject);
+    const {index} = e.target;
+    const [reject, accept, optional] = checkboxes;
+    const [rejectSvg, acceptSvg, optionalSvg] = checkboxMarks;
+    checkboxMarks[index].classList.toggle('checkbox__mark--visible');
 
-    } else if ( e.target === checkboxOptional ) {
-      checkboxReject.disabled ? false : hideOtherOptions(checkboxReject);
-      checkboxAccept.checked = true;
-      responseState = "accept";
-
-    } else {
-      responseState = "empty";
+    switch (index) {
+      case 0:
+        toggleOption(accept);
+        toggleOption(optional);
+        break;
+      case 1:
+        optional.checked = false;
+        optionalSvg.classList.remove('checkbox__mark--visible');
+        toggleOption(reject);
+        break;
+      case 2:
+        accept.checked = true;
+        acceptSvg.classList.add('checkbox__mark--visible');
+        reject.disabled ? false : toggleOption(reject);
+        break;
     }
+
+    [...checkboxes].forEach(a => a.checked
+      ? a.nextElementSibling.classList.add('checkbox__field--hidden')
+      : a.nextElementSibling.classList.remove('checkbox__field--hidden'))
   }
-    
+
+  const validateInputs = (e) => {
+    e.preventDefault();
+
+    [...formInputs].every(a => a.validity.valid)
+    ? validateCheckboxes(e)
+    : console.log('fail');
+  }
+
   const validateCheckboxes = (e) => {
-    switch ( responseState ) {
-      case "reject":
-        e.preventDefault();
-        toggleModal("reject");
-        break;
-      case "accept":
-        e.preventDefault(); // remove later
-        return;
-      case "empty":
-        e.preventDefault();
-        toggleModal("empty");
-        break;
+    const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
+    if (status === 'accept') {
+      e.preventDefault();         // ! INSERT SEND MAIL CODE HERE
+      console.log('success');
+    } else {
+      e.preventDefault();
+      toggleModal(status);
     }
   }
 
@@ -795,37 +808,36 @@ if (form) {
     } else if ( response === "empty" ) {
       modalText.textContent = "You have to declare you're not a robot!";
     }
-    modalContainer.classList.toggle('modal--visible');
-    resetCheckboxes();
+    modalContainer.classList.add('modal--visible');
   }
   
-  const windowQuit = (e) => {
-    if ( e.target === modalContainer ) {
-      toggleModal();
+  const modalQuit = (e) => {
+    if (e.target === modalContainer || e.target === modalClose) {
+      modalContainer.classList.remove('modal--visible');
+      resetCheckboxes();
     }
   }
   ////////////////////////////////////////////////////////////////// VARIABLES 
-  const checkboxContainer = document.querySelector('.form__verification--js');
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
-  const checkboxReject = document.querySelector('.checkbox__input--js-reject');
-  const checkboxAccept = document.querySelector('.checkbox__input--js-accept');
-  const checkboxOptional = document.querySelector('.checkbox__input--js-optional');
-  let responseState = "empty";
-
+  const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
   
   const modalContainer = document.querySelector('.modal--js');
   const modalText = document.querySelector('.modal__text--js');
   const modalClose = document.querySelector('.modal__close--js');
-  
+
   const submitButton = document.querySelector('.form__submit--js');
 
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
-  checkboxContainer.addEventListener('click', handleCheckboxes );
-  submitButton.addEventListener('click', validateCheckboxes);
-  modalClose.addEventListener('click', toggleModal);
-  modalContainer.addEventListener('click', windowQuit);
+  submitButton.addEventListener('click', validateInputs);
+  modalContainer.addEventListener('click', modalQuit);
 
+  [...checkboxes].forEach((checkbox, index) => {
+    checkbox.index = index;
+    checkbox.addEventListener('click', handleCheckboxes);
+  });
+
+  /////////////////////////////////////////////////////// HANDLE LOCAL STORAGE 
   [...formInputs].forEach(input => {
     const key = `jc-${input.getAttribute('id')}`;
     input.value = localStorage.getItem(key) ? localStorage.getItem(key) : "";
