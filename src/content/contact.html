@@ -151,13 +151,23 @@
         <!---------------------------------------------------- END OF EMAIL -->
         <!----------------------------------------------------------- PHONE -->
         <div class="input">
-          <input
-          type="tel"
-          id="phone"
-          class="input__data input__data--js input__data--js-verify"
-          maxlength="20"
-          name="userPhone"
-          placeholder="your phone number">
+          <div class="input__phone-number">
+            <input
+            type="tel"
+            id="country-code"
+            class="input__data input__data--code input__data--js"
+            maxlength="3"
+            name="userPhone"
+            placeholder="+00">
+            <input
+            type="tel"
+            id="phone"
+            class="input__data input__data--number input__data--js input__data--js-verify"
+            minlength="9"
+            maxlength="10"
+            name="userPhone"
+            placeholder="123-456-7890">
+          </div>
           <label for="phone" class="input__label">Phone:</label>
           <div class="error error--js">
             <p class="error__text error__text--js">Please enter correct mobile phone number!</p>

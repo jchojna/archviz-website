@@ -98,6 +98,12 @@
     }
   }
 
+  &__phone-number {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 1fr 5fr;
+  }
+
   @media only screen and (min-width: $media-md) {
     & {
 
@@ -141,7 +147,7 @@
   align-items: center;
   cursor: pointer;
   display: flex;
-  fill: #fff;
+  fill: $color-main;
   opacity: 1;
   position: relative;
   transition: color $toggle-checkbox, opacity $toggle-checkbox;
