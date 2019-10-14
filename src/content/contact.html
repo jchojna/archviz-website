@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Jakub Chojna | Contact</title>
+    <meta name="description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
 
-    <link rel="stylesheet" href="css/main.css">
+    <!---------------------------------------------------------- OPEN GRAPH -->
+    <meta property="og:title" content="Jakub Chojna | Architectural Visualization" />
+    <meta property="og:description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
+    <meta property="og:url" content="https://jchojna.github.io/archviz-website/" />
+    <meta property="og:image" content="https://jchojna.github.io/archviz-website/assets/img/cover.jpg" />
+
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="assets/icons/icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/icons/icon-192x192.png"
+    />
+
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <!-------------------------------------------------------- PAGE OVERLAY -->
@@ -100,63 +120,68 @@
         method="post"
         autocomplete="off"
         class="form form--js">
-        <h2 class="form__heading">Contact me!</h2>
+        <h2 class="form__heading">Contact Me:</h2>
         <!------------------------------------------------------------ NAME -->
         <p class="input">
-          <label for="name" class="input__label">Name:</label>
           <input
-            type="text"
-            id="name"
-            class="input__data"
-            name="userName"
-            placeholder="your name">
+          autofocus
+          type="text"
+          id="name"
+          class="input__data input__data--js"
+          maxlength="50"
+          name="userName"
+          placeholder="your name">
+          <label for="name" class="input__label">Name:</label>
         </p>
         <!----------------------------------------------------- END OF NAME -->
         <!----------------------------------------------------------- EMAIL -->
         <p class="input">
-          <label for="email" class="input__label">E-mail:</label>
           <input
-            type="email"
-            id="email"
-            class="input__data"
-            name="userEmail"
-            placeholder="your e-mail address">
+          type="email"
+          id="email"
+          class="input__data input__data--js"
+          maxlength="30"
+          name="userEmail"
+          placeholder="your e-mail address">
+          <label for="email" class="input__label">E-mail:</label>
           <span class="contact__error"></span>
         </p>
         <!---------------------------------------------------- END OF EMAIL -->
         <!----------------------------------------------------------- PHONE -->
         <p class="input">
-          <label for="phone" class="input__label">Phone:</label>
           <input
-            type="tel"
-            id="phone"
-            class="input__data"
-            name="userPhone"
-            placeholder="your phone number">
+          type="tel"
+          id="phone"
+          class="input__data input__data--js"
+          maxlength="20"
+          name="userPhone"
+          placeholder="your phone number">
+          <label for="phone" class="input__label">Phone:</label>
           <span class="contact__error"></span>
         </p>
         <!---------------------------------------------------- END OF PHONE -->
         <!----------------------------------------------------------- TITLE -->
         <p class="input">
-          <label for="title" class="input__label">Title:</label>
           <input
-            type="text"
-            id="title"
-            class="input__data"
-            name="userTitle"
-            placeholder="title of your message">
+          type="text"
+          id="title"
+          class="input__data input__data--js"
+          maxlength="50"
+          name="userTitle"
+          placeholder="title of your message">
+          <label for="title" class="input__label">Title:</label>
         </p>
         <!---------------------------------------------------- END OF TITLE -->
         <!--------------------------------------------------------- MESSAGE -->
         <p class="input input--message">
-          <label for="message" class="input__label">Message:</label>
           <textarea
-            id="message"
-            class="input__data input__data--message"
-            name="userDesc"
-            rows="10"
-            cols="10"
-            placeholder="write your message"></textarea>
+          id="message"
+          class="input__data input__data--message input__data--js"
+          name="userDesc"
+          rows="10"
+          cols="10"
+          placeholder="write your message"></textarea>
+          <label for="message" class="input__label">Message:</label>
         </p>
         <!-------------------------------------------------- END OF MESSAGE -->
         <!---------------------------------------------------- VERIFICATION -->
@@ -168,74 +193,68 @@
             <input
               type="checkbox"
               id="checkbox1"
-              class="checkbox__input checkbox__input--js checkbox__input--js-reject"
-              name="checkbox1">
+              class="checkbox__input checkbox__input--js"
+              name="reject">
             <span class="checkbox__field"></span>
-            <svg class="checkbox__mark" viewBox="0 0 24 24">
+            <svg class="checkbox__mark checkbox__mark--js" viewBox="0 0 24 24">
               <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
-            I'm a robot
+            <span class="checkbox__text">I'm a robot</span>
           </label>
           <label for="checkbox2" class="checkbox">
             <input
               type="checkbox"
               id="checkbox2"
-              class="checkbox__input checkbox__input--js checkbox__input--js-accept"
-              name="checkbox2">
+              class="checkbox__input checkbox__input--js"
+              name="accept">
             <span class="checkbox__field"></span>
-            <svg class="checkbox__mark" viewBox="0 0 24 24">
+            <svg class="checkbox__mark checkbox__mark--js" viewBox="0 0 24 24">
               <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
-            I'm not a robot
+            <span class="checkbox__text">I'm not a robot</span>
           </label>
           <label for="checkbox3" class="checkbox">
             <input
               type="checkbox"
               id="checkbox3"
-              class="checkbox__input checkbox__input--js checkbox__input--js-optional"
-              name="checkbox3">
+              class="checkbox__input checkbox__input--js"
+              name="optional">
             <span class="checkbox__field"></span>
-            <svg class="checkbox__mark" viewBox="0 0 24 24">
+            <svg class="checkbox__mark checkbox__mark--js" viewBox="0 0 24 24">
               <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
-            I wish I was...
+            <span class="checkbox__text">I wish I was...</span>
           </label>
         </fieldset>
         <!--------------------------------------------- END OF VERIFICATION -->
-        <button type="submit" class="form__submit form__submit--js">SEND</button>
+        <button type="submit" class="button form__submit form__submit--js">
+          SEND
+        </button>
       </form>
       <!------------------------------------------------------- END OF FORM -->
       <!------------------------------------------------------- PAGE FOOTER -->
       <footer class="footer">
         <!------------------------------------------------ FOOTER CONTAINER -->
-        <section class="footer__container footer__container--contact">
+        <section class="footer__container">
           <h2 class="footer__heading visuallyhidden">Page Footer</h2>
           <!----------------------------------------------- ADDRESS SECTION -->
           <section class="address">
             <h3 class="address__header visuallyhidden">Address</h3>
             <table class="table">
               <thead class="table__header">
-                <tr>
-                  <th class="table__heading">Address</th>
-                </tr>
+                <tr><th class="table__heading">Address</th></tr>
               </thead>
               <tbody class="table__body">
-                <tr>
-                  <td class="table__cell">Jakub Chojna</td>
-                </tr>
-                <tr>
-                  <td class="table__cell">ul. Klaudyny 4/14</td>
-                </tr>
-                <tr>
-                  <td class="table__cell">01-684 Warszawa</td>
-                </tr>
+                <tr><td class="table__cell">Jakub Chojna</td></tr>
+                <tr><td class="table__cell">ul. Klaudyny 4/14</td></tr>
+                <tr><td class="table__cell">01-684 Warszawa</td></tr>
               </tbody>
             </table>
           </section>
           <!---------------------------------------- END OF ADDRESS SECTION -->
           <!-------------------------------------------------- SOCIAL MEDIA -->
           <nav class="social">
-            <h3 class="social__heading">Social Media</h3>
+            <h3 class="social__heading visuallyhidden">Social Media</h3>
             <ul class="social__list">
               <li class="social__item">
                 <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer">

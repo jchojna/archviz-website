@@ -1,142 +1,248 @@
 ///////////////////////////////////////////////////////////////////////// FORM 
-
 .form {
+  display: grid;
+  gap: 1em;
+  max-width: $layout-container-width;
+  min-width: 320px;
   padding: $layout-sm-offset;
   padding-top: $layout-sm-logo + ($layout-sm-offset * 2);
   width: 100%;
-  min-width: 320px;
-  flex-grow: 1;
-  display: grid;
 
   &__heading {
-    color: $color-main;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin: 0.5em 0;
     text-align: center;
   }
 
   &__verification {
     border: none;
+    margin: 0;
     padding: 0;
   }
 
   &__submit {
     @extend .card__button;
+    margin: 0;
+    align-self: end;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      gap: 1em 3em;
+      grid-template-columns: repeat(2, 1fr);
+      padding: $layout-md-offset;
+      padding-top: $layout-md-logo + ($layout-md-offset * 2);
+
+      &__heading {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+  
+  @media only screen and (min-width: $media-lg) {
+    & {
+      gap: 1em 4em;
+      padding: $layout-lg-offset;
+      padding-top: $layout-lg-logo + ($layout-lg-offset * 2);
+    }
   }
 }
 /////////////////////////////////////////////////////////////////////// INPUTS 
 .input {
+  color: $color-background-light;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 
   &__label {
+    font-weight: 400;
+    order: -1;
+    transition: color $hover-icon;
   }
 
   &__data {
-    padding: 0.5rem 0;
-    margin: 0.5rem 0;
-    width: 100%;
-    font-size: 1.2rem;
+    background: transparent;
     border: none;
-    border-bottom: 2px solid #fff;
-    background: none;
-    color: $color-main;
-    transition: background-color $hover-icon;
+    border: 2px solid transparent;
+    border-bottom-color: $color-background-light;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0;
+    padding: 0.7em;
+    transition: background-color $hover-icon, border-color $hover-icon;
+    width: 100%;
 
-    &--message {
-      min-height: 200px;
+    &:invalid {
+      background-color: $color-main;
+      border: 2px solid transparent;
+      border-radius: 5px;
     }
 
     &:focus {
-      background-color: $color-background-dark;
+      border-color: #fff;
+      border-radius: 5px;
+
+      & + .input__label {
+        color: #fff;
+      }
     }
 
     &::placeholder {
-      color: rgba($color: #fff, $alpha: 0.3);
+      color: $color-background-light;
+      font-size: 0.8em;
+      font-weight: 300;
+      opacity: 1;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+
+      &--message {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+  
+  @media only screen and (min-width: $media-lg) {
+    & {
+
     }
   }
 }
 /////////////////////////////////////////////////////////////////// CHECKBOXES 
-.checkbox {
-  display: flex;
-  fill: #fff;
-  height: auto;
-  padding: 0.5rem 0;
+.checkbox { 
   align-items: center;
   cursor: pointer;
+  display: flex;
+  fill: #fff;
   opacity: 1;
+  position: relative;
+  transition: color $toggle-checkbox, opacity $toggle-checkbox;
 
-  &--hidden {
-    //visibility: hidden;
-    opacity: 0.3;
+  &:hover &__field {
+    border-color: #fff;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  &--disabled {
+    color: $color-background-light;
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   &__input {
-    //display: none;
+    display: none;
   }
 
   &__field {
-    background-color: $color-background-dark;
+    border: 2px solid $color-background-light;
+    border-radius: 5px;
     height: $size-checkbox;
+    margin-right: 1em;
+    opacity: 1;
+    transition: border-color $hover-icon;
+    visibility: visible;
     width: $size-checkbox;
-    margin-right: 1rem;
+
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   &__mark {
-    width: $size-checkbox;
-    position: absolute;
-    visibility: hidden;
+    @include position-absolute;
     opacity: 0;
     transform: scale(1);
     transition:
       visibility 0s $toggle-checkbox,
       opacity $toggle-checkbox,
       transform $toggle-checkbox ease-out;
-
+    width: $size-checkbox;
+    visibility: hidden;
+    
     &--visible {
-      visibility: visible;
       opacity: 1;
-      transform: scale(1.3);
+      transform: scale(1.5);
+      transition:
+        visibility 0s,
+        opacity $toggle-checkbox,
+        transform $toggle-checkbox ease-out;
+      visibility: visible;
     }
   }
 }
 //////////////////////////////////////////////////////////////////// MODAL BOX 
 .modal {
-  @include position-fixed;
   @include flex-center;
+  @include position-fixed;
   background-color: $color-background;
-  z-index: 4;
-  visibility: hidden;
   opacity: 0;
   transition: visibility 0s $toggle-modal, opacity $toggle-modal, transform $toggle-modal ease-in;
+  visibility: hidden;
+  z-index: 3;
 
   &--visible {
-    visibility: visible;
     opacity: 1;
     transition: visibility 0s, opacity $toggle-modal, transform $toggle-modal ease-out;
+    visibility: visible;
   }
 
   &__box {
-    position: relative;
-    text-align: center;
     background-color: $color-main;
-    max-width: 80%;
-    padding: 3rem 2rem;
-    font-size: 1.6rem;
     border-radius: 1rem;
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
-    user-select: none;
+    font-size: 1.6rem;
+    max-width: 80%;
+    padding: 3rem 2rem;
+    position: relative;
+    text-align: center;
     transform: scale(1);
+    user-select: none;
   }
 
   &__close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 1rem;
     cursor: pointer;
+    margin: 1rem;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   &__close:hover {
-    color: #555;
+    color: $color-background;
   }
 }
+
+
+
+
+/* .contact__input:-moz-ui-invalid,
+.contact__description:-moz-ui-invalid {
+  box-shadow: 0 0 0 5px rgba(0,0,0,0.3);
+} */
+
+/* 
+.contact__error {
+  color: $color-main;
+  height: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: center;
+} */
+
+/*
+
+.contact__checkbox:nth-child(1):checked ~ :nth-child(3) {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.3);
+  transition: visibility 0s, opacity 0.5s, transform 0.5s ease-out;
+} */
