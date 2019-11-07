@@ -116,7 +116,7 @@
     <main id="page-container" class="page-container page-container--visible page-container--js">
       <!-------------------------------------------------------------- FORM -->
       <form
-        action="#"
+        action="form.php"
         method="post"
         autocomplete="off"
         class="form form--js">
@@ -147,6 +147,7 @@
           <div class="error error">
             <p class="error__text error__text--js">Please enter correct e-mail address!</p>
           </div>
+          <span class="error__text"><?= $phone_error ?></span>
         </div>
         <!---------------------------------------------------- END OF EMAIL -->
         <!----------------------------------------------------------- PHONE -->
@@ -155,14 +156,14 @@
             <input
             type="tel"
             id="country-code"
-            class="input__data input__data--code input__data--js"
+            class="input__data input__data--js"
             maxlength="3"
             name="userPhone"
             placeholder="+00">
             <input
             type="tel"
             id="phone"
-            class="input__data input__data--number input__data--js input__data--js-verify"
+            class="input__data input__data--js input__data--js-phone-number input__data--js-verify"
             minlength="9"
             maxlength="10"
             name="userPhone"
@@ -191,7 +192,7 @@
           <textarea
           id="message"
           class="input__data input__data--message input__data--js"
-          name="userDesc"
+          name="userMessage"
           rows="10"
           cols="10"
           placeholder="write your message"></textarea>
@@ -241,7 +242,7 @@
           </label>
         </fieldset>
         <!--------------------------------------------- END OF VERIFICATION -->
-        <button type="submit" class="button form__submit form__submit--js">
+        <button type="submit" name="submit" class="button form__submit form__submit--js">
           SEND
         </button>
       </form>
@@ -305,6 +306,11 @@
       <!----------------------------------------------------- END OF FOOTER -->
     </main>
     <!----------------------------------------------- END OF PAGE CONTAINER -->
+    <script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
     <script src="js/main.js"></script>
   </body>
 </html>
