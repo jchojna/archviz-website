@@ -801,9 +801,29 @@ if (form) {
   const validateCheckboxes = (e) => {
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
     if (status === 'accept') {
+      const submit = $('#submit').val();
+      const userName = $('#name').val();
+      const userTitle = $('#title').val();
+      const userEmail = $('#email').val();
+      const userPhone = $('#phone').val();
+      const userMessage = $('#message').val();
       e.preventDefault();
-      // ! INSERT SEND MAIL CODE HERE
-      console.log('success');
+
+      $.ajax({
+        url: 'form.php',
+        type: 'post',
+        data: 
+        {
+          'submit': submit,
+          'userName': userName,
+          'userTitle': userTitle,
+          'userEmail': userEmail,
+          'userPhone': userPhone,
+          'userMessage': userMessage
+        },
+        success: () => console.log('sent')
+      });
+
     } else {
       e.preventDefault();
       toggleModal(status);
@@ -830,14 +850,12 @@ if (form) {
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
   const formInputsVerify = document.querySelectorAll('.input__data--js-verify');
+  const phoneNumber = document.querySelector('.input__data--js-phone-number');  // ! ?
   const errorMessages = document.querySelectorAll('.error__text--js');
-  
   const modalContainer = document.querySelector('.modal--js');
   const modalText = document.querySelector('.modal__text--js');
   const modalClose = document.querySelector('.modal__close--js');
-
   const submitButton = document.querySelector('.form__submit--js');
-
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
   submitButton.addEventListener('click', validateInputs);
   modalContainer.addEventListener('click', modalQuit);
@@ -854,7 +872,6 @@ if (form) {
     input.addEventListener('keyup', () => localStorage.setItem(key, input.value));
   })
 }
-
 /*
  #######  ##    ## ##        #######     ###    ########
 ##     ## ###   ## ##       ##     ##   ## ##   ##     ##
@@ -875,3 +892,15 @@ window.onload = () => {
     window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }
 }
+/* 
+phoneNumber.addEventListener('keydown', (e) => {
+  e.preventDefault();
+  console.log('type', e.target.value);
+
+  /\d$/.test(e.target.value) ?
+  phoneNumber.value = e.target.value
+  : false;
+
+  ///[0-9]$/.test(type) ? e.target.value = 'type' : (e) => e.preventDefault();
+})
+ */
