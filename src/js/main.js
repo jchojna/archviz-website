@@ -784,7 +784,7 @@ if (form) {
       : a.nextElementSibling.classList.remove('checkbox__field--hidden'))
   }
 
-  const validateInputs = (e) => {
+  /* const validateInputs = (e) => {
     e.preventDefault();
 
     [...formInputsVerify].forEach((input, index) => {
@@ -796,10 +796,12 @@ if (form) {
     [...formInputsVerify].filter(input => !input.validity.valid).length === 0
     ? validateCheckboxes(e)
     : false;
-  }
+  } */
 
-  const validateCheckboxes = (e) => {
+  const validateForm = (e) => {
+    // frontend validation of checkboxes
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
+    // backend validation => send using ajax request
     if (status === 'accept') {
       const submit = $('#submit').val();
       const userName = $('#name').val();
@@ -814,20 +816,49 @@ if (form) {
         type: 'post',
         data: 
         {
-          'submit': submit,
-          'userName': userName,
-          'userTitle': userTitle,
-          'userEmail': userEmail,
-          'userPhone': userPhone,
-          'userMessage': userMessage
-        },
-        success: () => console.log('sent')
-      });
+          "submit": submit,
+          "userName": userName,
+          "userTitle": userTitle,
+          "userEmail": userEmail,
+          "userPhone": userPhone,
+          "userMessage": userMessage
+        }
+      })
+      .done(data => handleNotifications(data))
+      .fail(data => handleNotifications(data));
 
+    // notify if checkbox selection failed
     } else {
       e.preventDefault();
       toggleModal(status);
     }
+  }
+
+  const handleNotifications = (data) => {
+
+    console.log(data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
   }
 
   const toggleModal = (response) => {
@@ -857,7 +888,7 @@ if (form) {
   const modalClose = document.querySelector('.modal__close--js');
   const submitButton = document.querySelector('.form__submit--js');
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
-  submitButton.addEventListener('click', validateInputs);
+  submitButton.addEventListener('click', validateForm);
   modalContainer.addEventListener('click', modalQuit);
 
   [...checkboxes].forEach((checkbox, index) => {
