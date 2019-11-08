@@ -30,17 +30,18 @@
   </head>
   <body>
     <!-------------------------------------------------------- PAGE OVERLAY -->
-    <div class="page-overlay page-overlay--onload page-overlay--js"></div>
+    <!-- <div class="page-overlay page-overlay--onload page-overlay--js"></div> -->
     <!------------------------------------------------- END OF PAGE OVERLAY -->
-    <!----------------------------------------------------------- MODAL BOX -->
-    <div class="modal modal--js">
-      <section class="modal__box">
-        <h2 class="modal__heading visuallyhidden">Alert</h2>
-        <p class="modal__text modal__text--js"></p>
-        <i class="modal__close modal__close--js fas fa-times"></i>
-      </section>
+    <!-------------------------------------------------------------- ALERTS -->
+    <div class="alert alert--js">
+      <p class="alert__message alert__message--js"></p>
+      <button class="button alert__button alert__button--js-close">
+        <svg class="alert__svg" viewBox="0 0 512 512">
+          <use href="assets/svg/icons.svg#close" />
+        </svg>
+      </button>
     </div>
-    <!---------------------------------------------------- END OF MODAL BOX -->
+    <!------------------------------------------------------- END OF ALERTS -->
     <!--------------------------------------------------------- PAGE HEADER -->
     <header class="header">
       <h1 class="header__heading visuallyhidden">
@@ -65,7 +66,7 @@
             <a href="about.html" class="main-menu__link fadeOut--js">ABOUT</a>
           </li>
           <li class="main-menu__item">
-            <a href="contact.html" class="main-menu__link main-menu__link--active  fadeOut--js">CONTACT</a>
+            <a href="contact.php" class="main-menu__link main-menu__link--active  fadeOut--js">CONTACT</a>
           </li>
         </ul>
         <!------------------------------------------------ END OF MENU LIST -->
@@ -135,7 +136,7 @@
         <!----------------------------------------------------------- EMAIL -->
         <div class="input">
           <input
-          type="email"
+          type="text"
           id="email"
           class="input__data input__data--js input__data--js-verify"
           maxlength="30"
@@ -143,9 +144,10 @@
           placeholder="your e-mail address">
           <label for="email" class="input__label">E-mail:</label>
           <div class="error error">
-            <p class="error__text error__text--js">Please enter correct e-mail address!</p>
+            <p class="error__text error__text--js">
+              Please enter correct e-mail address!
+            </p>
           </div>
-          <span class="error__text"><?= $phone_error ?></span>
         </div>
         <!---------------------------------------------------- END OF EMAIL -->
         <!----------------------------------------------------------- PHONE -->
@@ -169,7 +171,9 @@
           </div>
           <label for="phone" class="input__label">Phone:</label>
           <div class="error error--js">
-            <p class="error__text error__text--js">Please enter correct mobile phone number!</p>
+            <p class="error__text error__text--js">
+              Please enter correct mobile phone number!
+            </p>
           </div>
         </div>
         <!---------------------------------------------------- END OF PHONE -->
