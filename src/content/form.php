@@ -1,62 +1,53 @@
-<?php 
-  // define variables and set to empty values
+<?php
   $emailError = $phoneError = $messageError = "";
   $userName = $title = $email = $phone = $message = $success = $failure = "";
   
   require 'PHPMailerAutoload.php';
   require 'credentials.php';
   $mail = new PHPMailer;
-  // test function
   function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
   }
-
+  
   if(isset($_POST['submit'])){
+
     // NAME VALIDATION
     if (empty($_POST['userName'])) {
       $userName = "User";
     } else {
       $userName = test_input($_POST['userName']);
     }
-
     // TITLE VALIDATION
     if (empty($_POST['userTitle'])) {
-      $title = "Title";
+      $title = "Inquiry";
     } else {
       $title = test_input($_POST['userTitle']);
     }
-
     // E-MAIL VALIDATION
     if (empty($_POST['userEmail'])) {
       $emailError = "Please provide your e-mail address";
     } else {
       $email = test_input($_POST['userEmail']);
-      // check if email is correctly formed
       if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailError = "Invalid e-mail format";
       }
     }
-
     // PHONE VALIDATION
     $phone = test_input($_POST['userPhone']);
-    // check if phone number is correctly formed
     if ( !preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i", $phone) and $phone != "" ) {
       $phoneError = "Invalid phone format";
     }
-
     // DESCRIPTION VALIDATION
     if (empty($_POST['userMessage'])) {
       $messageError = "Please type your message";
     } else {
       $message = test_input($_POST['userMessage']);
     }
-
     // SENDING FORM
     if ($emailError == "" and $phoneError == "" and $messageError == "") {
-
       try {
         $mail->SMTPDebug = 1;
         $mail->isSMTP();
@@ -91,17 +82,19 @@
 
         $mail->send();
         $success = 'Message has been sent!';
-        echo 'Message has been sent!';
         $userName = $title = $email = $phone = $message = "";
 
       } catch (Exception $e) {
         $failure = "Message could not be sent! Mailer Error: {$mail->ErrorInfo}";
-        echo 'Mailer error: ' . $mail->ErrorInfo;
       }
-
-    } else {
-      echo $emailError;
-      return $emailError;
     }
+    echo json_encode([
+      'emailError'=>$emailError,
+      'phoneError'=>$phoneError,
+      'messageError'=>$messageError,
+      'success'=>$success,
+      'failure'=>$failure
+    ]);
+    exit;
   }
 ?>
