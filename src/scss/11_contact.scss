@@ -1,6 +1,14 @@
 ///////////////////////////////////////////////////////////////////////// FORM 
 .form {
   display: grid;
+  grid-template-areas:
+    "formHeading  formHeading "
+    "userName     messageTitle"
+    "userEmail    userPhone   "
+    "emailAlert   phoneAlert  "
+    "userMessage  userMessage "
+    "messageAlert messageAlert"
+    "verification formSubmit  ";
   gap: 1em;
   max-width: $layout-container-width;
   min-width: 320px;
@@ -12,12 +20,14 @@
     color: #fff;
     font-size: 1.2em;
     font-weight: 400;
+    grid-area: formHeading;
     margin: 0.5em 0;
     text-align: center;
   }
 
   &__verification {
     border: none;
+    grid-area: verification;
     margin: 0;
     padding: 0;
   }
@@ -26,6 +36,7 @@
     @extend .card__button;
     margin: 0;
     align-self: end;
+    grid-area: formSubmit;
   }
 
   @media only screen and (min-width: $media-md) {
@@ -56,6 +67,12 @@
   flex-direction: column;
   margin: 0;
 
+  &--name { grid-area: userName; }
+  &--email { grid-area: userEmail; }
+  &--phone { grid-area: userPhone; }
+  &--title { grid-area: messageTitle; }
+  &--message { grid-area: userMessage; }
+
   &__label {
     font-weight: 400;
     order: -1;
@@ -64,7 +81,6 @@
 
   &__data {
     background: transparent;
-    border: none;
     border: 2px solid transparent;
     border-bottom-color: $color-background-light;
     color: #fff;
@@ -76,9 +92,10 @@
     width: 100%;
 
     &:invalid {
-      background-color: $color-main;
-      border: 2px solid transparent;
+      border-color: $color-main;
       border-radius: 5px;
+      box-shadow: none;
+      color: $color-main;
     }
 
     &:focus {
@@ -98,6 +115,12 @@
     }
   }
 
+  &__phone-number {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 1fr 5fr;
+  }
+
   @media only screen and (min-width: $media-md) {
     & {
 
@@ -113,12 +136,40 @@
     }
   }
 }
+//////////////////////////////////////////////////////////////// ERROR MESSAGE 
+.error {
+  background-color: $color-main;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  overflow: hidden;
+  align-self: start;
+
+  &--email { grid-area: emailAlert; }
+  &--phone { grid-area: phoneAlert; }
+  &--message { grid-area: messageAlert; }
+
+  &__text {
+    @include flex-center;
+    margin: 0;
+    height: 30px;
+    margin-top: -30px;
+    padding: 0.5em;
+    transition: margin $toggle-error;
+    
+    &--visible {
+      margin-top: 0;
+      transition: margin $toggle-error;
+    }
+  }
+}
 /////////////////////////////////////////////////////////////////// CHECKBOXES 
 .checkbox { 
   align-items: center;
   cursor: pointer;
   display: flex;
-  fill: #fff;
+  fill: $color-main;
   opacity: 1;
   position: relative;
   transition: color $toggle-checkbox, opacity $toggle-checkbox;
@@ -180,44 +231,49 @@
   }
 }
 //////////////////////////////////////////////////////////////////// MODAL BOX 
-.modal {
-  @include flex-center;
-  @include position-fixed;
-  background-color: $color-background;
-  opacity: 0;
-  transition: visibility 0s $toggle-modal, opacity $toggle-modal, transform $toggle-modal ease-in;
+.alert {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.3em;
+  background-color: $color-main;
+  transition:
+    transform $toggle-alert,
+    visibility 0s $toggle-alert;
+  transform: translateY(-100%);
   visibility: hidden;
   z-index: 3;
 
   &--visible {
-    opacity: 1;
-    transition: visibility 0s, opacity $toggle-modal, transform $toggle-modal ease-out;
+    transition:
+      transform $toggle-alert,
+      visibility 0s;
+    transform: translateY(0);
     visibility: visible;
   }
 
-  &__box {
-    background-color: $color-main;
-    border-radius: 1rem;
-    box-shadow: 0 0 30px rgba(0,0,0,0.1);
-    font-size: 1.6rem;
-    max-width: 80%;
-    padding: 3rem 2rem;
-    position: relative;
+  &__message {
     text-align: center;
-    transform: scale(1);
-    user-select: none;
+    grid-column-start: 2;
   }
 
-  &__close {
-    cursor: pointer;
-    margin: 1rem;
-    position: absolute;
-    right: 0;
-    top: 0;
+  &__button {
+    align-self: start;
+    justify-self: end;
+    fill: #fff;
+    width: 30px;
   }
 
-  &__close:hover {
-    color: $color-background;
+  &__button:hover {
+    fill: $color-background;
+  }
+
+  &__svg {
+    width: 100%;
   }
 }
 
@@ -227,15 +283,6 @@
 /* .contact__input:-moz-ui-invalid,
 .contact__description:-moz-ui-invalid {
   box-shadow: 0 0 0 5px rgba(0,0,0,0.3);
-} */
-
-/* 
-.contact__error {
-  color: $color-main;
-  height: 0.5rem;
-  margin-bottom: 0.5rem;
-  display: block;
-  text-align: center;
 } */
 
 /*

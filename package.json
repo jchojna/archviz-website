@@ -1,5 +1,5 @@
 {
-  "name": "wtf-gulp-starter",
+  "name": "archviz-website",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maciejkorsan/wtf-gulp-starter.git"
+    "url": "https://github.com/jchojna/archviz-website"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/maciejkorsan/wtf-gulp-starter/issues"
-  },
-  "homepage": "https://github.com/maciejkorsan/wtf-gulp-starter#readme",
+  "homepage": "https://jchojna.github.io/archviz-website/",
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",

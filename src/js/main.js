@@ -746,6 +746,7 @@ if (form) {
       checkbox.disabled = false;
       checkbox.checked = false;
       checkbox.parentNode.classList.remove('checkbox--disabled');
+      checkbox.nextElementSibling.classList.remove('checkbox__field--hidden');
       checkboxMarks[i].classList.remove('checkbox__mark--visible');
     }
   }
@@ -783,54 +784,126 @@ if (form) {
       : a.nextElementSibling.classList.remove('checkbox__field--hidden'))
   }
 
-  const validateInputs = (e) => {
+  /* const validateInputs = (e) => {
     e.preventDefault();
 
-    [...formInputs].every(a => a.validity.valid)
+    [...formInputsVerify].forEach((input, index) => {
+      !input.validity.valid ?
+      errorMessages[index].classList.add('error__text--visible')
+      : errorMessages[index].classList.remove('error__text--visible');
+    });
+
+    [...formInputsVerify].filter(input => !input.validity.valid).length === 0
     ? validateCheckboxes(e)
-    : console.log('fail');
-  }
+    : false;
+  } */
 
-  const validateCheckboxes = (e) => {
+  const validateForm = (e) => {
+    e.preventDefault();
+    // frontend validation of checkboxes
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
+    // backend validation => send using ajax request
     if (status === 'accept') {
-      e.preventDefault();         // ! INSERT SEND MAIL CODE HERE
-      console.log('success');
+      const submit = $('#submit').val();
+      const userName = $('#name').val();
+      const userTitle = $('#title').val();
+      const userEmail = $('#email').val();
+      const userPhone = $('#phone').val();
+      const userMessage = $('#message').val();
+
+      $.ajax({
+        url: 'form.php',
+        type: 'post',
+        dataType: 'JSON',
+        data: 
+        {
+          "submit": submit,
+          "userName": userName,
+          "userTitle": userTitle,
+          "userEmail": userEmail,
+          "userPhone": userPhone,
+          "userMessage": userMessage
+        }
+      })
+      .done(data => handleAlerts(data))
+      .fail(data => handleAlerts(data));
+
+    // notify if checkbox selection failed
     } else {
-      e.preventDefault();
-      toggleModal(status);
+      handleCheckboxAlerts(status);
     }
   }
 
-  const toggleModal = (response) => {
-    if ( response === "reject" ) {
-      modalText.textContent = "Sorry ... There's no room for robots here ...";
-    } else if ( response === "empty" ) {
-      modalText.textContent = "You have to declare you're not a robot!";
+  const handleAlerts = (data) => {  // ! TO REFACTOR
+    // validation accepted
+    if (data.status) {
+      // message sent successfully
+      if (data.statusText === 'OK') {
+        alertMessage.textContent = "Thank you for sending the message! We'll get back to you soon";
+      // message sending error
+      } else {
+        alertMessage.textContent = "Message couldn't be sent! Please try again";
+      }
+      alert.classList.add("alert--visible");
+      window.clearTimeout(alertTimeoutId);
+      alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
+      errorEmail.classList.remove('error__text--visible');
+      errorPhone.classList.remove('error__text--visible');
+      errorMessage.classList.remove('error__text--visible');
+    // validation rejected  
+    } else {
+      if (data.emailError !== "") {
+        errorEmail.textContent = data.emailError;
+        errorEmail.classList.add('error__text--visible');
+      } else {
+        errorEmail.classList.remove('error__text--visible');
+      }
+      if (data.phoneError !== "") {
+        errorPhone.textContent = data.phoneError;
+        errorPhone.classList.add('error__text--visible');
+      } else {
+        errorPhone.classList.remove('error__text--visible');
+      }
+      if (data.messageError !== "") {
+        errorMessage.textContent = data.messageError;
+        errorMessage.classList.add('error__text--visible');
+      } else {
+        errorMessage.classList.remove('error__text--visible');
+      }
     }
-    modalContainer.classList.add('modal--visible');
   }
-  
-  const modalQuit = (e) => {
-    if (e.target === modalContainer || e.target === modalClose) {
-      modalContainer.classList.remove('modal--visible');
-      resetCheckboxes();
+
+  const handleCheckboxAlerts = (status) => {  // ! TO REFACTOR
+    if (status === 'reject') {
+      alertMessage.textContent = "Sorry ... There's no room for robots here ...";
+    } else {
+      alertMessage.textContent = "You have to declare you're not a robot!";
     }
+    alert.classList.add("alert--visible");
+    window.clearTimeout(alertTimeoutId);
+    alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
   }
+
   ////////////////////////////////////////////////////////////////// VARIABLES 
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
-  
-  const modalContainer = document.querySelector('.modal--js');
-  const modalText = document.querySelector('.modal__text--js');
-  const modalClose = document.querySelector('.modal__close--js');
+  const phoneNumber = document.querySelector('.input__data--js-phone-number');  // ! ?
 
+  const errorEmail = document.querySelector('.error__text--js-email');
+  const errorPhone = document.querySelector('.error__text--js-phone');
+  const errorMessage = document.querySelector('.error__text--js-message');
   const submitButton = document.querySelector('.form__submit--js');
 
+  const alert = document.querySelector('.alert--js');
+  const alertMessage = document.querySelector('.alert__message--js');
+  const alertClose = document.querySelector('.alert__button--js-close');
+  let alertTimeoutId;
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
-  submitButton.addEventListener('click', validateInputs);
-  modalContainer.addEventListener('click', modalQuit);
+  submitButton.addEventListener('click', validateForm);
+  alertClose.addEventListener('click', () => {
+    alert.classList.remove("alert--visible");
+  });
 
   [...checkboxes].forEach((checkbox, index) => {
     checkbox.index = index;
@@ -844,7 +917,6 @@ if (form) {
     input.addEventListener('keyup', () => localStorage.setItem(key, input.value));
   })
 }
-
 /*
  #######  ##    ## ##        #######     ###    ########
 ##     ## ###   ## ##       ##     ##   ## ##   ##     ##
@@ -865,3 +937,15 @@ window.onload = () => {
     window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }
 }
+/* 
+phoneNumber.addEventListener('keydown', (e) => {
+  e.preventDefault();
+  console.log('type', e.target.value);
+
+  /\d$/.test(e.target.value) ?
+  phoneNumber.value = e.target.value
+  : false;
+
+  ///[0-9]$/.test(type) ? e.target.value = 'type' : (e) => e.preventDefault();
+})
+ */
