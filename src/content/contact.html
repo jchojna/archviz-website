@@ -30,7 +30,7 @@
   </head>
   <body>
     <!-------------------------------------------------------- PAGE OVERLAY -->
-    <!-- <div class="page-overlay page-overlay--onload page-overlay--js"></div> -->
+    <div class="page-overlay page-overlay--onload page-overlay--js"></div>
     <!------------------------------------------------- END OF PAGE OVERLAY -->
     <!-------------------------------------------------------------- ALERTS -->
     <div class="alert alert--js">
@@ -121,7 +121,7 @@
         class="form form--js">
         <h2 class="form__heading">Contact Me:</h2>
         <!------------------------------------------------------------ NAME -->
-        <p class="input">
+        <p class="input input--name">
           <input
           autofocus
           type="text"
@@ -134,51 +134,44 @@
         </p>
         <!----------------------------------------------------- END OF NAME -->
         <!----------------------------------------------------------- EMAIL -->
-        <div class="input">
+        <div class="input input--email">
           <input
           type="text"
           id="email"
-          class="input__data input__data--js input__data--js-verify"
+          class="input__data input__data--js"
           maxlength="30"
           name="userEmail"
           placeholder="your e-mail address">
           <label for="email" class="input__label">E-mail:</label>
-          <div class="error error">
-            <p class="error__text error__text--js">
-              Please enter correct e-mail address!
-            </p>
-          </div>
+        </div>
+        <div class="error error--email">
+          <p class="error__text error__text--js-email"></p>
         </div>
         <!---------------------------------------------------- END OF EMAIL -->
         <!----------------------------------------------------------- PHONE -->
-        <div class="input">
+        <div class="input input--phone">
           <div class="input__phone-number">
             <input
             type="tel"
             id="country-code"
             class="input__data input__data--js"
             maxlength="3"
-            name="userPhone"
             placeholder="+00">
             <input
             type="tel"
             id="phone"
-            class="input__data input__data--js input__data--js-phone-number input__data--js-verify"
-            minlength="9"
-            maxlength="10"
+            class="input__data input__data--js"
             name="userPhone"
-            placeholder="123-456-7890">
+            placeholder="123-456-789">
           </div>
           <label for="phone" class="input__label">Phone:</label>
-          <div class="error error--js">
-            <p class="error__text error__text--js">
-              Please enter correct mobile phone number!
-            </p>
-          </div>
+        </div>
+        <div class="error error--phone">
+          <p class="error__text error__text--js-phone"></p>
         </div>
         <!---------------------------------------------------- END OF PHONE -->
         <!----------------------------------------------------------- TITLE -->
-        <p class="input">
+        <p class="input input--title">
           <input
           type="text"
           id="title"
@@ -200,6 +193,9 @@
           placeholder="write your message"></textarea>
           <label for="message" class="input__label">Message:</label>
         </p>
+        <div class="error error--message">
+          <p class="error__text error__text--js-message"></p>
+        </div>
         <!-------------------------------------------------- END OF MESSAGE -->
         <!---------------------------------------------------- VERIFICATION -->
         <fieldset class="form__verification form__verification--js">
