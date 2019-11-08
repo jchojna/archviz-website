@@ -799,6 +799,7 @@ if (form) {
   } */
 
   const validateForm = (e) => {
+    e.preventDefault();
     // frontend validation of checkboxes
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
     // backend validation => send using ajax request
@@ -809,11 +810,11 @@ if (form) {
       const userEmail = $('#email').val();
       const userPhone = $('#phone').val();
       const userMessage = $('#message').val();
-      e.preventDefault();
 
       $.ajax({
         url: 'form.php',
         type: 'post',
+        dataType: 'JSON',
         data: 
         {
           "submit": submit,
@@ -824,8 +825,8 @@ if (form) {
           "userMessage": userMessage
         }
       })
-      .done(data => handleNotifications(data))
-      .fail(data => handleNotifications(data));
+      .done(data => handleAlerts(data))
+      .fail(data => handleAlerts(data));
 
     // notify if checkbox selection failed
     } else {
