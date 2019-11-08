@@ -81,20 +81,19 @@
         $mail->AltBody = strip_tags($body);
 
         $mail->send();
-        $success = 'Message has been sent!';
         $userName = $title = $email = $phone = $message = "";
 
       } catch (Exception $e) {
-        $failure = "Message could not be sent! Mailer Error: {$mail->ErrorInfo}";
+        //$failure = "Message could not be sent! Mailer Error: {$mail->ErrorInfo}";
       }
+    } else {
+      $data = array(
+        'emailError'=>$emailError,
+        'phoneError'=>$phoneError,
+        'messageError'=>$messageError
+      );
+      echo json_encode($data);
+      exit;
     }
-    echo json_encode([
-      'emailError'=>$emailError,
-      'phoneError'=>$phoneError,
-      'messageError'=>$messageError,
-      'success'=>$success,
-      'failure'=>$failure
-    ]);
-    exit;
   }
 ?>
