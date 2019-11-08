@@ -23,6 +23,10 @@ gulp.task("assets", function() {
   return gulp.src("./src/assets/**/*").pipe(gulp.dest("./dist/assets/"));
 });
 
+gulp.task("phpmailer", function() {
+  return gulp.src("./src/phpmailer/**/*").pipe(gulp.dest("./dist/phpmailer/"));
+});
+
 gulp.task("html", function() {
   return gulp
     .src("./src/content/**/*.html")
@@ -87,7 +91,7 @@ gulp.task("sass", () => {
 
 gulp.task(
   "serve",
-  gulp.series("sass", "html", "php", "js", "assets", "pwa", function() {
+  gulp.series("sass", "html", "php", "js", "assets", "phpmailer", "pwa", function() {
     browserSync.init({
       server: "./dist",
       open: true // set to false to disable browser autostart
@@ -98,6 +102,7 @@ gulp.task(
     gulp.watch("src/pwa/**/*", gulp.series("pwa"));
     gulp.watch("src/js/*.js", gulp.series("js"));
     gulp.watch("src/assets/**/*", gulp.series("assets"));
+    gulp.watch("src/phpmailer/**/*", gulp.series("phpmailer"));
     gulp.watch("dist/**/*").on("change", browserSync.reload);
   })
 );
