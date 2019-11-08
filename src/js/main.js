@@ -830,67 +830,80 @@ if (form) {
 
     // notify if checkbox selection failed
     } else {
-      e.preventDefault();
-      toggleModal(status);
+      handleCheckboxAlerts(status);
     }
   }
 
-  const handleNotifications = (data) => {
-
-    console.log(data);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-  }
-
-  const toggleModal = (response) => {
-    if ( response === "reject" ) {
-      modalText.textContent = "Sorry ... There's no room for robots here ...";
-    } else if ( response === "empty" ) {
-      modalText.textContent = "You have to declare you're not a robot!";
-    }
-    modalContainer.classList.add('modal--visible');
-  }
-  
-  const modalQuit = (e) => {
-    if (e.target === modalContainer || e.target === modalClose) {
-      modalContainer.classList.remove('modal--visible');
-      resetCheckboxes();
+  const handleAlerts = (data) => {  // ! TO REFACTOR
+    // validation accepted
+    if (data.status) {
+      // message sent successfully
+      if (data.statusText === 'OK') {
+        alertMessage.textContent = "Thank you for sending the message! We'll get back to you soon";
+      // message sending error
+      } else {
+        alertMessage.textContent = "Message couldn't be sent! Please try again";
+      }
+      alert.classList.add("alert--visible");
+      window.clearTimeout(alertTimeoutId);
+      alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
+      errorEmail.classList.remove('error__text--visible');
+      errorPhone.classList.remove('error__text--visible');
+      errorMessage.classList.remove('error__text--visible');
+    // validation rejected  
+    } else {
+      if (data.emailError !== "") {
+        errorEmail.textContent = data.emailError;
+        errorEmail.classList.add('error__text--visible');
+      } else {
+        errorEmail.classList.remove('error__text--visible');
+      }
+      if (data.phoneError !== "") {
+        errorPhone.textContent = data.phoneError;
+        errorPhone.classList.add('error__text--visible');
+      } else {
+        errorPhone.classList.remove('error__text--visible');
+      }
+      if (data.messageError !== "") {
+        errorMessage.textContent = data.messageError;
+        errorMessage.classList.add('error__text--visible');
+      } else {
+        errorMessage.classList.remove('error__text--visible');
+      }
     }
   }
+
+  const handleCheckboxAlerts = (status) => {  // ! TO REFACTOR
+    if (status === 'reject') {
+      alertMessage.textContent = "Sorry ... There's no room for robots here ...";
+    } else {
+      alertMessage.textContent = "You have to declare you're not a robot!";
+    }
+    alert.classList.add("alert--visible");
+    window.clearTimeout(alertTimeoutId);
+    alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
+  }
+
   ////////////////////////////////////////////////////////////////// VARIABLES 
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
-  const formInputsVerify = document.querySelectorAll('.input__data--js-verify');
   const phoneNumber = document.querySelector('.input__data--js-phone-number');  // ! ?
-  const errorMessages = document.querySelectorAll('.error__text--js');
-  const modalContainer = document.querySelector('.modal--js');
-  const modalText = document.querySelector('.modal__text--js');
-  const modalClose = document.querySelector('.modal__close--js');
+
+  const errorEmail = document.querySelector('.error__text--js-email');
+  const errorPhone = document.querySelector('.error__text--js-phone');
+  const errorMessage = document.querySelector('.error__text--js-message');
   const submitButton = document.querySelector('.form__submit--js');
+
+  const alert = document.querySelector('.alert--js');
+  const alertMessage = document.querySelector('.alert__message--js');
+  const alertClose = document.querySelector('.alert__button--js-close');
+  let alertTimeoutId;
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
   submitButton.addEventListener('click', validateForm);
-  modalContainer.addEventListener('click', modalQuit);
+  alertClose.addEventListener('click', () => {
+    alert.classList.remove("alert--visible");
+  });
 
   [...checkboxes].forEach((checkbox, index) => {
     checkbox.index = index;
