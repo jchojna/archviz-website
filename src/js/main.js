@@ -69,35 +69,6 @@ for ( const link of fadeOutLinks ) {
 }
 
 /*
- ######      ###
-##    ##    ## ##
-##         ##   ##
-##   #### ##     ##
-##    ##  #########
-##    ##  ##     ##
- ######   ##     ##
-*/
-
-/*
-// Google Analytics: change UA-XXXXX-X to be your site's ID.
-
-(function(b, o, i, l, e, r) {
-  b.GoogleAnalyticsObject = l;
-  b[l] ||
-    (b[l] = function() {
-      (b[l].q = b[l].q || []).push(arguments);
-    });
-  b[l].l = +new Date();
-  e = o.createElement(i);
-  r = o.getElementsByTagName(i)[0];
-  e.src = "//www.google-analytics.com/analytics.js";
-  r.parentNode.insertBefore(e, r);
-})(window, document, "script", "ga");
-ga("create", "UA-XXXXX-X", "auto");
-ga("send", "pageview");
- */
-
-/*
 ######## ##     ## ########   #######  ######## ######## ##       ########
    ##    ##     ## ##     ## ##     ##    ##       ##    ##       ##
    ##    ##     ## ##     ## ##     ##    ##       ##    ##       ##
@@ -490,12 +461,14 @@ if (gallery) {
 
     const viewImage = (e) => {
       const self = e.keyCode || e.target;
+      let currentImage = images[currentIndex];
 
-      const keepPlaceholderMode = () => {
-        const placeholderFlag = switchCenter.classList.contains('switch__center--linear')
-        ? true : false;
-        currentImage = images[currentIndex];
-        placeholderFlag ? currentImage.classList.remove('images__image--loaded') : false;
+      const handleSwitchDisplay = (image) => {
+        if (image.complete) {
+          switchCenter.classList.add('switch__center--solid');
+        } else {
+          switchCenter.classList.remove('switch__center--solid');
+        }
       }
 
       switch (self) {
@@ -504,7 +477,7 @@ if (gallery) {
         case leftButton:
           handleClassesChange('left');
           lazyLoadImage(currentIndex, 'prev', 2);
-          keepPlaceholderMode();
+          handleSwitchDisplay(images[currentIndex]);
           setImageSize();
           break;
 
@@ -512,18 +485,21 @@ if (gallery) {
         case rightButton:
           handleClassesChange('right');
           lazyLoadImage(currentIndex, 'next', 2);
-          keepPlaceholderMode();
+          handleSwitchDisplay(images[currentIndex]);
           setImageSize();
           break;
 
         case 38:
         case switchButton:
-          currentImage.classList.toggle('images__image--loaded');
-          switchCenter.classList.toggle('switch__center--linear');
+          if (currentImage.complete) {
+            currentImage.classList.toggle('images__image--loaded');
+            switchCenter.classList.toggle('switch__center--solid');
+          }
           break;
         
         case 27:
         case closeButton:
+          switchCenter.classList.remove('switch__center--solid');
           showImage();
           removeAllEvents();
           break;
@@ -551,6 +527,7 @@ if (gallery) {
         if (amount > 0) {
           amount--;
           currentImage.classList.add('images__image--loaded');
+          switchCenter.classList.add('switch__center--solid');
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -567,6 +544,9 @@ if (gallery) {
         if (amount > 0) {
           amount--;
           currentImage.classList.add('images__image--loaded');
+          if (index === currentIndex) {
+            switchCenter.classList.add('switch__center--solid');
+          }
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -632,9 +612,9 @@ if (gallery) {
 
     // NAVIGATION
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
-    const leftButton = document.querySelector('.gallery-nav__button--js-left');
-    const rightButton = document.querySelector('.gallery-nav__button--js-right');
-    const closeButton = document.querySelector('.gallery-nav__button--js-close');
+    const leftButton   = document.querySelector('.gallery-nav__button--js-left');
+    const rightButton  = document.querySelector('.gallery-nav__button--js-right');
+    const closeButton  = document.querySelector('.gallery-nav__button--js-close');
     const switchCenter = document.querySelector('.switch__center--js');
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
@@ -648,18 +628,6 @@ if (gallery) {
     window.addEventListener('resize', setImageSize)
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
-
-
-
-
-
-
-
-
-
-
-
-
 
   ////////////////////////////////////////////////////////////////// VARIABLES 
   let prevScroll = null;
