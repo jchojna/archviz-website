@@ -740,7 +740,6 @@ if (about) {
 if (form) {
 
   const resetCheckboxes = () => {
-
     for (let i = 0; i < checkboxes.length; i++) {
       const checkbox = checkboxes[i];
       checkbox.disabled = false;
@@ -861,6 +860,12 @@ if (form) {
         errorMessage.classList.add('error__text--visible');
       } else {
         errorMessage.classList.remove('error__text--visible');
+      }
+      if (data.checkboxError !== "") {
+        alertMessage.textContent = data.checkboxError;
+        alert.classList.add("alert--visible");
+        window.clearTimeout(alertTimeoutId);
+        alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
       }
     }
   }

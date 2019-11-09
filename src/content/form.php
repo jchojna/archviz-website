@@ -1,6 +1,6 @@
 <?php
-  $emailError = $phoneError = $messageError = "";
-  $userName = $title = $email = $phone = $message = $success = $failure = "";
+  $emailError = $phoneError = $messageError = $checkboxError = "";
+  $userName = $userTitle = $userEmail = $countryCode = $userPhone = $userMessage = "";
   
   require 'PHPMailerAutoload.php';
   require 'credentials.php';
@@ -22,32 +22,41 @@
     }
     // TITLE VALIDATION
     if (empty($_POST['userTitle'])) {
-      $title = "Inquiry";
+      $userTitle = "Inquiry";
     } else {
-      $title = test_input($_POST['userTitle']);
+      $userTitle = test_input($_POST['userTitle']);
     }
     // E-MAIL VALIDATION
     if (empty($_POST['userEmail'])) {
       $emailError = "Please provide your e-mail address";
     } else {
-      $email = test_input($_POST['userEmail']);
-      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $userEmail = test_input($_POST['userEmail']);
+      if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
         $emailError = "Invalid e-mail format";
       }
     }
+    // COUNTRY CODE VALIDATION
+    $countryCode = test_input($_POST['userCountryCode']);
+    if ( !preg_match("/^(\+?\d{1,3}|\d{1,4})$/", $countryCode) and $countryCode != "" ) {
+      $phoneError = "Invalid phone format";
+    }
     // PHONE VALIDATION
-    $phone = test_input($_POST['userPhone']);
-    if ( !preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i", $phone) and $phone != "" ) {
+    $userPhone = test_input($_POST['userPhone']);
+    if ( !preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i", $userPhone) and $userPhone != "" ) {
       $phoneError = "Invalid phone format";
     }
     // DESCRIPTION VALIDATION
     if (empty($_POST['userMessage'])) {
       $messageError = "Please type your message";
     } else {
-      $message = test_input($_POST['userMessage']);
+      $userMessage = test_input($_POST['userMessage']);
+    }
+    // CHECKBOX VALIDATION
+    if (!$_POST['checkboxAccept']) {
+      $checkboxError = "Verification failed";
     }
     // SENDING FORM
-    if ($emailError == "" and $phoneError == "" and $messageError == "") {
+    if ($emailError == "" and $phoneError == "" and $messageError == "" and $checkboxError == "") {
       try {
         $mail->SMTPDebug = 1;
         $mail->isSMTP();
@@ -69,19 +78,19 @@
         //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');
 
         $body = '
-        <p>Message sent from: <strong>' . $email . '</strong></p>
+        <p>Message sent from: <strong>' . $userEmail . '</strong></p>
         <p>Hello Jakub!</p>
         <p>My name is ' . $userName . '</p>
-        <p>' . $message . '</p>
-        <p>My phone number is: ' . $phone . '</p>';
+        <p>' . $userMessage . '</p>
+        <p>My phone number is: ' . $userPhone . '</p>';
 
         $mail->isHTML(true);
-        $mail->Subject = $title;
+        $mail->Subject = $userTitle;
         $mail->Body    = $body;
         $mail->AltBody = strip_tags($body);
 
         $mail->send();
-        $userName = $title = $email = $phone = $message = "";
+        $userName = $userTitle = $userEmail = $userPhone = $userMessage = "";
 
       } catch (Exception $e) {
         //$failure = "Message could not be sent! Mailer Error: {$mail->ErrorInfo}";
@@ -90,7 +99,8 @@
       $data = array(
         'emailError'=>$emailError,
         'phoneError'=>$phoneError,
-        'messageError'=>$messageError
+        'messageError'=>$messageError,
+        'checkboxError'=>$checkboxError
       );
       echo json_encode($data);
       exit;
