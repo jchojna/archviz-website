@@ -787,7 +787,7 @@ if (form) {
     e.preventDefault();
     // frontend validation of checkboxes
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
-    // backend validation => send using ajax request
+    // backend validation => send form using ajax request
     if (status === 'accept') {
       const formSubmit = document.querySelector('.form__submit--js').value;
       const userName = document.querySelector('.input__data--js-userName').value;
@@ -817,15 +817,28 @@ if (form) {
       .done(data => handleAlerts(data))
       .fail(data => handleAlerts(data));
       return;
-
-    // notify if checkbox selection failed
+    // notify if frontend validation of checkboxes failed
     } else {
-      handleCheckboxAlerts(status);
+      handleAlerts(status);
       return;
     }
   }
 
-  const handleAlerts = (data) => {  // ! TO REFACTOR
+  const handleAlerts = (data) => {
+
+    const toggleAlertBox = () => {
+      alert.classList.add("alert--visible");
+      window.clearTimeout(alertTimeoutId);
+      alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
+    }
+    const toggleInputAlert = (input, error) => {
+      if (error !== '') {
+        input.textContent = error;
+        input.classList.add('error__text--visible');
+      } else {
+        input.classList.remove('error__text--visible');
+      }
+    }
     // validation accepted
     if (data.status) {
       // message sent successfully
@@ -835,50 +848,29 @@ if (form) {
       } else {
         alertMessage.textContent = "Message couldn't be sent! Please try again";
       }
-      alert.classList.add("alert--visible");
-      window.clearTimeout(alertTimeoutId);
-      alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
-      errorEmail.classList.remove('error__text--visible');
-      errorPhone.classList.remove('error__text--visible');
-      errorMessage.classList.remove('error__text--visible');
-    // validation rejected  
-    } else {
-      if (data.emailError !== "") {
-        errorEmail.textContent = data.emailError;
-        errorEmail.classList.add('error__text--visible');
-      } else {
-        errorEmail.classList.remove('error__text--visible');
-      }
-      if (data.phoneError !== "") {
-        errorPhone.textContent = data.phoneError;
-        errorPhone.classList.add('error__text--visible');
-      } else {
-        errorPhone.classList.remove('error__text--visible');
-      }
-      if (data.messageError !== "") {
-        errorMessage.textContent = data.messageError;
-        errorMessage.classList.add('error__text--visible');
-      } else {
-        errorMessage.classList.remove('error__text--visible');
-      }
-      if (data.checkboxError !== "") {
-        alertMessage.textContent = data.checkboxError;
-        alert.classList.add("alert--visible");
-        window.clearTimeout(alertTimeoutId);
-        alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
-      }
-    }
-  }
+      toggleAlertBox();
+      [...errors].forEach(error => error.classList.remove('error__text--visible'));
 
-  const handleCheckboxAlerts = (status) => {  // ! TO REFACTOR
-    if (status === 'reject') {
-      alertMessage.textContent = "Sorry ... There's no room for robots here ...";
+      // ! CLEAN FORM INPUTS AFTER SUBMIT
+    // checkbox validation failed  
+    } else if (data === 'reject' || data === 'empty') {
+      if (data === 'reject') {
+        alertMessage.textContent = "Sorry ... There's no room for robots here ...";
+      }
+      if (data === 'empty') {
+        alertMessage.textContent = "You have to declare you're not a robot!";
+      }
+      toggleAlertBox();
+    // backend validation failed
     } else {
-      alertMessage.textContent = "You have to declare you're not a robot!";
+      if (data.checkboxError !== '') {
+        alertMessage.textContent = data.checkboxError;
+        toggleAlertBox();
+      }
+      toggleInputAlert(phoneError, data.phoneError);
+      toggleInputAlert(emailError, data.emailError);
+      toggleInputAlert(messageError, data.messageError);
     }
-    alert.classList.add("alert--visible");
-    window.clearTimeout(alertTimeoutId);
-    alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
   }
 
   ////////////////////////////////////////////////////////////////// VARIABLES 
@@ -886,9 +878,10 @@ if (form) {
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
 
-  const errorEmail = document.querySelector('.error__text--js-email');
-  const errorPhone = document.querySelector('.error__text--js-phone');
-  const errorMessage = document.querySelector('.error__text--js-message');
+  const errors = document.querySelectorAll('[class*="error__text--js"]');
+  const emailError = document.querySelector('.error__text--js-email');
+  const phoneError = document.querySelector('.error__text--js-phone');
+  const messageError = document.querySelector('.error__text--js-message');
   const formSubmitButton = document.querySelector('.form__submit--js');
 
   const alert = document.querySelector('.alert--js');
@@ -907,11 +900,15 @@ if (form) {
   });
 
   /////////////////////////////////////////////////////// HANDLE LOCAL STORAGE 
+
+  // CONTACT FORM LOCAL STORAGE FUNCTIONALITY
+  /*
   [...formInputs].forEach(input => {
     const key = `jc-${input.getAttribute('id')}`;
     input.value = localStorage.getItem(key) ? localStorage.getItem(key) : "";
     input.addEventListener('keyup', () => localStorage.setItem(key, input.value));
-  })
+  });
+  */
 }
 /*
  #######  ##    ## ##        #######     ###    ########
