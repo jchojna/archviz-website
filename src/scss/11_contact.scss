@@ -2,13 +2,17 @@
 .form {
   display: grid;
   grid-template-areas:
-    "formHeading  formHeading "
-    "userName     messageTitle"
-    "userEmail    userPhone   "
-    "emailAlert   phoneAlert  "
-    "userMessage  userMessage "
-    "messageAlert messageAlert"
-    "verification formSubmit  ";
+    "formHeading "
+    "userName    "
+    "userEmail   "
+    "emailAlert  "
+    "userPhone   "
+    "phoneAlert  "
+    "messageTitle"
+    "userMessage "
+    "messageAlert"
+    "verification"
+    "formSubmit  ";
   gap: 1em;
   max-width: $layout-container-width;
   min-width: 320px;
@@ -42,6 +46,14 @@
   @media only screen and (min-width: $media-md) {
     & {
       gap: 1em 3em;
+      grid-template-areas:
+        "formHeading  formHeading "
+        "userName     messageTitle"
+        "userPhone    userEmail   "
+        "phoneAlert   emailAlert  "
+        "userMessage  userMessage "
+        "messageAlert messageAlert"
+        "verification formSubmit  ";
       grid-template-columns: repeat(2, 1fr);
       padding: $layout-md-offset;
       padding-top: $layout-md-logo + ($layout-md-offset * 2);
@@ -232,14 +244,15 @@
 }
 //////////////////////////////////////////////////////////////////// MODAL BOX 
 .alert {
+  align-items: center;
   position: fixed;
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 6fr 1fr;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
-  font-size: 1.3em;
+  padding: 20px;
+  font-size: 1em;
   background-color: $color-main;
   transition:
     transform $toggle-alert,
@@ -257,12 +270,12 @@
   }
 
   &__message {
+    margin: 0;
     text-align: center;
     grid-column-start: 2;
   }
 
   &__button {
-    align-self: start;
     justify-self: end;
     fill: #fff;
     width: 30px;
