@@ -825,7 +825,6 @@ if (form) {
   }
 
   const handleAlerts = (data) => {
-
     const toggleAlertBox = () => {
       alert.classList.add("alert--visible");
       window.clearTimeout(alertTimeoutId);
@@ -844,14 +843,15 @@ if (form) {
       // message sent successfully
       if (data.statusText === 'OK') {
         alertMessage.textContent = "Thank you for sending the message! We'll get back to you soon";
+        // hide input alerts
+        [...errors].forEach(error => error.classList.remove('error__text--visible'));
+        [...formInputs].forEach(input => input.value = "");
+        resetCheckboxes();
       // message sending error
       } else {
         alertMessage.textContent = "Message couldn't be sent! Please try again";
       }
       toggleAlertBox();
-      [...errors].forEach(error => error.classList.remove('error__text--visible'));
-
-      // ! CLEAN FORM INPUTS AFTER SUBMIT
     // checkbox validation failed  
     } else if (data === 'reject' || data === 'empty') {
       if (data === 'reject') {
