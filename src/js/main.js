@@ -784,32 +784,20 @@ if (form) {
       : a.nextElementSibling.classList.remove('checkbox__field--hidden'))
   }
 
-  /* const validateInputs = (e) => {
-    e.preventDefault();
-
-    [...formInputsVerify].forEach((input, index) => {
-      !input.validity.valid ?
-      errorMessages[index].classList.add('error__text--visible')
-      : errorMessages[index].classList.remove('error__text--visible');
-    });
-
-    [...formInputsVerify].filter(input => !input.validity.valid).length === 0
-    ? validateCheckboxes(e)
-    : false;
-  } */
-
   const validateForm = (e) => {
     e.preventDefault();
     // frontend validation of checkboxes
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
     // backend validation => send using ajax request
     if (status === 'accept') {
-      const submit = $('#submit').val();
-      const userName = $('#name').val();
-      const userTitle = $('#title').val();
-      const userEmail = $('#email').val();
-      const userPhone = $('#phone').val();
-      const userMessage = $('#message').val();
+      const formSubmit = document.querySelector('.form__submit--js').value;
+      const userName = document.querySelector('.input__data--js-userName').value;
+      const userTitle = document.querySelector('.input__data--js-userTitle').value;
+      const userEmail = document.querySelector('.input__data--js-userEmail').value;
+      const userCountryCode = document.querySelector('.input__data--js-userCountryCode').value;
+      const userPhone = document.querySelector('.input__data--js-userPhone').value;
+      const userMessage = document.querySelector('.input__data--js-userMessage').value;
+      const checkboxAccept = document.querySelector('.checkbox__input--js-accept').checked;
 
       $.ajax({
         url: 'form.php',
@@ -817,20 +805,24 @@ if (form) {
         dataType: 'JSON',
         data: 
         {
-          "submit": submit,
+          "submit": formSubmit,
           "userName": userName,
           "userTitle": userTitle,
           "userEmail": userEmail,
+          "userCountryCode": userCountryCode,
           "userPhone": userPhone,
-          "userMessage": userMessage
+          "userMessage": userMessage,
+          "checkboxAccept": checkboxAccept
         }
       })
       .done(data => handleAlerts(data))
       .fail(data => handleAlerts(data));
+      return;
 
     // notify if checkbox selection failed
     } else {
       handleCheckboxAlerts(status);
+      return;
     }
   }
 
@@ -888,19 +880,18 @@ if (form) {
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
-  const phoneNumber = document.querySelector('.input__data--js-phone-number');  // ! ?
 
   const errorEmail = document.querySelector('.error__text--js-email');
   const errorPhone = document.querySelector('.error__text--js-phone');
   const errorMessage = document.querySelector('.error__text--js-message');
-  const submitButton = document.querySelector('.form__submit--js');
+  const formSubmitButton = document.querySelector('.form__submit--js');
 
   const alert = document.querySelector('.alert--js');
   const alertMessage = document.querySelector('.alert__message--js');
   const alertClose = document.querySelector('.alert__button--js-close');
   let alertTimeoutId;
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
-  submitButton.addEventListener('click', validateForm);
+  formSubmitButton.addEventListener('click', validateForm);
   alertClose.addEventListener('click', () => {
     alert.classList.remove("alert--visible");
   });
