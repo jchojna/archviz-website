@@ -239,12 +239,13 @@
   @include flex-center;
 
   &__center {
+    fill: none;
     stroke-width: 40px;
     stroke: #fff;
     transition: stroke $hover-gallery-button, transform $hover-gallery-button;
 
-    &--linear {
-      fill: none;
+    &--solid {
+      fill: inherit;
     }
   }
 

@@ -69,35 +69,6 @@ for ( const link of fadeOutLinks ) {
 }
 
 /*
- ######      ###
-##    ##    ## ##
-##         ##   ##
-##   #### ##     ##
-##    ##  #########
-##    ##  ##     ##
- ######   ##     ##
-*/
-
-/*
-// Google Analytics: change UA-XXXXX-X to be your site's ID.
-
-(function(b, o, i, l, e, r) {
-  b.GoogleAnalyticsObject = l;
-  b[l] ||
-    (b[l] = function() {
-      (b[l].q = b[l].q || []).push(arguments);
-    });
-  b[l].l = +new Date();
-  e = o.createElement(i);
-  r = o.getElementsByTagName(i)[0];
-  e.src = "//www.google-analytics.com/analytics.js";
-  r.parentNode.insertBefore(e, r);
-})(window, document, "script", "ga");
-ga("create", "UA-XXXXX-X", "auto");
-ga("send", "pageview");
- */
-
-/*
 ######## ##     ## ########   #######  ######## ######## ##       ########
    ##    ##     ## ##     ## ##     ##    ##       ##    ##       ##
    ##    ##     ## ##     ## ##     ##    ##       ##    ##       ##
@@ -490,12 +461,14 @@ if (gallery) {
 
     const viewImage = (e) => {
       const self = e.keyCode || e.target;
+      let currentImage = images[currentIndex];
 
-      const keepPlaceholderMode = () => {
-        const placeholderFlag = switchCenter.classList.contains('switch__center--linear')
-        ? true : false;
-        currentImage = images[currentIndex];
-        placeholderFlag ? currentImage.classList.remove('images__image--loaded') : false;
+      const handleSwitchDisplay = (image) => {
+        if (image.complete) {
+          switchCenter.classList.add('switch__center--solid');
+        } else {
+          switchCenter.classList.remove('switch__center--solid');
+        }
       }
 
       switch (self) {
@@ -504,7 +477,7 @@ if (gallery) {
         case leftButton:
           handleClassesChange('left');
           lazyLoadImage(currentIndex, 'prev', 2);
-          keepPlaceholderMode();
+          handleSwitchDisplay(images[currentIndex]);
           setImageSize();
           break;
 
@@ -512,18 +485,21 @@ if (gallery) {
         case rightButton:
           handleClassesChange('right');
           lazyLoadImage(currentIndex, 'next', 2);
-          keepPlaceholderMode();
+          handleSwitchDisplay(images[currentIndex]);
           setImageSize();
           break;
 
         case 38:
         case switchButton:
-          currentImage.classList.toggle('images__image--loaded');
-          switchCenter.classList.toggle('switch__center--linear');
+          if (currentImage.complete) {
+            currentImage.classList.toggle('images__image--loaded');
+            switchCenter.classList.toggle('switch__center--solid');
+          }
           break;
         
         case 27:
         case closeButton:
+          switchCenter.classList.remove('switch__center--solid');
           showImage();
           removeAllEvents();
           break;
@@ -551,6 +527,7 @@ if (gallery) {
         if (amount > 0) {
           amount--;
           currentImage.classList.add('images__image--loaded');
+          switchCenter.classList.add('switch__center--solid');
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -567,6 +544,9 @@ if (gallery) {
         if (amount > 0) {
           amount--;
           currentImage.classList.add('images__image--loaded');
+          if (index === currentIndex) {
+            switchCenter.classList.add('switch__center--solid');
+          }
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -632,9 +612,9 @@ if (gallery) {
 
     // NAVIGATION
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
-    const leftButton = document.querySelector('.gallery-nav__button--js-left');
-    const rightButton = document.querySelector('.gallery-nav__button--js-right');
-    const closeButton = document.querySelector('.gallery-nav__button--js-close');
+    const leftButton   = document.querySelector('.gallery-nav__button--js-left');
+    const rightButton  = document.querySelector('.gallery-nav__button--js-right');
+    const closeButton  = document.querySelector('.gallery-nav__button--js-close');
     const switchCenter = document.querySelector('.switch__center--js');
 
     /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
@@ -648,18 +628,6 @@ if (gallery) {
     window.addEventListener('resize', setImageSize)
   }
   // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
-
-
-
-
-
-
-
-
-
-
-
-
 
   ////////////////////////////////////////////////////////////////// VARIABLES 
   let prevScroll = null;
@@ -740,7 +708,6 @@ if (about) {
 if (form) {
 
   const resetCheckboxes = () => {
-
     for (let i = 0; i < checkboxes.length; i++) {
       const checkbox = checkboxes[i];
       checkbox.disabled = false;
@@ -784,32 +751,20 @@ if (form) {
       : a.nextElementSibling.classList.remove('checkbox__field--hidden'))
   }
 
-  /* const validateInputs = (e) => {
-    e.preventDefault();
-
-    [...formInputsVerify].forEach((input, index) => {
-      !input.validity.valid ?
-      errorMessages[index].classList.add('error__text--visible')
-      : errorMessages[index].classList.remove('error__text--visible');
-    });
-
-    [...formInputsVerify].filter(input => !input.validity.valid).length === 0
-    ? validateCheckboxes(e)
-    : false;
-  } */
-
   const validateForm = (e) => {
     e.preventDefault();
     // frontend validation of checkboxes
     const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
-    // backend validation => send using ajax request
+    // backend validation => send form using ajax request
     if (status === 'accept') {
-      const submit = $('#submit').val();
-      const userName = $('#name').val();
-      const userTitle = $('#title').val();
-      const userEmail = $('#email').val();
-      const userPhone = $('#phone').val();
-      const userMessage = $('#message').val();
+      const formSubmit = document.querySelector('.form__submit--js').value;
+      const userName = document.querySelector('.input__data--js-userName').value;
+      const userTitle = document.querySelector('.input__data--js-userTitle').value;
+      const userEmail = document.querySelector('.input__data--js-userEmail').value;
+      const userCountryCode = document.querySelector('.input__data--js-userCountryCode').value;
+      const userPhone = document.querySelector('.input__data--js-userPhone').value;
+      const userMessage = document.querySelector('.input__data--js-userMessage').value;
+      const checkboxAccept = document.querySelector('.checkbox__input--js-accept').checked;
 
       $.ajax({
         url: 'form.php',
@@ -817,90 +772,92 @@ if (form) {
         dataType: 'JSON',
         data: 
         {
-          "submit": submit,
+          "submit": formSubmit,
           "userName": userName,
           "userTitle": userTitle,
           "userEmail": userEmail,
+          "userCountryCode": userCountryCode,
           "userPhone": userPhone,
-          "userMessage": userMessage
+          "userMessage": userMessage,
+          "checkboxAccept": checkboxAccept
         }
       })
       .done(data => handleAlerts(data))
       .fail(data => handleAlerts(data));
-
-    // notify if checkbox selection failed
+      return;
+    // notify if frontend validation of checkboxes failed
     } else {
-      handleCheckboxAlerts(status);
+      handleAlerts(status);
+      return;
     }
   }
 
-  const handleAlerts = (data) => {  // ! TO REFACTOR
+  const handleAlerts = (data) => {
+    const toggleAlertBox = () => {
+      alert.classList.add("alert--visible");
+      window.clearTimeout(alertTimeoutId);
+      alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
+    }
+    const toggleInputAlert = (input, error) => {
+      if (error !== '') {
+        input.textContent = error;
+        input.classList.add('error__text--visible');
+      } else {
+        input.classList.remove('error__text--visible');
+      }
+    }
     // validation accepted
     if (data.status) {
       // message sent successfully
       if (data.statusText === 'OK') {
         alertMessage.textContent = "Thank you for sending the message! We'll get back to you soon";
+        // hide input alerts
+        [...errors].forEach(error => error.classList.remove('error__text--visible'));
+        [...formInputs].forEach(input => input.value = "");
+        resetCheckboxes();
       // message sending error
       } else {
         alertMessage.textContent = "Message couldn't be sent! Please try again";
       }
-      alert.classList.add("alert--visible");
-      window.clearTimeout(alertTimeoutId);
-      alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
-      errorEmail.classList.remove('error__text--visible');
-      errorPhone.classList.remove('error__text--visible');
-      errorMessage.classList.remove('error__text--visible');
-    // validation rejected  
+      toggleAlertBox();
+    // checkbox validation failed  
+    } else if (data === 'reject' || data === 'empty') {
+      if (data === 'reject') {
+        alertMessage.textContent = "Sorry ... There's no room for robots here ...";
+      }
+      if (data === 'empty') {
+        alertMessage.textContent = "You have to declare you're not a robot!";
+      }
+      toggleAlertBox();
+    // backend validation failed
     } else {
-      if (data.emailError !== "") {
-        errorEmail.textContent = data.emailError;
-        errorEmail.classList.add('error__text--visible');
-      } else {
-        errorEmail.classList.remove('error__text--visible');
+      if (data.checkboxError !== '') {
+        alertMessage.textContent = data.checkboxError;
+        toggleAlertBox();
       }
-      if (data.phoneError !== "") {
-        errorPhone.textContent = data.phoneError;
-        errorPhone.classList.add('error__text--visible');
-      } else {
-        errorPhone.classList.remove('error__text--visible');
-      }
-      if (data.messageError !== "") {
-        errorMessage.textContent = data.messageError;
-        errorMessage.classList.add('error__text--visible');
-      } else {
-        errorMessage.classList.remove('error__text--visible');
-      }
+      toggleInputAlert(phoneError, data.phoneError);
+      toggleInputAlert(emailError, data.emailError);
+      toggleInputAlert(messageError, data.messageError);
     }
-  }
-
-  const handleCheckboxAlerts = (status) => {  // ! TO REFACTOR
-    if (status === 'reject') {
-      alertMessage.textContent = "Sorry ... There's no room for robots here ...";
-    } else {
-      alertMessage.textContent = "You have to declare you're not a robot!";
-    }
-    alert.classList.add("alert--visible");
-    window.clearTimeout(alertTimeoutId);
-    alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
   }
 
   ////////////////////////////////////////////////////////////////// VARIABLES 
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
-  const phoneNumber = document.querySelector('.input__data--js-phone-number');  // ! ?
 
-  const errorEmail = document.querySelector('.error__text--js-email');
-  const errorPhone = document.querySelector('.error__text--js-phone');
-  const errorMessage = document.querySelector('.error__text--js-message');
-  const submitButton = document.querySelector('.form__submit--js');
+  const errors = document.querySelectorAll('[class*="error__text--js"]');
+  const emailError = document.querySelector('.error__text--js-email');
+  const phoneError = document.querySelector('.error__text--js-phone');
+  const messageError = document.querySelector('.error__text--js-message');
+  const formSubmitButton = document.querySelector('.form__submit--js');
 
   const alert = document.querySelector('.alert--js');
   const alertMessage = document.querySelector('.alert__message--js');
   const alertClose = document.querySelector('.alert__button--js-close');
   let alertTimeoutId;
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
-  submitButton.addEventListener('click', validateForm);
+  formSubmitButton.addEventListener('click', validateForm);
   alertClose.addEventListener('click', () => {
     alert.classList.remove("alert--visible");
   });
@@ -911,11 +868,15 @@ if (form) {
   });
 
   /////////////////////////////////////////////////////// HANDLE LOCAL STORAGE 
+
+  // CONTACT FORM LOCAL STORAGE FUNCTIONALITY
+  /*
   [...formInputs].forEach(input => {
     const key = `jc-${input.getAttribute('id')}`;
     input.value = localStorage.getItem(key) ? localStorage.getItem(key) : "";
     input.addEventListener('keyup', () => localStorage.setItem(key, input.value));
-  })
+  });
+  */
 }
 /*
  #######  ##    ## ##        #######     ###    ########
