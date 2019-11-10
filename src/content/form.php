@@ -3,7 +3,7 @@
   $userName = $userTitle = $userEmail = $countryCode = $userPhone = $userMessage = "";
   
   require 'PHPMailerAutoload.php';
-  require 'credentials.php';
+  require_once 'credentials.php';
   $mail = new PHPMailer;
   function test_input($data) {
     $data = trim($data);
@@ -67,8 +67,8 @@
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom(EMAIL, 'Jakub');
-        $mail->addAddress(EMAIL, $userName);
+        $mail->setFrom('info@jakubchojna.pl', 'Jakub');
+        $mail->addAddress('info@jakubchojna.pl', $userName);
         //$mail->addReplyTo(EMAIL);
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');
