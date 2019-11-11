@@ -192,7 +192,7 @@
   }
 
   &__button {
-    fill: #fff;
+    fill: $color-white;
     transition: fill $hover-gallery-button;
     width: $size-gallery-button-sm;
 
@@ -234,7 +234,7 @@
 
   &__center {
     fill: none;
-    stroke: #fff;
+    stroke: $color-white;
     stroke-width: 40px;
     transition: stroke $hover-gallery-button, transform $hover-gallery-button;
 

@@ -22,7 +22,7 @@ html {
 
 body {
   background-color: #000;
-  color: #fff;
+  color: $color-white;
   font-family: 'Poppins', 'Work Sans', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
@@ -43,7 +43,7 @@ a {
 }
 ///////////////////////////////////////////////////////////////// PAGE OVERLAY 
 .page-overlay {
-  background-color: black;
+  background-color: $color-background;
   bottom: 0;
   left: 0;
   opacity: 0;
@@ -78,7 +78,7 @@ a {
   width: 100%;
 
   &--main-page {
-    background-color: #000;
+    background-color: $color-background;
   }
 
   &--about {

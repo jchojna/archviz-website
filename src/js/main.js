@@ -26,12 +26,10 @@ const desktopBreakpoint = 1200;
 // F0 ///////////////////////////////////////////////////////// FADE IN EFFECT 
 
 const fadeIn = () => {
-
   if (!pageOverlay.classList.contains('page-overlay--onload')) {
     pageOverlay.classList.add('page-overlay--onload');
   }
   pageOverlay.classList.remove('page-overlay--onload');
-
 }
 // F0 ////////////////////////////////////////// GO TO NEXT PAGE AFTER TIMEOUT 
 
