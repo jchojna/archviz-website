@@ -778,11 +778,12 @@ if (form) {
         "checkboxAccept": checkboxAccept,
         "checkboxReject": checkboxReject
       }
-    }).done(data => handleAlerts(data)).fail(data => handleAlerts(data));
+    }).done(data => handleAlerts(data, false))
+    .fail(data => handleAlerts(data, true));
     return;
   }
 
-  const handleAlerts = (data) => {
+  const handleAlerts = (data, isFailed) => {
     const {
       emailError,
       phoneError,
@@ -805,23 +806,29 @@ if (form) {
         input.classList.remove('error__text--visible');
       }
     }
-    // show box alert
-    if (success !== "" || failure !== "" || checkboxError !== "") {
-      const alert = [success, failure, checkboxError].filter(elem => elem !== "").toString();
-      alertMessage.textContent = alert;
-      // hide input alerts
-      if (alert === success) {
-        [...errors].forEach(error => error.classList.remove('error__text--visible'));
-        [...formInputs].forEach(input => input.value = "");
-        resetCheckboxes();
-      }
+    if (isFailed) {
+      alertMessage.textContent = "Upss... something went wrongs...";
       toggleBoxAlert();
+    } else {
+      // show box alert
+      if (success !== "" || failure !== "" || checkboxError !== "") {
+        const alert = [success, failure, checkboxError].filter(elem => elem !== "").toString();
+        alertMessage.textContent = alert;
+        // hide input alerts
+        if (alert === success) {
+          [...errors].forEach(error => error.classList.remove('error__text--visible'));
+          [...formInputs].forEach(input => input.value = "");
+          resetCheckboxes();
+        }
+        toggleBoxAlert();
+      }
+      // show input(s) alert
+      toggleInputAlert(errorPhone, phoneError);
+      toggleInputAlert(errorEmail, emailError);
+      toggleInputAlert(errorMessage, messageError);
     }
-    // show input(s) alert
-    toggleInputAlert(errorPhone, phoneError);
-    toggleInputAlert(errorEmail, emailError);
-    toggleInputAlert(errorMessage, messageError);
   }
+
   ////////////////////////////////////////////////////////////////// VARIABLES 
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
