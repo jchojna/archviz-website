@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "http://jakubchojna.pl/",
+  "homepage": "https://jakubchojna.pl/",
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",

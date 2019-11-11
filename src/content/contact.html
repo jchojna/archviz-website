@@ -7,7 +7,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'UA-74247371-1');
     </script>    
     <meta charset="UTF-8" />
@@ -15,8 +14,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Jakub Chojna | Contact</title>
     <meta name="description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
-
-    <!---------------------------------------------------------- OPEN GRAPH -->
     <meta property="og:title" content="Jakub Chojna | Architectural Visualization" />
     <meta property="og:description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
     <meta property="og:url" content="https://jchojna.github.io/archviz-website/" />
@@ -38,10 +35,7 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <!-------------------------------------------------------- PAGE OVERLAY -->
     <div class="page-overlay page-overlay--onload page-overlay--js"></div>
-    <!------------------------------------------------- END OF PAGE OVERLAY -->
-    <!-------------------------------------------------------------- ALERTS -->
     <div class="alert alert--js">
       <p class="alert__message alert__message--js"></p>
       <button class="button alert__button alert__button--js-close">
@@ -50,23 +44,17 @@
         </svg>
       </button>
     </div>
-    <!------------------------------------------------------- END OF ALERTS -->
-    <!--------------------------------------------------------- PAGE HEADER -->
     <header class="header">
       <h1 class="header__heading visuallyhidden">
-        Architectural Visualizations
+        Architectural Rendering
       </h1>
-      <!--------------------------------------------------------- MAIN MENU -->
       <nav class="main-menu main-menu--align-top">
         <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
-        <!------------------------------------------------------- PAGE LOGO -->
         <a href="index.html" class="logo fadeOut--js">
           <svg class="logo__svg">
             <use xlink:href="assets/svg/icons.svg#page-logo" />
           </svg>
         </a>
-        <!------------------------------------------------ END OF PAGE LOGO -->
-        <!------------------------------------------------------- MENU LIST -->
         <ul class="main-menu__list">
           <li class="main-menu__item">
             <a href="index.html" class="main-menu__link fadeOut--js">WORKS</a>
@@ -78,8 +66,6 @@
             <a href="contact.php" class="main-menu__link main-menu__link--active  fadeOut--js">CONTACT</a>
           </li>
         </ul>
-        <!------------------------------------------------ END OF MENU LIST -->
-        <!--------------------------------------------------- BURGER BUTTON -->
         <button class="button burger burger--js" aria-label="open mobile menu">
           <svg class="burger__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <line
@@ -96,15 +82,10 @@
             />
           </svg>
         </button>
-        <!-------------------------------------------- END OF BURGER BUTTON -->
-        <!------------------------------------------------ GO TO TOP BUTTON -->
         <a href="#page-container" class="go-top go-top--js">
           <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
         </a>
-        <!----------------------------------------- END OF GO TO TOP BUTTON -->
       </nav>
-      <!-------------------------------------------------- END OF MAIN MENU -->
-      <!------------------------------------------------------- MOBILE MENU -->
       <nav class="mobile-menu mobile-menu--hidden mobile-menu--js">
         <h2 class="mobile-menu__heading visuallyhidden">Mobile Menu</h2>
         <ul class="mobile-menu__list">
@@ -119,17 +100,12 @@
           </li>
         </ul>
       </nav>
-      <!------------------------------------------------ END OF MOBILE MENU -->
     </header>
-    <!-------------------------------------------------- END OF PAGE HEADER -->
-    <!------------------------------------------------------ PAGE CONTAINER -->
     <main id="page-container" class="page-container page-container--visible page-container--js">
-      <!-------------------------------------------------------------- FORM -->
       <form
         autocomplete="off"
         class="form form--js">
-        <h2 class="form__heading">Contact Me:</h2>
-        <!------------------------------------------------------------ NAME -->
+        <h2 class="form__heading">Contact Me</h2>
         <p class="input input--name">
           <input
           autofocus
@@ -141,8 +117,6 @@
           placeholder="your name">
           <label for="userName" class="input__label">Name:</label>
         </p>
-        <!----------------------------------------------------- END OF NAME -->
-        <!----------------------------------------------------------- EMAIL -->
         <div class="input input--email">
           <input
           type="text"
@@ -156,8 +130,6 @@
         <div class="error error--email">
           <p class="error__text error__text--js-email"></p>
         </div>
-        <!---------------------------------------------------- END OF EMAIL -->
-        <!----------------------------------------------------------- PHONE -->
         <div class="input input--phone">
           <div class="input__phone-number">
             <input
@@ -179,8 +151,6 @@
         <div class="error error--phone">
           <p class="error__text error__text--js-phone"></p>
         </div>
-        <!---------------------------------------------------- END OF PHONE -->
-        <!----------------------------------------------------------- TITLE -->
         <p class="input input--title">
           <input
           type="text"
@@ -191,8 +161,6 @@
           placeholder="title of your message">
           <label for="userTitle" class="input__label">Title:</label>
         </p>
-        <!---------------------------------------------------- END OF TITLE -->
-        <!--------------------------------------------------------- MESSAGE -->
         <p class="input input--message">
           <textarea
           id="userMessage"
@@ -206,8 +174,6 @@
         <div class="error error--message">
           <p class="error__text error__text--js-message"></p>
         </div>
-        <!-------------------------------------------------- END OF MESSAGE -->
-        <!---------------------------------------------------- VERIFICATION -->
         <fieldset class="form__verification form__verification--js">
           <legend class="form__question visuallyhidden">
             Are you a robot?
@@ -249,7 +215,6 @@
             <span class="checkbox__text">I wish I was...</span>
           </label>
         </fieldset>
-        <!--------------------------------------------- END OF VERIFICATION -->
         <button
           type="submit"
           id="formSubmit"
@@ -258,13 +223,9 @@
           SEND
         </button>
       </form>
-      <!------------------------------------------------------- END OF FORM -->
-      <!------------------------------------------------------- PAGE FOOTER -->
       <footer class="footer">
-        <!------------------------------------------------ FOOTER CONTAINER -->
         <section class="footer__container">
           <h2 class="footer__heading visuallyhidden">Page Footer</h2>
-          <!----------------------------------------------- ADDRESS SECTION -->
           <section class="address">
             <h3 class="address__header visuallyhidden">Address</h3>
             <table class="table">
@@ -278,8 +239,6 @@
               </tbody>
             </table>
           </section>
-          <!---------------------------------------- END OF ADDRESS SECTION -->
-          <!-------------------------------------------------- SOCIAL MEDIA -->
           <nav class="social">
             <h3 class="social__heading visuallyhidden">Social Media</h3>
             <ul class="social__list">
@@ -305,19 +264,13 @@
               </li>
             </ul>
           </nav>
-          <!------------------------------------------- END OF SOCIAL MEDIA -->
         </section>
-        <!----------------------------------------- END OF FOOTER CONTAINER -->
-        <!------------------------------------------------------- COPYRIGHT -->
         <section class="copyright">
           <h2 class="copyright__heading visuallyhidden">Copyright</h2>
           <p class="copyright__text">Copyright &copy; 2019 Jakub Chojna. All rights reserved. Website designed and developed by Jakub Chojna</p>
         </section>
-        <!------------------------------------------------ END OF COPYRIGHT -->
       </footer>
-      <!----------------------------------------------------- END OF FOOTER -->
     </main>
-    <!----------------------------------------------- END OF PAGE CONTAINER -->
     <script
 			src="https://code.jquery.com/jquery-3.4.1.min.js"
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
