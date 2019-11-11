@@ -306,7 +306,7 @@ if (portfolio) {
 
     if (imageOffset >= viewportTopOffset) { // if image is below top viewport border
       if (imageOffset < viewportBottomOffset) { // if image is inside viewport
-        if (imageSrc === "") { // if proper src is not applied yet
+        if (imageSrc === "assets/img/blank.PNG") { // if proper src is not applied yet
           image.setAttribute('src', '');
           image.setAttribute('src', imageNewSrc);
           image.onload = () => {
