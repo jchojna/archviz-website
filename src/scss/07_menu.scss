@@ -43,6 +43,7 @@
     flex-direction: column;
     justify-content: flex-start;
     list-style: none;
+    margin: 0;
     padding: 0;
     pointer-events: auto;
   }
@@ -52,7 +53,7 @@
     transition: transform $translate-main-menu $ease-in-strong;
 
     &--hidden {
-      transform: translateY(-220px);
+      transform: translateY(-240px);
       transition: transform $translate-main-menu $ease-out-strong $delay-main-menu;
     }
   }
@@ -66,7 +67,7 @@
 
     &--large {
       color: $color-white;
-      font-size: 4rem;
+      font-size: 3rem;
     }
 
     &--active {
@@ -89,13 +90,6 @@
       &__list {
         display: flex;
       }
-
-      &__item {
-        
-        &:not(:last-child) {
-          margin: 0 0 20px 0;
-        }
-      }
     }
   }
 
@@ -116,6 +110,10 @@
         &:not(:last-child) {
           margin: 0 30px 0 0;
         }
+      }
+
+      &__link--large {
+        font-size: 4rem;
       }
     }
   }

@@ -53,12 +53,12 @@
 
   &--hidden-top {
     transform: translateY(-100vh);
-    transition: transform $slide-vertical ease-out, visibility 0s $slide-horizontal;
+    transition: transform $slide-vertical $ease-in-strong, visibility 0s $slide-horizontal;
   }
 
   &--hidden-bottom {
     transform: translateY(100vh);
-    transition: transform $slide-vertical ease-out, visibility 0s $slide-horizontal;
+    transition: transform $slide-vertical $ease-in-strong, visibility 0s $slide-horizontal;
   }
   
   &__description {
