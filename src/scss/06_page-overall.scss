@@ -35,6 +35,7 @@ img {
 
 a {
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .disabled {
@@ -99,4 +100,6 @@ a {
   cursor: pointer;
   margin: 0;
   padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }

@@ -199,8 +199,9 @@
     stroke-width: 16;
     transition: stroke $hover-main-menu;
 
-    &:hover {
+    &:active {
       stroke: $color-main;
+      background: none;
     }
   }
 
