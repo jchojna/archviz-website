@@ -1,6 +1,7 @@
 /node_modules
 /dist
 /vectors
-/form
+/form_handler
+/pwa
 
 credentials.php

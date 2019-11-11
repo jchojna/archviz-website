@@ -753,47 +753,48 @@ if (form) {
 
   const validateForm = (e) => {
     e.preventDefault();
-    // frontend validation of checkboxes
-    const status = [...checkboxes].filter(a => a.checked).map(a => a.name)[0] || 'empty';
     // backend validation => send form using ajax request
-    if (status === 'accept') {
-      const formSubmit = document.querySelector('.form__submit--js').value;
-      const userName = document.querySelector('.input__data--js-userName').value;
-      const userTitle = document.querySelector('.input__data--js-userTitle').value;
-      const userEmail = document.querySelector('.input__data--js-userEmail').value;
-      const userCountryCode = document.querySelector('.input__data--js-userCountryCode').value;
-      const userPhone = document.querySelector('.input__data--js-userPhone').value;
-      const userMessage = document.querySelector('.input__data--js-userMessage').value;
-      const checkboxAccept = document.querySelector('.checkbox__input--js-accept').checked;
+    const formSubmit = document.querySelector('.form__submit--js').value;
+    const userName = document.querySelector('.input__data--js-userName').value;
+    const userTitle = document.querySelector('.input__data--js-userTitle').value;
+    const userEmail = document.querySelector('.input__data--js-userEmail').value;
+    const userCountryCode = document.querySelector('.input__data--js-userCountryCode').value;
+    const userPhone = document.querySelector('.input__data--js-userPhone').value;
+    const userMessage = document.querySelector('.input__data--js-userMessage').value;
+    const checkboxAccept = document.querySelector('.checkbox__input--js-accept').checked;
+    const checkboxReject = document.querySelector('.checkbox__input--js-reject').checked;
 
-      $.ajax({
-        url: 'form.php',
-        type: 'post',
-        dataType: 'JSON',
-        data: 
-        {
-          "submit": formSubmit,
-          "userName": userName,
-          "userTitle": userTitle,
-          "userEmail": userEmail,
-          "userCountryCode": userCountryCode,
-          "userPhone": userPhone,
-          "userMessage": userMessage,
-          "checkboxAccept": checkboxAccept
-        }
-      })
-      .done(data => handleAlerts(data))
-      .fail(data => handleAlerts(data));
-      return;
-    // notify if frontend validation of checkboxes failed
-    } else {
-      handleAlerts(status);
-      return;
-    }
+    $.ajax({
+      url: "form-handler.php",
+      type: 'post',
+      dataType: 'json',
+      data: 
+      {
+        "submit": formSubmit,
+        "userName": userName,
+        "userTitle": userTitle,
+        "userEmail": userEmail,
+        "userCountryCode": userCountryCode,
+        "userPhone": userPhone,
+        "userMessage": userMessage,
+        "checkboxAccept": checkboxAccept,
+        "checkboxReject": checkboxReject
+      }
+    }).done(data => handleAlerts(data)).fail(data => handleAlerts(data));
+    return;
   }
 
   const handleAlerts = (data) => {
-    const toggleAlertBox = () => {
+    const {
+      emailError,
+      phoneError,
+      messageError,
+      checkboxError,
+      success,
+      failure
+    } = data;
+
+    const toggleBoxAlert = () => {
       alert.classList.add("alert--visible");
       window.clearTimeout(alertTimeoutId);
       alertTimeoutId = setTimeout(() => alert.classList.remove("alert--visible"), 3000);
@@ -806,50 +807,32 @@ if (form) {
         input.classList.remove('error__text--visible');
       }
     }
-    // validation accepted
-    if (data.status) {
-      // message sent successfully
-      if (data.statusText === 'OK') {
-        alertMessage.textContent = "Thank you for sending the message! We'll get back to you soon";
-        // hide input alerts
+    // show box alert
+    if (success !== "" || failure !== "" || checkboxError !== "") {
+      const alert = [success, failure, checkboxError].filter(elem => elem !== "").toString();
+      alertMessage.textContent = alert;
+      // hide input alerts
+      if (alert === success) {
         [...errors].forEach(error => error.classList.remove('error__text--visible'));
         [...formInputs].forEach(input => input.value = "");
         resetCheckboxes();
-      // message sending error
-      } else {
-        alertMessage.textContent = "Message couldn't be sent! Please try again";
       }
-      toggleAlertBox();
-    // checkbox validation failed  
-    } else if (data === 'reject' || data === 'empty') {
-      if (data === 'reject') {
-        alertMessage.textContent = "Sorry ... There's no room for robots here ...";
-      }
-      if (data === 'empty') {
-        alertMessage.textContent = "You have to declare you're not a robot!";
-      }
-      toggleAlertBox();
-    // backend validation failed
-    } else {
-      if (data.checkboxError !== '') {
-        alertMessage.textContent = data.checkboxError;
-        toggleAlertBox();
-      }
-      toggleInputAlert(phoneError, data.phoneError);
-      toggleInputAlert(emailError, data.emailError);
-      toggleInputAlert(messageError, data.messageError);
+      toggleBoxAlert();
     }
+    // show input(s) alert
+    toggleInputAlert(errorPhone, phoneError);
+    toggleInputAlert(errorEmail, emailError);
+    toggleInputAlert(errorMessage, messageError);
   }
-
   ////////////////////////////////////////////////////////////////// VARIABLES 
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
 
   const errors = document.querySelectorAll('[class*="error__text--js"]');
-  const emailError = document.querySelector('.error__text--js-email');
-  const phoneError = document.querySelector('.error__text--js-phone');
-  const messageError = document.querySelector('.error__text--js-message');
+  const errorEmail = document.querySelector('.error__text--js-email');
+  const errorPhone = document.querySelector('.error__text--js-phone');
+  const errorMessage = document.querySelector('.error__text--js-message');
   const formSubmitButton = document.querySelector('.form__submit--js');
 
   const alert = document.querySelector('.alert--js');
@@ -866,11 +849,10 @@ if (form) {
     checkbox.index = index;
     checkbox.addEventListener('click', handleCheckboxes);
   });
-
   /////////////////////////////////////////////////////// HANDLE LOCAL STORAGE 
 
   // CONTACT FORM LOCAL STORAGE FUNCTIONALITY
-  /*
+  /* 
   [...formInputs].forEach(input => {
     const key = `jc-${input.getAttribute('id')}`;
     input.value = localStorage.getItem(key) ? localStorage.getItem(key) : "";
@@ -898,15 +880,3 @@ window.onload = () => {
     window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }
 }
-/* 
-phoneNumber.addEventListener('keydown', (e) => {
-  e.preventDefault();
-  console.log('type', e.target.value);
-
-  /\d$/.test(e.target.value) ?
-  phoneNumber.value = e.target.value
-  : false;
-
-  ///[0-9]$/.test(type) ? e.target.value = 'type' : (e) => e.preventDefault();
-})
- */
