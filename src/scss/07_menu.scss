@@ -1,12 +1,12 @@
 /////////////////////////////////////////////////////////////////////// HEADER 
 .header {
+  left: 0;
+  padding: $layout-sm-offset;
+  pointer-events: none;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  padding: $layout-sm-offset;
   z-index: 2;
-  pointer-events: none;
 
   &--background {
     background-color: $color-background;
@@ -28,9 +28,9 @@
 }
 //////////////////////////////////////////////////////////////////// MAIN MENU 
 .main-menu {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   &:hover &__item {
     transform: translateY(0);
@@ -38,12 +38,12 @@
   }
 
   &__list {
+    align-items: flex-end;
     display: none;
-    padding: 0;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
     list-style: none;
+    padding: 0;
     pointer-events: auto;
   }
 
@@ -125,23 +125,23 @@
   @include position-fixed;
   @include flex-center;
   background-color: #000;
-  visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity $toggle-mobile-menu;
   pointer-events: auto;
+  transition: visibility 0s, opacity $toggle-mobile-menu;
+  visibility: visible;
 
   &--hidden {
-    visibility: hidden;
     opacity: 0;
     transition: visibility 0s $toggle-mobile-menu, opacity $toggle-mobile-menu;
+    visibility: hidden;
   }
 
   &__list {
     @include flex-center;
     flex-direction: column;
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   &__link {
@@ -153,19 +153,19 @@
 .logo {
   display: flex;
   height: $layout-sm-logo;
-  width: $layout-sm-logo;
   pointer-events: auto;
+  width: $layout-sm-logo;
 
   &:hover .logo__svg {
     fill: $color-main;
   }
 
   &__svg {
-    height: 100%;
-    width: 100%;
     fill: #fff;
+    height: 100%;
     pointer-events: none;
     transition: fill $hover-main-menu;
+    width: 100%;
   }
 
   @media only screen and (min-width: $media-md) {
@@ -186,22 +186,22 @@
 }
 //////////////////////////////////////////////////////////////// BURGER BUTTON 
 .burger {
-  position: relative;
-  width: $size-burger-button;
   height: $size-burger-button;
   pointer-events: auto;
+  position: relative;
+  width: $size-burger-button;
   z-index: 1;
 
   &__svg {
-    width: 100%;
     height: 100%;
     stroke: #fff;
     stroke-width: 16;
     transition: stroke $hover-main-menu;
+    width: 100%;
 
     &:active {
-      stroke: $color-main;
       background: none;
+      stroke: $color-main;
     }
   }
 

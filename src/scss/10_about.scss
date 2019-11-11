@@ -1,4 +1,3 @@
-//////////////////////////////////////////////////////////////////////// ABOUT 
 .about {
   display: flex;
   flex-direction: column;
@@ -34,11 +33,11 @@
 .card {
   align-self: start;
   border-bottom: 1px solid #fff;
+  color: #fff;
   font-size: 1rem;
   font-weight: 300;
-  overflow: hidden;
-  color: #fff;
   fill: #fff;
+  overflow: hidden;
   text-align: justify;
   transition: border-color $hover-card;
   width: 100%;
@@ -176,8 +175,8 @@
     fill: #fff;
     max-height: 10em;
     padding: 1em;
-    width: 100%;
     transition: background-color $hover-icon, fill $hover-icon;
+    width: 100%;
 
     &:hover {
       background-color: rgba($color: $color-main-dark, $alpha: 0.5);

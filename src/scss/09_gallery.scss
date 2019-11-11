@@ -1,30 +1,30 @@
 ////////////////////////////////////////////////////////////////////// GALLERY 
 .gallery {
+  align-items: flex-start;
+  background-color: rgba($color: #000, $alpha: 1);
+  bottom: 0;
   display: flex;
   justify-content: flex-end;
-  align-items: flex-start;
-  visibility: hidden;
-  position: fixed;
-  top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba($color: #000, $alpha: 1);
   opacity: 0;
-  z-index: -1;
+  position: fixed;
+  right: 0;
+  top: 0;
   transition:
     opacity $toggle-gallery,
     visibility 0s $toggle-gallery,
     z-index 0s $toggle-gallery;
+  visibility: hidden;
+  z-index: -1;
 
   &--visible {
-    visibility: visible;
     opacity: 1;
-    z-index: 2;
     transition:
       opacity $toggle-gallery,
       visibility 0s,
       z-index 0s;
+    visibility: visible;
+    z-index: 2;
   }
 
   @media only screen and (min-width: $media-md) {
@@ -32,28 +32,22 @@
       background-color: rgba($color: #000, $alpha: 0.7);
     }
   }
-  
-  @media only screen and (min-width: $media-lg) {
-    & {
-
-    }
-  }
 }
 /////////////////////////////////////////////////////////////////////// IMAGES 
 .images {
   @include flex-center;
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  visibility: hidden;
   transform: translateY(0);
   transition: visibility 0s $slide-horizontal;
+  visibility: hidden;
+  width: 100%;
 
   &--visible {
-    visibility: visible;
     transition: visibility 0s;
+    visibility: visible;
     z-index: 0;
   }
 
@@ -68,61 +62,61 @@
   }
   
   &__description {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
     align-items: flex-end;
+    bottom: 0;
+    display: flex;
     font-size: 0.7em;
     font-weight: bold;
-    padding: $offset-gallery-sm;
-    visibility: hidden;
-    transform: translateY(100%);
+    justify-content: flex-start;
+    left: 0;
     opacity: 0;
+    padding: $offset-gallery-sm;
+    position: absolute;
+    transform: translateY(100%);
     transition:
       opacity $slide-horizontal/2,
       transform $slide-horizontal/2,
       visibility 0s $slide-horizontal/2;
+    visibility: hidden;
+    width: 100%;
     z-index: 1;
 
     &--visible {
-      visibility: visible;
-      transform: translateY(0);
       opacity: 1;
+      transform: translateY(0);
       transition:
         opacity $slide-horizontal,
         transform $slide-horizontal,
         visibility 0s;
+      visibility: visible;
     }
   }
 
   &__counter {
-    white-space: nowrap;
     font-size: 2em;
     margin: 0 10px -5px 0;
+    white-space: nowrap;
 
     &--current {
-      font-size: 1.2em;
       color: $color-main;
+      font-size: 1.2em;
     }
   }
 
   &__heading {
-    margin: 0;
     font-weight: normal;
+    margin: 0;
   }
 
   &__container {
     @include flex-center;
     position: relative;
-    visibility: hidden;
     transition: visibility 0s $slide-horizontal;
+    visibility: hidden;
 
     &--visible {
-      visibility: visible;
       transition: visibility 0s;
+      visibility: visible;
     }
 
     &--hidden-to-left {
@@ -151,13 +145,13 @@
   &__image {
     @include position-absolute;
     opacity: 0;
-    visibility: hidden;
     transition: opacity $load-gallery-image, visibility 0s $load-gallery-image;
+    visibility: hidden;
 
     &--loaded {
       opacity: 1;
-      visibility: inherit;
       transition: opacity $load-gallery-image, visibility 0s;
+      visibility: inherit;
     }
   }
 
@@ -165,8 +159,8 @@
     & {
       
       &__description {
-      padding: $offset-gallery-md;
-      font-size: 1em;
+        font-size: 1em;
+        padding: $offset-gallery-md;
       }
     }
   }
@@ -175,32 +169,32 @@
     & {
 
       &__description {
-        padding: $offset-gallery-lg;
         font-size: 1.3em;
+        padding: $offset-gallery-lg;
       }
     }
   }
 }
 /////////////////////////////////////////////////////////////////// NAVIGATION 
 .gallery-nav {
-    position: relative;
     padding: $offset-gallery-sm * 2;
+    position: relative;
     z-index: 1;
 
   &__list {
+    display: grid;
+    gap: $gap-gallery-button;
+    grid-template-columns: repeat(4, auto);
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: $gap-gallery-button;
     z-index: 1;
   }
 
   &__button {
     fill: #fff;
-    width: $size-gallery-button-sm;
     transition: fill $hover-gallery-button;
+    width: $size-gallery-button-sm;
 
     &:hover {
       fill: $color-main;
@@ -208,9 +202,9 @@
   }
 
   &__svg {
-    width: 100%;
     height: 100%;
     pointer-events: none;
+    width: 100%;
   }
 
   @media only screen and (min-width: $media-md) {
@@ -235,13 +229,13 @@
 }
 //////////////////////////////////////////////////////////////// SWITCH BUTTON 
 .switch {
-  position: relative;
   @include flex-center;
+  position: relative;
 
   &__center {
     fill: none;
-    stroke-width: 40px;
     stroke: #fff;
+    stroke-width: 40px;
     transition: stroke $hover-gallery-button, transform $hover-gallery-button;
 
     &--solid {
