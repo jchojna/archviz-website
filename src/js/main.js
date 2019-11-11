@@ -463,8 +463,10 @@ if (gallery) {
 
       const handleSwitchDisplay = (image) => {
         if (image.complete) {
+          switchButton.classList.add('switch--solid');
           switchCenter.classList.add('switch__center--solid');
         } else {
+          switchButton.classList.remove('switch--solid');
           switchCenter.classList.remove('switch__center--solid');
         }
       }
@@ -490,6 +492,7 @@ if (gallery) {
         case 38:
         case switchButton:
           if (currentImage.complete) {
+            switchButton.classList.toggle('switch--solid');
             currentImage.classList.toggle('images__image--loaded');
             switchCenter.classList.toggle('switch__center--solid');
           }
@@ -498,6 +501,7 @@ if (gallery) {
         case 27:
         case closeButton:
           switchCenter.classList.remove('switch__center--solid');
+          switchButton.classList.remove('switch--solid');
           showImage();
           removeAllEvents();
           break;
@@ -526,6 +530,7 @@ if (gallery) {
           amount--;
           currentImage.classList.add('images__image--loaded');
           switchCenter.classList.add('switch__center--solid');
+          switchButton.classList.add('switch--solid');
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -544,6 +549,7 @@ if (gallery) {
           currentImage.classList.add('images__image--loaded');
           if (index === currentIndex) {
             switchCenter.classList.add('switch__center--solid');
+            switchButton.classList.add('switch--solid');
           }
 
           if (option === 'prev' || option === 'start') {

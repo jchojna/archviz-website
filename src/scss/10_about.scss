@@ -127,7 +127,7 @@
       background-color $hover-icon,
       border-color $hover-icon;
 
-    &:hover {
+    &:active {
       background-color: $color-main;
       border-color: transparent;
     }
@@ -138,6 +138,11 @@
 
       &__button {
         align-self: flex-start;
+
+        &:hover {
+          background-color: $color-main;
+          border-color: transparent;
+        }
       }
     }
   }
@@ -178,7 +183,7 @@
     transition: fill $hover-icon;
     width: 100%;
 
-    &:hover {
+    &:active {
       fill: #fff;
     }
   }
@@ -198,6 +203,10 @@
     &__list {
       grid-template-columns: repeat(4, 1fr);
       padding: $layout-md-offset;
+    }
+
+    &__item:hover {
+      fill: #fff;
     }
   }
   

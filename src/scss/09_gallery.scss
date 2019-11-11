@@ -196,7 +196,7 @@
     transition: fill $hover-gallery-button;
     width: $size-gallery-button-sm;
 
-    &:hover {
+    &:active {
       fill: $color-main;
     }
   }
@@ -213,6 +213,10 @@
 
       &__button {
         width: $size-gallery-button-md;
+
+        &:hover {
+          fill: $color-main;
+        }
       }
     }
   }
@@ -231,10 +235,17 @@
 .switch {
   @include flex-center;
   position: relative;
+  stroke: $color-white;
+
+  &--solid {
+    fill: $color-main;
+    stroke: $color-main;
+
+  }
 
   &__center {
     fill: none;
-    stroke: $color-white;
+    stroke: inherit;
     stroke-width: 40px;
     transition: stroke $hover-gallery-button, transform $hover-gallery-button;
 
@@ -255,7 +266,7 @@
     transition: transform $hover-gallery-button;
   }
 
-  &:hover {
+  &:active {
     .switch__left {
       transform: translateX(-60%) scale(0.8);
     }
@@ -267,6 +278,24 @@
   
     .switch__right {
       transform: translateX(65%) scale(0.8);
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    
+    &:hover {
+      .switch__left {
+        transform: translateX(-60%) scale(0.8);
+      }
+  
+      .switch__center {
+        stroke: $color-main;
+        transform: scale(1.8);
+      }
+    
+      .switch__right {
+        transform: translateX(65%) scale(0.8);
+      }
     }
   }
 }

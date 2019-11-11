@@ -20,28 +20,6 @@
     @include flex-center;
     overflow: hidden;
     position: relative;
-    
-    &::after {
-      @include content-absolute;
-      box-shadow: inset 0 0 10rem rgba(0,0,0,0.5);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity $hover-grid-item ease-out,
-    }
-    
-    &:hover {
-      &::after {
-        opacity: 1;
-      }
-
-      & .grid__title {
-        opacity: 1;
-        transform: scale(1);
-        transition: 
-          opacity $hover-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
-          transform $hover-grid-item ease-out;
-      }
-    }
   }
 
   &__title {
@@ -69,27 +47,6 @@
     transform: scale(1);
     transition: transform $hover-grid-item ease-out;
     width: 100%;
-
-    &::after {
-      content: "";
-      background-color: rgb(82, 97, 128);
-      bottom: 0;
-      left: 0;
-      opacity: 0.04;
-      pointer-events: none;
-      position: absolute;
-      right: 0;
-      top: 0;
-      transition: opacity $hover-grid-item;
-    }
-
-    &:hover {
-      transform: scale($scale-grid-item);
-
-      &::after {
-        opacity: 0;
-      }
-    }
   }
 
   &__svg-solid {
@@ -124,10 +81,6 @@
       transition: opacity $load-grid-image, filter $hover-grid-item;
       visibility: visible;
     }
-
-    &:hover {
-      filter: saturate(100%);
-    }
   }
 
   @media only screen and (min-width: $media-md) {
@@ -139,6 +92,55 @@
 
       &--flex { // portfolioJS
         grid-gap: 0;
+      }
+
+      &__item {
+        
+        &::after {
+          @include content-absolute;
+          box-shadow: inset 0 0 10rem rgba(0,0,0,0.5);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity $hover-grid-item ease-out,
+        }
+        
+        &:hover {
+          &::after {
+            opacity: 1;
+          }
+    
+          & .grid__title {
+            opacity: 1;
+            transform: scale(1);
+            transition: 
+              opacity $hover-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
+              transform $hover-grid-item ease-out;
+          }
+        }
+      }
+
+      &__button {
+    
+        &::after {
+          content: "";
+          background-color: rgb(82, 97, 128);
+          bottom: 0;
+          left: 0;
+          opacity: 0.04;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: opacity $hover-grid-item;
+        }
+    
+        &:hover {
+          transform: scale($scale-grid-item);
+    
+          &::after {
+            opacity: 0;
+          }
+        }
       }
 
       &__svg-solid {
@@ -153,6 +155,10 @@
 
       &__image {
         filter: saturate(30%) brightness(0.7);
+
+        &:hover {
+          filter: saturate(100%);
+        }
       }
     }
   }

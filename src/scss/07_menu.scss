@@ -246,13 +246,34 @@
   pointer-events: auto;
   position: fixed;
   transform: translateX(-50%);
-  transition: visibility 0s $go-top-button, opacity $go-top-button;
+  transition:
+    border-color $hover-icon,
+    color $hover-icon,
+    opacity $go-top-button,
+    visibility 0s $go-top-button;
   visibility: hidden;
   width: $size-go-top;
 
   &--visible {
     opacity: 1;
-    transition: visibility 0s, opacity $go-top-button;
+    transition:
+      border-color $hover-icon,
+      color $hover-icon,
+      opacity $go-top-button,
+      visibility 0s;
     visibility: visible;
+  }
+
+  &:active {
+    border-color: $color-main;
+    color: $color-main;
+  }
+
+  @media only screen and (min-width: $media-md) {
+
+    &:hover {
+      border-color: $color-main;
+      color: $color-main;
+    }
   }
 }

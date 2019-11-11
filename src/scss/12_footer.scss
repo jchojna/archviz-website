@@ -69,13 +69,21 @@
     color: $color-background-light;
     transition: color $hover-icon;
 
-    &:hover {
+    &:active {
       color: $color-white;
     }
   }
 
   &__icon {
     font-size: 3rem;
+  }
+  
+  @media only screen and (min-width: $media-md) {
+    & {
+      &__link:hover {
+        color: $color-white;
+      }
+    }
   }
 }
 //////////////////////////////////////////////////////////////////// COPYRIGHT 
