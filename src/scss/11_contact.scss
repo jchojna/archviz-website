@@ -103,6 +103,10 @@
     transition: background-color $hover-icon, border-color $hover-icon;
     width: 100%;
 
+    &--phone {
+      border: none;
+    }
+
     &:invalid {
       border-color: $color-main;
       border-radius: 5px;
@@ -110,9 +114,9 @@
       color: $color-main;
     }
 
-    &:focus {
+    &:focus:not(.input__data--phone) {
       border-color: $color-main;
-      border-radius: 5px;
+      border-radius: $input-radius;
 
       & + .input__label {
         color: #fff;
@@ -127,10 +131,21 @@
     }
   }
 
-  &__phone-number {
+  &__phone {
+    border: 2px solid transparent;
+    border-bottom-color: $color-background-light;
     display: grid;
     gap: 1em;
     grid-template-columns: 1fr 5fr;
+
+    &:focus-within {
+      border-color: $color-main;
+      border-radius: $input-radius;
+      
+      & + .input__label {
+        color: #fff;
+      }
+    }
   }
 
   @media only screen and (min-width: $media-md) {
@@ -139,12 +154,6 @@
       &--message {
         grid-column: 1 / span 2;
       }
-    }
-  }
-  
-  @media only screen and (min-width: $media-lg) {
-    & {
-
     }
   }
 }
