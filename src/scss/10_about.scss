@@ -1,4 +1,3 @@
-//////////////////////////////////////////////////////////////////////// ABOUT 
 .about {
   display: flex;
   flex-direction: column;
@@ -33,20 +32,20 @@
 ///////////////////////////////////////////////////////////////////////// CARD 
 .card {
   align-self: start;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid $color-white;
+  color: $color-white;
   font-size: 1rem;
   font-weight: 300;
+  fill: $color-white;
   overflow: hidden;
-  color: #fff;
-  fill: #fff;
   text-align: justify;
   transition: border-color $hover-card;
   width: 100%;
 
   &:hover {
-    border-color: #fff;
-    color: #fff;
-    fill: #fff;
+    border-color: $color-white;
+    color: $color-white;
+    fill: $color-white;
   }
 
   &--rolled-up {
@@ -58,7 +57,7 @@
   &__header {
     align-items: center;
     background-color: $color-background;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid $color-white;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -90,7 +89,7 @@
 
   &__description {
     align-items: flex-start;
-    color: #fff;
+    color: $color-white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -117,9 +116,9 @@
   &__button {
     align-self: center;
     background-color: transparent;
-    border: 2px solid #fff;
+    border: 2px solid $color-white;
     border-radius: $radius-button;
-    color: #fff;
+    color: $color-white;
     display: inline-block;
     font-weight: 600;
     margin: 1rem 0;
@@ -128,7 +127,7 @@
       background-color $hover-icon,
       border-color $hover-icon;
 
-    &:hover {
+    &:active {
       background-color: $color-main;
       border-color: transparent;
     }
@@ -139,6 +138,11 @@
 
       &__button {
         align-self: flex-start;
+
+        &:hover {
+          background-color: $color-main;
+          border-color: transparent;
+        }
       }
     }
   }
@@ -173,15 +177,14 @@
   &__item {
     @include flex-center;
     border-radius: 6px;
-    fill: #fff;
+    fill: $color-background;
     max-height: 10em;
     padding: 1em;
+    transition: fill $hover-icon;
     width: 100%;
-    transition: background-color $hover-icon, fill $hover-icon;
 
-    &:hover {
-      background-color: rgba($color: $color-main-dark, $alpha: 0.5);
-      fill: $color-main;
+    &:active {
+      fill: #fff;
     }
   }
 
@@ -200,6 +203,10 @@
     &__list {
       grid-template-columns: repeat(4, 1fr);
       padding: $layout-md-offset;
+    }
+
+    &__item:hover {
+      fill: #fff;
     }
   }
   

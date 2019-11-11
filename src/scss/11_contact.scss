@@ -1,6 +1,6 @@
-///////////////////////////////////////////////////////////////////////// FORM 
 .form {
   display: grid;
+  gap: 1em;
   grid-template-areas:
     "formHeading "
     "userName    "
@@ -13,7 +13,6 @@
     "messageAlert"
     "verification"
     "formSubmit  ";
-  gap: 1em;
   max-width: $layout-container-width;
   min-width: 320px;
   padding: $layout-sm-offset;
@@ -21,7 +20,7 @@
   width: 100%;
 
   &__heading {
-    color: #fff;
+    color: $color-white;
     font-size: 1.2em;
     font-weight: 400;
     grid-area: formHeading;
@@ -38,9 +37,9 @@
 
   &__submit {
     @extend .card__button;
-    margin: 0;
     align-self: end;
     grid-area: formSubmit;
+    margin: 0;
   }
 
   @media only screen and (min-width: $media-md) {
@@ -95,13 +94,18 @@
     background: transparent;
     border: 2px solid transparent;
     border-bottom-color: $color-background-light;
-    color: #fff;
+    color: $color-white;
     font-size: 1em;
     font-weight: 600;
     margin: 0;
+    outline: none;
     padding: 0.7em;
     transition: background-color $hover-icon, border-color $hover-icon;
     width: 100%;
+
+    &--phone {
+      border: none;
+    }
 
     &:invalid {
       border-color: $color-main;
@@ -110,9 +114,9 @@
       color: $color-main;
     }
 
-    &:focus {
-      border-color: #fff;
-      border-radius: 5px;
+    &:focus:not(.input__data--phone) {
+      border-color: $color-main;
+      border-radius: $input-radius;
 
       & + .input__label {
         color: #fff;
@@ -127,10 +131,21 @@
     }
   }
 
-  &__phone-number {
+  &__phone {
+    border: 2px solid transparent;
+    border-bottom-color: $color-background-light;
     display: grid;
     gap: 1em;
     grid-template-columns: 1fr 5fr;
+
+    &:focus-within {
+      border-color: $color-main;
+      border-radius: $input-radius;
+      
+      & + .input__label {
+        color: #fff;
+      }
+    }
   }
 
   @media only screen and (min-width: $media-md) {
@@ -141,22 +156,16 @@
       }
     }
   }
-  
-  @media only screen and (min-width: $media-lg) {
-    & {
-
-    }
-  }
 }
 //////////////////////////////////////////////////////////////// ERROR MESSAGE 
 .error {
+  align-self: start;
   background-color: $color-main;
   border-radius: 5px;
-  color: #fff;
+  color: $color-white;
   font-size: 0.9em;
   margin-top: 0.5em;
   overflow: hidden;
-  align-self: start;
 
   &--email { grid-area: emailAlert; }
   &--phone { grid-area: phoneAlert; }
@@ -164,8 +173,8 @@
 
   &__text {
     @include flex-center;
-    margin: 0;
     height: 30px;
+    margin: 0;
     margin-top: -30px;
     padding: 0.5em;
     transition: margin $toggle-error;
@@ -187,7 +196,7 @@
   transition: color $toggle-checkbox, opacity $toggle-checkbox;
 
   &:hover &__field {
-    border-color: #fff;
+    border-color: $color-white;
   }
 
   &:not(:last-child) {
@@ -225,11 +234,11 @@
     opacity: 0;
     transform: scale(1);
     transition:
-      visibility 0s $toggle-checkbox,
       opacity $toggle-checkbox,
-      transform $toggle-checkbox ease-out;
-    width: $size-checkbox;
+      transform $toggle-checkbox ease-out
+      visibility 0s $toggle-checkbox;
     visibility: hidden;
+    width: $size-checkbox;
     
     &--visible {
       opacity: 1;
@@ -245,39 +254,39 @@
 //////////////////////////////////////////////////////////////////// MODAL BOX 
 .alert {
   align-items: center;
-  position: fixed;
-  display: grid;
-  grid-template-columns: 1fr 6fr 1fr;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  font-size: 1em;
   background-color: $color-main;
+  display: grid;
+  font-size: 1em;
+  grid-template-columns: 1fr 6fr 1fr;
+  left: 0;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  transform: translateY(-100%);
   transition:
     transform $toggle-alert,
     visibility 0s $toggle-alert;
-  transform: translateY(-100%);
   visibility: hidden;
+  width: 100%;
   z-index: 3;
 
   &--visible {
+    transform: translateY(0);
     transition:
       transform $toggle-alert,
       visibility 0s;
-    transform: translateY(0);
     visibility: visible;
   }
 
   &__message {
+    grid-column-start: 2;
     margin: 0;
     text-align: center;
-    grid-column-start: 2;
   }
 
   &__button {
+    fill: $color-white;
     justify-self: end;
-    fill: #fff;
     width: 30px;
   }
 
@@ -289,20 +298,3 @@
     width: 100%;
   }
 }
-
-
-
-
-/* .contact__input:-moz-ui-invalid,
-.contact__description:-moz-ui-invalid {
-  box-shadow: 0 0 0 5px rgba(0,0,0,0.3);
-} */
-
-/*
-
-.contact__checkbox:nth-child(1):checked ~ :nth-child(3) {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1.3);
-  transition: visibility 0s, opacity 0.5s, transform 0.5s ease-out;
-} */

@@ -22,10 +22,11 @@ html {
 
 body {
   background-color: #000;
-  color: #fff;
+  color: $color-white;
   font-family: 'Poppins', 'Work Sans', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img {
@@ -35,6 +36,7 @@ img {
 
 a {
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .disabled {
@@ -42,7 +44,7 @@ a {
 }
 ///////////////////////////////////////////////////////////////// PAGE OVERLAY 
 .page-overlay {
-  background-color: black;
+  background-color: #000;
   bottom: 0;
   left: 0;
   opacity: 0;
@@ -98,5 +100,6 @@ a {
   border: none;
   cursor: pointer;
   margin: 0;
+  outline: none;
   padding: 0;
 }

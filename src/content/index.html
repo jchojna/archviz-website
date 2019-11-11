@@ -7,7 +7,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'UA-74247371-1');
     </script>   
     <meta charset="UTF-8" />
@@ -15,8 +14,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Jakub Chojna | Architectural Visualization</title>
     <meta name="description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
-
-    <!---------------------------------------------------------- OPEN GRAPH -->
     <meta property="og:title" content="Jakub Chojna | Architectural Visualization" />
     <meta property="og:description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
     <meta property="og:url" content="https://jchojna.github.io/archviz-website/" />
@@ -38,24 +35,18 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <!-------------------------------------------------------- PAGE OVERLAY -->
     <div class="page-overlay page-overlay--onload page-overlay--js"></div>
-    <!--------------------------------------------------------- PAGE HEADER -->
     <header class="header">
       <h1 class="header__heading visuallyhidden">
-        Architectural Visualizations
+        Architectural Visualization
       </h1>
-      <!--------------------------------------------------------- MAIN MENU -->
       <nav class="main-menu main-menu--align-top">
         <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
-        <!------------------------------------------------------- PAGE LOGO -->
         <a href="index.html" class="logo fadeOut--js">
           <svg class="logo__svg">
             <use xlink:href="assets/svg/icons.svg#page-logo" />
           </svg>
         </a>
-        <!------------------------------------------------ END OF PAGE LOGO -->
-        <!------------------------------------------------------- MENU LIST -->
         <ul class="main-menu__list">
           <li class="main-menu__item main-menu__item--large main-menu__item--js-large">
             <a href="index.html" class="main-menu__link main-menu__link--large main-menu__link--active fadeOut--js">WORKS</a>
@@ -67,8 +58,6 @@
             <a href="contact.html" class="main-menu__link main-menu__link--large fadeOut--js">CONTACT</a>
           </li>
         </ul>
-        <!------------------------------------------------ END OF MENU LIST -->
-        <!--------------------------------------------------- BURGER BUTTON -->
         <button class="button burger burger--js" aria-label="open mobile menu">
           <svg class="burger__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <line
@@ -85,15 +74,10 @@
             />
           </svg>
         </button>
-        <!-------------------------------------------- END OF BURGER BUTTON -->
-        <!------------------------------------------------ GO TO TOP BUTTON -->
         <a href="#page-container" class="go-top go-top--js">
           <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
         </a>
-        <!----------------------------------------- END OF GO TO TOP BUTTON -->
       </nav>
-      <!-------------------------------------------------- END OF MAIN MENU -->
-      <!------------------------------------------------------- MOBILE MENU -->
       <nav class="mobile-menu mobile-menu--hidden mobile-menu--js">
         <h2 class="mobile-menu__heading visuallyhidden">Mobile Menu</h2>
         <ul class="mobile-menu__list">
@@ -108,17 +92,12 @@
           </li>
         </ul>
       </nav>
-      <!------------------------------------------------ END OF MOBILE MENU -->
     </header>
-    <!-------------------------------------------------- END OF PAGE HEADER -->
-    <!------------------------------------------------------ PAGE CONTAINER -->
     <div
       id="page-container"
       class="page-container page-container--main-page page-container--visible"
     >
-      <!--------------------------------------------------------- PORTFOLIO -->
       <main class="portfolio portfolio--js">
-        <!------------------------------------------------------------ GRID -->
         <section class="grid grid--js">
           <h2 class="grid__heading visuallyhidden">Grid of Visualizations</h2>
           <!-- MUSEUM EXTENSION -->
@@ -132,11 +111,33 @@
                 <use href="assets/svg/placeholders.svg#museum-finland-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/museum-finland-01.jpg"
                 data-src2="assets/img/1920px/museum-finland-01.jpg"
                 class="grid__image grid__image--js"
                 alt="National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
+              />
+            </button>
+          </section>
+          <!-- ADLESTROP HOUSE -->
+          <section class="grid__item grid__item--js">
+            <h3 class="grid__title grid__title--js">Adlestrop House</h3>
+            <button class="button grid__button grid__button--js">
+              <svg
+                class="grid__svg-solid grid__svg-solid--js"
+                viewBox="0 0 1000 1000"
+              >
+                <use href="assets/svg/placeholders.svg#adlestrop-house-solid" />
+              </svg>
+              <svg class="grid__svg-line" viewBox="0 0 1000 1000">
+                <use href="assets/svg/placeholders.svg#adlestrop-house-line" />
+              </svg>
+              <img
+                src="assets/img/blank.PNG"
+                data-src="assets/img/1000px/adlestrop-house.jpg"
+                data-src2="assets/img/1920px/adlestrop-house.jpg"
+                class="grid__image grid__image--js"
+                alt="Adlestrop House - interior view, UK | client: Michaelis Boyd"
               />
             </button>
           </section>
@@ -158,52 +159,11 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/science-center-exterior.jpg"
                 data-src2="assets/img/1920px/science-center-exterior.jpg"
                 class="grid__image grid__image--js"
                 alt="Science Center Concept - interior view | client: Outpost"
-              />
-            </button>
-          </section>
-          <!-- ADLESTROP HOUSE -->
-          <section class="grid__item grid__item--js">
-            <h3 class="grid__title grid__title--js">Adlestrop House</h3>
-            <button class="button grid__button grid__button--js">
-              <svg
-                class="grid__svg-solid grid__svg-solid--js"
-                viewBox="0 0 1000 1000"
-              >
-                <use href="assets/svg/placeholders.svg#adlestrop-house-solid" />
-              </svg>
-              <svg class="grid__svg-line" viewBox="0 0 1000 1000">
-                <use href="assets/svg/placeholders.svg#adlestrop-house-line" />
-              </svg>
-              <img
-                src=""
-                data-src="assets/img/1000px/adlestrop-house.jpg"
-                data-src2="assets/img/1920px/adlestrop-house.jpg"
-                class="grid__image grid__image--js"
-                alt="Adlestrop House - interior view, UK | client: Michaelis Boyd"
-              />
-            </button>
-          </section>
-          <!-- FOREST HOUSE -->
-          <section class="grid__item grid__item--js">
-            <h3 class="grid__title grid__title--js">Forest House</h3>
-            <button class="button grid__button grid__button--js">
-              <svg class="grid__svg-solid grid__svg-solid--js" viewBox="0 0 1000 575">
-                <use href="assets/svg/placeholders.svg#forest-house-solid" />
-              </svg>
-              <svg class="grid__svg-line" viewBox="0 0 1000 575">
-                <use href="assets/svg/placeholders.svg#forest-house-line" />
-              </svg>
-              <img
-                src=""
-                data-src="assets/img/1000px/forest-house-birdwatcher.jpg"
-                data-src2="assets/img/1920px/forest-house-birdwatcher.jpg"
-                class="grid__image grid__image--js"
-                alt="Forest House for a Birdwatcher | personal work"
               />
             </button>
           </section>
@@ -218,11 +178,30 @@
                 <use href="assets/svg/placeholders.svg#twickenham-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/twickenham-02.jpg"
                 data-src2="assets/img/1920px/twickenham-02.jpg"
                 class="grid__image grid__image--js"
                 alt="Twickenham Riverside Concept, London, UK"
+              />
+            </button>
+          </section>
+          <!-- FOREST HOUSE -->
+          <section class="grid__item grid__item--js">
+            <h3 class="grid__title grid__title--js">Forest House</h3>
+            <button class="button grid__button grid__button--js">
+              <svg class="grid__svg-solid grid__svg-solid--js" viewBox="0 0 1000 575">
+                <use href="assets/svg/placeholders.svg#forest-house-solid" />
+              </svg>
+              <svg class="grid__svg-line" viewBox="0 0 1000 575">
+                <use href="assets/svg/placeholders.svg#forest-house-line" />
+              </svg>
+              <img
+                src="assets/img/blank.PNG"
+                data-src="assets/img/1000px/forest-house-birdwatcher.jpg"
+                data-src2="assets/img/1920px/forest-house-birdwatcher.jpg"
+                class="grid__image grid__image--js"
+                alt="Forest House for a Birdwatcher | personal work"
               />
             </button>
           </section>
@@ -237,7 +216,7 @@
                 <use href="assets/svg/placeholders.svg#large-residential-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/large-residential-building-01.jpg"
                 data-src2="assets/img/1920px/large-residential-building-01.jpg"
                 class="grid__image grid__image--js"
@@ -256,30 +235,11 @@
                 <use href="assets/svg/placeholders.svg#lakes-dales-interior-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/lakes&dales-interior.jpg"
                 data-src2="assets/img/1920px/lakes&dales-interior.jpg"
                 class="grid__image grid__image--js"
                 alt="Lakes & Dales - interior view, UK | client: Outpost"
-              />
-            </button>
-          </section>
-          <!-- MUSEUM EXTENSION -->
-          <section class="grid__item grid__item--js">
-            <h3 class="grid__title grid__title--js">Museum Extension</h3>
-            <button class="button grid__button grid__button--js">
-              <svg class="grid__svg-solid grid__svg-solid--js" viewBox="0 0 1000 826">
-                <use href="assets/svg/placeholders.svg#museum-finland-03-solid" />
-              </svg>
-              <svg class="grid__svg-line" viewBox="0 0 1000 826">
-                <use href="assets/svg/placeholders.svg#museum-finland-03-line" />
-              </svg>
-              <img
-                src=""
-                data-src="assets/img/1000px/museum-finland-03.jpg"
-                data-src2="assets/img/1920px/museum-finland-03.jpg"
-                class="grid__image grid__image--js"
-                alt="National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
               />
             </button>
           </section>
@@ -294,11 +254,30 @@
                 <use href="assets/svg/placeholders.svg#holiday-let-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/holiday-let.jpg"
                 data-src2="assets/img/1920px/holiday-let.jpg"
                 class="grid__image grid__image--js"
                 alt="Two holiday lets in the Sussex countryside, UK | client: SG Architecture"
+              />
+            </button>
+          </section>
+          <!-- MUSEUM EXTENSION -->
+          <section class="grid__item grid__item--js">
+            <h3 class="grid__title grid__title--js">Museum Extension</h3>
+            <button class="button grid__button grid__button--js">
+              <svg class="grid__svg-solid grid__svg-solid--js" viewBox="0 0 1000 826">
+                <use href="assets/svg/placeholders.svg#museum-finland-03-solid" />
+              </svg>
+              <svg class="grid__svg-line" viewBox="0 0 1000 826">
+                <use href="assets/svg/placeholders.svg#museum-finland-03-line" />
+              </svg>
+              <img
+                src="assets/img/blank.PNG"
+                data-src="assets/img/1000px/museum-finland-03.jpg"
+                data-src2="assets/img/1920px/museum-finland-03.jpg"
+                class="grid__image grid__image--js"
+                alt="National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
               />
             </button>
           </section>
@@ -313,7 +292,7 @@
                 <use href="assets/svg/placeholders.svg#general-aviation-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/general-aviation-terminal-01.jpg"
                 data-src2="assets/img/1920px/general-aviation-terminal-01.jpg"
                 class="grid__image grid__image--js"
@@ -335,7 +314,7 @@
                 <use href="assets/svg/placeholders.svg#science-centre-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/science-centre-ljubljana-01.jpg"
                 data-src2="assets/img/1920px/science-centre-ljubljana-01.jpg"
                 class="grid__image grid__image--js"
@@ -357,7 +336,7 @@
                 <use href="assets/svg/placeholders.svg#kindergarten-04-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/kindergarten-kocevje-slovenia-04.jpg"
                 data-src2="assets/img/1920px/kindergarten-kocevje-slovenia-04.jpg"
                 class="grid__image grid__image--js"
@@ -376,7 +355,7 @@
                 <use href="assets/svg/placeholders.svg#lunds-stadshall-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/lunds-stadshall-01.jpg"
                 data-src2="assets/img/1920px/lunds-stadshall-01.jpg"
                 class="grid__image grid__image--js"
@@ -397,7 +376,7 @@
                 <use href="assets/svg/placeholders.svg#faculty-buildings-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/faculty-buildings-ljubljana-01.jpg"
                 data-src2="assets/img/1920px/faculty-buildings-ljubljana-01.jpg"
                 class="grid__image grid__image--js"
@@ -416,7 +395,7 @@
                 <use href="assets/svg/placeholders.svg#faculty-buildings-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/faculty-buildings-ljubljana-02.jpg"
                 data-src2="assets/img/1920px/faculty-buildings-ljubljana-02.jpg"
                 class="grid__image grid__image--js"
@@ -435,7 +414,7 @@
                 <use href="assets/svg/placeholders.svg#watertower-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/watertower-denmark-01.jpg"
                 data-src2="assets/img/1920px/watertower-denmark-01.jpg"
                 class="grid__image grid__image--js"
@@ -458,7 +437,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/science-center-interior.jpg"
                 data-src2="assets/img/1920px/science-center-interior.jpg"
                 class="grid__image grid__image--js"
@@ -477,7 +456,7 @@
                 <use href="assets/svg/placeholders.svg#large-residential-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/large-residential-building-02.jpg"
                 data-src2="assets/img/1920px/large-residential-building-02.jpg"
                 class="grid__image grid__image--js"
@@ -501,7 +480,7 @@
                 <use href="assets/svg/placeholders.svg#parametric-pavilion-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/parametric-pavilion-01.jpg"
                 data-src2="assets/img/1920px/parametric-pavilion-01.jpg"
                 class="grid__image grid__image--js"
@@ -520,7 +499,7 @@
                 <use href="assets/svg/placeholders.svg#bramley-road-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/bramley-road-renovation.JPG"
                 data-src2="assets/img/1920px/bramley-road-renovation.JPG"
                 class="grid__image grid__image--js"
@@ -542,7 +521,7 @@
                 <use href="assets/svg/placeholders.svg#zodiak-square-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/zodiak-square-warsaw-01.jpg"
                 data-src2="assets/img/1920px/zodiak-square-warsaw-01.jpg"
                 class="grid__image grid__image--js"
@@ -561,7 +540,7 @@
                 <use href="assets/svg/placeholders.svg#footbridge-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/footbridge-soca-river-slovenia-01.jpg"
                 data-src2="assets/img/1920px/footbridge-soca-river-slovenia-01.jpg"
                 class="grid__image grid__image--js"
@@ -580,7 +559,7 @@
                 <use href="assets/svg/placeholders.svg#clue-light-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/clue-light-competition-01.jpg"
                 data-src2="assets/img/1920px/clue-light-competition-01.jpg"
                 class="grid__image grid__image--js"
@@ -599,7 +578,7 @@
                 <use href="assets/svg/placeholders.svg#twickenham-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/twickenham-01.jpg"
                 data-src2="assets/img/1920px/twickenham-01.jpg"
                 class="grid__image grid__image--js"
@@ -618,7 +597,7 @@
                 <use href="assets/svg/placeholders.svg#kindergarten-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/kindergarten-kocevje-slovenia-01.jpg"
                 data-src2="assets/img/1920px/kindergarten-kocevje-slovenia-01.jpg"
                 class="grid__image grid__image--js"
@@ -640,7 +619,7 @@
                 <use href="assets/svg/placeholders.svg#h2ouse-03-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/h2ouse-dom-na-wodzie-03.JPG"
                 data-src2="assets/img/1920px/h2ouse-dom-na-wodzie-03.JPG"
                 class="grid__image grid__image--js"
@@ -659,7 +638,7 @@
                 <use href="assets/svg/placeholders.svg#lunds-stadshall-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/lunds-stadshall-02.jpg"
                 data-src2="assets/img/1920px/lunds-stadshall-02.jpg"
                 class="grid__image grid__image--js"
@@ -682,7 +661,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/quick-park-konstancin-01.jpg"
                 data-src2="assets/img/1920px/quick-park-konstancin-01.jpg"
                 class="grid__image grid__image--js"
@@ -705,7 +684,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/quick-park-konstancin-02.jpg"
                 data-src2="assets/img/1920px/quick-park-konstancin-02.jpg"
                 class="grid__image grid__image--js"
@@ -724,7 +703,7 @@
                 <use href="assets/svg/placeholders.svg#watertower-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/watertower-denmark-02.jpg"
                 data-src2="assets/img/1920px/watertower-denmark-02.jpg"
                 class="grid__image grid__image--js"
@@ -750,7 +729,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/public-space-furniture-01.jpg"
                 data-src2="assets/img/1920px/public-space-furniture-01.jpg"
                 class="grid__image grid__image--js"
@@ -772,7 +751,7 @@
                 <use href="assets/svg/placeholders.svg#elementary-shapes-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/elementary-shapes-01.jpg"
                 data-src2="assets/img/1920px/elementary-shapes-01.jpg"
                 class="grid__image grid__image--js"
@@ -791,7 +770,7 @@
                 <use href="assets/svg/placeholders.svg#the-runway-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/the-runway.jpg"
                 data-src2="assets/img/1920px/the-runway.jpg"
                 class="grid__image grid__image--js"
@@ -810,7 +789,7 @@
                 <use href="assets/svg/placeholders.svg#hotel-spa-irena-eris-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/hotel-spa-irena-eris-01.jpg"
                 data-src2="assets/img/1920px/hotel-spa-irena-eris-01.jpg"
                 class="grid__image grid__image--js"
@@ -833,7 +812,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/shopping-gallery-torun-02.jpg"
                 data-src2="assets/img/1920px/shopping-gallery-torun-02.jpg"
                 class="grid__image grid__image--js"
@@ -852,7 +831,7 @@
                 <use href="assets/svg/placeholders.svg#kindergarten-03-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/kindergarten-kocevje-slovenia-03.jpg"
                 data-src2="assets/img/1920px/kindergarten-kocevje-slovenia-03.jpg"
                 class="grid__image grid__image--js"
@@ -871,7 +850,7 @@
                 <use href="assets/svg/placeholders.svg#bathroom-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/bathroom-01.jpg"
                 data-src2="assets/img/1920px/bathroom-01.jpg"
                 class="grid__image grid__image--js"
@@ -890,7 +869,7 @@
                 <use href="assets/svg/placeholders.svg#coworking-space-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/coworking-space-praga-warsaw-01.jpg"
                 data-src2="assets/img/1920px/coworking-space-praga-warsaw-01.jpg"
                 class="grid__image grid__image--js"
@@ -909,7 +888,7 @@
                 <use href="assets/svg/placeholders.svg#kindergarten-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/kindergarten-kocevje-slovenia-02.jpg"
                 data-src2="assets/img/1920px/kindergarten-kocevje-slovenia-02.jpg"
                 class="grid__image grid__image--js"
@@ -935,7 +914,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/public-space-furniture-opole-02.jpg"
                 data-src2="assets/img/1920px/public-space-furniture-opole-02.jpg"
                 class="grid__image grid__image--js"
@@ -957,7 +936,7 @@
                 <use href="assets/svg/placeholders.svg#footbridge-03-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/footbridge-soca-river-slovenia-03.jpg"
                 data-src2="assets/img/1920px/footbridge-soca-river-slovenia-03.jpg"
                 class="grid__image grid__image--js"
@@ -976,7 +955,7 @@
                 <use href="assets/svg/placeholders.svg#h2ouse-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/h2ouse-on-water-01.jpg"
                 data-src2="assets/img/1920px/h2ouse-on-water-01.jpg"
                 class="grid__image grid__image--js"
@@ -995,7 +974,7 @@
                 <use href="assets/svg/placeholders.svg#h2ouse-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/h2ouse-on-water-02.jpg"
                 data-src2="assets/img/1920px/h2ouse-on-water-02.jpg"
                 class="grid__image grid__image--js"
@@ -1014,7 +993,7 @@
                 <use href="assets/svg/placeholders.svg#science-centre-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/science-centre-ljubljana-02.JPG"
                 data-src2="assets/img/1920px/science-centre-ljubljana-02.JPG"
                 class="grid__image grid__image--js"
@@ -1036,7 +1015,7 @@
                 <use href="assets/svg/placeholders.svg#general-aviation-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/general-aviation-terminal-02.jpg"
                 data-src2="assets/img/1920px/general-aviation-terminal-02.jpg"
                 class="grid__image grid__image--js"
@@ -1055,7 +1034,7 @@
                 <use href="assets/svg/placeholders.svg#science-centre-03-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/science-centre-ljubljana-03.jpg"
                 data-src2="assets/img/1920px/science-centre-ljubljana-03.jpg"
                 class="grid__image grid__image--js"
@@ -1078,7 +1057,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/residential-building-rakowicka-warsaw-01.jpg"
                 data-src2="assets/img/1920px/residential-building-rakowicka-warsaw-01.jpg"
                 class="grid__image grid__image--js"
@@ -1101,7 +1080,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/public-space-furniture-opole-01.jpg"
                 data-src2="assets/img/1920px/public-space-furniture-opole-01.jpg"
                 class="grid__image grid__image--js"
@@ -1125,7 +1104,7 @@
                 <use href="assets/svg/placeholders.svg#parametric-pavilion-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/parametric-pavilion-02.jpg"
                 data-src2="assets/img/1920px/parametric-pavilion-02.jpg"
                 class="grid__image grid__image--js"
@@ -1144,7 +1123,7 @@
                 <use href="assets/svg/placeholders.svg#zodiak-square-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/zodiak-square-warsaw-02.jpg"
                 data-src2="assets/img/1920px/zodiak-square-warsaw-02.jpg"
                 class="grid__image grid__image--js"
@@ -1163,7 +1142,7 @@
                 <use href="assets/svg/placeholders.svg#frankfurt-am-main-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/frankfurt-am-main-01.jpg"
                 data-src2="assets/img/1920px/frankfurt-am-main-01.jpg"
                 class="grid__image grid__image--js"
@@ -1182,7 +1161,7 @@
                 <use href="assets/svg/placeholders.svg#museum-finland-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/museum-finland-02.jpg"
                 data-src2="assets/img/1920px/museum-finland-02.jpg"
                 class="grid__image grid__image--js"
@@ -1201,7 +1180,7 @@
                 <use href="assets/svg/placeholders.svg#gallery-libero-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/gallery-libero-katowice.jpg"
                 data-src2="assets/img/1920px/gallery-libero-katowice.jpg"
                 class="grid__image grid__image--js"
@@ -1224,7 +1203,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/residential-building-rakowicka-warsaw-02.jpg"
                 data-src2="assets/img/1920px/residential-building-rakowicka-warsaw-02.jpg"
                 class="grid__image grid__image--js"
@@ -1247,7 +1226,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/public-space-furniture-gdynia-02.jpg"
                 data-src2="assets/img/1920px/public-space-furniture-gdynia-02.jpg"
                 class="grid__image grid__image--js"
@@ -1268,7 +1247,7 @@
                 <use href="assets/svg/placeholders.svg#tomaszow-mazowiecki-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/tomaszow-mazowiecki-shopping-gallery-01.jpg"
                 data-src2="assets/img/1920px/tomaszow-mazowiecki-shopping-gallery-01.jpg"
                 class="grid__image grid__image--js"
@@ -1291,7 +1270,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/quick-park-konstancin-05.jpg"
                 data-src2="assets/img/1920px/quick-park-konstancin-05.jpg"
                 class="grid__image grid__image--js"
@@ -1314,7 +1293,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/tennis-center-konstancin-01.jpg"
                 data-src2="assets/img/1920px/tennis-center-konstancin-01.jpg"
                 class="grid__image grid__image--js"
@@ -1337,7 +1316,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/quick-park-konstancin-04.jpg"
                 data-src2="assets/img/1920px/quick-park-konstancin-04.jpg"
                 class="grid__image grid__image--js"
@@ -1356,7 +1335,7 @@
                 <use href="assets/svg/placeholders.svg#gallery-wislanka-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/gallery-wislanka-zory-01.jpg"
                 data-src2="assets/img/1920px/gallery-wislanka-zory-01.jpg"
                 class="grid__image grid__image--js"
@@ -1375,7 +1354,7 @@
                 <use href="assets/svg/placeholders.svg#bedroom-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/bedroom-01.jpg"
                 data-src2="assets/img/1920px/bedroom-01.jpg"
                 class="grid__image grid__image--js"
@@ -1394,7 +1373,7 @@
                 <use href="assets/svg/placeholders.svg#bedroom-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/bedroom-02.jpg"
                 data-src2="assets/img/1920px/bedroom-02.jpg"
                 class="grid__image grid__image--js"
@@ -1413,7 +1392,7 @@
                 <use href="assets/svg/placeholders.svg#quick-park-turek-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/quick-park-turek-02.jpg"
                 data-src2="assets/img/1920px/quick-park-turek-02.jpg"
                 class="grid__image grid__image--js"
@@ -1432,7 +1411,7 @@
                 <use href="assets/svg/placeholders.svg#bargework-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/bargework-office-on-water-01.jpg"
                 data-src2="assets/img/1920px/bargework-office-on-water-01.jpg"
                 class="grid__image grid__image--js"
@@ -1451,7 +1430,7 @@
                 <use href="assets/svg/placeholders.svg#quick-park-turek-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/quick-park-turek-01.jpg"
                 data-src2="assets/img/1920px/quick-park-turek-01.jpg"
                 class="grid__image grid__image--js"
@@ -1470,7 +1449,7 @@
                 <use href="assets/svg/placeholders.svg#sport-hall-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/sport-hall-polkowice-01.jpg"
                 data-src2="assets/img/1920px/sport-hall-polkowice-01.jpg"
                 class="grid__image grid__image--js"
@@ -1489,7 +1468,7 @@
                 <use href="assets/svg/placeholders.svg#color-park-01-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/color-park-nowy-targ-01.jpg"
                 data-src2="assets/img/1920px/color-park-nowy-targ-01.jpg"
                 class="grid__image grid__image--js"
@@ -1512,7 +1491,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/underground-pedestrian-passage-warsaw-02.jpg"
                 data-src2="assets/img/1920px/underground-pedestrian-passage-warsaw-02.jpg"
                 class="grid__image grid__image--js"
@@ -1533,7 +1512,7 @@
                 <use href="assets/svg/placeholders.svg#tomaszow-mazowiecki-02-line" />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/tomaszow-mazowiecki-shopping-gallery-02.jpg"
                 data-src2="assets/img/1920px/tomaszow-mazowiecki-shopping-gallery-02.jpg"
                 class="grid__image grid__image--js"
@@ -1556,7 +1535,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/quick-park-konstancin-03.jpg"
                 data-src2="assets/img/1920px/quick-park-konstancin-03.jpg"
                 class="grid__image grid__image--js"
@@ -1579,7 +1558,7 @@
                 />
               </svg>
               <img
-                src=""
+                src="assets/img/blank.PNG"
                 data-src="assets/img/1000px/torun-shopping-gallery-01.jpg"
                 data-src2="assets/img/1920px/torun-shopping-gallery-01.jpg"
                 class="grid__image grid__image--js"
@@ -1588,14 +1567,11 @@
             </button>
           </section>
         </section>
-        <!----------------------------------------------------- END OF GRID -->
-        <!--------------------------------------------------------- GALLERY -->
         <section class="gallery gallery--js">
           <header class="gallery__header">
             <h2 class="gallery__heading visuallyhidden">
               Gallery of Visualizations
             </h2>
-            <!------------------------------------------ GALLERY NAVIGATION -->
             <nav class="gallery-nav">
               <h3 class="gallery-nav__heading visuallyhidden">
                 Gallery navigation
@@ -1637,18 +1613,12 @@
                 </li>
               </ul>
             </nav>
-            <!----------------------------------- END OF GALLERY NAVIGATION -->
           </header>
         </section>
-        <!-------------------------------------------------- END OF GALLERY -->
       </main>
-      <!-------------------------------------------------- END OF PORTFOLIO -->
-      <!------------------------------------------------------- PAGE FOOTER -->
       <footer class="footer">
-        <!------------------------------------------------ FOOTER CONTAINER -->
         <section class="footer__container">
           <h2 class="footer__heading visuallyhidden">Page Footer</h2>
-          <!-------------------------------------------------- SOCIAL MEDIA -->
           <nav class="social">
             <h3 class="social__heading visuallyhidden">Social Media</h3>
             <ul class="social__list social__list--horizontal">
@@ -1672,20 +1642,15 @@
                   <i class="social__icon fab fa-facebook-square"></i>
                 </a>
               </li>
+            </ul>
           </nav>
-          <!------------------------------------------- END OF SOCIAL MEDIA -->
         </section>
-        <!----------------------------------------- END OF FOOTER CONTAINER -->
-        <!------------------------------------------------------- COPYRIGHT -->
         <section class="copyright">
           <h2 class="copyright__heading visuallyhidden">Copyright</h2>
           <p class="copyright__text">Copyright &copy; 2019 Jakub Chojna. All rights reserved. Website designed and developed by Jakub Chojna</p>
         </section>
-        <!------------------------------------------------ END OF COPYRIGHT -->
       </footer>
-      <!----------------------------------------------------- END OF FOOTER -->
     </div>
-    <!----------------------------------------------- END OF PAGE CONTAINER -->
     <script src="js/main.js"></script>
   </body>
 </html>

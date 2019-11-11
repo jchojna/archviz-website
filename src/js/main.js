@@ -26,12 +26,10 @@ const desktopBreakpoint = 1200;
 // F0 ///////////////////////////////////////////////////////// FADE IN EFFECT 
 
 const fadeIn = () => {
-
   if (!pageOverlay.classList.contains('page-overlay--onload')) {
     pageOverlay.classList.add('page-overlay--onload');
   }
   pageOverlay.classList.remove('page-overlay--onload');
-
 }
 // F0 ////////////////////////////////////////// GO TO NEXT PAGE AFTER TIMEOUT 
 
@@ -306,7 +304,7 @@ if (portfolio) {
 
     if (imageOffset >= viewportTopOffset) { // if image is below top viewport border
       if (imageOffset < viewportBottomOffset) { // if image is inside viewport
-        if (imageSrc === "") { // if proper src is not applied yet
+        if (imageSrc === "assets/img/blank.PNG") { // if proper src is not applied yet
           image.setAttribute('src', '');
           image.setAttribute('src', imageNewSrc);
           image.onload = () => {
@@ -465,8 +463,10 @@ if (gallery) {
 
       const handleSwitchDisplay = (image) => {
         if (image.complete) {
+          switchButton.classList.add('switch--solid');
           switchCenter.classList.add('switch__center--solid');
         } else {
+          switchButton.classList.remove('switch--solid');
           switchCenter.classList.remove('switch__center--solid');
         }
       }
@@ -492,6 +492,7 @@ if (gallery) {
         case 38:
         case switchButton:
           if (currentImage.complete) {
+            switchButton.classList.toggle('switch--solid');
             currentImage.classList.toggle('images__image--loaded');
             switchCenter.classList.toggle('switch__center--solid');
           }
@@ -500,6 +501,7 @@ if (gallery) {
         case 27:
         case closeButton:
           switchCenter.classList.remove('switch__center--solid');
+          switchButton.classList.remove('switch--solid');
           showImage();
           removeAllEvents();
           break;
@@ -528,6 +530,7 @@ if (gallery) {
           amount--;
           currentImage.classList.add('images__image--loaded');
           switchCenter.classList.add('switch__center--solid');
+          switchButton.classList.add('switch--solid');
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -546,6 +549,7 @@ if (gallery) {
           currentImage.classList.add('images__image--loaded');
           if (index === currentIndex) {
             switchCenter.classList.add('switch__center--solid');
+            switchButton.classList.add('switch--solid');
           }
 
           if (option === 'prev' || option === 'start') {
@@ -780,11 +784,12 @@ if (form) {
         "checkboxAccept": checkboxAccept,
         "checkboxReject": checkboxReject
       }
-    }).done(data => handleAlerts(data)).fail(data => handleAlerts(data));
+    }).done(data => handleAlerts(data, false))
+    .fail(data => handleAlerts(data, true));
     return;
   }
 
-  const handleAlerts = (data) => {
+  const handleAlerts = (data, isFailed) => {
     const {
       emailError,
       phoneError,
@@ -807,23 +812,29 @@ if (form) {
         input.classList.remove('error__text--visible');
       }
     }
-    // show box alert
-    if (success !== "" || failure !== "" || checkboxError !== "") {
-      const alert = [success, failure, checkboxError].filter(elem => elem !== "").toString();
-      alertMessage.textContent = alert;
-      // hide input alerts
-      if (alert === success) {
-        [...errors].forEach(error => error.classList.remove('error__text--visible'));
-        [...formInputs].forEach(input => input.value = "");
-        resetCheckboxes();
-      }
+    if (isFailed) {
+      alertMessage.textContent = "Upss... something went wrongs...";
       toggleBoxAlert();
+    } else {
+      // show box alert
+      if (success !== "" || failure !== "" || checkboxError !== "") {
+        const alert = [success, failure, checkboxError].filter(elem => elem !== "").toString();
+        alertMessage.textContent = alert;
+        // hide input alerts
+        if (alert === success) {
+          [...errors].forEach(error => error.classList.remove('error__text--visible'));
+          [...formInputs].forEach(input => input.value = "");
+          resetCheckboxes();
+        }
+        toggleBoxAlert();
+      }
+      // show input(s) alert
+      toggleInputAlert(errorPhone, phoneError);
+      toggleInputAlert(errorEmail, emailError);
+      toggleInputAlert(errorMessage, messageError);
     }
-    // show input(s) alert
-    toggleInputAlert(errorPhone, phoneError);
-    toggleInputAlert(errorEmail, emailError);
-    toggleInputAlert(errorMessage, messageError);
   }
+
   ////////////////////////////////////////////////////////////////// VARIABLES 
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');

@@ -1,12 +1,12 @@
 /////////////////////////////////////////////////////////////////////// HEADER 
 .header {
+  left: 0;
+  padding: $layout-sm-offset;
+  pointer-events: none;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  padding: $layout-sm-offset;
   z-index: 2;
-  pointer-events: none;
 
   &--background {
     background-color: $color-background;
@@ -28,9 +28,9 @@
 }
 //////////////////////////////////////////////////////////////////// MAIN MENU 
 .main-menu {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   &:hover &__item {
     transform: translateY(0);
@@ -38,12 +38,13 @@
   }
 
   &__list {
+    align-items: flex-end;
     display: none;
-    padding: 0;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
     list-style: none;
+    margin: 0;
+    padding: 0;
     pointer-events: auto;
   }
 
@@ -52,21 +53,21 @@
     transition: transform $translate-main-menu $ease-in-strong;
 
     &--hidden {
-      transform: translateY(-220px);
+      transform: translateY(-240px);
       transition: transform $translate-main-menu $ease-out-strong $delay-main-menu;
     }
   }
 
   &__link {
     @include flex-center;
-    color: #fff;
+    color: $color-white;
     font-size: 1.5rem;
     font-weight: 700;
     transition: color $hover-main-menu;
 
     &--large {
-      color: #fff;
-      font-size: 4rem;
+      color: $color-white;
+      font-size: 3rem;
     }
 
     &--active {
@@ -89,13 +90,6 @@
       &__list {
         display: flex;
       }
-
-      &__item {
-        
-        &:not(:last-child) {
-          margin: 0 0 20px 0;
-        }
-      }
     }
   }
 
@@ -117,6 +111,10 @@
           margin: 0 30px 0 0;
         }
       }
+
+      &__link--large {
+        font-size: 4rem;
+      }
     }
   }
 }
@@ -124,24 +122,24 @@
 .mobile-menu {
   @include position-fixed;
   @include flex-center;
-  background-color: #000;
-  visibility: visible;
+  background-color: $color-background;
   opacity: 1;
-  transition: visibility 0s, opacity $toggle-mobile-menu;
   pointer-events: auto;
+  transition: visibility 0s, opacity $toggle-mobile-menu;
+  visibility: visible;
 
   &--hidden {
-    visibility: hidden;
     opacity: 0;
     transition: visibility 0s $toggle-mobile-menu, opacity $toggle-mobile-menu;
+    visibility: hidden;
   }
 
   &__list {
     @include flex-center;
     flex-direction: column;
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   &__link {
@@ -153,19 +151,19 @@
 .logo {
   display: flex;
   height: $layout-sm-logo;
-  width: $layout-sm-logo;
   pointer-events: auto;
+  width: $layout-sm-logo;
 
   &:hover .logo__svg {
     fill: $color-main;
   }
 
   &__svg {
+    fill: $color-white;
     height: 100%;
-    width: 100%;
-    fill: #fff;
     pointer-events: none;
     transition: fill $hover-main-menu;
+    width: 100%;
   }
 
   @media only screen and (min-width: $media-md) {
@@ -186,20 +184,21 @@
 }
 //////////////////////////////////////////////////////////////// BURGER BUTTON 
 .burger {
-  position: relative;
-  width: $size-burger-button;
   height: $size-burger-button;
   pointer-events: auto;
+  position: relative;
+  width: $size-burger-button;
   z-index: 1;
 
   &__svg {
-    width: 100%;
     height: 100%;
-    stroke: #fff;
+    stroke: $color-white;
     stroke-width: 16;
     transition: stroke $hover-main-menu;
+    width: 100%;
 
-    &:hover {
+    &:active {
+      background: none;
       stroke: $color-main;
     }
   }
@@ -235,23 +234,44 @@
 ///////////////////////////////////////////////////////////// GO TO TOP BUTTON 
 .go-top {
   @include flex-center;
-  border: 4px solid #fff;
+  border: 4px solid $color-white;
   border-radius: 50%;
   bottom: 20px;
-  color: #fff;
+  color: $color-white;
   height: $size-go-top;
   left: 50%;
   opacity: 0;
   pointer-events: auto;
   position: fixed;
   transform: translateX(-50%);
-  transition: visibility 0s $go-top-button, opacity $go-top-button;
+  transition:
+    border-color $hover-icon,
+    color $hover-icon,
+    opacity $go-top-button,
+    visibility 0s $go-top-button;
   visibility: hidden;
   width: $size-go-top;
 
   &--visible {
     opacity: 1;
-    transition: visibility 0s, opacity $go-top-button;
+    transition:
+      border-color $hover-icon,
+      color $hover-icon,
+      opacity $go-top-button,
+      visibility 0s;
     visibility: visible;
+  }
+
+  &:active {
+    border-color: $color-main;
+    color: $color-main;
+  }
+
+  @media only screen and (min-width: $media-md) {
+
+    &:hover {
+      border-color: $color-main;
+      color: $color-main;
+    }
   }
 }

@@ -1,15 +1,14 @@
-//////////////////////////////////////////////////////////////////// PORTFOLIO 
 .portfolio {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 ///////////////////////////////////////////////////////////////////////// GRID 
 .grid {
-  width: 100%;
   display: grid;
-  grid-template-columns: repeat($grid-cols-sm, 1fr);
   grid-auto-rows: $grid-item-height-sm;
   grid-gap: $grid-gap-sm;
+  grid-template-columns: repeat($grid-cols-sm, 1fr);
+  width: 100%;
 
   &--flex { // portfolioJS
     display: flex;
@@ -19,78 +18,35 @@
 
   &__item {
     @include flex-center;
-    position: relative;
     overflow: hidden;
-    
-    &::after {
-      @include content-absolute;
-      box-shadow: inset 0 0 10rem rgba(0,0,0,0.5);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity $hover-grid-item ease-out,
-    }
-    
-    &:hover {
-      &::after {
-        opacity: 1;
-      }
-
-      & .grid__title {
-        opacity: 1;
-        transform: scale(1);
-        transition: 
-          opacity $hover-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
-          transform $hover-grid-item ease-out;
-      }
-    }
+    position: relative;
   }
 
   &__title {
-    position: absolute;
-    word-wrap: break-word;
-    color: white;
-    font-size: 2.5rem;
-    font-weight: normal;
-    text-align: center;
-    user-select: none;
+    color: $color-main;
+    font-size: 3rem;
+    font-weight: bold;
     opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
     transform: scale(6);
     transform-origin: center;
     transition: 
       opacity $hover-grid-item cubic-bezier(0.1,0.9,0.1,0.9),
       transform $hover-grid-item ease-out;
+    user-select: none;
+    word-wrap: break-word;
     z-index: 1;
-    pointer-events: none;
   }
 
   &__button {
     @include flex-center;
+    height: 100%;
     position: relative;
     transform: scale(1);
     transition: transform $hover-grid-item ease-out;
     width: 100%;
-    height: 100%;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgb(0, 238, 255);
-      opacity: 0.04;
-      pointer-events: none;
-      transition: opacity $hover-grid-item;
-    }
-
-    &:hover {
-      transform: scale($scale-grid-item);
-
-      &::after {
-        opacity: 0;
-      }
-    }
   }
 
   &__svg-solid {
@@ -114,34 +70,77 @@
   }
 
   &__image {
-    visibility: hidden;
-    position: absolute;
     height: 100%;
+    opacity: 0;  
+    position: absolute;
+    visibility: hidden;
     width: 100%;
-    opacity: 0;    
-    filter: saturate(30%) brightness(0.7);
 
     &--loaded {
-      visibility: visible;
       opacity: 1;
       transition: opacity $load-grid-image, filter $hover-grid-item;
-    }
-
-    &:hover {
-      filter: saturate(100%);
+      visibility: visible;
     }
   }
 
   @media only screen and (min-width: $media-md) {
 
     & {
-
-      grid-template-columns: repeat($grid-cols-md, 1fr);
       grid-auto-rows: $grid-item-height-md;
       grid-gap: $grid-gap-md;
+      grid-template-columns: repeat($grid-cols-md, 1fr);
 
       &--flex { // portfolioJS
         grid-gap: 0;
+      }
+
+      &__item {
+        
+        &::after {
+          @include content-absolute;
+          box-shadow: inset 0 0 10rem rgba(0,0,0,0.5);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity $hover-grid-item ease-out,
+        }
+        
+        &:hover {
+          &::after {
+            opacity: 1;
+          }
+    
+          & .grid__title {
+            opacity: 1;
+            transform: scale(1);
+            transition: 
+              opacity $hover-grid-item cubic-bezier(0.9,0.1,0.9,0.1),
+              transform $hover-grid-item ease-out;
+          }
+        }
+      }
+
+      &__button {
+    
+        &::after {
+          content: "";
+          background-color: rgb(82, 97, 128);
+          bottom: 0;
+          left: 0;
+          opacity: 0.04;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: opacity $hover-grid-item;
+        }
+    
+        &:hover {
+          transform: scale($scale-grid-item);
+    
+          &::after {
+            opacity: 0;
+          }
+        }
       }
 
       &__svg-solid {
@@ -153,6 +152,14 @@
           min-width: 0;
         }
       }
+
+      &__image {
+        filter: saturate(30%) brightness(0.7);
+
+        &:hover {
+          filter: saturate(100%);
+        }
+      }
     }
   }
   
@@ -160,9 +167,9 @@
 
     & {
 
-      grid-template-columns: repeat($grid-cols-lg, 1fr);
       grid-auto-rows: $grid-item-height-lg;
       grid-gap: $grid-gap-lg;
+      grid-template-columns: repeat($grid-cols-lg, 1fr);
 
       &--flex { // portfolioJS
         grid-gap: 0;
