@@ -1,9 +1,5 @@
-# wtf-gulp-starter
+![website screenshots](assets/img/markdown.JPG)
 
-`npm install -g gulp-cli`
+# My personal archviz website
 
-`npm install`
-
-`gulp`
-
-To publish your page using github pages use `npm run deploy`
+* description soon...
