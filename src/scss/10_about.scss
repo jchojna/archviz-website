@@ -63,6 +63,7 @@
     grid-template-columns: $size-dropdown 1fr $size-dropdown;
     padding: 1em 0;
     position: relative;
+    text-align: center;
     transition: color $hover-card, fill $hover-card;
     width: 100%;
 
@@ -72,11 +73,10 @@
     }
   }
 
-  &__heading {
+  &__title {
     font-size: 1.1em;
     font-weight: 600;
     grid-column-start: 2;
-    margin: 0;
     pointer-events: none;
   }
 

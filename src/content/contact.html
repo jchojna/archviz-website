@@ -38,19 +38,19 @@
     <div class="page-overlay page-overlay--onload page-overlay--js"></div>
     <div class="alert alert--js">
       <p class="alert__message alert__message--js"></p>
-      <button class="button alert__button alert__button--js-close">
+      <button class="button alert__button alert__button--js-close" aria-label="Close alert box">
         <svg class="alert__svg" viewBox="0 0 512 512">
           <use href="assets/svg/icons.svg#close" />
         </svg>
       </button>
     </div>
-    <header class="header">
+    <header class="header" role="banner">
       <h1 class="header__heading visuallyhidden">
         Architectural Rendering
       </h1>
-      <nav class="main-menu main-menu--align-top">
+      <nav class="main-menu main-menu--align-top" role="navigation" aria-label="Main navigation">
         <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
-        <a href="index.html" class="logo fadeOut--js">
+        <a href="index.html" class="logo fadeOut--js" aria-label="Page logo">
           <svg class="logo__svg">
             <use xlink:href="assets/svg/icons.svg#page-logo" />
           </svg>
@@ -66,7 +66,7 @@
             <a href="contact.html" class="main-menu__link main-menu__link--active  fadeOut--js">CONTACT</a>
           </li>
         </ul>
-        <button class="button burger burger--js" aria-label="open mobile menu">
+        <button class="button burger burger--js" aria-label="Toggle mobile menu">
           <svg class="burger__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <line
               class="burger__line burger__line--top burger__line--js-top"
@@ -82,11 +82,11 @@
             />
           </svg>
         </button>
-        <a href="#page-container" class="go-top go-top--js">
+        <a href="#page-container" class="go-top go-top--js" aria-label="Go to top">
           <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
         </a>
       </nav>
-      <nav class="mobile-menu mobile-menu--hidden mobile-menu--js">
+      <nav class="mobile-menu mobile-menu--hidden mobile-menu--js" role="navigation" aria-label="Mobile menu navigation">
         <h2 class="mobile-menu__heading visuallyhidden">Mobile Menu</h2>
         <ul class="mobile-menu__list">
           <li class="mobile-menu__item mobile-menu__item--js">
@@ -101,10 +101,8 @@
         </ul>
       </nav>
     </header>
-    <main id="page-container" class="page-container page-container--visible page-container--js">
-      <form
-        autocomplete="off"
-        class="form form--js">
+    <main id="page-container" class="page-container page-container--visible page-container--js" role="main">
+      <form autocomplete="off" class="form form--js" role="form">
         <h2 class="form__heading">Contact Me</h2>
         <p class="input input--name">
           <input
@@ -218,11 +216,12 @@
           type="submit"
           id="formSubmit"
           class="button form__submit form__submit--js"
+          aria-label="Submit form"
         >
           SEND
         </button>
       </form>
-      <footer class="footer">
+      <footer class="footer" role="contentinfo">
         <section class="footer__container">
           <h2 class="footer__heading visuallyhidden">Page Footer</h2>
           <section class="address">
@@ -238,26 +237,26 @@
               </tbody>
             </table>
           </section>
-          <nav class="social">
+          <nav class="social" role="navigation" aria-label="Social media links">
             <h3 class="social__heading visuallyhidden">Social Media</h3>
             <ul class="social__list">
               <li class="social__item">
-                <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Behance profile link">
                   <i class="social__icon fab fa-behance-square"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Linkedin profile link">
                   <i class="social__icon fab fa-linkedin"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://github.com/jchojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://github.com/jchojna/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Github profile link">
                   <i class="social__icon fab fa-github-square"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Facebook profile link">
                   <i class="social__icon fab fa-facebook-square"></i>
                 </a>
               </li>
