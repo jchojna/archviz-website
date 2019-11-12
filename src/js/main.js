@@ -387,7 +387,6 @@ if (gallery) {
   // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
 
   const showGallery = (e) => {
-
     
     // F0 ///////////////////////////// SET WITH AND HEIGHT OF IMAGE CONTAINER 
 
@@ -465,9 +464,11 @@ if (gallery) {
         if (image.complete) {
           switchButton.classList.add('switch--solid');
           switchCenter.classList.add('switch__center--solid');
+          switchButton.classList.remove('switch--disabled');
         } else {
           switchButton.classList.remove('switch--solid');
           switchCenter.classList.remove('switch__center--solid');
+          switchButton.classList.add('switch--disabled');
         }
       }
 
@@ -502,6 +503,7 @@ if (gallery) {
         case closeButton:
           switchCenter.classList.remove('switch__center--solid');
           switchButton.classList.remove('switch--solid');
+          switchButton.classList.add('switch--disabled');
           showImage();
           removeAllEvents();
           break;
@@ -531,6 +533,7 @@ if (gallery) {
           currentImage.classList.add('images__image--loaded');
           switchCenter.classList.add('switch__center--solid');
           switchButton.classList.add('switch--solid');
+          switchButton.classList.remove('switch--disabled');
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -550,6 +553,7 @@ if (gallery) {
           if (index === currentIndex) {
             switchCenter.classList.add('switch__center--solid');
             switchButton.classList.add('switch--solid');
+            switchButton.classList.remove('switch--disabled');
           }
 
           if (option === 'prev' || option === 'start') {
