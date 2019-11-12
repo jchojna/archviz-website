@@ -692,11 +692,11 @@ if (about) {
   }
 
   const cards = document.querySelectorAll('.card--js');
-  const cardHeaders = document.querySelectorAll('.card__header--js');
+  const cardTitleButtons = document.querySelectorAll('.card__header-button--js');
   const cardDescriptions = document.querySelectorAll('.card__description--js');
   const cardDropdowns = document.querySelectorAll('.card__dropdown--js');
 
-  [...cardHeaders].forEach((a,i) => {
+  [...cardTitleButtons].forEach((a,i) => {
     a.index = i;
     a.addEventListener('click', handleCard);
   });
