@@ -40,6 +40,12 @@
     align-self: end;
     grid-area: formSubmit;
     margin: 0;
+
+    &:focus {
+      background-color: $color-main;
+      border-color: $color-main;
+    }
+
   }
 
   @media only screen and (min-width: $media-md) {
@@ -47,9 +53,10 @@
       gap: 1em 3em;
       grid-template-areas:
         "formHeading  formHeading "
-        "userName     messageTitle"
-        "userPhone    userEmail   "
-        "phoneAlert   emailAlert  "
+        "userName     userEmail   "
+        ".            emailAlert  "
+        "messageTitle userPhone   "
+        ".            phoneAlert  "
         "userMessage  userMessage "
         "messageAlert messageAlert"
         "verification formSubmit  ";
@@ -226,6 +233,11 @@
     &--hidden {
       opacity: 0;
       visibility: hidden;
+    }
+
+    &:focus {
+      border-color: $color-white;
+      outline: none;
     }
   }
 

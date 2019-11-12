@@ -69,8 +69,10 @@
     color: $color-background-light;
     transition: color $hover-icon;
 
-    &:active {
+    &:active,
+    &:focus {
       color: $color-white;
+      outline: none;
     }
   }
 

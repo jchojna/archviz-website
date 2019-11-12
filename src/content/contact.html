@@ -50,14 +50,18 @@
       </h1>
       <nav class="main-menu main-menu--align-top">
         <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
-        <a href="index.html" class="logo fadeOut--js">
+        <a href="index.html" class="logo fadeOut--js" tabindex="0">
           <svg class="logo__svg">
             <use xlink:href="assets/svg/icons.svg#page-logo" />
           </svg>
         </a>
         <ul class="main-menu__list">
           <li class="main-menu__item">
-            <a href="index.html" class="main-menu__link fadeOut--js">WORKS</a>
+            <a
+              href="index.html"
+              class="main-menu__link fadeOut--js"
+              tabindex="0"
+            >WORKS</a>
           </li>
           <li class="main-menu__item">
             <a href="about.html" class="main-menu__link fadeOut--js">ABOUT</a>
@@ -108,7 +112,6 @@
         <h2 class="form__heading">Contact Me</h2>
         <p class="input input--name">
           <input
-          autofocus
           type="text"
           id="userName"
           class="input__data input__data--js input__data--js-userName"
@@ -130,6 +133,16 @@
         <div class="error error--email">
           <p class="error__text error__text--js-email"></p>
         </div>
+        <p class="input input--title">
+          <input
+          type="text"
+          id="userTitle"
+          class="input__data input__data--js input__data--js-userTitle"
+          maxlength="50"
+          name="userTitle"
+          placeholder="title of your message">
+          <label for="userTitle" class="input__label">Title:</label>
+        </p>
         <div class="input input--phone">
           <div class="input__phone">
             <input
@@ -151,16 +164,6 @@
         <div class="error error--phone">
           <p class="error__text error__text--js-phone"></p>
         </div>
-        <p class="input input--title">
-          <input
-          type="text"
-          id="userTitle"
-          class="input__data input__data--js input__data--js-userTitle"
-          maxlength="50"
-          name="userTitle"
-          placeholder="title of your message">
-          <label for="userTitle" class="input__label">Title:</label>
-        </p>
         <p class="input input--message">
           <textarea
           id="userMessage"
@@ -184,7 +187,7 @@
               id="checkboxReject"
               class="checkbox__input checkbox__input--js checkbox__input--js-reject"
               name="reject">
-            <span class="checkbox__field"></span>
+            <span class="checkbox__field" tabindex="0"></span>
             <svg class="checkbox__mark checkbox__mark--js" viewBox="0 0 24 24">
               <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
@@ -196,7 +199,7 @@
               id="checkboxAccept"
               class="checkbox__input checkbox__input--js checkbox__input--js-accept"
               name="accept">
-            <span class="checkbox__field"></span>
+            <span class="checkbox__field" tabindex="0"></span>
             <svg class="checkbox__mark checkbox__mark--js" viewBox="0 0 24 24">
               <use href="assets/svg/icons.svg#checkmark"/>
             </svg>
@@ -208,7 +211,7 @@
               id="checkboxOptional"
               class="checkbox__input checkbox__input--js checkbox__input--js-optional"
               name="optional">
-            <span class="checkbox__field"></span>
+            <span class="checkbox__field" tabindex="0"></span>
             <svg class="checkbox__mark checkbox__mark--js" viewBox="0 0 24 24">
               <use href="assets/svg/icons.svg#checkmark"/>
             </svg>

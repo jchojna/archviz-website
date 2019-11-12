@@ -74,8 +74,10 @@
       color: $color-main;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: $color-main;
+      outline: none;
     }
   }
 
@@ -150,19 +152,21 @@
 ///////////////////////////////////////////////////////////////////////// LOGO 
 .logo {
   display: flex;
+  fill: $color-white;
   height: $layout-sm-logo;
   pointer-events: auto;
+  transition: fill $hover-main-menu;
   width: $layout-sm-logo;
 
-  &:hover .logo__svg {
+  &:hover,
+  &:focus {
     fill: $color-main;
+    outline: none;
   }
 
   &__svg {
-    fill: $color-white;
     height: 100%;
     pointer-events: none;
-    transition: fill $hover-main-menu;
     width: 100%;
   }
 
