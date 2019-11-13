@@ -1,15 +1,4 @@
-/*
- #######  ##     ## ######## ########     ###    ##       ##
-##     ## ##     ## ##       ##     ##   ## ##   ##       ##
-##     ## ##     ## ##       ##     ##  ##   ##  ##       ##
-##     ## ##     ## ######   ########  ##     ## ##       ##
-##     ##  ##   ##  ##       ##   ##   ######### ##       ##
-##     ##   ## ##   ##       ##    ##  ##     ## ##       ##
- #######     ###    ######## ##     ## ##     ## ######## ########
-*/
-
-//////////////////////////////////////////////////////////////////// VARIABLES 
-const pageOverlay = document.querySelector('.page-overlay--js');
+const pageOverlay = document.querySelector('.overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
 const pageContainer = document.querySelector('.page-container--js');
 const portfolio = document.querySelector('.portfolio--js');
@@ -27,10 +16,10 @@ const desktopBreakpoint = 1200;
 // F0 ///////////////////////////////////////////////////////// FADE IN EFFECT 
 
 const fadeIn = () => {
-  if (!pageOverlay.classList.contains('page-overlay--onload')) {
-    pageOverlay.classList.add('page-overlay--onload');
+  if (!pageOverlay.classList.contains('overlay--onload')) {
+    pageOverlay.classList.add('overlay--onload');
   }
-  pageOverlay.classList.remove('page-overlay--onload');
+  pageOverlay.classList.remove('overlay--onload');
 }
 // F0 ////////////////////////////////////////// GO TO NEXT PAGE AFTER TIMEOUT 
 
@@ -38,7 +27,7 @@ const toNextPage = (e, callback, timeout) => {
   e.preventDefault();
   const linkClicked = e.target;
   if (linkClicked.tagName === "A") {
-    pageOverlay.classList.add('page-overlay--visible');
+    pageOverlay.classList.add('overlay--visible');
     setTimeout(() => callback(linkClicked), timeout);
   }
 }
@@ -219,11 +208,14 @@ if (portfolio) {
 
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
-  const portfolioGridLinks = document.querySelectorAll('.grid__button--js');
 
-  //const lazyPlaceholders = [...portfolioPlaceholders];
   let lazyLoadBuffer = 500;
   let lazyLoadPause = false;
+
+  //const progressPercent = document.querySelector('.overlay__percent--js');
+  const progressBar = document.querySelector('.overlay__progressBar--js');
+  const url = window.location;
+  const pageLoading = new XMLHttpRequest();
 
   // F0 ///////////////////////////////////////////// GET VIEWPORT WIDTH VALUE 
 
@@ -328,6 +320,24 @@ if (portfolio) {
 
   ///////////////////////////////////////////////////////////// FUNCTION CALLS 
   
+  pageLoading.open("GET", url, true);
+  pageLoading.onprogress = (e) => {
+    if (e.lengthComputable) {
+      const percentNumber = parseInt(e.loaded) / parseInt(e.total) * 100;
+      //const percentString = `${Math.round(percentNumber)}%`;
+      //progressPercent.textContent = percentString;
+      progressBar.style.width = `${percentNumber}%`;
+    }
+  }
+  pageLoading.onloadstart = function (e) {
+    //progressPercent.textContent = "0%";
+  }
+  pageLoading.onloadend = function (e) {
+    //progressPercent.textContent = "100%";
+    progressBar.style.width = "100%";
+  }
+  pageLoading.send();
+
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
 }
@@ -886,11 +896,20 @@ if (form) {
 */
 
 window.onload = () => {
-  fadeIn();
+
   if (portfolio) {
+    const progressBar = document.querySelector('.overlay__progressBar--js');
+    setTimeout(() => {
+      fadeIn();
+      progressBar.classList.remove('overlay__progressBar--visible');
+    }, 1000);
     lazyLoad();
     window.addEventListener('scroll', throttle(() => lazyLoad(0), 1000));
+
+  } else {
+    fadeIn();
   }
+  
   if (about) {
     window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }

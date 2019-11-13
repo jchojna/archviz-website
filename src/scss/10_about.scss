@@ -1,15 +1,12 @@
 .about {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 100vh;
 }
 ///////////////////////////////////////////////////////////////////////// INFO 
 .info {
-  align-content: start;
   display: grid;
   flex-grow: 1;
-  justify-content: start;
   margin: auto;
   margin-bottom: 2em;
   max-width: $layout-container-width;
@@ -98,7 +95,6 @@
     color: $color-white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 1.5em 0;
 
     &--transition {

@@ -6,14 +6,14 @@
 .grid {
   display: grid;
   grid-auto-rows: $grid-item-height-sm;
-  grid-gap: $grid-gap-sm;
+  gap: $grid-gap-sm;
   grid-template-columns: repeat($grid-cols-sm, 1fr);
   width: 100%;
 
   &--flex { // portfolioJS
     display: flex;
     flex-wrap: wrap;
-    grid-gap: 0;
+    gap: 0;
   }
 
   &__item {
@@ -89,11 +89,11 @@
 
     & {
       grid-auto-rows: $grid-item-height-md;
-      grid-gap: $grid-gap-md;
+      gap: $grid-gap-md;
       grid-template-columns: repeat($grid-cols-md, 1fr);
 
       &--flex { // portfolioJS
-        grid-gap: 0;
+        gap: 0;
       }
 
       &__item {
@@ -176,11 +176,11 @@
     & {
 
       grid-auto-rows: $grid-item-height-lg;
-      grid-gap: $grid-gap-lg;
+      gap: $grid-gap-lg;
       grid-template-columns: repeat($grid-cols-lg, 1fr);
 
       &--flex { // portfolioJS
-        grid-gap: 0;
+        gap: 0;
       }
 
       &__svg-solid {

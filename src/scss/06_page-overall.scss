@@ -43,9 +43,11 @@ a {
   opacity: 0.5;
 }
 ///////////////////////////////////////////////////////////////// PAGE OVERLAY 
-.page-overlay {
+.overlay {
+  @include flex-center;
   background-color: #000;
   bottom: 0;
+  flex-direction: column;
   left: 0;
   opacity: 0;
   position: fixed;
@@ -53,7 +55,25 @@ a {
   top: 0;
   transition: visibility 0s $page-overlay, opacity $page-overlay;
   visibility: hidden;
-  z-index: 999;
+  z-index: 99;
+
+  &__percent {
+    font-size: 3em;
+    margin: 0;
+  }
+
+  &__progressBar {
+    align-self: flex-start;
+    background-color: #fff;
+    height: 10px;
+    width: 0;
+    transition: width 1s;
+    visibility: hidden;
+
+    &--visible {
+      visibility: visible;
+    }
+  }
 
   &--onload {
     opacity: 1;
