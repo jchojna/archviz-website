@@ -106,7 +106,8 @@
           transition: opacity $hover-grid-item ease-out,
         }
         
-        &:hover {
+        &:hover,
+        &:focus-within {
           &::after {
             opacity: 1;
           }
@@ -122,6 +123,10 @@
       }
 
       &__button {
+
+        & + h3 {
+          border: 1px solid #000;
+        }
     
         &::after {
           content: "";
@@ -136,7 +141,8 @@
           transition: opacity $hover-grid-item;
         }
     
-        &:hover {
+        &:hover,
+        &:focus {
           transform: scale($scale-grid-item);
     
           &::after {
