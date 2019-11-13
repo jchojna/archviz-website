@@ -36,13 +36,13 @@
   </head>
   <body>
     <div class="page-overlay page-overlay--onload page-overlay--js"></div>
-    <header class="header">
+    <header class="header" role="banner">
       <h1 class="header__heading visuallyhidden">
         Architectural Visualization
       </h1>
-      <nav class="main-menu main-menu--align-top">
+      <nav class="main-menu main-menu--align-top" role="navigation" aria-label="Main navigation">
         <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
-        <a href="index.html" class="logo fadeOut--js">
+        <a href="index.html" class="logo fadeOut--js" aria-label="Page logo">
           <svg class="logo__svg">
             <use xlink:href="assets/svg/icons.svg#page-logo" />
           </svg>
@@ -58,7 +58,7 @@
             <a href="contact.html" class="main-menu__link main-menu__link--large fadeOut--js">CONTACT</a>
           </li>
         </ul>
-        <button class="button burger burger--js" aria-label="open mobile menu">
+        <button class="button burger burger--js" aria-label="Toggle mobile menu">
           <svg class="burger__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <line
               class="burger__line burger__line--top burger__line--js-top"
@@ -74,11 +74,11 @@
             />
           </svg>
         </button>
-        <a href="#page-container" class="go-top go-top--js">
+        <a href="#page-container" class="go-top go-top--js" aria-label="Go to top">
           <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
         </a>
       </nav>
-      <nav class="mobile-menu mobile-menu--hidden mobile-menu--js">
+      <nav class="mobile-menu mobile-menu--hidden mobile-menu--js" role="navigation" aria-label="Mobile menu navigation">
         <h2 class="mobile-menu__heading visuallyhidden">Mobile Menu</h2>
         <ul class="mobile-menu__list">
           <li class="mobile-menu__item mobile-menu__item--js">
@@ -94,10 +94,8 @@
       </nav>
     </header>
     <div
-      id="page-container"
-      class="page-container page-container--main-page page-container--visible"
-    >
-      <main class="portfolio portfolio--js">
+      id="page-container" class="page-container page-container--main-page page-container--visible">
+      <main class="portfolio portfolio--js" role="main">
         <section class="grid grid--js">
           <h2 class="grid__heading visuallyhidden">Grid of Visualizations</h2>
           <!-- MUSEUM EXTENSION -->
@@ -1568,17 +1566,17 @@
           </section>
         </section>
         <section class="gallery gallery--js">
-          <header class="gallery__header">
+          <header class="gallery__header" role="banner">
             <h2 class="gallery__heading visuallyhidden">
               Gallery of Visualizations
             </h2>
-            <nav class="gallery-nav">
+            <nav class="gallery-nav" role="navigation" aria-label="Gallery navigation">
               <h3 class="gallery-nav__heading visuallyhidden">
                 Gallery navigation
               </h3>
               <ul class="gallery-nav__list">
                 <li class="gallery-nav__item">
-                  <button class="button gallery-nav__button switch gallery-nav__button--js-switch">
+                  <button class="button gallery-nav__button switch switch--disabled gallery-nav__button--js-switch" aria-label="Switch display mode">
                     <svg class="gallery-nav__svg switch__left" viewBox="0 0 512 512">
                       <use href="assets/svg/icons.svg#arrow-left" />
                     </svg>
@@ -1591,21 +1589,21 @@
                   </button>
                 </li>
                 <li class="gallery-nav__item">
-                  <button class="button gallery-nav__button gallery-nav__button--js-left">
+                  <button class="button gallery-nav__button gallery-nav__button--js-left" aria-label="Slide gallery left">
                     <svg class="gallery-nav__svg gallery-nav__svg--left-arrow" viewBox="0 0 512 512">
                       <use href="assets/svg/icons.svg#arrow-left" />
                     </svg>
                   </button>
                 </li>
                 <li class="gallery-nav__item">
-                  <button class="button gallery-nav__button gallery-nav__button--js-right">
+                  <button class="button gallery-nav__button gallery-nav__button--js-right" aria-label="Slide gallery right">
                     <svg class="gallery-nav__svg gallery-nav__svg--right-arrow" viewBox="0 0 512 512">
                       <use href="assets/svg/icons.svg#arrow-right" />
                     </svg>
                   </button>
                 </li>
                 <li class="gallery-nav__item">
-                  <button class="button gallery-nav__button gallery-nav__button--js-close">
+                  <button class="button gallery-nav__button gallery-nav__button--js-close" aria-label="Close gallery">
                     <svg class="gallery-nav__svg gallery-nav__svg--close" viewBox="0 0 512 512">
                       <use href="assets/svg/icons.svg#close" />
                     </svg>
@@ -1616,29 +1614,29 @@
           </header>
         </section>
       </main>
-      <footer class="footer">
+      <footer class="footer" role="contentinfo">
         <section class="footer__container">
           <h2 class="footer__heading visuallyhidden">Page Footer</h2>
-          <nav class="social">
+          <nav class="social" role="navigation" aria-label="Social media links">
             <h3 class="social__heading visuallyhidden">Social Media</h3>
             <ul class="social__list social__list--horizontal">
               <li class="social__item">
-                <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Behance profile link">
                   <i class="social__icon fab fa-behance-square"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Linkedin profile link">
                   <i class="social__icon fab fa-linkedin"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://github.com/jchojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://github.com/jchojna/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Github profile link">
                   <i class="social__icon fab fa-github-square"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank" rel="nofollow noreferrer">
+                <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Facebook profile link">
                   <i class="social__icon fab fa-facebook-square"></i>
                 </a>
               </li>

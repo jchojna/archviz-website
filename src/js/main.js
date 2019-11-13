@@ -18,6 +18,7 @@ const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
 
 const portfolioGridImages = document.querySelectorAll('.grid__image--js');
+const portfolioGridButtons = document.querySelectorAll('.grid__button--js');
 const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
 
 const tabletBreakpoint = 768;
@@ -387,7 +388,6 @@ if (gallery) {
   // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
 
   const showGallery = (e) => {
-
     
     // F0 ///////////////////////////// SET WITH AND HEIGHT OF IMAGE CONTAINER 
 
@@ -465,9 +465,11 @@ if (gallery) {
         if (image.complete) {
           switchButton.classList.add('switch--solid');
           switchCenter.classList.add('switch__center--solid');
+          switchButton.classList.remove('switch--disabled');
         } else {
           switchButton.classList.remove('switch--solid');
           switchCenter.classList.remove('switch__center--solid');
+          switchButton.classList.add('switch--disabled');
         }
       }
 
@@ -502,6 +504,7 @@ if (gallery) {
         case closeButton:
           switchCenter.classList.remove('switch__center--solid');
           switchButton.classList.remove('switch--solid');
+          switchButton.classList.add('switch--disabled');
           showImage();
           removeAllEvents();
           break;
@@ -531,6 +534,7 @@ if (gallery) {
           currentImage.classList.add('images__image--loaded');
           switchCenter.classList.add('switch__center--solid');
           switchButton.classList.add('switch--solid');
+          switchButton.classList.remove('switch--disabled');
 
           if (option === 'prev' || option === 'start') {
             index = loopIndexRange(imageSections, indexToDec, 'decrease');
@@ -550,6 +554,7 @@ if (gallery) {
           if (index === currentIndex) {
             switchCenter.classList.add('switch__center--solid');
             switchButton.classList.add('switch--solid');
+            switchButton.classList.remove('switch--disabled');
           }
 
           if (option === 'prev' || option === 'start') {
@@ -612,7 +617,6 @@ if (gallery) {
     let currentImageSection = imageSections[currentIndex];
     let currentImageContainer = imageContainers[currentIndex];
     let currentImageDescription = currentImageSection.firstElementChild;
-    let currentImage = images[currentIndex];
 
     // NAVIGATION
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
@@ -638,10 +642,10 @@ if (gallery) {
   ///////////////////////////////////////////////////////////// FUNCTION CALLS 
   gallery.children.length <= 1 ? generateGallery() : false;
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
-  [...portfolioGridImages].forEach((a, i) => {
-    a.index = i;
-    a.addEventListener('click', showGallery);
-  })
+  [...portfolioGridButtons].forEach((button, index) => {
+    button.index = index;
+    button.addEventListener('click', showGallery);
+  });
 }
 
 /*
@@ -688,11 +692,11 @@ if (about) {
   }
 
   const cards = document.querySelectorAll('.card--js');
-  const cardHeaders = document.querySelectorAll('.card__header--js');
+  const cardTitleButtons = document.querySelectorAll('.card__header-button--js');
   const cardDescriptions = document.querySelectorAll('.card__description--js');
   const cardDropdowns = document.querySelectorAll('.card__dropdown--js');
 
-  [...cardHeaders].forEach((a,i) => {
+  [...cardTitleButtons].forEach((a,i) => {
     a.index = i;
     a.addEventListener('click', handleCard);
   });

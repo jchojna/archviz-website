@@ -54,23 +54,29 @@
     fill: $color-background-light;
   }
 
-  &__header {
+  &__header-button {
     align-items: center;
     background-color: $color-background;
     border-bottom: 1px solid $color-white;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    padding: 1.2em 0 0.7em;
+    color: inherit;
+    display: grid;
+    grid-template-columns: $size-dropdown 1fr $size-dropdown;
+    padding: 1em 0;
     position: relative;
+    text-align: center;
     transition: color $hover-card, fill $hover-card;
-    user-select: none;
+    width: 100%;
+
+    &:focus {
+      color: $color-main;
+      fill: $color-main;
+    }
   }
 
-  &__heading {
+  &__title {
     font-size: 1.1em;
     font-weight: 600;
-    margin: 0;
+    grid-column-start: 2;
     pointer-events: none;
   }
 
@@ -127,9 +133,11 @@
       background-color $hover-icon,
       border-color $hover-icon;
 
-    &:active {
+    &:active,
+    &:focus {
       background-color: $color-main;
       border-color: transparent;
+      outline: none;
     }
   }
 
@@ -177,20 +185,22 @@
   &__item {
     @include flex-center;
     border-radius: 6px;
-    fill: $color-background;
     max-height: 10em;
     padding: 1em;
-    transition: fill $hover-icon;
     width: 100%;
-
-    &:active {
-      fill: #fff;
-    }
   }
 
   &__link {
     display: flex;
+    fill: $color-background;
+    transition: fill $hover-icon;
     width: 100%;
+
+    &:active,
+    &:focus {
+      fill: #fff;
+      outline: none;
+    }
   }
 
   &__svg {
@@ -205,7 +215,7 @@
       padding: $layout-md-offset;
     }
 
-    &__item:hover {
+    &__link:hover {
       fill: #fff;
     }
   }

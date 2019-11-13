@@ -240,7 +240,11 @@
   &--solid {
     fill: $color-main;
     stroke: $color-main;
+  }
 
+  &--disabled {
+    opacity: 0.3;
+    pointer-events: none;
   }
 
   &__center {

@@ -52,10 +52,10 @@
   &__svg-solid {
     display: block;
     fill: $color-main;
-
     height: 100%;
     min-height: $grid-item-height-sm;
     min-width: 100vw / $grid-cols-sm;
+    pointer-events: none;
 
     &--flex { // portfolioJS
       min-height: 0;
@@ -65,6 +65,7 @@
   }
   
   &__svg-line {
+    pointer-events: none;
     position: absolute;
     width: 100%;
   }
@@ -72,6 +73,7 @@
   &__image {
     height: 100%;
     opacity: 0;  
+    pointer-events: none;
     position: absolute;
     visibility: hidden;
     width: 100%;
@@ -104,7 +106,8 @@
           transition: opacity $hover-grid-item ease-out,
         }
         
-        &:hover {
+        &:hover,
+        &:focus-within {
           &::after {
             opacity: 1;
           }
@@ -120,6 +123,10 @@
       }
 
       &__button {
+
+        & + h3 {
+          border: 1px solid #000;
+        }
     
         &::after {
           content: "";
@@ -134,11 +141,16 @@
           transition: opacity $hover-grid-item;
         }
     
-        &:hover {
+        &:hover,
+        &:focus {
           transform: scale($scale-grid-item);
     
           &::after {
             opacity: 0;
+          }
+
+          .grid__image {
+            filter: saturate(100%);
           }
         }
       }
@@ -155,10 +167,6 @@
 
       &__image {
         filter: saturate(30%) brightness(0.7);
-
-        &:hover {
-          filter: saturate(100%);
-        }
       }
     }
   }
