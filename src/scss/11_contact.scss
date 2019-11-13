@@ -217,7 +217,13 @@
   }
 
   &__input {
-    display: none;
+    opacity: 0;
+    position: absolute;
+
+    &:focus + .checkbox__field {
+      border-color: $color-white;
+      outline: none;
+    }
   }
 
   &__field {
@@ -233,11 +239,6 @@
     &--hidden {
       opacity: 0;
       visibility: hidden;
-    }
-
-    &:focus {
-      border-color: $color-white;
-      outline: none;
     }
   }
 
