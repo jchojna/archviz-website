@@ -35,7 +35,10 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <div class="page-overlay page-overlay--onload page-overlay--js"></div>
+    <div class="overlay overlay--onload overlay--js">
+      <p class="overlay__percent overlay__percent--js"></p>
+      <div class="overlay__progressBar overlay__progressBar--js"></div>
+    </div>
     <header class="header" role="banner">
       <h1 class="header__heading visuallyhidden">
         Architectural Visualization
@@ -44,7 +47,7 @@
         <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
         <a href="index.html" class="logo fadeOut--js" aria-label="Page logo">
           <svg class="logo__svg">
-            <use xlink:href="assets/svg/icons.svg#page-logo" />
+            <use xlink:href="assets/svg/icons.svg#page-logo"></use>
           </svg>
         </a>
         <ul class="main-menu__list">
