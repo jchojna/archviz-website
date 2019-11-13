@@ -18,6 +18,7 @@ const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
 
 const portfolioGridImages = document.querySelectorAll('.grid__image--js');
+const portfolioGridButtons = document.querySelectorAll('.grid__button--js');
 const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
 
 const tabletBreakpoint = 768;
@@ -616,7 +617,6 @@ if (gallery) {
     let currentImageSection = imageSections[currentIndex];
     let currentImageContainer = imageContainers[currentIndex];
     let currentImageDescription = currentImageSection.firstElementChild;
-    let currentImage = images[currentIndex];
 
     // NAVIGATION
     const switchButton = document.querySelector('.gallery-nav__button--js-switch');
@@ -642,10 +642,10 @@ if (gallery) {
   ///////////////////////////////////////////////////////////// FUNCTION CALLS 
   gallery.children.length <= 1 ? generateGallery() : false;
   //////////////////////////////////////////////////////////// EVENT LISTENERS 
-  [...portfolioGridImages].forEach((a, i) => {
-    a.index = i;
-    a.addEventListener('click', showGallery);
-  })
+  [...portfolioGridButtons].forEach((button, index) => {
+    button.index = index;
+    button.addEventListener('click', showGallery);
+  });
 }
 
 /*
