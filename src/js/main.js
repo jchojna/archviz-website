@@ -208,13 +208,11 @@ if (portfolio) {
 
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
-  const portfolioGridLinks = document.querySelectorAll('.grid__button--js');
 
-  //const lazyPlaceholders = [...portfolioPlaceholders];
   let lazyLoadBuffer = 500;
   let lazyLoadPause = false;
 
-  const progressPercent = document.querySelector('.overlay__percent--js');
+  //const progressPercent = document.querySelector('.overlay__percent--js');
   const progressBar = document.querySelector('.overlay__progressBar--js');
   const url = window.location;
   const pageLoading = new XMLHttpRequest();
@@ -339,7 +337,7 @@ if (portfolio) {
     progressBar.style.width = "100%";
   }
   pageLoading.send();
-  
+
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
 }
@@ -898,13 +896,20 @@ if (form) {
 */
 
 window.onload = () => {
+
   if (portfolio) {
-    setTimeout(() => fadeIn(), 1000);
+    const progressBar = document.querySelector('.overlay__progressBar--js');
+    setTimeout(() => {
+      fadeIn();
+      progressBar.classList.remove('overlay__progressBar--visible');
+    }, 1000);
     lazyLoad();
     window.addEventListener('scroll', throttle(() => lazyLoad(0), 1000));
+
   } else {
     fadeIn();
   }
+  
   if (about) {
     window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }

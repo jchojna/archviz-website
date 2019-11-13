@@ -68,6 +68,11 @@ a {
     height: 10px;
     width: 0;
     transition: width 1s;
+    visibility: hidden;
+
+    &--visible {
+      visibility: visible;
+    }
   }
 
   &--onload {
