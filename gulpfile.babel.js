@@ -3,8 +3,6 @@
 import gulp from "gulp";
 import browserSync from "browser-sync";
 import sass from "gulp-sass";
-import autoprefixer from "autoprefixer";
-import postcss from "gulp-postcss";
 import sourcemaps from "gulp-sourcemaps";
 import notify from "gulp-notify";
 import plumber from "gulp-plumber";
@@ -73,11 +71,6 @@ gulp.task("sass", () => {
     .pipe(sourcemaps.init())
     .pipe(sass())
     .on("error", sass.logError)
-    .pipe(
-      postcss([
-        autoprefixer({ grid: true, browsers: ["> 5%", "last 4 versions"] })
-      ])
-    )
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("./dist/css"))
     .pipe(browserSync.stream());

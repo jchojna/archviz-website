@@ -1,3 +1,5 @@
+import "@babel/polyfill";
+
 const pageOverlay = document.querySelector('.overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
 const pageContainer = document.querySelector('.page-container--js');
