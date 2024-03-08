@@ -15,7 +15,7 @@ const portfolioSvgs = document.querySelectorAll('.grid__svg-solid--js');
 const tabletBreakpoint = 768;
 const desktopBreakpoint = 1200;
 
-// F0 ///////////////////////////////////////////////////////// FADE IN EFFECT 
+// F0 ///////////////////////////////////////////////////////// FADE IN EFFECT
 
 const fadeIn = () => {
   if (!pageOverlay.classList.contains('overlay--onload')) {
@@ -23,7 +23,7 @@ const fadeIn = () => {
   }
   pageOverlay.classList.remove('overlay--onload');
 }
-// F0 ////////////////////////////////////////// GO TO NEXT PAGE AFTER TIMEOUT 
+// F0 ////////////////////////////////////////// GO TO NEXT PAGE AFTER TIMEOUT
 
 const toNextPage = (e, callback, timeout) => {
   e.preventDefault();
@@ -33,17 +33,17 @@ const toNextPage = (e, callback, timeout) => {
     setTimeout(() => callback(linkClicked), timeout);
   }
 }
-// F0 ///////////////////////////////////////////////////////////// DELAY LINK 
+// F0 ///////////////////////////////////////////////////////////// DELAY LINK
 
 const delayLink = (element) => {
   window.location = element.href;
 }
-// F0 /////////////////////////////////////////////////// GET TWO-DIGIT NUMBER 
+// F0 /////////////////////////////////////////////////// GET TWO-DIGIT NUMBER
 
 const getTwoDigit = (number) => {
   return number.toString().length === 1 ? `0${number}` : number;
 }
-// F0 /////////////////////////////////////////////////////// LOOP INDEX RANGE 
+// F0 /////////////////////////////////////////////////////// LOOP INDEX RANGE
 const loopIndexRange = (collection, index, action) => {
 
   const maxIndex = collection.length - 1;
@@ -53,7 +53,7 @@ const loopIndexRange = (collection, index, action) => {
     return index <= 0 ? maxIndex : --index;
   }
 }
-////////////////////////////////////////////////////////////// EVENT LISTENERS 
+////////////////////////////////////////////////////////////// EVENT LISTENERS
 for ( const link of fadeOutLinks ) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
 }
@@ -134,7 +134,7 @@ const throttle = (func, wait, options) => {
 ##     ## ######## ##    ##  #######
 */
 
-// F0 ///////////////////////////////////////////////////// TOGGLE MOBILE MENU 
+// F0 ///////////////////////////////////////////////////// TOGGLE MOBILE MENU
 
 const toggleMobileMenu = () => {
   mobileMenu.classList.toggle('mobile-menu--hidden');
@@ -142,7 +142,7 @@ const toggleMobileMenu = () => {
   burgerCenter.classList.toggle('burger__line--rotate-right');
   burgerBottom.classList.toggle('burger__line--rotate-left');
 }
-// F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR 
+// F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR
 
 const handleNavbar = () => {
   const navbarNextScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -170,7 +170,7 @@ const handleNavbar = () => {
 
 window.addEventListener('scroll', handleNavbar);
 
-// F0 /////////////////////////////////////////////////////// GO TO TOP BUTTON 
+// F0 /////////////////////////////////////////////////////// GO TO TOP BUTTON
 
 const toggleGoTopButton = () => {
   let scroll = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
@@ -180,7 +180,7 @@ const toggleGoTopButton = () => {
     goToTopButton.classList.remove('go-top--visible');
   }
 }
-//////////////////////////////////////////////////////////////////// VARIABLES 
+//////////////////////////////////////////////////////////////////// VARIABLES
 const mobileMenu = document.querySelector('.mobile-menu--js');
 const burgerButton = document.querySelector('.burger--js');
 const burgerTop = document.querySelector('.burger__line--js-top');
@@ -190,7 +190,7 @@ const goToTopButton = document.querySelector('.go-top--js');
 const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
 let navbarPrevScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-////////////////////////////////////////////////////////////// EVENT LISTENERS 
+////////////////////////////////////////////////////////////// EVENT LISTENERS
 window.addEventListener('scroll', toggleGoTopButton );
 burgerButton.addEventListener('click', toggleMobileMenu );
 
@@ -206,7 +206,7 @@ burgerButton.addEventListener('click', toggleMobileMenu );
 
 if (portfolio) {
 
-  ////////////////////////////////////////////////////////////////// VARIABLES 
+  ////////////////////////////////////////////////////////////////// VARIABLES
 
   const portfolioGrid = document.querySelector('.grid--js');
   const portfolioGridItems = document.querySelectorAll('.grid__item--js');
@@ -219,12 +219,12 @@ if (portfolio) {
   const url = window.location;
   const pageLoading = new XMLHttpRequest();
 
-  // F0 ///////////////////////////////////////////// GET VIEWPORT WIDTH VALUE 
+  // F0 ///////////////////////////////////////////// GET VIEWPORT WIDTH VALUE
 
   const getViewportWidth = () => {
     return window.innerWidth || document.documentElement.clientWidth;
   }
-  // F0 ///////////////////// SET ASPECT RATIOS (WIDTH / HEIGHT) OF EACH IMAGE 
+  // F0 ///////////////////// SET ASPECT RATIOS (WIDTH / HEIGHT) OF EACH IMAGE
 
   const setAspectRatios = () => {
     const ratios = [];
@@ -233,7 +233,7 @@ if (portfolio) {
     };
     return ratios;
   }
-  // F0 ///////////////////////////////////////////////////// ADD FLEX CLASSES 
+  // F0 ///////////////////////////////////////////////////// ADD FLEX CLASSES
 
   const addFlexClasses = () => {
     portfolioGrid.classList.add('grid--flex');
@@ -241,7 +241,7 @@ if (portfolio) {
       svg.classList.add('grid__svg-solid--flex');
     }
   }
-  // F1 //////////////////////////////////////////// SET WIDTH OF EACH WRAPPER 
+  // F1 //////////////////////////////////////////// SET WIDTH OF EACH WRAPPER
 
   const setFlexBasis = () => {
     const viewportWidth = getViewportWidth();
@@ -282,14 +282,14 @@ if (portfolio) {
       }
     }
   }
-  // F1 ///////////////////////////////////////////////////////// LAZY LOADING 
+  // F1 ///////////////////////////////////////////////////////// LAZY LOADING
 
   var lazyLoad = (imageIndex) => {
     // when there's no argument passed
     if (!imageIndex) imageIndex = 0;
     // quit if number exceed total no. of items
     if (imageIndex === portfolioGridItems.length) return;
-  
+
     const image = portfolioGridImages[imageIndex];
     const imageOffset = portfolioGridItems[imageIndex].offsetTop;
     const viewportTopOffset = window.pageYOffset - lazyLoadBuffer;
@@ -320,8 +320,8 @@ if (portfolio) {
     }
   }
 
-  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
-  
+  ///////////////////////////////////////////////////////////// FUNCTION CALLS
+
   pageLoading.open("GET", url, true);
   pageLoading.onprogress = (e) => {
     if (e.lengthComputable) {
@@ -356,7 +356,7 @@ if (portfolio) {
 
 if (gallery) {
 
-  // F0 ///////////////////////////////////////////////////// GENERATE GALLERY 
+  // F0 ///////////////////////////////////////////////////// GENERATE GALLERY
 
   const generateGallery = () => {
     const imagesAmount = portfolioGridImages.length;
@@ -371,7 +371,7 @@ if (gallery) {
       const viewBoxWidth = svg.viewBox.baseVal.width;
       const viewBoxHeight = svg.viewBox.baseVal.height;
       const number = getTwoDigit(i + 1);
-      
+
       gallery.innerHTML += `
       <section class="images images--js">
         <div class="images__description">
@@ -397,22 +397,22 @@ if (gallery) {
       `;
     }
   }
-  // F2 ///////////////////////////////////////////////////////// SHOW GALLERY 
+  // F2 ///////////////////////////////////////////////////////// SHOW GALLERY
 
   const showGallery = (e) => {
-    
-    // F0 ///////////////////////////// SET WITH AND HEIGHT OF IMAGE CONTAINER 
+
+    // F0 ///////////////////////////// SET WITH AND HEIGHT OF IMAGE CONTAINER
 
     const setImageSize = () => {
       currentImageContainer = imageContainers[currentIndex];
       const currentSvg = svgs[currentIndex];
-      
+
       const {width, height} = currentSvg.viewBox.baseVal;
       const {innerWidth, innerHeight} = window;
       const heightOffset = innerWidth >= desktopBreakpoint ? 150
       : innerWidth >= tabletBreakpoint ? 120
       : 80;
-      
+
       const areaHeight = innerHeight - heightOffset;
       const svgAspectRatio = width / height;
       const areaAspectRatio = innerWidth / areaHeight;
@@ -425,7 +425,7 @@ if (gallery) {
         currentImageContainer.style.height = `${areaHeight}px`;
       }
     }
-    // F1 ///////////////////////////////////////// SHOW IMAGE << SHOW GALLERY 
+    // F1 ///////////////////////////////////////// SHOW IMAGE << SHOW GALLERY
 
     const showImage = () => {
       gallery.classList.toggle('gallery--visible');
@@ -442,7 +442,7 @@ if (gallery) {
         lazyLoadImage(currentIndex, 'start', 2);
       }
     }
-    // F1 ////////////////////////////// HANDLE CLASSES CHANGE << SHOW GALLERY 
+    // F1 ////////////////////////////// HANDLE CLASSES CHANGE << SHOW GALLERY
 
     const handleClassesChange = (direction) => {
       const opposite = direction === 'left' ? 'right' : 'left';
@@ -467,7 +467,7 @@ if (gallery) {
       currentImageContainer.classList.add('images__container--visible');
       currentImageContainer.classList.add(`images__container--visible-from-${direction}`);
     }
-    // F2 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY 
+    // F2 ///////////////////////////////////////// VIEW IMAGE << SHOW GALLERY
 
     const viewImage = (e) => {
       const self = e.keyCode || e.target;
@@ -511,7 +511,7 @@ if (gallery) {
             switchCenter.classList.toggle('switch__center--solid');
           }
           break;
-        
+
         case 27:
         case closeButton:
           switchCenter.classList.remove('switch__center--solid');
@@ -525,7 +525,7 @@ if (gallery) {
           return;
       }
     }
-    // F1 //////////////////////////////////// LAZY LOAD IMAGE << SHOW GALLERY 
+    // F1 //////////////////////////////////// LAZY LOAD IMAGE << SHOW GALLERY
 
     const lazyLoadImage = (index, option, amount) => {
 
@@ -540,7 +540,7 @@ if (gallery) {
         currentImage.src = currentImageSrc;
 
       } else if (currentImage.complete) {
-        
+
         if (amount > 0) {
           amount--;
           currentImage.classList.add('images__image--loaded');
@@ -581,7 +581,7 @@ if (gallery) {
         }
       }
     }
-    // F1 ///////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY 
+    // F1 ///////////////////////////// SLIDE IMAGE VERTICALLY << SHOW GALLERY
 
     const slideVertically = () => {
 
@@ -593,7 +593,7 @@ if (gallery) {
       }
 
       if (nextScroll !== prevScroll) {
-        
+
         if (nextScroll > prevScroll) {
           currentImageSection.classList.add("images--hidden-top");
         } else {
@@ -610,14 +610,14 @@ if (gallery) {
         prevScroll = null;
       }
     }
-    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY 
+    // F0 ////////////////////////////////////// REMOVE EVENTS << SHOW GALLERY
 
     const removeAllEvents = () => {
       gallery.removeEventListener('click', viewImage);
       window.removeEventListener('keydown', viewImage);
       window.removeEventListener('scroll', slideVertically);
     }
-    //////////////////////////////////////////////// VARIABLES << SHOW GALLERY 
+    //////////////////////////////////////////////// VARIABLES << SHOW GALLERY
     // INDEX
     const self = e.target;
     let currentIndex = self.index;
@@ -637,23 +637,23 @@ if (gallery) {
     const closeButton  = document.querySelector('.gallery-nav__button--js-close');
     const switchCenter = document.querySelector('.switch__center--js');
 
-    /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY 
+    /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY
     setImageSize();
     showImage();
 
-    ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY 
+    ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY
     gallery.addEventListener('click', viewImage);
     window.addEventListener('keydown', viewImage);
     window.addEventListener('scroll', slideVertically);
     window.addEventListener('resize', setImageSize)
   }
-  // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY 
+  // F2 ////////////////////////////////////////////////// END OF SHOW GALLERY
 
-  ////////////////////////////////////////////////////////////////// VARIABLES 
+  ////////////////////////////////////////////////////////////////// VARIABLES
   let prevScroll = null;
-  ///////////////////////////////////////////////////////////// FUNCTION CALLS 
+  ///////////////////////////////////////////////////////////// FUNCTION CALLS
   gallery.children.length <= 1 ? generateGallery() : false;
-  //////////////////////////////////////////////////////////// EVENT LISTENERS 
+  //////////////////////////////////////////////////////////// EVENT LISTENERS
   [...portfolioGridButtons].forEach((button, index) => {
     button.index = index;
     button.addEventListener('click', showGallery);
@@ -671,7 +671,7 @@ if (gallery) {
 */
 
 if (about) {
-  
+
   var minimizeCards = () => {
     [...cards].forEach(c=>c.classList.toggle('card--rolled-up'));
     [...cardDescriptions].forEach(c=>c.style.marginTop=`${(-1)*c.clientHeight-3}px`);
@@ -695,7 +695,7 @@ if (about) {
     : "0px";
     dropdown.classList.toggle('card__dropdown--reversed');
   }
-  
+
   const handleCardsOnResize = () => {
     [...cardDescriptions].forEach(c => c.style.marginTop =
     c.style.marginTop === "0px" || c.style.marginTop === ""
@@ -788,7 +788,7 @@ if (form) {
       url: "form-handler.php",
       type: 'post',
       dataType: 'json',
-      data: 
+      data:
       {
         "submit": formSubmit,
         "userName": userName,
@@ -851,7 +851,7 @@ if (form) {
     }
   }
 
-  ////////////////////////////////////////////////////////////////// VARIABLES 
+  ////////////////////////////////////////////////////////////////// VARIABLES
   const checkboxes = document.querySelectorAll('.checkbox__input--js');
   const checkboxMarks = document.querySelectorAll('.checkbox__mark--js');
   const formInputs = document.querySelectorAll('.input__data--js');
@@ -866,7 +866,7 @@ if (form) {
   const alertMessage = document.querySelector('.alert__message--js');
   const alertClose = document.querySelector('.alert__button--js-close');
   let alertTimeoutId;
-  //////////////////////////////////////////////////////////// EVENT LISTENERS 
+  //////////////////////////////////////////////////////////// EVENT LISTENERS
   formSubmitButton.addEventListener('click', validateForm);
   alertClose.addEventListener('click', () => {
     alert.classList.remove("alert--visible");
@@ -876,10 +876,10 @@ if (form) {
     checkbox.index = index;
     checkbox.addEventListener('click', handleCheckboxes);
   });
-  /////////////////////////////////////////////////////// HANDLE LOCAL STORAGE 
+  /////////////////////////////////////////////////////// HANDLE LOCAL STORAGE
 
   // CONTACT FORM LOCAL STORAGE FUNCTIONALITY
-  /* 
+  /*
   [...formInputs].forEach(input => {
     const key = `jc-${input.getAttribute('id')}`;
     input.value = localStorage.getItem(key) ? localStorage.getItem(key) : "";
@@ -911,7 +911,7 @@ window.onload = () => {
   } else {
     fadeIn();
   }
-  
+
   if (about) {
     window.innerWidth < tabletBreakpoint ? minimizeCards() : false;
   }
