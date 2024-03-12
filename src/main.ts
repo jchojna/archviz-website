@@ -956,17 +956,57 @@ if (form) {
   });
   */
 }
-/*
- #######  ##    ## ##        #######     ###    ########
-##     ## ###   ## ##       ##     ##   ## ##   ##     ##
-##     ## ####  ## ##       ##     ##  ##   ##  ##     ##
-##     ## ## ## ## ##       ##     ## ##     ## ##     ##
-##     ## ##  #### ##       ##     ## ######### ##     ##
-##     ## ##   ### ##       ##     ## ##     ## ##     ##
- #######  ##    ## ########  #######  ##     ## ########
-*/
+
+import visualizations from './visualizations.json';
+
+type Visualization = {
+  title: string;
+  description: string;
+  viewBox: { width: number; height: number };
+  filename: string;
+};
+
+const visualization = ({
+  title,
+  description,
+  viewBox: { width, height },
+  filename,
+}: Visualization) => `
+  <section class="grid__item grid__item--js">
+    <h3 class="grid__title grid__title--js">${title}</h3>
+    <button class="button grid__button grid__button--js">
+      <svg
+        class="grid__svg-solid grid__svg-solid--js"
+        viewBox="0 0 ${width} ${height}"
+      >
+        <use href="svg/placeholders.svg#${filename}-solid" />
+      </svg>
+      <svg class="grid__svg-line" viewBox="0 0 ${width} ${height}">
+        <use href="svg/placeholders.svg#${filename}-line" />
+      </svg>
+      <img
+        src="img/blank.PNG"
+        data-src="img/1000px/${filename}.jpg"
+        data-src2="img/1920px/${filename}.jpg"
+        class="grid__image grid__image--js"
+        alt="${description}"
+      />
+    </button>
+  </section>
+`;
+
+const generateImages = () => {
+  const grid = document.querySelector('.grid--js');
+  grid.innerHTML = '';
+
+  visualizations.forEach((viz) => {
+    grid.innerHTML += visualization(viz);
+  });
+};
 
 window.onload = () => {
+  generateImages();
+
   if (portfolio) {
     const progressBar = document.querySelector('.overlay__progressBar--js');
     setTimeout(() => {

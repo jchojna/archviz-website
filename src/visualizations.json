@@ -1,0 +1,641 @@
+[
+  {
+    "title": "Museum Extension",
+    "viewBox": {
+      "height": 826,
+      "width": 1000
+    },
+    "filename": "museum-finland-01",
+    "description": "National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
+  },
+  {
+    "title": "Adlestrop House",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "adlestrop-house",
+    "description": "Adlestrop House - interior view, UK | client: Michaelis Boyd"
+  },
+  {
+    "title": "Science Center",
+    "viewBox": {
+      "height": 1200,
+      "width": 1000
+    },
+    "filename": "science-center-exterior",
+    "description": "Science Center Concept - interior view | client: Outpost"
+  },
+  {
+    "title": "Forest House",
+    "viewBox": {
+      "height": 575,
+      "width": 1000
+    },
+    "filename": "forest-house",
+    "description": "Forest House for a Birdwatcher | personal work"
+  },
+  {
+    "title": "Twickenham Riverside",
+    "viewBox": {
+      "height": 750,
+      "width": 1000
+    },
+    "filename": "twickenham-02",
+    "description": "Twickenham Riverside Concept, London, UK"
+  },
+  {
+    "title": "Residential Building",
+    "viewBox": {
+      "height": 625,
+      "width": 1000
+    },
+    "filename": "large-residential-01",
+    "description": "Large residential building | client: PRES"
+  },
+  {
+    "title": "Lakes & Dales",
+    "viewBox": {
+      "height": 452,
+      "width": 1000
+    },
+    "filename": "lakes-dales-interior",
+    "description": "Lakes & Dales - interior view, UK | client: Outpost"
+  },
+  {
+    "title": "Museum Extension",
+    "viewBox": {
+      "height": 826,
+      "width": 1000
+    },
+    "filename": "museum-finland-03",
+    "description": "National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
+  },
+  {
+    "title": "Holiday Let",
+    "viewBox": {
+      "height": 544,
+      "width": 1000
+    },
+    "filename": "holiday-let",
+    "description": "Two holiday lets in the Sussex countryside, UK | client: SG Architecture"
+  },
+  {
+    "title": "General Aviation Terminal",
+    "viewBox": {
+      "height": 640,
+      "width": 1000
+    },
+    "filename": "general-aviation-01",
+    "description": "General Aviation Terminal Concept in Góraszka, Poland | Bachelor Thesis on WAPW"
+  },
+  {
+    "title": "Science Centre",
+    "viewBox": {
+      "height": 1291,
+      "width": 1000
+    },
+    "filename": "science-centre-01",
+    "description": "Science Centre in Ljubljana, Slovenia | client: Terroir"
+  },
+  {
+    "title": "Kindergarten",
+    "viewBox": {
+      "height": 1297,
+      "width": 1000
+    },
+    "filename": "kindergarten-04",
+    "description": "Kindergarten competition in Kočevje, Slovenia | 1st Prize | client: Svet Vmes"
+  },
+  {
+    "title": "Lund's Town Hall",
+    "viewBox": {
+      "height": 736,
+      "width": 1000
+    },
+    "filename": "lunds-stadshall-01",
+    "description": "Town Hall Renovation Concept in Lund, Sweden | client: Terroir"
+  },
+  {
+    "title": "Faculty of Mechanical Engineering",
+    "viewBox": {
+      "height": 448,
+      "width": 1000
+    },
+    "filename": "faculty-buildings-01",
+    "description": "Faculty of Mechanical Engineering in Ljubljana, Slovenia | client: Svet Vmes & Terroir"
+  },
+  {
+    "title": "Faculty of Pharmacy",
+    "viewBox": {
+      "height": 448,
+      "width": 1000
+    },
+    "filename": "faculty-buildings-02",
+    "description": "Faculty of Pharmacy in Ljubljana, Slovenia | client: Svet Vmes & Terroir"
+  },
+  {
+    "title": "Water Tower",
+    "viewBox": {
+      "height": 500,
+      "width": 1000
+    },
+    "filename": "watertower-01",
+    "description": "Water Tower in Denmark - view on the concrete structure | client: AFI"
+  },
+  {
+    "title": "Science Center",
+    "viewBox": {
+      "height": 699,
+      "width": 1000
+    },
+    "filename": "science-center-interior",
+    "description": "Science Center Concept - interior view | client: Outpost"
+  },
+  {
+    "title": "Residential Building",
+    "viewBox": {
+      "height": 600,
+      "width": 1000
+    },
+    "filename": "large-residential-02",
+    "description": "Large residential building | client: PRES"
+  },
+  {
+    "title": "Parametric Pavilion",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "parametric-pavilion-01",
+    "description": "Parametric Pavilion generated in Grasshopper and Kangaroo | personal work"
+  },
+  {
+    "title": "Bramley Road",
+    "viewBox": {
+      "height": 460,
+      "width": 1000
+    },
+    "filename": "bramley-road",
+    "description": "Interior renovation at Bramley Rd, London, UK | client: SG Architecture"
+  },
+  {
+    "title": "Zodiak Square",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "zodiak-square-01",
+    "description": "Zodiak Square Concept in Warsaw, Poland | competition entry"
+  },
+  {
+    "title": "Footbridge",
+    "viewBox": {
+      "height": 550,
+      "width": 1000
+    },
+    "filename": "footbridge-01",
+    "description": "Footbridge over the Soca River in Slovenia | client: Svet Vmes"
+  },
+  {
+    "title": "LightWeb",
+    "viewBox": {
+      "height": 500,
+      "width": 1000
+    },
+    "filename": "clue-light-01",
+    "description": "LightWeb light installation | Clue Light competition entry"
+  },
+  {
+    "title": "Twickenham Riverside",
+    "viewBox": {
+      "height": 723,
+      "width": 1000
+    },
+    "filename": "twickenham-01",
+    "description": "Twickenham Riverside Concept, London, UK"
+  },
+  {
+    "title": "Kindergarten",
+    "viewBox": {
+      "height": 583,
+      "width": 1000
+    },
+    "filename": "kindergarten-01",
+    "description": "Kindergarten competition in Kočevje, Slovenia | 1st Prize | client: Svet Vmes"
+  },
+  {
+    "title": "h2ouse",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "h2ouse-03",
+    "description": "h2Ouse - house on the water for flood victims | personal work"
+  },
+  {
+    "title": "Lund's Town Hall",
+    "viewBox": {
+      "height": 729,
+      "width": 1000
+    },
+    "filename": "lunds-stadshall-02",
+    "description": "Town Hall Renovation Concept in Lund, Sweden | client: Terroir"
+  },
+  {
+    "title": "Quick Park Konstancin",
+    "viewBox": {
+      "height": 540,
+      "width": 1000
+    },
+    "filename": "quick-park-konstancin-01",
+    "description": "Quick Park near Konstancin-Jeziorna, Poland | foodcourt zone | client: Mofo Architekci"
+  },
+  {
+    "title": "Quick Park Konstancin",
+    "viewBox": {
+      "height": 540,
+      "width": 1000
+    },
+    "filename": "quick-park-konstancin-02",
+    "description": "Quick Park near Konstancin-Jeziorna, Poland | foodcourt zone | client: Mofo Architekci"
+  },
+  {
+    "title": "Water Tower",
+    "viewBox": {
+      "height": 435,
+      "width": 1000
+    },
+    "filename": "watertower-02",
+    "description": "Water Tower in Denmark - view on the concrete structure | client: AFI"
+  },
+  {
+    "title": "Public Space Furniture",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "public-space-furniture-gdynia-01",
+    "description": "Signpost - Furniture in Public Space | prototype created for Gdynia Weekend of Architecture | in collaboration with Piotr Gniewek"
+  },
+  {
+    "title": "Elementary Shapes",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "elementary-shapes-01",
+    "description": "7 Frames - Furniture in Public Space | prototype created for Gdynia Weekend of Architecture | in collaboration with Piotr Gniewek"
+  },
+  {
+    "title": "The Runway",
+    "viewBox": {
+      "height": 400,
+      "width": 1000
+    },
+    "filename": "the-runway",
+    "description": "The Runway - Aviation Museum in Finland | client: AFI"
+  },
+  {
+    "title": "Hotel & Spa",
+    "viewBox": {
+      "height": 560,
+      "width": 1000
+    },
+    "filename": "hotel-spa-irena-eris",
+    "description": "Pool in the Hotel & Spa Irena Eris | client: Atelier 3 Girtler & Girtler"
+  },
+  {
+    "title": "Toruń",
+    "viewBox": {
+      "height": 600,
+      "width": 1000
+    },
+    "filename": "shopping-gallery-torun-02",
+    "description": "Shopping Mall in Toruń, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Kindergarten",
+    "viewBox": {
+      "height": 820,
+      "width": 1000
+    },
+    "filename": "kindergarten-03",
+    "description": "Kindergarten competition in Kočevje, Slovenia | 1st Prize | client: Svet Vmes"
+  },
+  {
+    "title": "Bathroom",
+    "viewBox": {
+      "height": 775,
+      "width": 1000
+    },
+    "filename": "bathroom-01",
+    "description": "Bathroom interior design in retro style | client: Paulina Dziedzic"
+  },
+  {
+    "title": "Coworking Space",
+    "viewBox": {
+      "height": 540,
+      "width": 1000
+    },
+    "filename": "coworking-space-01",
+    "description": "Coworking Space Concept in Warsaw, Poland | Master Thesis on WAPW"
+  },
+  {
+    "title": "Kindergarten",
+    "viewBox": {
+      "height": 482,
+      "width": 1000
+    },
+    "filename": "kindergarten-02",
+    "description": "Kindergarten competition in Kočevje, Slovenia | 1st Prize | client: Svet Vmes"
+  },
+  {
+    "title": "Public Space Furniture",
+    "viewBox": {
+      "height": 1083,
+      "width": 1000
+    },
+    "filename": "public-space-furniture-opole-02",
+    "description": "Public furniture concept located along famous walk of fame in Opole, Poland | 4th prize at the competition | in collaboration with Piotr Gniewek"
+  },
+  {
+    "title": "Footbridge",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "footbridge-03",
+    "description": "Footbridge over the Soca River in Slovenia | client: Svet Vmes"
+  },
+  {
+    "title": "h3ouse",
+    "viewBox": {
+      "height": 818,
+      "width": 1000
+    },
+    "filename": "h2ouse-01",
+    "description": "h2Ouse - house on the water for flood victims | personal work"
+  },
+  {
+    "title": "h3ouse",
+    "viewBox": {
+      "height": 818,
+      "width": 1000
+    },
+    "filename": "h2ouse-02",
+    "description": "h2Ouse - house on the water for flood victims | personal work"
+  },
+  {
+    "title": "Science Centre",
+    "viewBox": {
+      "height": 626,
+      "width": 1000
+    },
+    "filename": "science-centre-02",
+    "description": "Science Centre in Ljubljana, Slovenia | client: Terroir"
+  },
+  {
+    "title": "General Aviation Terminal",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "general-aviation-02",
+    "description": "General Aviation Terminal Concept in Góraszka, Poland | Bachelor Thesis on WAPW"
+  },
+  {
+    "title": "Science Centre",
+    "viewBox": {
+      "height": 500,
+      "width": 1000
+    },
+    "filename": "science-centre-03",
+    "description": "Science Centre in Ljubljana, Slovenia | client: Terroir"
+  },
+  {
+    "title": "Residential Building",
+    "viewBox": {
+      "height": 667,
+      "width": 1000
+    },
+    "filename": "residential-building-01",
+    "description": "Courtyard of residential building Rakowicka in Warsaw, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Public Space Furniture",
+    "viewBox": {
+      "height": 657,
+      "width": 1000
+    },
+    "filename": "public-space-furniture-opole-01",
+    "description": "Public furniture concept located along famous walk of fame in Opole, Poland | 4th prize at the competition | in collaboration with Piotr Gniewek"
+  },
+  {
+    "title": "Parametric Pavilion",
+    "viewBox": {
+      "height": 1000,
+      "width": 1000
+    },
+    "filename": "parametric-pavilion-02",
+    "description": "Parametric Pavilion generated in Grasshopper and Kangaroo | personal work"
+  },
+  {
+    "title": "Zodiak Square",
+    "viewBox": {
+      "height": 756,
+      "width": 1000
+    },
+    "filename": "zodiak-square-02",
+    "description": "Zodiak Square Concept in Warsaw, Poland | competition entry"
+  },
+  {
+    "title": "Frankfurt am Main",
+    "viewBox": {
+      "height": 667,
+      "width": 1000
+    },
+    "filename": "frankfurt-am-main-01",
+    "description": "Urban planning design in Frankfurt am Main, Germany | client: Bartłomiej Matuszewski"
+  },
+  {
+    "title": "Museum Extension",
+    "viewBox": {
+      "height": 969,
+      "width": 1000
+    },
+    "filename": "museum-finland-02",
+    "description": "National Museum of Finland - extension concept, Helsinki, Finland | client: Terroir"
+  },
+  {
+    "title": "Libero Gallery",
+    "viewBox": {
+      "height": 600,
+      "width": 1000
+    },
+    "filename": "gallery-libero",
+    "description": "Shopping Center in Katowice, Poland | relax zone | client: Mofo Architekci"
+  },
+  {
+    "title": "Residential Building",
+    "viewBox": {
+      "height": 667,
+      "width": 1000
+    },
+    "filename": "residential-building-02",
+    "description": "Exterior of residential building Rakowicka in Warsaw, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Public Space Furniture",
+    "viewBox": {
+      "height": 625,
+      "width": 1000
+    },
+    "filename": "public-space-furniture-gdynia-02",
+    "description": "Signpost - Furniture in Public Space | prototype created for Gdynia Weekend of Architecture | in collaboration with Piotr Gniewek"
+  },
+  {
+    "title": "Tomaszów Mazowiecki",
+    "viewBox": {
+      "height": 700,
+      "width": 1000
+    },
+    "filename": "tomaszow-mazowiecki-01",
+    "description": "Shopping Center in Tomaszów Mazowiecki, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Quick Park Konstancin",
+    "viewBox": {
+      "height": 685,
+      "width": 1000
+    },
+    "filename": "quick-park-konstancin-05",
+    "description": "Quick Park near Konstancin-Jeziorna, Poland | interior | client: Mofo Architekci"
+  },
+  {
+    "title": "Tennis Centre",
+    "viewBox": {
+      "height": 500,
+      "width": 1000
+    },
+    "filename": "tennis-center-konstancin-01",
+    "description": "Tennis Centre near Konstancin-Jeziorna, client: Mofo Architekci"
+  },
+  {
+    "title": "Quick Park Konstancin",
+    "viewBox": {
+      "height": 700,
+      "width": 1000
+    },
+    "filename": "quick-park-konstancin-04",
+    "description": "Quick Park near Konstancin-Jeziorna, Poland | foodcourt zone | client: Mofo Architekci"
+  },
+  {
+    "title": "Wiślanka Gallery",
+    "viewBox": {
+      "height": 676,
+      "width": 1000
+    },
+    "filename": "gallery-wislanka-01",
+    "description": "Wiślanka shopping gallery in Żory, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Bedroom",
+    "viewBox": {
+      "height": 750,
+      "width": 1000
+    },
+    "filename": "bedroom-01",
+    "description": "Bedroom | client: Ola Wołczyk-Perłak"
+  },
+  {
+    "title": "Bedroom",
+    "viewBox": {
+      "height": 707,
+      "width": 1000
+    },
+    "filename": "bedroom-02",
+    "description": "Bedroom | client: Ola Wołczyk-Perłak"
+  },
+  {
+    "title": "Quick Park Turek",
+    "viewBox": {
+      "height": 634,
+      "width": 1000
+    },
+    "filename": "quick-park-turek-02",
+    "description": "Quick Park in Turek at night, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Bargework",
+    "viewBox": {
+      "height": 625,
+      "width": 1000
+    },
+    "filename": "bargework-01",
+    "description": "Bargework - office on the water competition | honourable mention"
+  },
+  {
+    "title": "Quick Park Turek",
+    "viewBox": {
+      "height": 520,
+      "width": 1000
+    },
+    "filename": "quick-park-turek-01",
+    "description": "Quick Park in Turek, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Sport Hall",
+    "viewBox": {
+      "height": 493,
+      "width": 1000
+    },
+    "filename": "sport-hall-01",
+    "description": "Sport hall concept in Polkowice, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Color Park",
+    "viewBox": {
+      "height": 520,
+      "width": 1000
+    },
+    "filename": "color-park-01",
+    "description": "Color Park Shopping Mall in Nowy Targ, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Underground Passage",
+    "viewBox": {
+      "height": 700,
+      "width": 1000
+    },
+    "filename": "underground-pedestrian-passage-02",
+    "description": "Pedestrian underpass renovation concept in Warsaw city centre, Poland | client: Natalia Wilczak"
+  },
+  {
+    "title": "Tomaszów Mazowiecki",
+    "viewBox": {
+      "height": 674,
+      "width": 1000
+    },
+    "filename": "tomaszow-mazowiecki-02",
+    "description": "Shopping Center in Tomaszów Mazowiecki, Poland | client: Mofo Architekci"
+  },
+  {
+    "title": "Quick Park Konstancin",
+    "viewBox": {
+      "height": 563,
+      "width": 1000
+    },
+    "filename": "quick-park-konstancin-03",
+    "description": "Quick Park near Konstancin-Jeziorna, Poland | aerial view | client: Mofo Architekci"
+  },
+  {
+    "title": "Toruń",
+    "viewBox": {
+      "height": 427,
+      "width": 1000
+    },
+    "filename": "torun-shopping-gallery-01",
+    "description": "Shopping Mall in Toruń, Poland | client: Mofo Architekci"
+  }
+]
