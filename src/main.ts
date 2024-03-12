@@ -1,8 +1,6 @@
 import './sass/main.scss';
 
-const pageOverlay = document.querySelector('.overlay--js');
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
-const pageContainer = document.querySelector('.page-container--js');
 const portfolio = document.querySelector('.portfolio--js');
 const gallery = document.querySelector('.gallery--js');
 const about = document.querySelector('.about--js');
@@ -18,6 +16,8 @@ const desktopBreakpoint = 1200;
 // F0 ///////////////////////////////////////////////////////// FADE IN EFFECT
 
 const fadeIn = () => {
+  const pageOverlay = document.querySelector('.overlay--js');
+  if (!pageOverlay) return;
   if (!pageOverlay.classList.contains('overlay--onload')) {
     pageOverlay.classList.add('overlay--onload');
   }
@@ -27,6 +27,8 @@ const fadeIn = () => {
 
 const toNextPage = (e, callback, timeout) => {
   e.preventDefault();
+  const pageOverlay = document.querySelector('.overlay--js');
+  if (!pageOverlay) return;
   const linkClicked = e.target;
   if (linkClicked.tagName === 'A') {
     pageOverlay.classList.add('overlay--visible');
@@ -208,157 +210,145 @@ burgerButton.addEventListener('click', toggleMobileMenu);
 ##         #######  ##     ##    ##    ##        #######  ######## ####  #######
 */
 
-if (portfolio) {
-  ////////////////////////////////////////////////////////////////// VARIABLES
+////////////////////////////////////////////////////////////////// VARIABLES
 
-  const portfolioGrid = document.querySelector('.grid--js');
-  const portfolioGridItems = document.querySelectorAll('.grid__item--js');
+const portfolioGrid = document.querySelector('.grid--js');
+const portfolioGridItems = document.querySelectorAll('.grid__item--js');
 
-  let lazyLoadBuffer = 500;
-  let lazyLoadPause = false;
+let lazyLoadBuffer = 500;
+let lazyLoadPause = false;
 
-  //const progressPercent = document.querySelector('.overlay__percent--js');
-  const progressBar = document.querySelector('.overlay__progressBar--js');
-  const url = window.location;
-  const pageLoading = new XMLHttpRequest();
+//const progressPercent = document.querySelector('.overlay__percent--js');
+const progressBar = document.querySelector('.overlay__progressBar--js');
+const url = window.location;
+const pageLoading = new XMLHttpRequest();
 
-  // F0 ///////////////////////////////////////////// GET VIEWPORT WIDTH VALUE
+// F0 ///////////////////////////////////////////// GET VIEWPORT WIDTH VALUE
 
-  const getViewportWidth = () => {
-    return window.innerWidth || document.documentElement.clientWidth;
-  };
-  // F0 ///////////////////// SET ASPECT RATIOS (WIDTH / HEIGHT) OF EACH IMAGE
+const getViewportWidth = () => {
+  return window.innerWidth || document.documentElement.clientWidth;
+};
+// F0 ///////////////////// SET ASPECT RATIOS (WIDTH / HEIGHT) OF EACH IMAGE
 
-  const setAspectRatios = () => {
-    const ratios = [];
-    for (const svg of portfolioSvgs) {
-      ratios.push(1000 / svg.viewBox.baseVal.height);
-    }
-    return ratios;
-  };
-  // F0 ///////////////////////////////////////////////////// ADD FLEX CLASSES
+const setAspectRatios = () => {
+  const ratios = [];
+  for (const svg of portfolioSvgs) {
+    ratios.push(1000 / svg.viewBox.baseVal.height);
+  }
+  return ratios;
+};
+// F0 ///////////////////////////////////////////////////// ADD FLEX CLASSES
 
-  const addFlexClasses = () => {
-    portfolioGrid.classList.add('grid--flex');
-    for (const svg of portfolioSvgs) {
-      svg.classList.add('grid__svg-solid--flex');
-    }
-  };
-  // F1 //////////////////////////////////////////// SET WIDTH OF EACH WRAPPER
+const addFlexClasses = () => {
+  portfolioGrid.classList.add('grid--flex');
+  for (const svg of portfolioSvgs) {
+    svg.classList.add('grid__svg-solid--flex');
+  }
+};
+// F1 //////////////////////////////////////////// SET WIDTH OF EACH WRAPPER
 
-  const setFlexBasis = () => {
-    const viewportWidth = getViewportWidth();
-    const imageRatios = setAspectRatios();
-    let imageRatio;
+const setFlexBasis = () => {
+  const viewportWidth = getViewportWidth();
+  const imageRatios = setAspectRatios();
+  let imageRatio;
 
-    addFlexClasses();
+  addFlexClasses();
 
-    for (let i = 0; i < portfolioGridItems.length; i++) {
-      if (viewportWidth < tabletBreakpoint) {
-        // on mobiles
-        portfolioGridItems[i].style.flex = '1 1 100%';
-      } else if (viewportWidth > desktopBreakpoint) {
-        // on desktops
-        switch (i % 3) {
-          case 0:
-            imageRatio =
-              imageRatios[i] /
-              (imageRatios[i] + imageRatios[i + 1] + imageRatios[i + 2]);
-            break;
-          case 1:
-            imageRatio =
-              imageRatios[i] /
-              (imageRatios[i - 1] + imageRatios[i] + imageRatios[i + 1]);
-            break;
-          case 2:
-            imageRatio =
-              imageRatios[i] /
-              (imageRatios[i - 2] + imageRatios[i - 1] + imageRatios[i]);
-            break;
-        }
-        portfolioGridItems[i].style.flex = imageRatio * 100 + '%';
-      } else {
-        // on tablets
-        switch (i % 2) {
-          case 0:
-            imageRatio = imageRatios[i] / (imageRatios[i] + imageRatios[i + 1]);
-            break;
-          case 1:
-            imageRatio = imageRatios[i] / (imageRatios[i - 1] + imageRatios[i]);
-            break;
-        }
-        portfolioGridItems[i].style.flex = imageRatio * 100 + '%';
+  for (let i = 0; i < portfolioGridItems.length; i++) {
+    if (viewportWidth < tabletBreakpoint) {
+      // on mobiles
+      portfolioGridItems[i].style.flex = '1 1 100%';
+    } else if (viewportWidth > desktopBreakpoint) {
+      // on desktops
+      switch (i % 3) {
+        case 0:
+          imageRatio =
+            imageRatios[i] /
+            (imageRatios[i] + imageRatios[i + 1] + imageRatios[i + 2]);
+          break;
+        case 1:
+          imageRatio =
+            imageRatios[i] /
+            (imageRatios[i - 1] + imageRatios[i] + imageRatios[i + 1]);
+          break;
+        case 2:
+          imageRatio =
+            imageRatios[i] /
+            (imageRatios[i - 2] + imageRatios[i - 1] + imageRatios[i]);
+          break;
       }
-    }
-  };
-  // F1 ///////////////////////////////////////////////////////// LAZY LOADING
-
-  var lazyLoad = (imageIndex) => {
-    // when there's no argument passed
-    if (!imageIndex) imageIndex = 0;
-    // quit if number exceed total no. of items
-    if (imageIndex === portfolioGridItems.length) return;
-
-    const image = portfolioGridImages[imageIndex];
-    const imageOffset = portfolioGridItems[imageIndex].offsetTop;
-    const viewportTopOffset = window.pageYOffset - lazyLoadBuffer;
-    const viewportBottomOffset =
-      window.pageYOffset + window.innerHeight + lazyLoadBuffer;
-    const imageSrc = image.getAttribute('src');
-    const imageNewSrc = image.getAttribute('data-src');
-
-    if (imageOffset >= viewportTopOffset) {
-      // if image is below top viewport border
-      if (imageOffset < viewportBottomOffset) {
-        // if image is inside viewport
-        if (imageSrc === 'img/blank.PNG') {
-          // if proper src is not applied yet
-          image.setAttribute('src', '');
-          image.setAttribute('src', imageNewSrc);
-          image.onload = () => {
-            image.classList.add('grid__image--loaded');
-            lazyLoad(++imageIndex);
-            return;
-          };
-        } else {
-          // if proper src is already applied
-          lazyLoad(++imageIndex);
-          return;
-        }
-      } else {
-        // if image is below bottom viewport border
-        return;
-      }
+      portfolioGridItems[i].style.flex = imageRatio * 100 + '%';
     } else {
-      // if image is above top viewport border
+      // on tablets
+      switch (i % 2) {
+        case 0:
+          imageRatio = imageRatios[i] / (imageRatios[i] + imageRatios[i + 1]);
+          break;
+        case 1:
+          imageRatio = imageRatios[i] / (imageRatios[i - 1] + imageRatios[i]);
+          break;
+      }
+      portfolioGridItems[i].style.flex = imageRatio * 100 + '%';
+    }
+  }
+};
+
+const lazyLoad = (imageIndex: number = 0) => {
+  const portfolioGridImages = document.querySelectorAll('.grid__image--js');
+  const portfolioGridItems = document.querySelectorAll('.grid__item--js');
+  if (imageIndex === portfolioGridItems.length) return;
+  console.log(portfolioGridImages);
+
+  const image = portfolioGridImages[imageIndex];
+  const imageItem = portfolioGridItems[imageIndex];
+  if (!(image instanceof HTMLElement)) return;
+  if (!(imageItem instanceof HTMLElement)) return;
+  const imageOffset = imageItem.offsetTop;
+  const viewportTopOffset = window.pageYOffset - lazyLoadBuffer;
+  const viewportBottomOffset =
+    window.pageYOffset + window.innerHeight + lazyLoadBuffer;
+  const imageSrc = image.getAttribute('src');
+  const imageNewSrc = image.getAttribute('data-src');
+  if (!imageNewSrc) return;
+
+  if (imageOffset >= viewportTopOffset && imageOffset >= viewportBottomOffset) {
+    return;
+  }
+
+  if (imageSrc === 'img/blank.PNG') {
+    image.setAttribute('src', '');
+    image.setAttribute('src', imageNewSrc);
+    image.onload = () => {
+      image.classList.add('grid__image--loaded');
       lazyLoad(++imageIndex);
-      return;
-    }
-  };
+    };
+  } else {
+    lazyLoad(++imageIndex);
+  }
+};
 
-  ///////////////////////////////////////////////////////////// FUNCTION CALLS
+///////////////////////////////////////////////////////////// FUNCTION CALLS
 
-  pageLoading.open('GET', url, true);
-  pageLoading.onprogress = (e) => {
-    if (e.lengthComputable) {
-      const percentNumber = (parseInt(e.loaded) / parseInt(e.total)) * 100;
-      //const percentString = `${Math.round(percentNumber)}%`;
-      //progressPercent.textContent = percentString;
-      progressBar.style.width = `${percentNumber}%`;
-    }
-  };
-  pageLoading.onloadstart = function (e) {
-    //progressPercent.textContent = "0%";
-  };
-  pageLoading.onloadend = function (e) {
-    //progressPercent.textContent = "100%";
-    progressBar.style.width = '100%';
-  };
-  pageLoading.send();
+pageLoading.open('GET', url, true);
+pageLoading.onprogress = (e) => {
+  if (e.lengthComputable) {
+    const percentNumber = (parseInt(e.loaded) / parseInt(e.total)) * 100;
+    //const percentString = `${Math.round(percentNumber)}%`;
+    //progressPercent.textContent = percentString;
+    progressBar.style.width = `${percentNumber}%`;
+  }
+};
+pageLoading.onloadstart = function (e) {
+  //progressPercent.textContent = "0%";
+};
+pageLoading.onloadend = function (e) {
+  //progressPercent.textContent = "100%";
+  progressBar.style.width = '100%';
+};
+pageLoading.send();
 
-  setFlexBasis();
-  window.addEventListener('resize', setFlexBasis);
-}
+setFlexBasis();
+window.addEventListener('resize', setFlexBasis);
 
 /*
  ######      ###    ##       ##       ######## ########  ##    ##
@@ -997,8 +987,7 @@ const visualization = ({
 
 const generateImages = () => {
   const grid = document.querySelector('.grid--js');
-  grid.innerHTML = '';
-
+  if (!grid) return;
   visualizations.forEach((viz) => {
     grid.innerHTML += visualization(viz);
   });
@@ -1009,6 +998,7 @@ window.onload = () => {
 
   if (portfolio) {
     const progressBar = document.querySelector('.overlay__progressBar--js');
+    if (!progressBar) return;
     setTimeout(() => {
       fadeIn();
       progressBar.classList.remove('overlay__progressBar--visible');
