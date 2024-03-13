@@ -36,15 +36,6 @@ const toNextPage = (e, callback, timeout) => {
 const delayLink = (element) => {
   window.location = element.href;
 };
-// F0 /////////////////////////////////////////////////////// LOOP INDEX RANGE
-const loopIndexRange = (collection, index, action) => {
-  const maxIndex = collection.length - 1;
-  if (action === 'increase') {
-    return index >= maxIndex ? 0 : ++index;
-  } else if (action === 'decrease') {
-    return index <= 0 ? maxIndex : --index;
-  }
-};
 
 for (const link of fadeOutLinks) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));

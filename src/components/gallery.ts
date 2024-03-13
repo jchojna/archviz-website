@@ -1,5 +1,4 @@
 import visualizations from '../visualizations.json';
-import { breakpoints } from './constants';
 
 const getTwoDigit = (number: number) => {
   return number.toLocaleString('en-US', {
@@ -52,34 +51,17 @@ export const generateGallery = () => {
   });
 };
 
+const loopIndexRange = (collection, index, action) => {
+  const maxIndex = collection.length - 1;
+  if (action === 'increase') {
+    return index >= maxIndex ? 0 : ++index;
+  } else if (action === 'decrease') {
+    return index <= 0 ? maxIndex : --index;
+  }
+};
+
 export const showGallery = (e) => {
-  let prevScroll = null;
-
-  const setImageSize = () => {
-    currentImageContainer = imageContainers[currentIndex];
-    const currentSvg = svgs[currentIndex];
-
-    const { width, height } = currentSvg.viewBox.baseVal;
-    const { innerWidth, innerHeight } = window;
-    const heightOffset =
-      innerWidth >= breakpoints.desktop
-        ? 150
-        : innerWidth >= breakpoints.tablet
-        ? 120
-        : 80;
-
-    const areaHeight = innerHeight - heightOffset;
-    const svgAspectRatio = width / height;
-    const areaAspectRatio = innerWidth / areaHeight;
-
-    if (svgAspectRatio >= areaAspectRatio) {
-      currentImageContainer.style.width = '100%';
-      currentImageContainer.style.height = `${innerWidth / svgAspectRatio}px`;
-    } else {
-      currentImageContainer.style.width = `${areaHeight * svgAspectRatio}px`;
-      currentImageContainer.style.height = `${areaHeight}px`;
-    }
-  };
+  let prevScroll = 0;
 
   const showImage = () => {
     gallery.classList.toggle('gallery--visible');
@@ -163,7 +145,6 @@ export const showGallery = (e) => {
         handleClassesChange('left');
         lazyLoadImage(currentIndex, 'prev', 2);
         handleSwitchDisplay(images[currentIndex]);
-        setImageSize();
         break;
 
       case 39:
@@ -171,7 +152,6 @@ export const showGallery = (e) => {
         handleClassesChange('right');
         lazyLoadImage(currentIndex, 'next', 2);
         handleSwitchDisplay(images[currentIndex]);
-        setImageSize();
         break;
 
       case 38:
@@ -199,6 +179,7 @@ export const showGallery = (e) => {
 
   const lazyLoadImage = (index, option, amount) => {
     const currentImage = images[index];
+    const portfolioGridImages = document.querySelectorAll('.grid__image--js');
     const currentGridImage = portfolioGridImages[index];
     const currentSrc = currentImage.getAttribute('src');
     const currentImageSrc = currentGridImage.getAttribute('data-src2');
@@ -281,21 +262,19 @@ export const showGallery = (e) => {
     window.removeEventListener('scroll', slideVertically);
   };
 
-  // INDEX
   const self = e.target;
   let currentIndex = self.index;
-  // IMAGES
+
   const gallery = document.querySelector('.gallery--js');
   if (!gallery) return;
   const imageSections = document.querySelectorAll('.images--js');
   const imageContainers = document.querySelectorAll('.images__container--js');
   const images = document.querySelectorAll('.images__image--js');
-  const svgs = document.querySelectorAll('.images__svg-solid--js');
+
   let currentImageSection = imageSections[currentIndex];
   let currentImageContainer = imageContainers[currentIndex];
   let currentImageDescription = currentImageSection.firstElementChild;
 
-  // NAVIGATION
   const switchButton = document.querySelector(
     '.gallery-nav__button--js-switch'
   );
@@ -304,13 +283,9 @@ export const showGallery = (e) => {
   const closeButton = document.querySelector('.gallery-nav__button--js-close');
   const switchCenter = document.querySelector('.switch__center--js');
 
-  /////////////////////////////////////////// FUNCTION CALLS << SHOW GALLERY
-  setImageSize();
   showImage();
 
-  ////////////////////////////////////////// EVENT LISTENERS << SHOW GALLERY
   gallery.addEventListener('click', viewImage);
   window.addEventListener('keydown', viewImage);
   window.addEventListener('scroll', slideVertically);
-  window.addEventListener('resize', setImageSize);
 };
