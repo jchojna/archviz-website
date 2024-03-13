@@ -2,7 +2,7 @@
   height: 100%;
   width: 100%;
 }
-///////////////////////////////////////////////////////////////////////// GRID
+
 .grid {
   display: grid;
   grid-auto-rows: $grid-item-height-sm;
@@ -11,7 +11,6 @@
   width: 100%;
 
   &--flex {
-    // portfolioJS
     display: flex;
     flex-wrap: wrap;
     gap: 0;
@@ -54,11 +53,10 @@
     fill: $color-main;
     height: 100%;
     min-height: $grid-item-height-sm;
-    min-width: 100vw / $grid-cols-sm;
+    min-width: calc(100vw / $grid-cols-sm);
     pointer-events: none;
 
     &--flex {
-      // portfolioJS
       min-height: 0;
       min-width: 0;
       width: 100%;
@@ -93,7 +91,6 @@
       grid-template-columns: repeat($grid-cols-md, 1fr);
 
       &--flex {
-        // portfolioJS
         gap: 0;
       }
 
@@ -156,10 +153,9 @@
 
       &__svg-solid {
         min-height: $grid-item-height-md;
-        min-width: 100vw / $grid-cols-md;
+        min-width: calc(100vw / $grid-cols-md);
 
         &--flex {
-          // portfolioJS
           min-height: 0;
           min-width: 0;
         }
@@ -178,16 +174,14 @@
       grid-template-columns: repeat($grid-cols-lg, 1fr);
 
       &--flex {
-        // portfolioJS
         gap: 0;
       }
 
       &__svg-solid {
         min-height: $grid-item-height-lg;
-        min-width: 100vw / $grid-cols-lg;
+        min-width: calc(100vw / $grid-cols-lg);
 
         &--flex {
-          // portfolioJS
           min-height: 0;
           min-width: 0;
         }

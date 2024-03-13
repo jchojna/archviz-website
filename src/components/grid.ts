@@ -1,14 +1,7 @@
 import visualizations from '../visualizations.json';
 import { breakpoints } from './constants';
 
-type Visualization = {
-  title: string;
-  description: string;
-  viewBox: { width: number; height: number };
-  filename: string;
-};
-
-const visualization = ({
+const gridViz = ({
   title,
   description,
   viewBox: { width, height },
@@ -129,10 +122,10 @@ export const lazyLoad = (imageIndex: number = 0) => {
   }
 };
 
-export const generateVisualizations = () => {
+export const generateGrid = () => {
   const grid = document.querySelector('.grid--js');
   if (!grid) return;
   visualizations.forEach((viz) => {
-    grid.innerHTML += visualization(viz);
+    grid.innerHTML += gridViz(viz);
   });
 };
