@@ -9,13 +9,14 @@
   position: fixed;
   right: 0;
   top: 0;
-  transition: opacity $toggle-gallery, visibility 0s $toggle-gallery;
+  transition: opacity $toggle-gallery, visibility 0s $toggle-gallery,
+    z-index 0s $toggle-gallery;
   visibility: hidden;
   z-index: -1;
 
   &--visible {
     opacity: 1;
-    transition: opacity $toggle-gallery, visibility 0s;
+    transition: opacity $toggle-gallery, visibility 0s, z-index 0s;
     visibility: visible;
     z-index: 2;
   }
@@ -30,6 +31,7 @@
 
   height: 100%;
   left: 0;
+  opacity: 0;
   position: absolute;
   top: 0;
   transform: translateY(0);
@@ -37,15 +39,18 @@
   width: 100%;
 
   &--transition {
-    transition: transform $slide-horizontal, visibility 0s $slide-horizontal;
+    transition: opacity $slide-horizontal, transform $slide-horizontal,
+      visibility 0s $slide-horizontal;
   }
 
   &--visible {
+    opacity: 1;
     visibility: visible;
     z-index: 0;
 
     &.images--transition {
-      transition: transform $slide-horizontal, visibility 0s;
+      transition: opacity $slide-horizontal, transform $slide-horizontal,
+        visibility 0s;
     }
   }
 
@@ -128,7 +133,6 @@
 
   &__image {
     @include position-absolute;
-
     object-fit: contain;
     opacity: 0;
     transition: opacity $load-gallery-image, visibility 0s $load-gallery-image;

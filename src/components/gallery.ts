@@ -70,6 +70,7 @@ export const addGalleryEvents = () => {
   closeButton.addEventListener('click', () => hideGallery());
   switchButton.addEventListener('click', () => toggleJPG());
   window.addEventListener('keydown', supportKeyboard);
+  window.addEventListener('scroll', hideGallery);
 };
 
 const lazyLoadImage = (index: number, option: string, amount: number) => {
@@ -223,7 +224,7 @@ const supportKeyboard = ({ key }: { key: string }) => {
       switchImage('right');
       break;
 
-    case 'ArrowDown':
+    case ' ':
       toggleJPG();
       break;
 
@@ -235,31 +236,3 @@ const supportKeyboard = ({ key }: { key: string }) => {
       return;
   }
 };
-
-// const slideVertically = () => {
-//   const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
-//   const currentImageSection = imageSections[currentIndex];
-
-//   if (prevScroll === null) {
-//     prevScroll = nextScroll;
-//   }
-
-//   if (nextScroll !== prevScroll) {
-//     if (nextScroll > prevScroll) {
-//       currentImageSection.classList.add('images--hidden-top');
-//     } else {
-//       currentImageSection.classList.add('images--hidden-bottom');
-//     }
-//     showImage();
-
-//     setTimeout(() => {
-//       currentImageSection.classList.remove('images--hidden-top');
-//       currentImageSection.classList.remove('images--hidden-bottom');
-//     }, 700);
-
-//     removeAllEvents();
-//     prevScroll = null;
-//   }
-// };
-
-// window.addEventListener('scroll', slideVertically);
