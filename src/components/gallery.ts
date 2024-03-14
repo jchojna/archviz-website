@@ -56,7 +56,11 @@ export const addGalleryEvents = () => {
   const closeButton = document.querySelector('.gallery-nav__button--js-close');
   const leftButton = document.querySelector('.gallery-nav__button--js-left');
   const rightButton = document.querySelector('.gallery-nav__button--js-right');
-  if (!closeButton || !leftButton || !rightButton) return;
+  const switchButton = document.querySelector(
+    '.gallery-nav__button--js-switch'
+  );
+
+  if (!closeButton || !leftButton || !rightButton || !switchButton) return;
 
   [...portfolioGridButtons].forEach((button, index) => {
     button.addEventListener('click', () => showGallery(index));
@@ -64,12 +68,16 @@ export const addGalleryEvents = () => {
   leftButton.addEventListener('click', () => switchImage('left'));
   rightButton.addEventListener('click', () => switchImage('right'));
   closeButton.addEventListener('click', () => hideGallery());
+  switchButton.addEventListener('click', () => toggleJPG());
   window.addEventListener('keydown', supportKeyboard);
 };
 
 const lazyLoadImage = (index: number, option: string, amount: number) => {
   const images = document.querySelectorAll('.images--js');
   const currentImage = images[index].querySelector('.images__image--js');
+  const switchButton = document.querySelector(
+    '.gallery-nav__button--js-switch'
+  );
   if (!currentImage || !(currentImage instanceof HTMLImageElement)) return;
   const currentFilename = visualizations[index].filename;
   const currentSrc = currentImage.getAttribute('src');
@@ -84,7 +92,8 @@ const lazyLoadImage = (index: number, option: string, amount: number) => {
 
   currentImage.onload = () => {
     const newAmount = amount - 1;
-    currentImage.classList.add('images__image--loaded');
+    showJPG(currentImage);
+    switchButton && switchButton.classList.remove('switch--disabled');
 
     if (option === 'prev' || option === 'start') {
       lazyLoadImage(index <= 1 ? 0 : index - 1, 'prev', newAmount);
@@ -103,7 +112,7 @@ const lazyLoadImage = (index: number, option: string, amount: number) => {
 
 const showImage = (index: number) => {
   const image = document.querySelectorAll('.images--js')[index];
-  image.classList.toggle('images--visible');
+  image.classList.add('images--visible');
   lazyLoadImage(index, 'start', 2);
 };
 
@@ -112,6 +121,8 @@ const switchImage = (direction: string) => {
   const currentImage = document.querySelector('.images--js.images--visible');
   if (!currentImage || !(currentImage instanceof HTMLElement)) return;
   if (!currentImage.dataset.index) return;
+  const currentImageJPG =
+    currentImage && currentImage.querySelector('.images__image--js');
   const currentIndex = +currentImage.dataset.index;
   const visibleClass = 'images--visible';
 
@@ -130,6 +141,7 @@ const switchImage = (direction: string) => {
         prevImage.classList.add('images--transition');
         prevImage.style.transform = 'translateX(0)';
         currentImage.style.transform = 'translateX(100%)';
+        showJPG(currentImageJPG);
       }, 0);
       break;
 
@@ -147,6 +159,7 @@ const switchImage = (direction: string) => {
         nextImage.classList.add('images--transition');
         nextImage.style.transform = 'translateX(0)';
         currentImage.style.transform = 'translateX(-100%)';
+        showJPG(currentImageJPG);
       }, 0);
       break;
   }
@@ -162,48 +175,56 @@ export const showGallery = (index: number) => {
 const hideGallery = () => {
   const gallery = document.querySelector('.gallery--js');
   const images = document.querySelectorAll('.images--js');
+  const currentImage = document.querySelector(
+    '.images--js.images--visible .images__image--js'
+  );
   if (!gallery) return;
   gallery.classList.remove('gallery--visible');
+  currentImage && showJPG(currentImage);
   [...images].forEach((image) => {
     image.classList.remove('images--visible');
     image.classList.remove('images--transition');
     (image as HTMLElement).style.transform = 'translateX(0)';
   });
-  //       switchCenter.classList.remove('switch__center--solid');
-  //       switchButton.classList.remove('switch--solid');
-  //       switchButton.classList.add('switch--disabled');
 };
 
-// const handleSwitchDisplay = (image) => {
-//   if (image.complete) {
-//     switchButton.classList.add('switch--solid');
-//     switchCenter.classList.add('switch__center--solid');
-//     switchButton.classList.remove('switch--disabled');
-//   } else {
-//     switchButton.classList.remove('switch--solid');
-//     switchCenter.classList.remove('switch__center--solid');
-//     switchButton.classList.add('switch--disabled');
-//   }
-// };
+const toggleJPG = () => {
+  const currentImage = document.querySelector(
+    '.images--js.images--visible .images__image--js'
+  );
+  const switchButton = document.querySelector(
+    '.gallery-nav__button--js-switch'
+  );
+  const switchCenter =
+    switchButton && switchButton.querySelector('.switch__center--js');
+  currentImage && currentImage.classList.toggle('images__image--visible');
+  switchButton && switchButton.classList.toggle('switch--solid');
+  switchCenter && switchCenter.classList.toggle('switch__center--solid');
+};
 
-const supportKeyboard = ({ key }) => {
+const showJPG = (image: Element | null = null) => {
+  const switchButton = document.querySelector(
+    '.gallery-nav__button--js-switch'
+  );
+  const switchCenter =
+    switchButton && switchButton.querySelector('.switch__center--js');
+  image && image.classList.add('images__image--visible');
+  switchButton && switchButton.classList.add('switch--solid');
+  switchCenter && switchCenter.classList.add('switch__center--solid');
+};
+
+const supportKeyboard = ({ key }: { key: string }) => {
   switch (key) {
     case 'ArrowLeft':
       switchImage('left');
-      //   handleSwitchDisplay(images[currentIndex]);
       break;
 
     case 'ArrowRight':
       switchImage('right');
-      //   handleSwitchDisplay(images[currentIndex]);
       break;
 
     case 'ArrowDown':
-      //   if (currentImage.complete) {
-      //     switchButton.classList.toggle('switch--solid');
-      //     currentImage.classList.toggle('images__image--loaded');
-      //     switchCenter.classList.toggle('switch__center--solid');
-      //   }
+      toggleJPG();
       break;
 
     case 'Escape':
@@ -240,10 +261,5 @@ const supportKeyboard = ({ key }) => {
 //     prevScroll = null;
 //   }
 // };
-
-// const switchButton = document.querySelector(
-//   '.gallery-nav__button--js-switch'
-// );
-// const switchCenter = document.querySelector('.switch__center--js');
 
 // window.addEventListener('scroll', slideVertically);

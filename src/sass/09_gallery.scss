@@ -134,7 +134,7 @@
     transition: opacity $load-gallery-image, visibility 0s $load-gallery-image;
     visibility: hidden;
 
-    &--loaded {
+    &--visible {
       opacity: 1;
       transition: opacity $load-gallery-image, visibility 0s;
       visibility: inherit;
