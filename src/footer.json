@@ -1,0 +1,22 @@
+[
+  {
+    "href": "https://www.behance.net/jakubchojna",
+    "ariaLabel": "Behance profile link",
+    "icon": "fab fa-behance-square"
+  },
+  {
+    "href": "https://www.linkedin.com/in/jakub-chojna/",
+    "ariaLabel": "Linkedin profile link",
+    "icon": "fab fa-linkedin"
+  },
+  {
+    "href": "https://github.com/jchojna/",
+    "ariaLabel": "Github profile link",
+    "icon": "fab fa-github-square"
+  },
+  {
+    "href": "https://www.facebook.com/jakub.chojna/",
+    "ariaLabel": "Facebook profile link",
+    "icon": "fab fa-facebook-square"
+  }
+]

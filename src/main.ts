@@ -1,6 +1,7 @@
 import './sass/main.scss';
 
 import { breakpoints } from './components/constants';
+import { generateFooter } from './components/footer';
 import { addGalleryEvents, generateGallery } from './components/gallery';
 import { generateGrid, lazyLoad, setFlexBasis } from './components/grid';
 
@@ -398,6 +399,7 @@ window.onload = () => {
   generateGrid();
   generateGallery();
   addGalleryEvents();
+  generateFooter();
 
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
