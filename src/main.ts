@@ -4,6 +4,7 @@ import { breakpoints } from './components/constants';
 import { generateFooter } from './components/footer';
 import { addGalleryEvents, generateGallery } from './components/gallery';
 import { generateGrid, lazyLoad, setFlexBasis } from './components/grid';
+import { addNavigationEvents } from './components/navigation';
 
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
 const portfolio = document.querySelector('.portfolio--js');
@@ -42,81 +43,6 @@ for (const link of fadeOutLinks) {
   link.addEventListener('click', () => toNextPage(event, delayLink, 600));
 }
 
-/*
-##     ## ######## ##    ## ##     ##
-###   ### ##       ###   ## ##     ##
-#### #### ##       ####  ## ##     ##
-## ### ## ######   ## ## ## ##     ##
-##     ## ##       ##  #### ##     ##
-##     ## ##       ##   ### ##     ##
-##     ## ######## ##    ##  #######
-*/
-
-// F0 ///////////////////////////////////////////////////// TOGGLE MOBILE MENU
-
-const toggleMobileMenu = () => {
-  mobileMenu.classList.toggle('mobile-menu--hidden');
-  burgerTop.classList.toggle('burger__line--rotate-left');
-  burgerCenter.classList.toggle('burger__line--rotate-right');
-  burgerBottom.classList.toggle('burger__line--rotate-left');
-};
-// F0 ////////////////////////////////////////////////////////// HANDLE NAVBAR
-
-const handleNavbar = () => {
-  const navbarNextScroll =
-    window.pageYOffset || document.documentElement.scrollTop;
-  let delayStart = 0.3;
-  const delayInc = 0.2;
-
-  const handleItems = (operation) => {
-    for (const item of menuItemsLarge) {
-      operation === 'add'
-        ? item.classList.add('main-menu__item--hidden')
-        : item.classList.remove('main-menu__item--hidden');
-      item.style.transitionDelay = `${delayStart}s`;
-      delayStart += delayInc;
-    }
-  };
-
-  if (navbarNextScroll > navbarPrevScroll) {
-    handleItems('add');
-  } else {
-    delayStart = 0;
-    handleItems('remove');
-  }
-  navbarPrevScroll = navbarNextScroll;
-};
-
-window.addEventListener('scroll', handleNavbar);
-
-// F0 /////////////////////////////////////////////////////// GO TO TOP BUTTON
-
-const toggleGoTopButton = () => {
-  let scroll =
-    window.scrollY ||
-    window.pageYOffset ||
-    document.body.scrollTop +
-      ((document.documentElement && document.documentElement.scrollTop) || 0);
-  if (scroll > 1000) {
-    goToTopButton.classList.add('go-top--visible');
-  } else {
-    goToTopButton.classList.remove('go-top--visible');
-  }
-};
-//////////////////////////////////////////////////////////////////// VARIABLES
-const mobileMenu = document.querySelector('.mobile-menu--js');
-const burgerButton = document.querySelector('.burger--js');
-const burgerTop = document.querySelector('.burger__line--js-top');
-const burgerCenter = document.querySelector('.burger__line--js-center');
-const burgerBottom = document.querySelector('.burger__line--js-bottom');
-const goToTopButton = document.querySelector('.go-top--js');
-const menuItemsLarge = document.querySelectorAll('.main-menu__item--js-large');
-let navbarPrevScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-////////////////////////////////////////////////////////////// EVENT LISTENERS
-window.addEventListener('scroll', toggleGoTopButton);
-burgerButton.addEventListener('click', toggleMobileMenu);
-
 const progressBar = document.querySelector('.overlay__progressBar--js');
 const url = window.location;
 
@@ -135,16 +61,6 @@ pageLoading.onloadend = function (e) {
   progressBar.style.width = '100%';
 };
 pageLoading.send();
-
-/*
-   ###    ########   #######  ##     ## ########
-  ## ##   ##     ## ##     ## ##     ##    ##
- ##   ##  ##     ## ##     ## ##     ##    ##
-##     ## ########  ##     ## ##     ##    ##
-######### ##     ## ##     ## ##     ##    ##
-##     ## ##     ## ##     ## ##     ##    ##
-##     ## ########   #######   #######     ##
-*/
 
 if (about) {
   var minimizeCards = () => {
@@ -199,16 +115,6 @@ if (about) {
   });
   window.addEventListener('resize', handleCardsOnResize);
 }
-
-/*
- ######   #######  ##    ## ########    ###     ######  ########
-##    ## ##     ## ###   ##    ##      ## ##   ##    ##    ##
-##       ##     ## ####  ##    ##     ##   ##  ##          ##
-##       ##     ## ## ## ##    ##    ##     ## ##          ##
-##       ##     ## ##  ####    ##    ######### ##          ##
-##    ## ##     ## ##   ###    ##    ##     ## ##    ##    ##
- ######   #######  ##    ##    ##    ##     ##  ######     ##
-*/
 
 if (form) {
   const resetCheckboxes = () => {
@@ -400,6 +306,7 @@ window.onload = () => {
   generateGallery();
   addGalleryEvents();
   generateFooter();
+  addNavigationEvents();
 
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
