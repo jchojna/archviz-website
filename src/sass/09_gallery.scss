@@ -9,40 +9,44 @@
   position: fixed;
   right: 0;
   top: 0;
-  transition: opacity $toggle-gallery, visibility 0s $toggle-gallery,
-    z-index 0s $toggle-gallery;
+  transition: opacity $toggle-gallery, visibility 0s $toggle-gallery;
   visibility: hidden;
   z-index: -1;
 
   &--visible {
     opacity: 1;
-    transition: opacity $toggle-gallery, visibility 0s, z-index 0s;
+    transition: opacity $toggle-gallery, visibility 0s;
     visibility: visible;
     z-index: 2;
   }
 
   @media only screen and (min-width: $media-md) {
-    & {
-      background-color: rgba($color: #000, $alpha: 0.7);
-    }
+    background-color: rgba($color: #000, $alpha: 0.7);
   }
 }
 
 .images {
   @include flex-center;
+
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
   transform: translateY(0);
-  transition: visibility 0s $slide-horizontal;
   visibility: hidden;
   width: 100%;
 
+  &--transition {
+    transition: transform $slide-horizontal, visibility 0s $slide-horizontal;
+  }
+
   &--visible {
-    transition: visibility 0s;
     visibility: visible;
     z-index: 0;
+
+    &.images--transition {
+      transition: transform $slide-horizontal, visibility 0s;
+    }
   }
 
   &--hidden-top {
@@ -65,23 +69,23 @@
     font-weight: bold;
     justify-content: flex-start;
     left: 0;
-    opacity: 0;
+    opacity: inherit;
     padding: $offset-gallery-sm;
     position: absolute;
     transform: translateY(100%);
-    transition: opacity calc($slide-horizontal/2),
-      transform calc($slide-horizontal/2),
-      visibility 0s calc($slide-horizontal/2);
-    visibility: hidden;
+    transition: opacity calc($slide-horizontal / 2),
+      transform calc($slide-horizontal / 2),
+      visibility 0s calc($slide-horizontal / 2);
+    visibility: inherit;
     width: 100%;
     z-index: 1;
+  }
 
-    &--visible {
-      opacity: 1;
+  &--visible {
+    .images__description {
       transform: translateY(0);
-      transition: opacity $slide-horizontal, transform $slide-horizontal,
-        visibility 0s;
-      visibility: visible;
+      transition: opacity calc($slide-horizontal / 2),
+        transform calc($slide-horizontal / 2), visibility 0s;
     }
   }
 
@@ -105,32 +109,16 @@
     @include flex-center;
 
     height: 100%;
+    opacity: inherit;
     position: relative;
-    transition: visibility 0s $slide-horizontal;
-    visibility: hidden;
+    transition: inherit;
+    visibility: inherit;
     width: 100%;
-
-    &--visible {
-      transition: visibility 0s;
-      visibility: visible;
-    }
-
-    &--hidden-to-left {
-      animation: hideToLeft $slide-horizontal forwards;
-    }
-    &--hidden-to-right {
-      animation: hideToRight $slide-horizontal forwards;
-    }
-    &--visible-from-left {
-      animation: showFromLeft $slide-horizontal forwards;
-    }
-    &--visible-from-right {
-      animation: showFromRight $slide-horizontal forwards;
-    }
   }
 
   &__svg-solid {
     @include position-absolute;
+
     fill: $color-main;
   }
 

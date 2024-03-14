@@ -16,7 +16,7 @@ const galleryViz = (viz: Visualization, index: number, imagesTotal: number) => {
   const imageHeading = description.split(' | ').slice(0, 1).join();
   const number = getTwoDigit(index + 1);
   return `
-    <section class="images images--js">
+    <section class="images images--js" data-index=${index}>
       <div class="images__description">
         <p class="images__counter images__counter--js">
           <span class="images__counter--current">${number}</span>/${imagesTotal}
@@ -51,241 +51,199 @@ export const generateGallery = () => {
   });
 };
 
-const loopIndexRange = (collection, index, action) => {
-  const maxIndex = collection.length - 1;
-  if (action === 'increase') {
-    return index >= maxIndex ? 0 : ++index;
-  } else if (action === 'decrease') {
-    return index <= 0 ? maxIndex : --index;
+export const addGalleryEvents = () => {
+  const portfolioGridButtons = document.querySelectorAll('.grid__button--js');
+  const closeButton = document.querySelector('.gallery-nav__button--js-close');
+  const leftButton = document.querySelector('.gallery-nav__button--js-left');
+  const rightButton = document.querySelector('.gallery-nav__button--js-right');
+  if (!closeButton || !leftButton || !rightButton) return;
+
+  [...portfolioGridButtons].forEach((button, index) => {
+    button.addEventListener('click', () => showGallery(index));
+  });
+  leftButton.addEventListener('click', () => switchImage('left'));
+  rightButton.addEventListener('click', () => switchImage('right'));
+  closeButton.addEventListener('click', () => hideGallery());
+  window.addEventListener('keydown', supportKeyboard);
+};
+
+const lazyLoadImage = (index: number, option: string, amount: number) => {
+  const images = document.querySelectorAll('.images--js');
+  const currentImage = images[index].querySelector('.images__image--js');
+  if (!currentImage || !(currentImage instanceof HTMLImageElement)) return;
+  const currentFilename = visualizations[index].filename;
+  const currentSrc = currentImage.getAttribute('src');
+  const currentImageSrc = `img/1920px/${currentFilename}.jpg`;
+
+  if (amount <= 0) return;
+  if (currentSrc === '') {
+    currentImage.src = currentImageSrc;
+  } else {
+    return;
+  }
+
+  currentImage.onload = () => {
+    const newAmount = amount - 1;
+    currentImage.classList.add('images__image--loaded');
+
+    if (option === 'prev' || option === 'start') {
+      lazyLoadImage(index <= 1 ? 0 : index - 1, 'prev', newAmount);
+    }
+    if (option === 'next' || option === 'start') {
+      lazyLoadImage(
+        index >= visualizations.length - 2
+          ? visualizations.length - 1
+          : index + 1,
+        'next',
+        newAmount
+      );
+    }
+  };
+};
+
+const showImage = (index: number) => {
+  const image = document.querySelectorAll('.images--js')[index];
+  image.classList.toggle('images--visible');
+  lazyLoadImage(index, 'start', 2);
+};
+
+const switchImage = (direction: string) => {
+  const images = document.querySelectorAll('.images--js');
+  const currentImage = document.querySelector('.images--js.images--visible');
+  if (!currentImage || !(currentImage instanceof HTMLElement)) return;
+  if (!currentImage.dataset.index) return;
+  const currentIndex = +currentImage.dataset.index;
+  const visibleClass = 'images--visible';
+
+  switch (direction) {
+    case 'left':
+      if (currentIndex === 0) return;
+      const prevIndex = currentIndex - 1;
+      const prevImage = images[prevIndex] as HTMLElement;
+      currentImage.classList.add('images--transition');
+      currentImage.classList.remove(visibleClass);
+      prevImage.classList.add(visibleClass);
+      prevImage.classList.remove('images--transition');
+      prevImage.style.transform = 'translateX(-100%)';
+      lazyLoadImage(prevIndex, 'prev', 2);
+      setTimeout(() => {
+        prevImage.classList.add('images--transition');
+        prevImage.style.transform = 'translateX(0)';
+        currentImage.style.transform = 'translateX(100%)';
+      }, 0);
+      break;
+
+    case 'right':
+      if (currentIndex === images.length - 1) return;
+      const nextIndex = currentIndex + 1;
+      const nextImage = images[nextIndex] as HTMLElement;
+      currentImage.classList.add('images--transition');
+      currentImage.classList.remove(visibleClass);
+      nextImage.classList.add(visibleClass);
+      nextImage.classList.remove('images--transition');
+      nextImage.style.transform = 'translateX(100%)';
+      lazyLoadImage(nextIndex, 'next', 2);
+      setTimeout(() => {
+        nextImage.classList.add('images--transition');
+        nextImage.style.transform = 'translateX(0)';
+        currentImage.style.transform = 'translateX(-100%)';
+      }, 0);
+      break;
   }
 };
 
-export const showGallery = (e) => {
-  let prevScroll = 0;
-
-  const showImage = () => {
-    gallery.classList.toggle('gallery--visible');
-    currentImageSection.classList.toggle('images--visible');
-    currentImageDescription.classList.toggle('images__description--visible');
-    currentImageContainer.classList.toggle('images__container--visible');
-
-    if (gallery.classList.contains('gallery--visible')) {
-      currentImageContainer.classList.remove(
-        'images__container--visible-from-left'
-      );
-      currentImageContainer.classList.remove(
-        'images__container--visible-from-right'
-      );
-      currentImageContainer.classList.remove(
-        'images__container--hidden-to-left'
-      );
-      currentImageContainer.classList.remove(
-        'images__container--hidden-to-right'
-      );
-      switchCenter.classList.remove('switch__center--linear');
-      lazyLoadImage(currentIndex, 'start', 2);
-    }
-  };
-
-  const handleClassesChange = (direction) => {
-    const opposite = direction === 'left' ? 'right' : 'left';
-    const action = direction === 'left' ? 'decrease' : 'increase';
-
-    currentImageContainer.classList.remove(
-      `images__container--visible-from-${direction}`
-    );
-    currentImageContainer.classList.remove(
-      `images__container--visible-from-${opposite}`
-    );
-    currentImageSection.classList.remove('images--visible');
-    currentImageDescription.classList.remove('images__description--visible');
-    currentImageContainer.classList.remove('images__container--visible');
-    currentImageContainer.classList.add(
-      `images__container--hidden-to-${opposite}`
-    );
-
-    currentIndex = loopIndexRange(imageSections, currentIndex, action);
-    currentImageSection = imageSections[currentIndex];
-    currentImageDescription = currentImageSection.firstElementChild;
-    currentImageContainer = currentImageSection.lastElementChild;
-
-    currentImageContainer.classList.remove(
-      `images__container--hidden-to-${direction}`
-    );
-    currentImageContainer.classList.remove(
-      `images__container--hidden-to-${opposite}`
-    );
-    currentImageSection.classList.add('images--visible');
-    currentImageDescription.classList.add('images__description--visible');
-    currentImageContainer.classList.add('images__container--visible');
-    currentImageContainer.classList.add(
-      `images__container--visible-from-${direction}`
-    );
-  };
-
-  const viewImage = (e) => {
-    const self = e.keyCode || e.target;
-    let currentImage = images[currentIndex];
-
-    const handleSwitchDisplay = (image) => {
-      if (image.complete) {
-        switchButton.classList.add('switch--solid');
-        switchCenter.classList.add('switch__center--solid');
-        switchButton.classList.remove('switch--disabled');
-      } else {
-        switchButton.classList.remove('switch--solid');
-        switchCenter.classList.remove('switch__center--solid');
-        switchButton.classList.add('switch--disabled');
-      }
-    };
-
-    switch (self) {
-      case 37:
-      case leftButton:
-        handleClassesChange('left');
-        lazyLoadImage(currentIndex, 'prev', 2);
-        handleSwitchDisplay(images[currentIndex]);
-        break;
-
-      case 39:
-      case rightButton:
-        handleClassesChange('right');
-        lazyLoadImage(currentIndex, 'next', 2);
-        handleSwitchDisplay(images[currentIndex]);
-        break;
-
-      case 38:
-      case switchButton:
-        if (currentImage.complete) {
-          switchButton.classList.toggle('switch--solid');
-          currentImage.classList.toggle('images__image--loaded');
-          switchCenter.classList.toggle('switch__center--solid');
-        }
-        break;
-
-      case 27:
-      case closeButton:
-        switchCenter.classList.remove('switch__center--solid');
-        switchButton.classList.remove('switch--solid');
-        switchButton.classList.add('switch--disabled');
-        showImage();
-        removeAllEvents();
-        break;
-
-      default:
-        return;
-    }
-  };
-
-  const lazyLoadImage = (index, option, amount) => {
-    const currentImage = images[index];
-    const portfolioGridImages = document.querySelectorAll('.grid__image--js');
-    const currentGridImage = portfolioGridImages[index];
-    const currentSrc = currentImage.getAttribute('src');
-    const currentImageSrc = currentGridImage.getAttribute('data-src2');
-    const indexToInc = index;
-    const indexToDec = index;
-
-    if (currentSrc === '') {
-      currentImage.src = currentImageSrc;
-    } else if (currentImage.complete) {
-      if (amount > 0) {
-        amount--;
-        currentImage.classList.add('images__image--loaded');
-        switchCenter.classList.add('switch__center--solid');
-        switchButton.classList.add('switch--solid');
-        switchButton.classList.remove('switch--disabled');
-
-        if (option === 'prev' || option === 'start') {
-          index = loopIndexRange(imageSections, indexToDec, 'decrease');
-          lazyLoadImage(index, 'prev', amount);
-        }
-
-        if (option === 'next' || option === 'start') {
-          index = loopIndexRange(imageSections, indexToInc, 'increase');
-          lazyLoadImage(index, 'next', amount);
-        }
-      }
-    }
-    currentImage.onload = () => {
-      if (amount > 0) {
-        amount--;
-        currentImage.classList.add('images__image--loaded');
-        if (index === currentIndex) {
-          switchCenter.classList.add('switch__center--solid');
-          switchButton.classList.add('switch--solid');
-          switchButton.classList.remove('switch--disabled');
-        }
-
-        if (option === 'prev' || option === 'start') {
-          index = loopIndexRange(imageSections, indexToDec, 'decrease');
-          lazyLoadImage(index, 'prev', amount);
-        }
-
-        if (option === 'next' || option === 'start') {
-          index = loopIndexRange(imageSections, indexToInc, 'increase');
-          lazyLoadImage(index, 'next', amount);
-        }
-      }
-    };
-  };
-
-  const slideVertically = () => {
-    const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
-    const currentImageSection = imageSections[currentIndex];
-
-    if (prevScroll === null) {
-      prevScroll = nextScroll;
-    }
-
-    if (nextScroll !== prevScroll) {
-      if (nextScroll > prevScroll) {
-        currentImageSection.classList.add('images--hidden-top');
-      } else {
-        currentImageSection.classList.add('images--hidden-bottom');
-      }
-      showImage();
-
-      setTimeout(() => {
-        currentImageSection.classList.remove('images--hidden-top');
-        currentImageSection.classList.remove('images--hidden-bottom');
-      }, 700);
-
-      removeAllEvents();
-      prevScroll = null;
-    }
-  };
-
-  const removeAllEvents = () => {
-    gallery.removeEventListener('click', viewImage);
-    window.removeEventListener('keydown', viewImage);
-    window.removeEventListener('scroll', slideVertically);
-  };
-
-  const self = e.target;
-  let currentIndex = self.index;
-
+export const showGallery = (index: number) => {
   const gallery = document.querySelector('.gallery--js');
   if (!gallery) return;
-  const imageSections = document.querySelectorAll('.images--js');
-  const imageContainers = document.querySelectorAll('.images__container--js');
-  const images = document.querySelectorAll('.images__image--js');
-
-  let currentImageSection = imageSections[currentIndex];
-  let currentImageContainer = imageContainers[currentIndex];
-  let currentImageDescription = currentImageSection.firstElementChild;
-
-  const switchButton = document.querySelector(
-    '.gallery-nav__button--js-switch'
-  );
-  const leftButton = document.querySelector('.gallery-nav__button--js-left');
-  const rightButton = document.querySelector('.gallery-nav__button--js-right');
-  const closeButton = document.querySelector('.gallery-nav__button--js-close');
-  const switchCenter = document.querySelector('.switch__center--js');
-
-  showImage();
-
-  gallery.addEventListener('click', viewImage);
-  window.addEventListener('keydown', viewImage);
-  window.addEventListener('scroll', slideVertically);
+  gallery.classList.add('gallery--visible');
+  showImage(index);
 };
+
+const hideGallery = () => {
+  const gallery = document.querySelector('.gallery--js');
+  const images = document.querySelectorAll('.images--js');
+  if (!gallery) return;
+  gallery.classList.remove('gallery--visible');
+  [...images].forEach((image) => {
+    image.classList.remove('images--visible');
+    image.classList.remove('images--transition');
+    (image as HTMLElement).style.transform = 'translateX(0)';
+  });
+  //       switchCenter.classList.remove('switch__center--solid');
+  //       switchButton.classList.remove('switch--solid');
+  //       switchButton.classList.add('switch--disabled');
+};
+
+// const handleSwitchDisplay = (image) => {
+//   if (image.complete) {
+//     switchButton.classList.add('switch--solid');
+//     switchCenter.classList.add('switch__center--solid');
+//     switchButton.classList.remove('switch--disabled');
+//   } else {
+//     switchButton.classList.remove('switch--solid');
+//     switchCenter.classList.remove('switch__center--solid');
+//     switchButton.classList.add('switch--disabled');
+//   }
+// };
+
+const supportKeyboard = ({ key }) => {
+  switch (key) {
+    case 'ArrowLeft':
+      switchImage('left');
+      //   handleSwitchDisplay(images[currentIndex]);
+      break;
+
+    case 'ArrowRight':
+      switchImage('right');
+      //   handleSwitchDisplay(images[currentIndex]);
+      break;
+
+    case 'ArrowDown':
+      //   if (currentImage.complete) {
+      //     switchButton.classList.toggle('switch--solid');
+      //     currentImage.classList.toggle('images__image--loaded');
+      //     switchCenter.classList.toggle('switch__center--solid');
+      //   }
+      break;
+
+    case 'Escape':
+      hideGallery();
+      break;
+
+    default:
+      return;
+  }
+};
+
+// const slideVertically = () => {
+//   const nextScroll = window.pageYOffset || document.documentElement.scrollTop;
+//   const currentImageSection = imageSections[currentIndex];
+
+//   if (prevScroll === null) {
+//     prevScroll = nextScroll;
+//   }
+
+//   if (nextScroll !== prevScroll) {
+//     if (nextScroll > prevScroll) {
+//       currentImageSection.classList.add('images--hidden-top');
+//     } else {
+//       currentImageSection.classList.add('images--hidden-bottom');
+//     }
+//     showImage();
+
+//     setTimeout(() => {
+//       currentImageSection.classList.remove('images--hidden-top');
+//       currentImageSection.classList.remove('images--hidden-bottom');
+//     }, 700);
+
+//     removeAllEvents();
+//     prevScroll = null;
+//   }
+// };
+
+// const switchButton = document.querySelector(
+//   '.gallery-nav__button--js-switch'
+// );
+// const switchCenter = document.querySelector('.switch__center--js');
+
+// window.addEventListener('scroll', slideVertically);

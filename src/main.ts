@@ -1,7 +1,7 @@
 import './sass/main.scss';
 
 import { breakpoints } from './components/constants';
-import { generateGallery, showGallery } from './components/gallery';
+import { addGalleryEvents, generateGallery } from './components/gallery';
 import { generateGrid, lazyLoad, setFlexBasis } from './components/grid';
 
 const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
@@ -397,12 +397,7 @@ if (form) {
 window.onload = () => {
   generateGrid();
   generateGallery();
-
-  const portfolioGridButtons = document.querySelectorAll('.grid__button--js');
-  [...portfolioGridButtons].forEach((button, index) => {
-    button.index = index;
-    button.addEventListener('click', showGallery);
-  });
+  addGalleryEvents();
 
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);

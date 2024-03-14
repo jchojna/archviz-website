@@ -1,11 +1,11 @@
-////////////////////////////////////////////////////////// OVERALL TRANSITIONS 
+// OVERALL TRANSITIONS
 $page-overlay: 0.4s;
 $hover-icon: 0.2s;
 
-$ease-in-strong: cubic-bezier(0,0.6,0.4,1);
-$ease-out-strong: cubic-bezier(0.6,0,1,0.4);
+$ease-in-strong: cubic-bezier(0, 0.6, 0.4, 1);
+$ease-out-strong: cubic-bezier(0.6, 0, 1, 0.4);
 
-/////////////////////////////////////////////////////////////// OVERALL COLORS 
+// OVERALL COLORS
 $color-main: rgb(206, 146, 16);
 $color-main-dark: rgb(155, 111, 16);
 
@@ -13,7 +13,7 @@ $color-white: rgb(216, 215, 223);
 $color-background: rgb(66, 65, 68);
 $color-background-light: rgb(106, 104, 109);
 
-/////////////////////////////////////////////////////////////// OVERALL LAYOUT 
+// OVERALL LAYOUT
 $media-md: 768px;
 $media-lg: 1200px;
 
@@ -24,7 +24,7 @@ $layout-lg-offset: 50px;
 
 $radius-button: 5px;
 
-//////////////////////////////////////////////////////////////////// MAIN MENU 
+// MAIN MENU
 $layout-sm-logo: 40px;
 $layout-md-logo: 80px;
 $layout-lg-logo: 100px;
@@ -36,12 +36,12 @@ $translate-main-menu: 0.5s;
 $delay-main-menu: 0.5s;
 $go-top-button: 1s;
 
-////////////////////////////////////////////////////////////////// MOBILE MENU 
+// MOBILE MENU
 $size-burger-button: 30px;
 
 $toggle-mobile-menu: 0.5s;
 
-/////////////////////////////////////////////////////////////// PORTFOLIO GRID 
+// PORTFOLIO GRID
 $grid-gap-sm: 1rem;
 $grid-gap-md: 1rem;
 $grid-gap-lg: 1rem;
@@ -52,13 +52,13 @@ $grid-cols-sm: 1;
 $grid-cols-md: 2;
 $grid-cols-lg: 3;
 
-///////////////////////////////////////////////////////////////// PORTFOLIO JS 
+// PORTFOLIO JS
 $scale-grid-item: 1.1;
 
 $hover-grid-item: 0.4s;
 $load-grid-image: 1.5s;
 
-////////////////////////////////////////////////////////////////////// GALLERY 
+// GALLERY
 $offset-gallery-sm: 5px;
 $offset-gallery-md: 10px;
 $offset-gallery-lg: 15px;
@@ -74,12 +74,12 @@ $slide-horizontal: 0.6s;
 $slide-vertical: 0.7s;
 $load-gallery-image: 0.6s;
 
-//////////////////////////////////////////////////////////////////////// ABOUT 
+// ABOUT
 $size-dropdown: 30px;
 $rotate-dropdown: 0.3s;
 $hover-card: 0.3s;
 
-////////////////////////////////////////////////////////////////////// CONTACT 
+// CONTACT
 $size-checkbox: 30px;
 $input-radius: 5px;
 
@@ -88,5 +88,5 @@ $toggle-modal: 0.5s;
 $toggle-error: 0.4s;
 $toggle-alert: 0.3s;
 
-/////////////////////////////////////////////////////////////////////// FOOTER 
+// FOOTER
 $offset-footer: 20px;
