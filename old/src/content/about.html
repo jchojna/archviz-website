@@ -2,10 +2,15 @@
 <html lang="en">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74247371-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-74247371-1"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
       gtag('config', 'UA-74247371-1');
     </script>
@@ -13,11 +18,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Jakub Chojna | About</title>
-    <meta name="description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
-    <meta property="og:title" content="Jakub Chojna | Architectural Visualization" />
-    <meta property="og:description" content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work" />
-    <meta property="og:url" content="https://jchojna.github.io/archviz-website/" />
-    <meta property="og:image" content="https://jchojna.github.io/archviz-website/assets/img/cover.jpg" />
+    <meta
+      name="description"
+      content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work"
+    />
+    <meta
+      property="og:title"
+      content="Jakub Chojna | Architectural Visualization"
+    />
+    <meta
+      property="og:description"
+      content="Welcome to my portfolio of architectural and product visualization containing both commissioned and personal work"
+    />
+    <meta
+      property="og:url"
+      content="https://jchojna.github.io/archviz-website/"
+    />
+    <meta
+      property="og:image"
+      content="https://jchojna.github.io/archviz-website/assets/img/cover.jpg"
+    />
 
     <link rel="manifest" href="manifest.json" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -26,90 +46,141 @@
       sizes="192x192"
       href="assets/icons/icon-192x192.png"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      href="assets/icons/icon-192x192.png"
-    />
+    <link rel="icon" type="image/png" href="assets/icons/icon-192x192.png" />
 
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <div class="overlay overlay--onload overlay--js"></div>
     <header class="header" role="banner">
-      <h1 class="header__heading visuallyhidden">
-        3d Visualizations
-      </h1>
-      <nav class="main-menu main-menu--align-top" role="navigation" aria-label="Main navigation">
+      <h1 class="header__heading visuallyhidden">3d Visualizations</h1>
+      <nav
+        class="main-menu main-menu--align-top"
+        role="navigation"
+        aria-label="Main navigation"
+      >
         <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
-        <a href="index.html" class="logo fadeOut--js" aria-label="Page logo">
+        <a href="index.html" class="logo route--js" aria-label="Page logo">
           <svg class="logo__svg">
-            <use xlink:href="assets/svg/icons.svg#page-logo" ></use>
+            <use xlink:href="assets/svg/icons.svg#page-logo"></use>
           </svg>
         </a>
         <ul class="main-menu__list">
           <li class="main-menu__item">
-            <a href="index.html" class="main-menu__link fadeOut--js">WORKS</a>
+            <a href="index.html" class="main-menu__link route--js">WORKS</a>
           </li>
           <li class="main-menu__item">
-            <a href="about.html" class="main-menu__link main-menu__link--active fadeOut--js">ABOUT</a>
+            <a
+              href="about.html"
+              class="main-menu__link main-menu__link--active route--js"
+              >ABOUT</a
+            >
           </li>
           <li class="main-menu__item">
-            <a href="contact.html" class="main-menu__link fadeOut--js">CONTACT</a>
+            <a href="contact.html" class="main-menu__link route--js">CONTACT</a>
           </li>
         </ul>
-        <button class="button burger burger--js" aria-label="Toggle mobile menu">
-          <svg class="burger__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <button
+          class="button burger burger--js"
+          aria-label="Toggle mobile menu"
+        >
+          <svg
+            class="burger__svg"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <line
               class="burger__line burger__line--top burger__line--js-top"
-              x1="-24" y1="8" x2="100" y2="8"
+              x1="-24"
+              y1="8"
+              x2="100"
+              y2="8"
             />
             <line
               class="burger__line burger__line--center burger__line--js-center"
-              x1="-12" y1="50" x2="112" y2="50"
+              x1="-12"
+              y1="50"
+              x2="112"
+              y2="50"
             />
             <line
               class="burger__line burger__line--bottom burger__line--js-bottom"
-              x1="0" y1="92" x2="124" y2="92"
+              x1="0"
+              y1="92"
+              x2="124"
+              y2="92"
             />
           </svg>
         </button>
-        <a href="#page-container" class="go-top go-top--js" aria-label="Go to top">
+        <a
+          href="#page-container"
+          class="go-top go-top--js"
+          aria-label="Go to top"
+        >
           <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
         </a>
       </nav>
-      <nav class="mobile-menu mobile-menu--hidden mobile-menu--js" role="navigation" aria-label="Mobile menu navigation">
+      <nav
+        class="mobile-menu mobile-menu--hidden mobile-menu--js"
+        role="navigation"
+        aria-label="Mobile menu navigation"
+      >
         <h2 class="mobile-menu__heading visuallyhidden">Mobile Menu</h2>
         <ul class="mobile-menu__list">
           <li class="mobile-menu__item mobile-menu__item--js">
-            <a href="index.html" class="mobile-menu__link fadeOut--js">WORKS</a>
+            <a href="index.html" class="mobile-menu__link route--js">WORKS</a>
           </li>
           <li class="mobile-menu__item mobile-menu__item--js">
-            <a href="about.html" class="mobile-menu__link fadeOut--js">ABOUT</a>
+            <a href="about.html" class="mobile-menu__link route--js">ABOUT</a>
           </li>
           <li class="mobile-menu__item mobile-menu__item--js">
-            <a href="contact.html" class="mobile-menu__link fadeOut--js">CONTACT</a>
+            <a href="contact.html" class="mobile-menu__link route--js"
+              >CONTACT</a
+            >
           </li>
         </ul>
       </nav>
     </header>
-    <div id="page-container" class="page-container page-container--about page-container--visible">
+    <div
+      id="page-container"
+      class="page-container page-container--about page-container--visible"
+    >
       <main class="about about--js" role="main">
         <section class="info info--js">
           <h2 class="info__heading visuallyhidden">Information</h2>
           <section class="card card--js">
             <header class="card__header card__header--js" role="banner">
               <h3 class="card__heading visuallyhidden">About me</h3>
-              <button class="button card__header-button card__header-button--js" aria-label="Toggle about me section">
+              <button
+                class="button card__header-button card__header-button--js"
+                aria-label="Toggle about me section"
+              >
                 <span class="card__title">About Me</span>
-                <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
+                <svg
+                  class="card__dropdown card__dropdown--js"
+                  viewBox="0 0 512 512"
+                >
                   <use href="assets/svg/icons.svg#dropdown"></use>
                 </svg>
               </button>
             </header>
             <div class="card__description card__description--js">
-              <p class="card__text">I am an architect and 3d graphics enthusiast, specializing in <em class="card__emphasized">3d visualization</em> of architecture, interiors and every form of design. While creating a new project I focus on appropriate form of narration and <em class="card__emphasized">story-telling</em>. Because of that a rendering becomes something more than just a still image – a scene of life, an inspiration, an art.</p>
-              <a href="/assets/pdf/architectural_portfolio.pdf" class="button card__button" target="_blank" rel="nofollow noreferrer" aria-label="Open architectural portfolio pdf">
+              <p class="card__text">
+                I am an architect and 3d graphics enthusiast, specializing in
+                <em class="card__emphasized">3d visualization</em> of
+                architecture, interiors and every form of design. While creating
+                a new project I focus on appropriate form of narration and
+                <em class="card__emphasized">story-telling</em>. Because of that
+                a rendering becomes something more than just a still image – a
+                scene of life, an inspiration, an art.
+              </p>
+              <a
+                href="/assets/pdf/architectural_portfolio.pdf"
+                class="button card__button"
+                target="_blank"
+                rel="nofollow noreferrer"
+                aria-label="Open architectural portfolio pdf"
+              >
                 ARCHITECTURAL PORTFOLIO
               </a>
             </div>
@@ -117,16 +188,37 @@
           <section class="card card--js">
             <header class="card__header card__header--js" role="banner">
               <h3 class="card__heading visuallyhidden">Experience</h3>
-              <button class="button card__header-button card__header-button--js" aria-label="Toggle experience section">
+              <button
+                class="button card__header-button card__header-button--js"
+                aria-label="Toggle experience section"
+              >
                 <span class="card__title">Experience</span>
-                <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
+                <svg
+                  class="card__dropdown card__dropdown--js"
+                  viewBox="0 0 512 512"
+                >
                   <use href="assets/svg/icons.svg#dropdown"></use>
                 </svg>
               </button>
             </header>
             <div class="card__description card__description--js">
-              <p class="card__text">I have been working in the field of visual presentation for <em class="card__emphasized">over the last 10 years</em>. As a graduate with a Master’s Degree in Architecture I have a strong <em class="card__emphasized">architectural background</em> and experience gained in design studios in Poland and abroad. Due to that, I am fully aware how a project development process runs and how a good cooperation between designer, visualizer and investor should look like.</p>
-              <a href="/assets/pdf/archviz_portfolio.pdf" class="button card__button" target="_blank" rel="nofollow noreferrer" aria-label="Open archviz portfolio pdf">
+              <p class="card__text">
+                I have been working in the field of visual presentation for
+                <em class="card__emphasized">over the last 10 years</em>. As a
+                graduate with a Master’s Degree in Architecture I have a strong
+                <em class="card__emphasized">architectural background</em> and
+                experience gained in design studios in Poland and abroad. Due to
+                that, I am fully aware how a project development process runs
+                and how a good cooperation between designer, visualizer and
+                investor should look like.
+              </p>
+              <a
+                href="/assets/pdf/archviz_portfolio.pdf"
+                class="button card__button"
+                target="_blank"
+                rel="nofollow noreferrer"
+                aria-label="Open archviz portfolio pdf"
+              >
                 ARCHVIZ PORTFOLIO
               </a>
             </div>
@@ -134,9 +226,15 @@
           <section class="card card--js">
             <header class="card__header card__header--js" role="banner">
               <h3 class="card__heading visuallyhidden">Offer</h3>
-              <button class="button card__header-button card__header-button--js" aria-label="Toggle offer section">
+              <button
+                class="button card__header-button card__header-button--js"
+                aria-label="Toggle offer section"
+              >
                 <span class="card__title">Offer</span>
-                <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
+                <svg
+                  class="card__dropdown card__dropdown--js"
+                  viewBox="0 0 512 512"
+                >
                   <use href="assets/svg/icons.svg#dropdown"></use>
                 </svg>
               </button>
@@ -145,22 +243,38 @@
               <ul class="card__text card__text--list">
                 <li class="card__list-item">architectural visualization</li>
                 <li class="card__list-item">commercial visualization</li>
-                <li class="card__list-item">product visualization, packshots</li>
+                <li class="card__list-item">
+                  product visualization, packshots
+                </li>
               </ul>
             </div>
           </section>
           <section class="card card--js">
             <header class="card__header card__header--js" role="banner">
               <h3 class="card__heading visuallyhidden">Clients</h3>
-              <button class="button card__header-button card__header-button--js" aria-label="Toggle clients section">
+              <button
+                class="button card__header-button card__header-button--js"
+                aria-label="Toggle clients section"
+              >
                 <span class="card__title">Clients</span>
-                <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
+                <svg
+                  class="card__dropdown card__dropdown--js"
+                  viewBox="0 0 512 512"
+                >
                   <use href="assets/svg/icons.svg#dropdown"></use>
                 </svg>
               </button>
             </header>
             <div class="card__description card__description--js">
-                <p class="card__text">Up till now I collaborated with many companies and private clients from Poland, Great Britain, Australia, Denmark, Austria, Slovenia, including <em class="card__emphasized">architectural offices</em> and studios, <em class="card__emphasized">real estate developers</em> and <em class="card__emphasized">advertising agencies</em>.</p>
+              <p class="card__text">
+                Up till now I collaborated with many companies and private
+                clients from Poland, Great Britain, Australia, Denmark, Austria,
+                Slovenia, including
+                <em class="card__emphasized">architectural offices</em> and
+                studios,
+                <em class="card__emphasized">real estate developers</em> and
+                <em class="card__emphasized">advertising agencies</em>.
+              </p>
             </div>
           </section>
         </section>
@@ -169,7 +283,13 @@
           <ul class="clients__list">
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Konior Studio</h3>
-              <a href="http://www.koniorstudio.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Konior Studio website">
+              <a
+                href="http://www.koniorstudio.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Konior Studio website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#konior-studio"></use>
                 </svg>
@@ -177,7 +297,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Mofo Architekci</h3>
-              <a href="http://mofo.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Mofo Architekci website">
+              <a
+                href="http://mofo.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Mofo Architekci website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#mofo" />
                 </svg>
@@ -185,7 +311,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Echo Investment</h3>
-              <a href="https://www.echo.com.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Echo Investment website">
+              <a
+                href="https://www.echo.com.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Echo Investment website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#echo" />
                 </svg>
@@ -193,7 +325,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Hackett Hamilton</h3>
-              <a href="http://www.hacketthamilton.com/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Hackett Hamilton website">
+              <a
+                href="http://www.hacketthamilton.com/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Hackett Hamilton website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#hackett-hamilton" />
                 </svg>
@@ -201,7 +339,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Mallson</h3>
-              <a href="http://www.mallson.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Mallson website">
+              <a
+                href="http://www.mallson.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Mallson website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#mallson" />
                 </svg>
@@ -209,7 +353,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Studio Thörnblom</h3>
-              <a href="http://www.studio-thoernblom.at/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Studio Thörnblom website">
+              <a
+                href="http://www.studio-thoernblom.at/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Studio Thörnblom website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#studio-thoernblom" />
                 </svg>
@@ -217,7 +367,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Terroir</h3>
-              <a href="https://www.terroir.com.au/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Terroir website">
+              <a
+                href="https://www.terroir.com.au/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Terroir website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#terroir" />
                 </svg>
@@ -225,7 +381,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Ola Wołczyk</h3>
-              <a href="https://olawolczyk.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Ola Wolczyk website">
+              <a
+                href="https://olawolczyk.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Ola Wolczyk website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#olawolczyk" />
                 </svg>
@@ -233,15 +395,29 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Real2b Development</h3>
-              <a href="http://real2bdevelopment.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Real2b Development website">
+              <a
+                href="http://real2bdevelopment.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Real2b Development website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#real2b" />
                 </svg>
               </a>
             </li>
             <li class="clients__item">
-              <h3 class="clients__client visuallyhidden">Atelier 3 Girtler & Girtler</h3>
-              <a href="http://atelier3.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Atelier 3 Girtler & Girtler website">
+              <h3 class="clients__client visuallyhidden">
+                Atelier 3 Girtler & Girtler
+              </h3>
+              <a
+                href="http://atelier3.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Atelier 3 Girtler & Girtler website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#atelier3" />
                 </svg>
@@ -249,7 +425,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">Svet Vmes</h3>
-              <a href="https://www.svetvmes.si/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="Svet Vmes website">
+              <a
+                href="https://www.svetvmes.si/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="Svet Vmes website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#svet-vmes" />
                 </svg>
@@ -257,7 +439,13 @@
             </li>
             <li class="clients__item">
               <h3 class="clients__client visuallyhidden">PRES Deweloper</h3>
-              <a href="http://pres.com.pl/" target="_blank" rel="nofollow noreferrer" class="clients__link" aria-label="PRES Deweloper website">
+              <a
+                href="http://pres.com.pl/"
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="clients__link"
+                aria-label="PRES Deweloper website"
+              >
                 <svg class="clients__svg" viewBox="0 0 512 512">
                   <use href="assets/svg/icons.svg#pres" />
                 </svg>
@@ -273,22 +461,46 @@
             <h3 class="social__heading visuallyhidden">Social Media</h3>
             <ul class="social__list social__list--horizontal">
               <li class="social__item">
-                <a href="https://www.behance.net/jakubchojna" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Behance profile link">
+                <a
+                  href="https://www.behance.net/jakubchojna"
+                  class="social__link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Behance profile link"
+                >
                   <i class="social__icon fab fa-behance-square"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.linkedin.com/in/jakub-chojna-126897b7/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Linkedin profile link">
+                <a
+                  href="https://www.linkedin.com/in/jakub-chojna-126897b7/"
+                  class="social__link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Linkedin profile link"
+                >
                   <i class="social__icon fab fa-linkedin"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://github.com/jchojna/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Github profile link">
+                <a
+                  href="https://github.com/jchojna/"
+                  class="social__link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Github profile link"
+                >
                   <i class="social__icon fab fa-github-square"></i>
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.facebook.com/jakub.chojna/" class="social__link" target="_blank" rel="nofollow noreferrer" aria-label="Facebook profile link">
+                <a
+                  href="https://www.facebook.com/jakub.chojna/"
+                  class="social__link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Facebook profile link"
+                >
                   <i class="social__icon fab fa-facebook-square"></i>
                 </a>
               </li>
@@ -297,7 +509,10 @@
         </section>
         <section class="copyright">
           <h2 class="copyright__heading visuallyhidden">Copyright</h2>
-          <p class="copyright__text">Copyright &copy; 2019 Jakub Chojna. All rights reserved. Website designed and developed by Jakub Chojna</p>
+          <p class="copyright__text">
+            Copyright &copy; 2019 Jakub Chojna. All rights reserved. Website
+            designed and developed by Jakub Chojna
+          </p>
         </section>
       </footer>
     </div>

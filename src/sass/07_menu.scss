@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////// HEADER 
+/////////////////////////////////////////////////////////////////////// HEADER
 .header {
   left: 0;
   padding: $layout-sm-offset;
@@ -13,20 +13,18 @@
   }
 
   @media only screen and (min-width: $media-md) {
-
     & {
       padding: $layout-md-offset;
     }
   }
 
   @media only screen and (min-width: $media-lg) {
-
     & {
       padding: $layout-lg-offset;
     }
   }
 }
-//////////////////////////////////////////////////////////////////// MAIN MENU 
+
 .main-menu {
   align-items: center;
   display: flex;
@@ -54,7 +52,8 @@
 
     &--hidden {
       transform: translateY(-240px);
-      transition: transform $translate-main-menu $ease-out-strong $delay-main-menu;
+      transition: transform $translate-main-menu $ease-out-strong
+        $delay-main-menu;
     }
   }
 
@@ -73,18 +72,10 @@
     &--active {
       color: $color-main;
     }
-
-    &:hover,
-    &:focus {
-      color: $color-main;
-      outline: none;
-    }
   }
 
   @media only screen and (min-width: $media-md) {
-
     & {
-
       &--align-top {
         align-items: flex-start;
       }
@@ -96,9 +87,7 @@
   }
 
   @media only screen and (min-width: $media-lg) {
-
     & {
-      
       &--align-top {
         align-items: center;
       }
@@ -106,9 +95,8 @@
       &__list {
         flex-direction: row;
       }
-      
+
       &__item {
-        
         &:not(:last-child) {
           margin: 0 30px 0 0;
         }
@@ -120,7 +108,7 @@
     }
   }
 }
-////////////////////////////////////////////////////////////////// MOBILE MENU 
+
 .mobile-menu {
   @include position-fixed;
   @include flex-center;
@@ -149,7 +137,18 @@
     font-size: 3rem;
   }
 }
-///////////////////////////////////////////////////////////////////////// LOGO 
+
+.route-container {
+  display: none;
+  pointer-events: none;
+
+  &.visible {
+    display: flex;
+    pointer-events: auto;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////// LOGO
 .logo {
   display: flex;
   fill: $color-white;
@@ -171,7 +170,6 @@
   }
 
   @media only screen and (min-width: $media-md) {
-
     & {
       height: $layout-md-logo;
       width: $layout-md-logo;
@@ -179,14 +177,13 @@
   }
 
   @media only screen and (min-width: $media-lg) {
-
     & {
       height: $layout-lg-logo;
       width: $layout-lg-logo;
     }
   }
 }
-//////////////////////////////////////////////////////////////// BURGER BUTTON 
+//////////////////////////////////////////////////////////////// BURGER BUTTON
 .burger {
   height: $size-burger-button;
   pointer-events: auto;
@@ -221,11 +218,11 @@
     &--top {
       transform-origin: 95% 14%;
     }
-    
+
     &--center {
       transform-origin: 50% 50%;
     }
-    
+
     &--bottom {
       transform-origin: 5% 85%;
     }
@@ -235,7 +232,7 @@
     display: none;
   }
 }
-///////////////////////////////////////////////////////////// GO TO TOP BUTTON 
+///////////////////////////////////////////////////////////// GO TO TOP BUTTON
 .go-top {
   @include flex-center;
   border: 4px solid $color-white;
@@ -248,21 +245,15 @@
   pointer-events: auto;
   position: fixed;
   transform: translateX(-50%);
-  transition:
-    border-color $hover-icon,
-    color $hover-icon,
-    opacity $go-top-button,
-    visibility 0s $go-top-button;
+  transition: border-color $hover-icon, color $hover-icon,
+    opacity $go-top-button, visibility 0s $go-top-button;
   visibility: hidden;
   width: $size-go-top;
 
   &--visible {
     opacity: 1;
-    transition:
-      border-color $hover-icon,
-      color $hover-icon,
-      opacity $go-top-button,
-      visibility 0s;
+    transition: border-color $hover-icon, color $hover-icon,
+      opacity $go-top-button, visibility 0s;
     visibility: visible;
   }
 
@@ -272,7 +263,6 @@
   }
 
   @media only screen and (min-width: $media-md) {
-
     &:hover {
       border-color: $color-main;
       color: $color-main;

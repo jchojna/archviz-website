@@ -122,7 +122,7 @@ export const lazyLoad = (imageIndex: number = 0) => {
   }
 };
 
-export const generateGrid = () => {
+export const renderGrid = () => {
   const grid = document.querySelector('.grid--js');
   if (!grid) return;
   visualizations.forEach((viz) => {

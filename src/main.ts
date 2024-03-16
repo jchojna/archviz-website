@@ -1,12 +1,12 @@
 import './sass/main.scss';
 
 import { breakpoints } from './components/constants';
-import { generateFooter } from './components/footer';
-import { addGalleryEvents, generateGallery } from './components/gallery';
-import { generateGrid, lazyLoad, setFlexBasis } from './components/grid';
-import { addNavigationEvents } from './components/navigation';
+import { renderFooter } from './components/footer';
+import { addGalleryEvents, renderGallery } from './components/gallery';
+import { lazyLoad, renderGrid, setFlexBasis } from './components/grid';
+import { renderHeader } from './components/navbar';
 
-const fadeOutLinks = document.querySelectorAll('.fadeOut--js');
+const fadeOutLinks = document.querySelectorAll('.route--js');
 const portfolio = document.querySelector('.portfolio--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
@@ -38,10 +38,6 @@ const toNextPage = (e, callback, timeout) => {
 const delayLink = (element) => {
   window.location = element.href;
 };
-
-for (const link of fadeOutLinks) {
-  link.addEventListener('click', () => toNextPage(event, delayLink, 600));
-}
 
 const progressBar = document.querySelector('.overlay__progressBar--js');
 const url = window.location;
@@ -302,11 +298,12 @@ if (form) {
 }
 
 window.onload = () => {
-  generateGrid();
-  generateGallery();
+  renderHeader();
+  renderGrid();
+  renderGallery();
   addGalleryEvents();
-  generateFooter();
-  addNavigationEvents();
+  renderFooter();
+  // addNavigationEvents();
 
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);

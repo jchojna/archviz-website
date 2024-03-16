@@ -43,7 +43,7 @@ const galleryViz = (viz: Visualization, index: number, imagesTotal: number) => {
   `;
 };
 
-export const generateGallery = () => {
+export const renderGallery = () => {
   const gallery = document.querySelector('.gallery--js');
   if (!gallery) return;
   visualizations.forEach((viz, index) => {

@@ -1,6 +1,6 @@
 import socialMediaIcons from '../footer.json';
 
-export const generateFooter = () => {
+export const renderFooter = () => {
   const footer = document.querySelector('.footer--js');
   if (!footer) return;
   footer.innerHTML = `

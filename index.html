@@ -44,116 +44,12 @@
         class="overlay__progressBar overlay__progressBar--visible overlay__progressBar--js"
       ></div>
     </div>
-    <header class="header" role="banner">
-      <h1 class="header__heading visuallyhidden">
-        Architectural Visualization
-      </h1>
-      <nav
-        class="main-menu main-menu--align-top"
-        role="navigation"
-        aria-label="Main navigation"
-      >
-        <h2 class="main-menu__heading visuallyhidden">Main Menu</h2>
-        <a href="index.html" class="logo fadeOut--js" aria-label="Page logo">
-          <svg class="logo__svg">
-            <use xlink:href="svg/icons.svg#page-logo"></use>
-          </svg>
-        </a>
-        <ul class="main-menu__list">
-          <li
-            class="main-menu__item main-menu__item--large main-menu__item--js-large"
-          >
-            <a
-              href="index.html"
-              class="main-menu__link main-menu__link--large main-menu__link--active fadeOut--js"
-              >WORKS</a
-            >
-          </li>
-          <li
-            class="main-menu__item main-menu__item--large main-menu__item--js-large"
-          >
-            <a
-              href="about.html"
-              class="main-menu__link main-menu__link--large fadeOut--js"
-              >ABOUT</a
-            >
-          </li>
-          <li
-            class="main-menu__item main-menu__item--large main-menu__item--js-large"
-          >
-            <a
-              href="contact.html"
-              class="main-menu__link main-menu__link--large fadeOut--js"
-              >CONTACT</a
-            >
-          </li>
-        </ul>
-        <button
-          class="button burger burger--js"
-          aria-label="Toggle mobile menu"
-        >
-          <svg
-            class="burger__svg"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line
-              class="burger__line burger__line--top burger__line--js-top"
-              x1="-24"
-              y1="8"
-              x2="100"
-              y2="8"
-            />
-            <line
-              class="burger__line burger__line--center burger__line--js-center"
-              x1="-12"
-              y1="50"
-              x2="112"
-              y2="50"
-            />
-            <line
-              class="burger__line burger__line--bottom burger__line--js-bottom"
-              x1="0"
-              y1="92"
-              x2="124"
-              y2="92"
-            />
-          </svg>
-        </button>
-        <a
-          href="#page-container"
-          class="go-top go-top--js"
-          aria-label="Go to top"
-        >
-          <i class="go-top__icon fas fa-arrow-up fa-2x"></i>
-        </a>
-      </nav>
-      <nav
-        class="mobile-menu mobile-menu--hidden mobile-menu--js"
-        role="navigation"
-        aria-label="Mobile menu navigation"
-      >
-        <h2 class="mobile-menu__heading visuallyhidden">Mobile Menu</h2>
-        <ul class="mobile-menu__list">
-          <li class="mobile-menu__item mobile-menu__item--js">
-            <a href="index.html" class="mobile-menu__link fadeOut--js">WORKS</a>
-          </li>
-          <li class="mobile-menu__item mobile-menu__item--js">
-            <a href="about.html" class="mobile-menu__link fadeOut--js">ABOUT</a>
-          </li>
-          <li class="mobile-menu__item mobile-menu__item--js">
-            <a href="contact.html" class="mobile-menu__link fadeOut--js"
-              >CONTACT</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <div
+    <header class="header header--js" role="banner"></header>
+    <main
       id="page-container"
       class="page-container page-container--main-page page-container--visible"
     >
-      <main class="portfolio portfolio--js" role="main">
+      <div class="portfolio portfolio--js route-container visible" role="main">
         <section class="grid grid--js"></section>
         <section class="gallery gallery--js">
           <header class="gallery__header" role="banner">
@@ -231,9 +127,11 @@
             </nav>
           </header>
         </section>
-      </main>
-      <footer class="footer footer--js" role="contentinfo"></footer>
-    </div>
+      </div>
+      <div class="about about--js route-container"></div>
+      <div class="contact contact--js route-container"></div>
+    </main>
+    <footer class="footer footer--js" role="contentinfo"></footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
