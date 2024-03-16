@@ -43,12 +43,90 @@ const galleryViz = (viz: Visualization, index: number, imagesTotal: number) => {
   `;
 };
 
+const galleryNavbar = `
+  <nav
+    class="gallery-nav"
+    role="navigation"
+    aria-label="Gallery navigation"
+  >
+    <ul class="gallery-nav__list">
+      <li class="gallery-nav__item">
+        <button
+          class="button gallery-nav__button switch switch--disabled gallery-nav__button--js-switch"
+          aria-label="Switch display mode"
+        >
+          <svg
+            class="gallery-nav__svg switch__left"
+            viewBox="0 0 512 512"
+          >
+            <use href="svg/icons.svg#arrow-left" />
+          </svg>
+          <svg
+            class="gallery-nav__svg switch__center switch__center--js"
+            viewBox="0 0 512 512"
+          >
+            <use href="svg/icons.svg#switch" />
+          </svg>
+          <svg
+            class="gallery-nav__svg switch__right"
+            viewBox="0 0 512 512"
+          >
+            <use href="svg/icons.svg#arrow-right" />
+          </svg>
+        </button>
+      </li>
+      <li class="gallery-nav__item">
+        <button
+          class="button gallery-nav__button gallery-nav__button--js-left"
+          aria-label="Slide gallery left"
+        >
+          <svg
+            class="gallery-nav__svg gallery-nav__svg--left-arrow"
+            viewBox="0 0 512 512"
+          >
+            <use href="svg/icons.svg#arrow-left" />
+          </svg>
+        </button>
+      </li>
+      <li class="gallery-nav__item">
+        <button
+          class="button gallery-nav__button gallery-nav__button--js-right"
+          aria-label="Slide gallery right"
+        >
+          <svg
+            class="gallery-nav__svg gallery-nav__svg--right-arrow"
+            viewBox="0 0 512 512"
+          >
+            <use href="svg/icons.svg#arrow-right" />
+          </svg>
+        </button>
+      </li>
+      <li class="gallery-nav__item">
+        <button
+          class="button gallery-nav__button gallery-nav__button--js-close"
+          aria-label="Close gallery"
+        >
+          <svg
+            class="gallery-nav__svg gallery-nav__svg--close"
+            viewBox="0 0 512 512"
+          >
+            <use href="svg/icons.svg#close" />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+`;
+
 export const renderGallery = () => {
   const gallery = document.querySelector('.gallery--js');
   if (!gallery) return;
+
+  gallery.innerHTML = galleryNavbar;
   visualizations.forEach((viz, index) => {
     gallery.innerHTML += galleryViz(viz, index, visualizations.length);
   });
+  addGalleryEvents();
 };
 
 export const addGalleryEvents = () => {

@@ -6,7 +6,6 @@ import { addGalleryEvents, renderGallery } from './components/gallery';
 import { lazyLoad, renderGrid, setFlexBasis } from './components/grid';
 import { renderHeader } from './components/navbar';
 
-const fadeOutLinks = document.querySelectorAll('.route--js');
 const portfolio = document.querySelector('.portfolio--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
@@ -21,7 +20,6 @@ const fadeIn = () => {
   }
   pageOverlay.classList.remove('overlay--onload');
 };
-// F0 ////////////////////////////////////////// GO TO NEXT PAGE AFTER TIMEOUT
 
 const toNextPage = (e, callback, timeout) => {
   e.preventDefault();
@@ -32,11 +30,6 @@ const toNextPage = (e, callback, timeout) => {
     pageOverlay.classList.add('overlay--visible');
     setTimeout(() => callback(linkClicked), timeout);
   }
-};
-// F0 ///////////////////////////////////////////////////////////// DELAY LINK
-
-const delayLink = (element) => {
-  window.location = element.href;
 };
 
 const progressBar = document.querySelector('.overlay__progressBar--js');
@@ -301,25 +294,19 @@ window.onload = () => {
   renderHeader();
   renderGrid();
   renderGallery();
-  addGalleryEvents();
   renderFooter();
-  // addNavigationEvents();
 
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
 
-  if (portfolio) {
-    const progressBar = document.querySelector('.overlay__progressBar--js');
-    if (!progressBar) return;
-    setTimeout(() => {
-      fadeIn();
-      progressBar.classList.remove('overlay__progressBar--visible');
-    }, 1000);
-    lazyLoad(0);
-    window.addEventListener('scroll', () => lazyLoad(0));
-  } else {
+  const progressBar = document.querySelector('.overlay__progressBar--js');
+  if (!progressBar) return;
+  setTimeout(() => {
     fadeIn();
-  }
+    progressBar.classList.remove('overlay__progressBar--visible');
+  }, 1000);
+  lazyLoad(0);
+  window.addEventListener('scroll', () => lazyLoad(0));
 
   if (about) {
     window.innerWidth < breakpoints.tablet ? minimizeCards() : false;

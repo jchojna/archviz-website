@@ -99,7 +99,7 @@ const toggleGoTopButton = () => {
 
 let navbarPrevScroll = window.scrollY || document.documentElement.scrollTop;
 
-export const addNavigationEvents = () => {
+const addNavigationEvents = () => {
   const burgerButton = document.querySelector('.burger--js');
   if (!burgerButton) return;
 
