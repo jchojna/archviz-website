@@ -2,54 +2,12 @@ import './sass/main.scss';
 
 import { breakpoints } from './components/constants';
 import { renderFooter } from './components/footer';
-import { addGalleryEvents, renderGallery } from './components/gallery';
+import { renderGallery } from './components/gallery';
 import { lazyLoad, renderGrid, setFlexBasis } from './components/grid';
 import { renderHeader } from './components/navbar';
 
-const portfolio = document.querySelector('.portfolio--js');
 const about = document.querySelector('.about--js');
 const form = document.querySelector('.form--js');
-
-// F0 ///////////////////////////////////////////////////////// FADE IN EFFECT
-
-const fadeIn = () => {
-  const pageOverlay = document.querySelector('.overlay--js');
-  if (!pageOverlay) return;
-  if (!pageOverlay.classList.contains('overlay--onload')) {
-    pageOverlay.classList.add('overlay--onload');
-  }
-  pageOverlay.classList.remove('overlay--onload');
-};
-
-const toNextPage = (e, callback, timeout) => {
-  e.preventDefault();
-  const pageOverlay = document.querySelector('.overlay--js');
-  if (!pageOverlay) return;
-  const linkClicked = e.target;
-  if (linkClicked.tagName === 'A') {
-    pageOverlay.classList.add('overlay--visible');
-    setTimeout(() => callback(linkClicked), timeout);
-  }
-};
-
-const progressBar = document.querySelector('.overlay__progressBar--js');
-const url = window.location;
-
-///////////////////////////////////////////////////////////// FUNCTION CALLS
-
-const pageLoading = new XMLHttpRequest();
-pageLoading.open('GET', url, true);
-pageLoading.onprogress = (e) => {
-  if (e.lengthComputable) {
-    const percentNumber = (parseInt(e.loaded) / parseInt(e.total)) * 100;
-    progressBar.style.width = `${percentNumber}%`;
-  }
-};
-pageLoading.onloadstart = function (e) {};
-pageLoading.onloadend = function (e) {
-  progressBar.style.width = '100%';
-};
-pageLoading.send();
 
 if (about) {
   var minimizeCards = () => {
@@ -299,12 +257,6 @@ window.onload = () => {
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);
 
-  const progressBar = document.querySelector('.overlay__progressBar--js');
-  if (!progressBar) return;
-  setTimeout(() => {
-    fadeIn();
-    progressBar.classList.remove('overlay__progressBar--visible');
-  }, 1000);
   lazyLoad(0);
   window.addEventListener('scroll', () => lazyLoad(0));
 

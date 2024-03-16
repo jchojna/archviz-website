@@ -99,9 +99,9 @@ export const lazyLoad = (imageIndex: number = 0) => {
   if (!(image instanceof HTMLElement)) return;
   if (!(imageItem instanceof HTMLElement)) return;
   const imageOffset = imageItem.offsetTop;
-  const viewportTopOffset = window.pageYOffset - lazyLoadBuffer;
+  const viewportTopOffset = window.scrollY - lazyLoadBuffer;
   const viewportBottomOffset =
-    window.pageYOffset + window.innerHeight + lazyLoadBuffer;
+    window.scrollY + window.innerHeight + lazyLoadBuffer;
   const imageSrc = image.getAttribute('src');
   const imageNewSrc = image.getAttribute('data-src');
   if (!imageNewSrc) return;
