@@ -1,9 +1,0 @@
-/node_modules
-/dist
-/vectors
-/form_handler
-/pwa
-/markdown
-
-credentials.php
-package-lock.json
