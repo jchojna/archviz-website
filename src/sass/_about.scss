@@ -3,7 +3,7 @@
   flex-direction: column;
   min-height: 100vh;
 }
-///////////////////////////////////////////////////////////////////////// INFO 
+
 .info {
   display: grid;
   flex-grow: 1;
@@ -20,13 +20,13 @@
     padding: $layout-md-offset;
     padding-top: $layout-md-logo + $layout-md-offset * 2;
   }
-  
+
   @media only screen and (min-width: $media-lg) {
     padding: $layout-lg-offset;
     padding-top: $layout-lg-logo + $layout-lg-offset * 2;
   }
 }
-///////////////////////////////////////////////////////////////////////// CARD 
+
 .card {
   align-self: start;
   border-bottom: 1px solid $color-white;
@@ -84,7 +84,7 @@
     &--reversed {
       transform: rotate(180deg);
     }
-    
+
     &--transition {
       transition: transform $rotate-dropdown;
     }
@@ -125,9 +125,7 @@
     font-weight: 600;
     margin: 1rem 0;
     padding: 0.7em 1em;
-    transition:
-      background-color $hover-icon,
-      border-color $hover-icon;
+    transition: background-color $hover-icon, border-color $hover-icon;
 
     &:active,
     &:focus {
@@ -139,7 +137,6 @@
 
   @media only screen and (min-width: $media-md) {
     & {
-
       &__button {
         align-self: flex-start;
 
@@ -151,7 +148,7 @@
     }
   }
 }
-////////////////////////////////////////////////////////////////////// CLIENTS 
+
 .clients {
   @include flex-center;
   background-color: $color-main;
@@ -215,7 +212,7 @@
       fill: #fff;
     }
   }
-  
+
   @media only screen and (min-width: $media-lg) {
     &__list {
       grid-template-columns: repeat(6, 1fr);

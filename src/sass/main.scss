@@ -1,18 +1,16 @@
 @import url('https://use.fontawesome.com/releases/v5.8.2/css/all.css');
-//@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,800&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
-// used: 300, 400, 600
 
-@import '01_helpers';
-@import '02_print';
+@import '_helpers';
+@import '_print';
 
-@import '03_variables';
-@import '04_mixins';
-@import '05_animations';
+@import '_variables';
+@import '_mixins';
+@import '_animations';
 
-@import '06_page-overall';
-@import '07_menu';
-@import '08_portfolio';
-@import '09_gallery';
-@import '10_about';
-@import '12_footer';
+@import '_page-overall';
+@import '_menu';
+@import '_portfolio';
+@import '_gallery';
+@import '_about';
+@import '_footer';
