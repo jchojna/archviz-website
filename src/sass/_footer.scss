@@ -1,10 +1,16 @@
 .footer {
   @include flex-center;
+
   align-self: center;
+  display: none;
   flex-direction: column;
   max-width: $layout-container-width;
   padding: $layout-sm-offset $layout-sm-offset 0;
   width: 100%;
+
+  &.visible {
+    display: flex;
+  }
 
   &__container {
     @include flex-center;

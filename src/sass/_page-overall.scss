@@ -21,8 +21,11 @@ html {
 }
 
 body {
+  align-items: center;
   background-color: #000;
   color: $color-white;
+  display: flex;
+  flex-direction: column;
   font-family: 'Poppins', 'Work Sans', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
 .info {
@@ -58,7 +59,7 @@
     color: inherit;
     display: grid;
     grid-template-columns: $size-dropdown 1fr $size-dropdown;
-    padding: 1em 0;
+    padding: 1em;
     position: relative;
     text-align: center;
     transition: color $hover-card, fill $hover-card;

@@ -2,6 +2,7 @@ type Routes = {
   [key: string]: {
     linkLabel: string;
     container: string;
+    isFooter: boolean;
   };
 };
 
@@ -136,8 +137,9 @@ const registerLinks = (routes: Routes) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const { pathname } = e.target as HTMLAnchorElement;
-      const { container } = routes[pathname];
+      const { container, isFooter } = routes[pathname];
       const routeContainer = document.querySelector(`.${container}`);
+      const footer = document.querySelector('.footer--js');
       history.pushState({}, '', pathname);
 
       links.forEach((l) => {
@@ -149,6 +151,7 @@ const registerLinks = (routes: Routes) => {
           'visible'
         );
       });
+      footer?.classList[isFooter ? 'add' : 'remove']('visible');
     });
   });
 };
@@ -160,14 +163,17 @@ export const renderHeader = (): void => {
     '/': {
       linkLabel: 'Works',
       container: 'portfolio--js',
+      isFooter: true,
     },
     '/about': {
       linkLabel: 'About',
       container: 'about--js',
+      isFooter: true,
     },
     '/contact': {
       linkLabel: 'Contact',
       container: 'contact--js',
+      isFooter: false,
     },
   };
 
