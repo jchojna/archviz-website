@@ -192,4 +192,5 @@ export const renderHeader = (): void => {
   `;
 
   registerLinks(routes);
+  addNavigationEvents();
 };

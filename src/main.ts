@@ -1,5 +1,6 @@
 import './sass/main.scss';
 
+import { renderAbout } from './components/about';
 import { breakpoints } from './components/constants';
 import { renderFooter } from './components/footer';
 import { renderGallery } from './components/gallery';
@@ -253,6 +254,7 @@ window.onload = () => {
   renderGrid();
   renderGallery();
   renderFooter();
+  renderAbout();
 
   setFlexBasis();
   window.addEventListener('resize', setFlexBasis);

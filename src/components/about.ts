@@ -1,6 +1,16 @@
-<div class="about about--js" role="main">
+import clients from '../clients.json';
+
+type Client = {
+  name: string;
+  url: string;
+  icon: string;
+};
+
+export const renderAbout = () => {
+  const about = document.querySelector('.about--js');
+  if (!about) return;
+  about.innerHTML = `
   <section class="info info--js">
-    <h2 class="info__heading visuallyhidden">Information</h2>
     <section class="card card--js">
       <header class="card__header card__header--js" role="banner">
         <h3 class="card__heading visuallyhidden">About me</h3>
@@ -10,7 +20,7 @@
         >
           <span class="card__title">About Me</span>
           <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#dropdown"></use>
+            <use href="svg/icons.svg#dropdown"></use>
           </svg>
         </button>
       </header>
@@ -44,7 +54,7 @@
         >
           <span class="card__title">Experience</span>
           <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#dropdown"></use>
+            <use href="svg/icons.svg#dropdown"></use>
           </svg>
         </button>
       </header>
@@ -79,7 +89,7 @@
         >
           <span class="card__title">Offer</span>
           <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#dropdown"></use>
+            <use href="svg/icons.svg#dropdown"></use>
           </svg>
         </button>
       </header>
@@ -100,7 +110,7 @@
         >
           <span class="card__title">Clients</span>
           <svg class="card__dropdown card__dropdown--js" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#dropdown"></use>
+            <use href="svg/icons.svg#dropdown"></use>
           </svg>
         </button>
       </header>
@@ -119,176 +129,26 @@
   <nav class="clients" role="navigation" aria-label="Clients websites">
     <h2 class="clients__heading visuallyhidden">Clients</h2>
     <ul class="clients__list">
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Konior Studio</h3>
-        <a
-          href="http://www.koniorstudio.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Konior Studio website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#konior-studio"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Mofo Architekci</h3>
-        <a
-          href="http://mofo.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Mofo Architekci website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#mofo" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Echo Investment</h3>
-        <a
-          href="https://www.echo.com.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Echo Investment website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#echo" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Hackett Hamilton</h3>
-        <a
-          href="http://www.hacketthamilton.com/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Hackett Hamilton website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#hackett-hamilton" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Mallson</h3>
-        <a
-          href="http://www.mallson.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Mallson website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#mallson" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Studio Thörnblom</h3>
-        <a
-          href="http://www.studio-thoernblom.at/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Studio Thörnblom website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#studio-thoernblom" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Terroir</h3>
-        <a
-          href="https://www.terroir.com.au/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Terroir website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#terroir" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Ola Wołczyk</h3>
-        <a
-          href="https://olawolczyk.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Ola Wolczyk website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#olawolczyk" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Real2b Development</h3>
-        <a
-          href="http://real2bdevelopment.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Real2b Development website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#real2b" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">
-          Atelier 3 Girtler & Girtler
-        </h3>
-        <a
-          href="http://atelier3.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Atelier 3 Girtler & Girtler website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#atelier3" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">Svet Vmes</h3>
-        <a
-          href="https://www.svetvmes.si/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="Svet Vmes website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#svet-vmes" />
-          </svg>
-        </a>
-      </li>
-      <li class="clients__item">
-        <h3 class="clients__client visuallyhidden">PRES Deweloper</h3>
-        <a
-          href="http://pres.com.pl/"
-          target="_blank"
-          rel="nofollow noreferrer"
-          class="clients__link"
-          aria-label="PRES Deweloper website"
-        >
-          <svg class="clients__svg" viewBox="0 0 512 512">
-            <use href="assets/svg/icons.svg#pres" />
-          </svg>
-        </a>
-      </li>
+      ${clients.map(client).join('')}
     </ul>
   </nav>
-</div>
+`;
+};
+
+const client = ({ name, url, icon }: Client) => {
+  return `
+    <li class="clients__item">
+      <a
+        href="${url}"
+        target="_blank"
+        rel="nofollow noreferrer"
+        class="clients__link"
+        aria-label="${name} website"
+      >
+        <svg class="clients__svg" viewBox="0 0 512 512">
+          <use href="svg/icons.svg#${icon}"></use>
+        </svg>
+      </a>
+    </li>
+  `;
+};
