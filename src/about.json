@@ -1,0 +1,30 @@
+[
+  {
+    "heading": "About me",
+    "text": "I am an architect and 3d graphics enthusiast, specializing in 3d visualization of architecture, interiors and every form of design. While creating a new project I focus on appropriate form of narration and story-telling. Because of that a rendering becomes something more than just a still image – a scene of life, an inspiration, an art.",
+    "button": {
+      "label": "Architectural Portfolio",
+      "url": "/assets/pdf/architectural_portfolio.pdf"
+    }
+  },
+  {
+    "heading": "Experience",
+    "text": "I have been working in the field of visual presentation for over the last 10 years. As a graduate with a Master’s Degree in Architecture I have a strong architectural background and experience gained in design studios in Poland and abroad. Due to that, I am fully aware how a project development process runs and how a good cooperation between designer, visualizer and investor should look like.",
+    "button": {
+      "label": "Archviz Portfolio",
+      "url": "/assets/pdf/archviz_portfolio.pdf"
+    }
+  },
+  {
+    "heading": "Offer",
+    "list": [
+      "architectural visualization",
+      "commercial visualization",
+      "product visualization, packshots"
+    ]
+  },
+  {
+    "heading": "Clients",
+    "text": "Up till now I collaborated with many companies and private clients from Poland, Great Britain, Australia, Denmark, Austria, Slovenia, including architectural offices and studios, real estate developers and advertising agencies."
+  }
+]
