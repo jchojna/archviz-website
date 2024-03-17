@@ -1,4 +1,4 @@
-import visualizations from '../visualizations.json';
+import visualizations from '../content/visualizations.json';
 import { breakpoints } from './constants';
 
 const gridViz = ({

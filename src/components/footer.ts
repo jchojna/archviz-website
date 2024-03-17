@@ -1,4 +1,4 @@
-import socialMediaIcons from '../footer.json';
+import socialMediaIcons from '../content/footer.json';
 
 export const renderFooter = () => {
   const footer = document.querySelector('.footer--js');

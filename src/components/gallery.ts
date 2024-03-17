@@ -1,4 +1,4 @@
-import visualizations from '../visualizations.json';
+import visualizations from '../content/visualizations.json';
 
 const getTwoDigit = (number: number) => {
   return number.toLocaleString('en-US', {
