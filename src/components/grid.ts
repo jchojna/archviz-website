@@ -128,4 +128,10 @@ export const renderGrid = () => {
   visualizations.forEach((viz) => {
     grid.innerHTML += gridViz(viz);
   });
+
+  setFlexBasis();
+  lazyLoad(0);
+
+  window.addEventListener('resize', setFlexBasis);
+  window.addEventListener('scroll', () => lazyLoad(0));
 };

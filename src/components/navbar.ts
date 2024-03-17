@@ -86,7 +86,7 @@ const handleNavbar = () => {
 const toggleGoTopButton = () => {
   const goToTopButton = document.querySelector('.go-top--js');
   if (!goToTopButton) return;
-  let scroll =
+  const scroll =
     window.scrollY ||
     document.body.scrollTop +
       ((document.documentElement && document.documentElement.scrollTop) || 0);

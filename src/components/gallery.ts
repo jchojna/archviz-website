@@ -204,12 +204,16 @@ const switchImage = (direction: string) => {
     currentImage && currentImage.querySelector('.images__image--js');
   const currentIndex = +currentImage.dataset.index;
   const visibleClass = 'images--visible';
+  let prevIndex: number,
+    nextIndex: number,
+    prevImage: HTMLElement,
+    nextImage: HTMLElement;
 
   switch (direction) {
     case 'left':
       if (currentIndex === 0) return;
-      const prevIndex = currentIndex - 1;
-      const prevImage = images[prevIndex] as HTMLElement;
+      prevIndex = currentIndex - 1;
+      prevImage = images[prevIndex] as HTMLElement;
       currentImage.classList.add('images--transition');
       currentImage.classList.remove(visibleClass);
       prevImage.classList.add(visibleClass);
@@ -226,8 +230,8 @@ const switchImage = (direction: string) => {
 
     case 'right':
       if (currentIndex === images.length - 1) return;
-      const nextIndex = currentIndex + 1;
-      const nextImage = images[nextIndex] as HTMLElement;
+      nextIndex = currentIndex + 1;
+      nextImage = images[nextIndex] as HTMLElement;
       currentImage.classList.add('images--transition');
       currentImage.classList.remove(visibleClass);
       nextImage.classList.add(visibleClass);

@@ -1,5 +1,6 @@
 import about from '../about.json';
 import clients from '../clients.json';
+import { breakpoints } from './constants';
 
 type Card = {
   heading: string;
@@ -81,17 +82,76 @@ const client = ({ name, url, icon }: Client) => {
   `;
 };
 
+const minimizeCards = () => {
+  const cards = document.querySelectorAll('.card--js');
+  [...cards].forEach((card) => {
+    card.classList.toggle('card--rolled-up');
+    const cardDescription = card.querySelector('.card__description--js');
+    const cardDropdown = card.querySelector('.card__dropdown--js');
+    if (!cardDescription || !cardDropdown) return;
+    if (!(cardDescription instanceof HTMLElement)) return;
+    cardDescription.style.marginTop = `${
+      -1 * cardDescription.clientHeight - 3
+    }px`;
+    cardDropdown.classList.toggle('card__dropdown--reversed');
+  });
+};
+
+const handleCard = (card: HTMLElement) => {
+  const cardDescription = card.querySelector('.card__description--js');
+  const cardDropdown = card.querySelector('.card__dropdown--js');
+  if (!cardDescription || !cardDropdown) return;
+  if (!(cardDescription instanceof HTMLElement)) return;
+  const { marginTop } = cardDescription.style;
+
+  if (!cardDescription.classList.contains('card__description--transition')) {
+    cardDescription.classList.add('card__description--transition');
+    cardDropdown.classList.add('card__dropdown--transition');
+  }
+  cardDescription.classList.toggle('card--rolled-up');
+  cardDescription.style.marginTop =
+    marginTop === '0px' || marginTop === ''
+      ? `${-1 * cardDescription.clientHeight - 3}px`
+      : '0px';
+  cardDropdown.classList.toggle('card__dropdown--reversed');
+};
+
+const handleCardsOnResize = () => {
+  const cardDescriptions = document.querySelectorAll('.card__description--js');
+  [...cardDescriptions].forEach((card) => {
+    if (!(card instanceof HTMLElement)) return;
+    card.style.marginTop =
+      card.style.marginTop === '0px' || card.style.marginTop === ''
+        ? '0px'
+        : `${-1 * card.clientHeight - 3}px`;
+  });
+};
+
+const registerEvents = () => {
+  const cards = document.querySelectorAll('.card--js');
+
+  // handle cards expansion
+  [...cards].forEach((card) => {
+    const button = card.querySelector('.card__header-button--js');
+    if (!button || !(card instanceof HTMLElement)) return;
+    button.addEventListener('click', () => handleCard(card));
+  });
+  window.addEventListener('resize', () => handleCardsOnResize());
+  window.innerWidth < breakpoints.tablet ? minimizeCards() : false;
+};
+
 export const renderAbout = () => {
   const aboutContainer = document.querySelector('.about--js');
   if (!aboutContainer) return;
   aboutContainer.innerHTML = `
-  <section class="info info--js">
-    ${about.map(card).join('')}
-  </section>
-  <nav class="clients" role="navigation">
-    <ul class="clients__list">
-      ${clients.map(client).join('')}
-    </ul>
-  </nav>
-`;
+    <section class="info info--js">
+      ${about.map(card).join('')}
+    </section>
+    <nav class="clients" role="navigation">
+      <ul class="clients__list">
+        ${clients.map(client).join('')}
+      </ul>
+    </nav>
+  `;
+  registerEvents();
 };

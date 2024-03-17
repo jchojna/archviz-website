@@ -1,19 +1,35 @@
 @keyframes hideToLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100vw); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100vw);
+  }
 }
 
 @keyframes showFromLeft {
-  0% { transform: translateX(-100vw); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes hideToRight {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(100vw); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
 }
 
 @keyframes showFromRight {
-  0% { transform: translateX(100vw); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
