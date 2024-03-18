@@ -1,8 +1,8 @@
 [
   {
-    "href": "https://www.behance.net/jakubchojna",
-    "ariaLabel": "Behance profile link",
-    "icon": "fab fa-behance-square"
+    "href": "mailto:jakub.chojna@gmail.com",
+    "ariaLabel": "E-mail link",
+    "icon": "fa fa-envelope-square"
   },
   {
     "href": "https://www.linkedin.com/in/jakub-chojna/",
@@ -15,8 +15,8 @@
     "icon": "fab fa-github-square"
   },
   {
-    "href": "https://www.facebook.com/jakub.chojna/",
-    "ariaLabel": "Facebook profile link",
-    "icon": "fab fa-facebook-square"
+    "href": "https://www.behance.net/jakubchojna",
+    "ariaLabel": "Behance profile link",
+    "icon": "fab fa-behance-square"
   }
 ]

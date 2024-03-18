@@ -1,25 +1,24 @@
-import socialMediaIcons from '../content/footer.json';
+import socialMediaIcons from '../content/contact.json';
 
 export const renderContact = () => {
   const contactContainer = document.querySelector('.contact--js');
   if (!contactContainer) return;
 
   contactContainer.innerHTML = `
-
-    <nav class="social" role="navigation" aria-label="Social media links">
-    <ul class="social__list social__list--horizontal">
+    <h3 class="heading">Feel free to contact me!</h3>
+    <ul class="icons">
       ${socialMediaIcons
         .map(({ href, ariaLabel, icon }) => {
           return `
-            <li class="social__item">
+            <li class="icon">
               <a
                 href="${href}"
-                class="social__link"
+                class="icon-link"
                 target="_blank"
                 rel="nofollow noreferrer"
                 aria-label="${ariaLabel}"
               >
-                <i class="social__icon fab ${icon}"></i>
+                <i class="fab ${icon}"></i>
               </a>
             </li>
           `;

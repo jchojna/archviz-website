@@ -1,4 +1,4 @@
-import socialMediaIcons from '../content/footer.json';
+import contactIcons from '../content/contact.json';
 
 export const renderFooter = () => {
   const footer = document.querySelector('.footer--js');
@@ -7,7 +7,7 @@ export const renderFooter = () => {
     <section class="footer__container">
       <nav class="social" role="navigation" aria-label="Social media links">
         <ul class="social__list social__list--horizontal">
-        ${socialMediaIcons
+        ${contactIcons
           .map(({ href, ariaLabel, icon }) => {
             return `
               <li class="social__item">
