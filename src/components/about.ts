@@ -82,21 +82,6 @@ const client = ({ name, url, icon }: Client) => {
   `;
 };
 
-const minimizeCards = () => {
-  const cards = document.querySelectorAll('.card--js');
-  [...cards].forEach((card) => {
-    card.classList.toggle('card--rolled-up');
-    const cardDescription = card.querySelector('.card__description--js');
-    const cardDropdown = card.querySelector('.card__dropdown--js');
-    if (!cardDescription || !cardDropdown) return;
-    if (!(cardDescription instanceof HTMLElement)) return;
-    cardDescription.style.marginTop = `${
-      -1 * cardDescription.clientHeight - 3
-    }px`;
-    cardDropdown.classList.toggle('card__dropdown--reversed');
-  });
-};
-
 const handleCard = (card: HTMLElement) => {
   const cardDescription = card.querySelector('.card__description--js');
   const cardDropdown = card.querySelector('.card__dropdown--js');
@@ -137,7 +122,6 @@ const registerEvents = () => {
     button.addEventListener('click', () => handleCard(card));
   });
   window.addEventListener('resize', () => handleCardsOnResize());
-  window.innerWidth < breakpoints.tablet ? minimizeCards() : false;
 };
 
 export const renderAbout = () => {

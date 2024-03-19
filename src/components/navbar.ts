@@ -45,15 +45,15 @@ const goToTopButton = `
 `;
 
 const toggleMobileMenu = () => {
-  const mobileMenu = document.querySelector('.mobile-menu--js');
   const burgerTop = document.querySelector('.burger__line--js-top');
   const burgerCenter = document.querySelector('.burger__line--js-center');
   const burgerBottom = document.querySelector('.burger__line--js-bottom');
+  const menu = document.querySelector('.main-menu__list');
 
-  mobileMenu && mobileMenu.classList.toggle('mobile-menu--hidden');
   burgerTop && burgerTop.classList.toggle('burger__line--rotate-left');
   burgerCenter && burgerCenter.classList.toggle('burger__line--rotate-right');
   burgerBottom && burgerBottom.classList.toggle('burger__line--rotate-left');
+  menu && menu.classList.toggle('visible');
 };
 
 const handleNavbar = () => {
@@ -151,6 +151,7 @@ const registerLinks = (routes: Routes) => {
           'visible'
         );
       });
+      toggleMobileMenu();
       footer?.classList[isFooter ? 'add' : 'remove']('visible');
     });
   });
