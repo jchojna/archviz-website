@@ -1,0 +1,244 @@
+.header {
+  left: 0;
+  padding: $layout-sm-offset;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  height: 100%;
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      padding: $layout-md-offset;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      padding: $layout-lg-offset;
+    }
+  }
+}
+
+.main-menu {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  &:hover &__item {
+    transform: translateY(0);
+    transition: transform $translate-main-menu $ease-in-strong;
+  }
+
+  &--align-top {
+    align-items: flex-start;
+  }
+
+  &__list {
+    align-items: center;
+    background-color: $color-background;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    list-style: none;
+    left: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: 100px;
+    pointer-events: auto;
+    position: absolute;
+    top: 0;
+    transition: transform 0.3s;
+    transform: translateY(-100%);
+    width: 100%;
+    z-index: -1;
+
+    &.visible {
+      transform: translateY(0);
+    }
+
+    @media only screen and (min-width: $media-md) {
+      align-items: flex-end;
+      background: none;
+      padding: 0;
+      position: relative;
+      transform: translateY(0);
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      justify-content: flex-end;
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    transform: translateY(0);
+    transition: transform $translate-main-menu $ease-in-strong;
+
+    &--hidden {
+      transform: translateY(-240px);
+      transition: transform $translate-main-menu $ease-out-strong
+        $delay-main-menu;
+    }
+  }
+
+  &__link {
+    @include flex-center;
+    color: $color-white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: color $hover-main-menu;
+
+    &--large {
+      color: $color-white;
+      font-size: 3rem;
+    }
+
+    &--active {
+      color: $color-main;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    &--align-top {
+      align-items: center;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin: 0 30px 0 0;
+      }
+    }
+
+    &__link--large {
+      font-size: 4rem;
+    }
+  }
+}
+
+.page-container .route-container {
+  display: none;
+  pointer-events: none;
+
+  &.visible {
+    display: flex;
+    pointer-events: auto;
+  }
+}
+
+.logo {
+  display: flex;
+  fill: $color-white;
+  height: $layout-sm-logo;
+  pointer-events: auto;
+  transition: fill $hover-main-menu;
+  width: $layout-sm-logo;
+
+  &__svg {
+    height: 100%;
+    pointer-events: none;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      height: $layout-md-logo;
+      width: $layout-md-logo;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      height: $layout-lg-logo;
+      width: $layout-lg-logo;
+    }
+  }
+}
+
+.burger {
+  height: $size-burger-button;
+  pointer-events: auto;
+  position: relative;
+  width: $size-burger-button;
+  z-index: 1;
+
+  &__svg {
+    height: 100%;
+    stroke: $color-white;
+    stroke-width: 16;
+    transition: stroke $hover-main-menu;
+    width: 100%;
+
+    &:active {
+      background: none;
+      stroke: $color-main;
+    }
+  }
+
+  &__line {
+    transition: transform $hover-main-menu;
+
+    &--rotate-left {
+      transform: rotate(-45deg);
+    }
+
+    &--rotate-right {
+      transform: rotate(45deg);
+    }
+
+    &--top {
+      transform-origin: 95% 14%;
+    }
+
+    &--center {
+      transform-origin: 50% 50%;
+    }
+
+    &--bottom {
+      transform-origin: 5% 85%;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    display: none;
+  }
+}
+
+.go-top {
+  @include flex-center;
+  border: 4px solid $color-white;
+  border-radius: 50%;
+  bottom: 20px;
+  color: $color-white;
+  height: $size-go-top;
+  left: 50%;
+  opacity: 0;
+  pointer-events: auto;
+  position: fixed;
+  transform: translateX(-50%);
+  transition: border-color $hover-icon, color $hover-icon,
+    opacity $go-top-button, visibility 0s $go-top-button;
+  visibility: hidden;
+  width: $size-go-top;
+
+  &--visible {
+    opacity: 1;
+    transition: border-color $hover-icon, color $hover-icon,
+      opacity $go-top-button, visibility 0s;
+    visibility: visible;
+  }
+
+  &:active {
+    border-color: $color-main;
+    color: $color-main;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    &:hover {
+      border-color: $color-main;
+      color: $color-main;
+    }
+  }
+}

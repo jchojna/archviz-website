@@ -1,0 +1,191 @@
+.portfolio {
+  height: 100%;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-auto-rows: $grid-item-height-sm;
+  gap: $grid-gap-sm;
+  grid-template-columns: repeat($grid-cols-sm, 1fr);
+  width: 100%;
+
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  &__item {
+    @include flex-center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &__title {
+    color: $color-main;
+    font-size: 3rem;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    transform: scale(6);
+    transform-origin: center;
+    transition: opacity $hover-grid-item cubic-bezier(0.1, 0.9, 0.1, 0.9),
+      transform $hover-grid-item ease-out;
+    user-select: none;
+    word-wrap: break-word;
+    z-index: 1;
+  }
+
+  &__button {
+    @include flex-center;
+    height: 100%;
+    position: relative;
+    transform: scale(1);
+    transition: transform $hover-grid-item ease-out;
+    width: 100%;
+  }
+
+  &__svg-solid {
+    display: block;
+    fill: $color-main;
+    height: 100%;
+    min-height: $grid-item-height-sm;
+    min-width: calc(100vw / $grid-cols-sm);
+    pointer-events: none;
+
+    &--flex {
+      min-height: 0;
+      min-width: 0;
+      width: 100%;
+    }
+  }
+
+  &__svg-line {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+  }
+
+  &__image {
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+    width: 100%;
+
+    &--loaded {
+      opacity: 1;
+      transition: opacity $load-grid-image, filter $hover-grid-item;
+      visibility: visible;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      grid-auto-rows: $grid-item-height-md;
+      gap: $grid-gap-md;
+      grid-template-columns: repeat($grid-cols-md, 1fr);
+
+      &--flex {
+        gap: 0;
+      }
+
+      &__item {
+        &::after {
+          @include content-absolute;
+          box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.5);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity $hover-grid-item ease-out;
+        }
+
+        &:hover,
+        &:focus-within {
+          &::after {
+            opacity: 1;
+          }
+
+          & .grid__title {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity $hover-grid-item
+                cubic-bezier(0.9, 0.1, 0.9, 0.1),
+              transform $hover-grid-item ease-out;
+          }
+        }
+      }
+
+      &__button {
+        & + h3 {
+          border: 1px solid #000;
+        }
+
+        &::after {
+          content: '';
+          background-color: rgb(82, 97, 128);
+          bottom: 0;
+          left: 0;
+          opacity: 0.04;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: opacity $hover-grid-item;
+        }
+
+        &:hover,
+        &:focus {
+          transform: scale($scale-grid-item);
+
+          &::after {
+            opacity: 0;
+          }
+
+          .grid__image {
+            filter: saturate(100%);
+          }
+        }
+      }
+
+      &__svg-solid {
+        min-height: $grid-item-height-md;
+        min-width: calc(100vw / $grid-cols-md);
+
+        &--flex {
+          min-height: 0;
+          min-width: 0;
+        }
+      }
+
+      &__image {
+        filter: saturate(30%) brightness(0.7);
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      grid-auto-rows: $grid-item-height-lg;
+      gap: $grid-gap-lg;
+      grid-template-columns: repeat($grid-cols-lg, 1fr);
+
+      &--flex {
+        gap: 0;
+      }
+
+      &__svg-solid {
+        min-height: $grid-item-height-lg;
+        min-width: calc(100vw / $grid-cols-lg);
+
+        &--flex {
+          min-height: 0;
+          min-width: 0;
+        }
+      }
+    }
+  }
+}

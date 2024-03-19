@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Konior Studio",
+    "url": "http://www.koniorstudio.pl/",
+    "icon": "konior-studio"
+  },
+  {
+    "name": "Mofo Architekci",
+    "url": "http://mofo.pl/",
+    "icon": "mofo"
+  },
+  {
+    "name": "Echo Investment",
+    "url": "https://www.echo.com.pl/",
+    "icon": "echo"
+  },
+  {
+    "name": "Hackett Hamilton",
+    "url": "http://www.hacketthamilton.com/",
+    "icon": "hackett-hamilton"
+  },
+  {
+    "name": "Mallson",
+    "url": "http://www.mallson.pl/",
+    "icon": "mallson"
+  },
+  {
+    "name": "Studio Thörnblom",
+    "url": "http://www.studio-thoernblom.at/",
+    "icon": "studio-thoernblom"
+  },
+  {
+    "name": "Terroir",
+    "url": "https://www.terroir.com.au/",
+    "icon": "terroir"
+  },
+  {
+    "name": "Ola Wołczyk",
+    "url": "https://olawolczyk.pl/",
+    "icon": "olawolczyk"
+  },
+  {
+    "name": "Real2b Development",
+    "url": "http://real2bdevelopment.pl/",
+    "icon": "real2b"
+  },
+  {
+    "name": "Atelier 3 Girtler & Girtler",
+    "url": "http://atelier3.pl/",
+    "icon": "atelier3"
+  },
+  {
+    "name": "Svet Vmes",
+    "url": "https://www.svetvmes.si/",
+    "icon": "svet-vmes"
+  },
+  {
+    "name": "PRES Deweloper",
+    "url": "http://pres.com.pl/",
+    "icon": "pres"
+  }
+]

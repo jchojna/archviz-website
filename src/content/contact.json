@@ -1,0 +1,22 @@
+[
+  {
+    "href": "mailto:jakub.chojna@gmail.com",
+    "ariaLabel": "E-mail link",
+    "icon": "fa fa-envelope-square"
+  },
+  {
+    "href": "https://www.linkedin.com/in/jakub-chojna/",
+    "ariaLabel": "Linkedin profile link",
+    "icon": "fab fa-linkedin"
+  },
+  {
+    "href": "https://github.com/jchojna/",
+    "ariaLabel": "Github profile link",
+    "icon": "fab fa-github-square"
+  },
+  {
+    "href": "https://www.behance.net/jakubchojna",
+    "ariaLabel": "Behance profile link",
+    "icon": "fab fa-behance-square"
+  }
+]

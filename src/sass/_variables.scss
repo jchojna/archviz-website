@@ -1,0 +1,91 @@
+// OVERALL TRANSITIONS
+$hover-icon: 0.2s;
+
+$ease-in-strong: cubic-bezier(0, 0.6, 0.4, 1);
+$ease-out-strong: cubic-bezier(0.6, 0, 1, 0.4);
+
+// OVERALL COLORS
+$color-main: rgb(206, 146, 16);
+$color-main-dark: rgb(155, 111, 16);
+
+$color-white: rgb(216, 215, 223);
+$color-background: rgb(26, 26, 26);
+$color-background-light: rgb(106, 104, 109);
+
+// OVERALL LAYOUT
+$media-md: 768px;
+$media-lg: 1200px;
+
+$layout-container-width: 1200px;
+$layout-sm-offset: 20px;
+$layout-md-offset: 40px;
+$layout-lg-offset: 50px;
+
+$radius-button: 5px;
+
+// MAIN MENU
+$layout-sm-logo: 40px;
+$layout-md-logo: 80px;
+$layout-lg-logo: 100px;
+
+$size-go-top: 50px;
+
+$hover-main-menu: 0.3s;
+$translate-main-menu: 0.5s;
+$delay-main-menu: 0.5s;
+$go-top-button: 1s;
+
+// MOBILE MENU
+$size-burger-button: 30px;
+
+$toggle-mobile-menu: 0.5s;
+
+// PORTFOLIO GRID
+$grid-gap-sm: 1rem;
+$grid-gap-md: 1rem;
+$grid-gap-lg: 1rem;
+$grid-item-height-sm: 300px;
+$grid-item-height-md: 30vw;
+$grid-item-height-lg: 30vw;
+$grid-cols-sm: 1;
+$grid-cols-md: 2;
+$grid-cols-lg: 3;
+
+// PORTFOLIO JS
+$scale-grid-item: 1.1;
+
+$hover-grid-item: 0.4s;
+$load-grid-image: 1.5s;
+
+// GALLERY
+$offset-gallery-sm: 5px;
+$offset-gallery-md: 10px;
+$offset-gallery-lg: 15px;
+
+$size-gallery-button-sm: 30px;
+$size-gallery-button-md: 35px;
+$size-gallery-button-lg: 40px;
+$gap-gallery-button: 20px;
+
+$toggle-gallery: 0.7s;
+$hover-gallery-button: 0.4s;
+$slide-horizontal: 0.6s;
+$slide-vertical: 0.7s;
+$load-gallery-image: 0.6s;
+
+// ABOUT
+$size-dropdown: 30px;
+$rotate-dropdown: 0.3s;
+$hover-card: 0.3s;
+
+// CONTACT
+$size-checkbox: 30px;
+$input-radius: 5px;
+
+$toggle-checkbox: 0.4s;
+$toggle-modal: 0.5s;
+$toggle-error: 0.4s;
+$toggle-alert: 0.3s;
+
+// FOOTER
+$offset-footer: 20px;

@@ -1,57 +1,21 @@
 {
-  "name": "archviz-website",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "archviz",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
   "scripts": {
-    "predeploy": "gulp build",
-    "deploy": "gh-pages -d dist"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.js",
+    "type-check": "tsc --noEmit"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jchojna/archviz-website"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://jakubchojna.pl/",
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/register": "^7.12.1",
-    "autoprefixer": "^9.8.6",
-    "babel-loader": "^8.2.1",
-    "browser-sync": "^2.26.13",
-    "gh-pages": "^2.2.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^6.1.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "node-sass": "^4.14.1",
-    "through2": "^3.0.2",
-    "vinyl-named": "^1.1.0",
-    "webpack": "^4.41.0",
-    "webpack-sources": "^1.4.3",
-    "webpack-stream": "^5.2.1"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
-  "dependencies": {
-    "core-js": "^3.7.0"
-  },
-  "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "maintained node versions",
-    "not dead"
-  ]
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "sass": "^1.71.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
+  }
 }
