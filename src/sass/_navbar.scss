@@ -118,35 +118,6 @@
   }
 }
 
-.mobile-menu {
-  @include position-fixed;
-  @include flex-center;
-  background-color: $color-background;
-  opacity: 1;
-  pointer-events: auto;
-  transition: visibility 0s, opacity $toggle-mobile-menu;
-  visibility: visible;
-
-  &--hidden {
-    opacity: 0;
-    transition: visibility 0s $toggle-mobile-menu, opacity $toggle-mobile-menu;
-    visibility: hidden;
-  }
-
-  &__list {
-    @include flex-center;
-    flex-direction: column;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  &__link {
-    @extend .main-menu__link;
-    font-size: 3rem;
-  }
-}
-
 .page-container .route-container {
   display: none;
   pointer-events: none;
@@ -164,12 +135,6 @@
   pointer-events: auto;
   transition: fill $hover-main-menu;
   width: $layout-sm-logo;
-
-  &:hover,
-  &:focus {
-    fill: $color-main;
-    outline: none;
-  }
 
   &__svg {
     height: 100%;

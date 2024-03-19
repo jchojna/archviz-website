@@ -131,6 +131,7 @@ const getLinksHTML = (routes: Routes): string => {
 
 const registerLinks = (routes: Routes) => {
   const links = document.querySelectorAll('.route--js');
+  const menuLinks = document.querySelectorAll('.main-menu__link');
   const routeContainers = document.querySelectorAll('.route-container');
 
   links.forEach((link) => {
@@ -142,9 +143,16 @@ const registerLinks = (routes: Routes) => {
       const footer = document.querySelector('.footer--js');
       history.pushState({}, '', pathname);
 
-      links.forEach((l) => {
+      menuLinks.forEach((l) => {
         l.classList[l === link ? 'add' : 'remove']('main-menu__link--active');
       });
+
+      // set first link of menu as active when logo is clicked
+      if (link.classList.contains('logo')) {
+        const worksLink = document.querySelector('.main-menu__link');
+        if (!worksLink) return;
+        worksLink.classList.add('main-menu__link--active');
+      }
 
       routeContainers.forEach((container) => {
         container.classList[container === routeContainer ? 'add' : 'remove'](

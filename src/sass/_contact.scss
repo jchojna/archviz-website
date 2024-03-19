@@ -4,28 +4,34 @@
   flex-direction: column;
   height: 100vh;
   justify-content: center;
+  padding: 50px;
 
   .heading {
+    color: $color-background-light;
     font-size: 2.5rem;
     text-align: center;
   }
 
   .icons {
+    align-items: center;
     display: flex;
     gap: 1em;
+    justify-content: center;
+    flex-wrap: wrap;
     list-style-type: none;
     margin: 0;
     padding: 0;
 
     .icon-link {
-      color: $color-background-light;
+      color: $color-white;
       transition: color $hover-icon;
       font-size: 6rem;
+      display: flex;
 
       &:hover,
       &:active,
       &:focus {
-        color: $color-white;
+        color: $color-main;
         outline: none;
       }
     }

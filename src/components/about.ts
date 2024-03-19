@@ -1,6 +1,5 @@
 import about from '../content/about.json';
 import clients from '../content/clients.json';
-import { breakpoints } from './constants';
 
 type Card = {
   heading: string;
